@@ -1,0 +1,410 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>机务检修信息管理系统</title>
+	<!--框架必需start-->
+	<script type="text/javascript" src="js/jquery-1.4.js"></script>
+	<script type="text/javascript" src="js/framework.js"></script>
+	<link href="css/import_basic.css" rel="stylesheet" type="text/css"/>
+	<link  rel="stylesheet" type="text/css" id="skin" prePath="./"/>
+	<!--框架必需end-->
+	
+	<!--引入组件start-->
+	<script type="text/javascript" src="js/attention/zDialog/zDrag.js"></script>
+	<script type="text/javascript" src="js/attention/zDialog/zDialog.js"></script>
+	<!--引入弹窗组件end-->
+	
+	<!--修正IE6支持透明png图片start-->
+	<script type="text/javascript" src="js/method/pngFix/supersleight.js"></script>
+	<!--[if IE 6]>
+	<script src="js/iepngfx.js" language="javascript" type="text/javascript"></script>
+	<![endif]-->
+	<!--修正IE6支持透明png图片end-->
+	<script>
+		$(function(){
+			var htabIdx=0;
+			var htabLiIdx=0;
+			var htabIndex=jQuery.jCookie('htabIndex');
+			var htabLiIndex=jQuery.jCookie('htabLiIndex');
+			if(htabIndex!=false){
+				htabIdx=parseInt(htabIndex);
+			}
+			if(htabLiIndex!=false){
+				htabLiIdx=parseInt(htabLiIndex);
+			}
+			$(".top >ul").filter(':eq('+htabIdx+')').show();
+			$(".tab_bar li a").filter(':eq('+htabIdx+')').addClass("current");
+			$(".top li a").filter(':eq('+htabLiIdx+')').addClass("current");
+			$(".tab_bar li a").each(function(i){//点击横向主tab
+				$(this).click(function(){
+					if($(".top").is(":hidden")){
+						$(".top").show();
+					}
+					$(".tab_bar li a").removeClass("current");
+					$(this).addClass("current");
+					$(".top >ul").hide();
+					$(".top >ul").eq(i).show();
+					jQuery.jCookie('htabIndex',i.toString());
+				})
+			});
+			$(".top li a").each(function(i){//点击tab下的横向子栏目
+				$(this).click(function(){
+					$(".top li a").removeClass("current");
+					$(this).addClass("current");
+					jQuery.jCookie('htabLiIndex',i.toString());
+				})
+			});
+		});
+		
+	</script>
+	<!--弹出式提示框start-->
+	<script type="text/javascript" src="js/attention/messager.js"></script>
+	<script>
+		$(function(){
+			setTimeout("openMsg()",4000)
+		})
+		function openMsg(){
+		$.messager.lays(250, 140);
+		$.messager.show(0,'<ul><li><a href="javascript:openWin()"><span class="icon_lightOn">系统消息：3条</span></a></li><div class="clear"></div>'+
+		'<li><a href="javascript:openWin()"><span class="icon_lightOn">公共消息：10条</span></a></li><div class="clear"></div>'+
+		'<li><a href="javascript:openWin()"><span class="icon_lightOn">私人消息：5条</span></a></li><div class="clear"></div>'+
+		'<li><a href="javascript:openWin()"><span class="icon_lightOn">未读消息：15条</span></a></li><div class="clear"></div></ul>','stay');
+		}
+		function openWin(){
+			top.Dialog.open({URL:"templete/msgBox.html",Title:"信件箱"});
+		}
+	</script>
+	<!--弹出式提示框end-->
+	<style type="text/css"> 
+	<!-- 
+	/*导航*/
+	.menu{height:32px;padding-left:15px;_overflow:hidden;}
+	.menu a{color:#fff;height:16px;line-height:16px;float:left;position:relative;}
+	.top{background:#3583CB;position:relative;z-index:9999}
+	.menu li{font-size:13px;float:left;position:relative;padding:8px 12px;width:94px;}
+	.menu li:hover{background-color:#fff;border:1px solid #629d2a;border-bottom:none;padding:8px 11px}
+	.menu li:hover a{color:#357d13}
+	.menu li.no_sub:hover{border:1px solid #629d2a;padding:7px 11px}
+	.menu ul{width:100px;background-color:#fff;border:1px solid #629d2a;border-top:none;position:absolute;left:-1px;top:-999em;z-index:99999;padding:8px;display:none}
+	.menu li:hover ul{top:20px;display:block}
+	.menu li:hover ul li{font-size:12px;border:none;width:90px;float:left;padding:4px 0 4px 10px}
+	.menu li:hover ul li a{color:#333;text-decoration:none;padding:0}
+	.menu li:hover ul li a:hover{text-decoration:underline}
+	/*IE6*/
+	.menu li.hover{background-color:#fff;border:1px solid #629d2a;border-bottom:none;padding:8px 11px}
+	.menu li.hover a{color:#357d13}
+	.menu li.hover ul{top:31px;display:block}
+	.menu li.hover ul li{border:none;width:90px;float:left;padding:4px 0 4px 10px}
+	.menu li.hover ul li a{height:16px;line-height:16px;font-size:12px;color:#333;text-decoration:none;padding:0}
+	.menu li.hover ul li a:hover{text-decoration:underline;color: #f00;}
+	.menu li.no_sub.hover1{border:1px solid #629d2a;padding:7px 11px}
+	--> 
+	</style> 
+	<script type=text/javascript><!--//--><![CDATA[//><!-- 
+	function menuFix() { 
+		$(".menu li").hover(function(){
+				$(this).addClass("hover");
+				$(this).children("ul li").attr('class','');
+			},function(){
+				$(this).removeClass("hover");  
+				$(this).children("ul li").attr('class','');
+			}
+		); 
+		$(".menu li.no_sub").hover(function(){
+				$(this).addClass("hover1");
+			},function(){
+				$(this).removeClass("hover1");  
+			}
+		); 
+	} 
+	window.onload=menuFix; 
+	//--><!]]></script> 
+</head>
+<body>
+<div id="floatPanel-1"></div>		
+<div id="mainFrame" style="width:100%;margin:0 auto;">
+
+<!--头部与导航start-->
+<div id="hbox" class="tab_barNav">
+	<div id="bs_bannercenter">
+		<div id="bs_bannerleft">
+			<div id="bs_bannerright2">
+					<div class="bs_banner_title"></div>
+					<div id="bs_bannerright2">
+						<div class="bs_banner_title"></div>
+						<div class="nav_icon_h">
+							<div class="nav_icon_h_item">
+							<a href="#" target="frmright">
+								<div class="nav_icon_h_item_img"><img src="icons/png/64.gif"/></div>
+								<div class="nav_icon_h_item_text">帮助文档</div>
+							</a>
+							</div>
+							<div class="nav_icon_h_item">
+							<a href="<%=basePath%>update_pwd.jsp" target="frmright">
+								<div class="nav_icon_h_item_img"><img src="icons/png/pwd.gif"/></div>
+								<div class="nav_icon_h_item_text">修改密码</div>
+							</a>
+							</div>
+							<div class="nav_icon_h_item">
+							<a onclick='Dialog.confirm("确定要退出系统吗",function(){window.location="<%=basePath%>loginAction!loginOut.do"});'>
+								<div class="nav_icon_h_item_img"><img src="icons/png/out.gif"/></div>
+								<div class="nav_icon_h_item_text">退出系统</div>
+							</a>
+							</div>
+						</div>
+					</div>
+			  </div>
+			<div class="tab_bar">
+				<ul>
+					<li><a href="javascript:;">机车检修</a></li>
+					<li><a href="javascript:;">配件检修</a></li>
+					<li><a href="javascript:;">探伤检修</a></li>
+					<li><a href="javascript:;">技术管理</a></li>
+					<li><a href="javascript:;">车间管理</a></li>
+					<li><a href="javascript:;">标准管理</a></li>
+					<li><a href="javascript:;">计划管理</a></li>
+					<li><a href="javascript:;">记录查询</a></li>
+					<li style="float: right;padding-right: 10px;">
+				            欢迎admin用户，今天是
+					<script>
+					var weekDayLabels = new Array("星期日","星期一","星期二","星期三","星期四","星期五","星期六");
+					var now = new Date();
+				    var year=now.getFullYear();
+					var month=now.getMonth()+1;
+					var day=now.getDate()
+				    var currentime = year+"年"+month+"月"+day+"日 "+weekDayLabels[now.getDay()]
+					document.write(currentime)
+					</script>
+					<div class="clear"></div>
+					</li>
+				</ul>
+			</div>
+			<div class="clear"></div>
+			<div class="top" style="display: none;">
+				<ul class="menu">
+					<li class="no_sub"><a href="work_main.html" class="tablink nosub" target="frmright"><span>在修机车</span></a></li>
+				</ul>
+				<ul class="menu">
+					<li>
+						<a class="tablink">配件检修</a>
+						<ul>
+							<li><a href="part/work_parts_choice.html" target="frmright">选择配件</a></li>
+					        <li><a href="part/work_parts_unfinish_count.html" target="frmright">工人签认</a></li>
+					        <li><a href="part/work_parts_unfinish_count.html" target="frmright">工长签认</a></li>
+							<li><a href="part/work_parts_unfinish_count.html" target="frmright">质检员签认</a></li>
+					        <li><a href="part/work_parts_unfinish_count.html" target="frmright">技术员签认</a></li>
+					        <li><a href="part/work_parts_unfinish_count.html" target="frmright">验收员签认</a></li>
+					        <li><a href="part/work_parts_unfinish_count.html" target="frmright">报活派工</a></li>
+					        <li><a href="part/work_parts_unfinish_count.html" target="frmright">报活签认</a></li>
+					        <li><a href="part/work_parts_unfinish_count.html" target="frmright">待审批的报活</a></li>
+						</ul>	
+					</li>
+					<li>
+						<a class="tablink"><span>配件管理</span></a>
+						<ul>
+							<li><a href="part/work_parts_static_list.html" target="frmright">配件大类</a></li>
+					        <li><a href="part/work_parts_overhaul_list.html" target="frmright">配件检修</a></li>
+						</ul>
+					</li>
+					<li>
+						<a class="tablink"><span>配件库</span></a>
+						<ul>
+							<li><a href="part/work_parts_exchangeofstore_list.html" target="frmright">配件领取</a></li>
+					        <li><a href="part/work_parts_input_list.html" target="frmright">配件入库</a></li>
+					        <li><a href="part/work_parts_dynamic_count.html" target="frmright">库存统计</a></li>
+						</ul>
+					</li>
+					<li>
+						<a class="tablink"><span>配件记录</span></a>
+						<ul>
+							<li><a href="part/work_parts_recoder_list.html" target="frmright">配件记录</a></li>
+						</ul>	
+					</li>
+				</ul>
+				<ul class="menu">
+					<li class="no_sub"><a class="tablink nosub"><span>探伤报活</span></a></li>
+					<li>
+						<a class="tablink"><span>探伤管理</span></a>
+						<ul>
+							<li><a href="ts/tsgl/depotlist.html" target="frmright">探伤派工</a></li>
+					        <li><a href="ts/tsgl/record.html" target="frmright">记录填写</a></li>
+					        <li><a href="ts/tsgl/recordlist.html" target="frmright">记录查询</a></li>
+						</ul>
+					</li>
+				</ul>
+				<ul class="menu">
+					<li>
+						<a class="tablink"><span>检修指标管理</span></a>
+						<ul>
+							<li><a href="tech/jx_index_tree.html" target="frmright">检修指标统计</a></li>
+						</ul>
+					</li>
+					<li>
+						<a class="tablink"><span>走行部故障管理</span></a>
+						<ul>
+							<li><a href="tech/jx_index_tree.html" target="frmright">走行部故障统计</a></li>
+						</ul>
+					</li>
+					<li>
+						<a class="tablink"><span>零公里检查管理</span></a>
+						<ul>
+							<li><a href="tech/jx_index_tree.html" target="frmright">零公里检查</a></li>
+						</ul>
+					</li>
+					<li>
+						<a class="tablink"><span>机车质量分析</span></a>
+						<ul>
+							<li><a href="tech/jp_tree.html" target="frmright">机破分析</a></li>
+							<li><a href="tech/lx_list.html" target="frmright">临修分析</a></li>
+							<li><a href="tech/cx_list.html" target="frmright">超修分析</a></li>
+						</ul>
+					</li>
+					<li>
+						<a class="tablink"><span>加装技改管理</span></a>
+						<ul>
+							<li><a href="tech/jg_sum.html" target="frmright">加装技改管理</a></li>
+						</ul>
+					</li>
+					<li>
+						<a class="tablink"><span>台帐管理</span></a>
+						<ul>
+							<li><a href="tech/jcmanage_tree.html" target="frmright">机车配属台帐</a></li>
+						</ul>
+					</li>
+				</ul>
+				<ul class="menu">
+					<li>
+						<a class="tablink"><span>问题库管理</span></a>
+						<ul>
+							<li><a href="workshop/question_library.html" target="frmright">段问题库</a></li>
+							<li><a href="workshop/question_library.html" target="frmright">车间问题库</a></li>
+							<li><a href="workshop/question_library.html" target="frmright">班组问题库</a></li>
+						</ul>
+					</li>
+					<li>
+						<a class="tablink"><span>设置</span></a>
+						<ul>
+							<li><a href="workshop/document_install.html" target="frmright">文档库设置</a></li>
+							<li><a href="workshop/question_install.html" target="frmright">问题库设置</a></li>
+						</ul>
+					</li>
+					<li>
+						<a class="tablink"><span>考试系统</span></a>
+						<ul>
+							<li><a href="ts/tsgl/depotlist.html" target="frmright">考试系统</a></li>
+							<li><a href="ts/tsgl/depotlist.html" target="frmright">考试题库管理</a></li>
+							<li><a href="ts/tsgl/depotlist.html" target="frmright">考试记录查询</a></li>
+						</ul>
+					</li>
+					<li class="no_sub"><a class="tablink nosub"><span>规章制度</span></a></li>
+					<li>
+						<a class="tablink"><span>班组管理</span></a>
+						<ul>
+							<li><a href="ts/tsgl/depotlist.html" target="frmright">文件管理</a></li>
+							<li><a href="ts/tsgl/depotlist.html" target="frmright">学习培训</a></li>
+						</ul>
+					</li>
+					<li>
+						<a class="tablink"><span>工时统计</span></a>
+						<ul>
+							<li><a href="ts/tsgl/depotlist.html" target="frmright">小辅修工时统计</a></li>
+							<li><a href="ts/tsgl/depotlist.html" target="frmright">中修工时统计</a></li>
+							<li><a href="ts/tsgl/depotlist.html" target="frmright">修活计件</a></li>
+							<li><a href="ts/tsgl/depotlist.html" target="frmright">报活计件</a></li>
+							<li><a href="ts/tsgl/depotlist.html" target="frmright">报活分值修改</a></li>
+						</ul>
+					</li>
+				</ul>
+				<ul class="menu">
+					<li>
+						<a class="tablink"><span>标准管理</span></a>
+						<ul>
+							<li><a href="page/standar_tree_page.html" target="frmright">标准管理</a></li>
+							<li><a href="page/standar_tree_page.html" target="frmright">标准查询</a></li>
+						</ul>
+					</li>
+				</ul>
+				<ul class="menu">
+					<li>
+						<a class="tablink"><span>计划管理</span></a>
+						<ul>
+							<li><a href="jh/plan_week_edit.html"  target="frmright">计划编制</a></li>
+							<li><a href="jh/plan_week_list.html"  target="frmright">计划查询</a></li>
+							<li><a href="jh/plan_week_cash.html"  target="frmright">计划兑现</a></li>
+						</ul>
+					</li>
+					<li>
+						<a class="tablink"><span>加改管理</span></a>
+						<ul>
+							<li><a href="jh/jg_edit.html"  target="frmright">加改编辑</a></li>
+							<li><a href="jh/jg_sum.html"  target="frmright">统计查询</a></li>
+						</ul>	
+					</li>
+				</ul>
+				<ul class="menu">
+					<li>
+						<a class="tablink"><span>机车检修记录</span></a>
+						<ul>
+							<li><a href="lead/lead_jc.html" target="frmright">中修</a></li>
+							<li><a href="lead/lead_jc.html" target="frmright">小修</a></li>
+							<li><a href="lead/lead_jc.html" target="frmright">辅修</a></li>
+							<li><a href="lead/lead_jc.html" target="frmright">临修</a></li>
+							<li><a href="lead/lead_jc.html" target="frmright">加改</a></li>
+							<li><a href="lead/lead_jc.html" target="frmright">整治</a></li>
+							<li><a href="lead/lead_jc.html" target="frmright">春鉴</a></li>
+							<li><a href="lead/lead_jc.html" target="frmright">其他</a></li>
+						</ul>
+					</li>
+					<li class="no_sub"><a href="page/work_parts_recoder_list.html" class="tablink nosub" target="frmright"><span>配件检修记录</span></a></li>
+					<li class="no_sub"><a href="record_serch.html" class="tablink nosub" target="frmright"><span>综合查询</span></a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+<!--头部与导航end-->
+
+<!--中部区域start-->
+<table width="100%" cellpadding="0" cellspacing="0" class="table_border0">
+	<tr>
+		<td class="ali01 ver01"  width="100%">
+			<div id="rbox">
+				<div id="rbox_topcenter">
+					<div id="rbox_topleft">
+						<div id="rbox_topright">
+							<div class="rbox_title">
+								操作内容
+							</div>
+						</div>
+					</div>
+				</div>
+				<div id="rbox_middlecenter">
+					<div id="rbox_middleleft">
+						<div id="rbox_middleright">
+							<div id="bs_right">
+								<IFRAME scrolling="no" width="100%" frameBorder=0 id=frmright name=frmright onload="iframeHeight('frmright')" src="lead/lead_jc.html"  allowTransparency="true"></IFRAME>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div id="rbox_bottomcenter" >
+					<div id="rbox_bottomleft">
+						<div id="rbox_bottomright"></div>
+					</div>
+				</div>
+			</div>
+		</td>
+	</tr>
+</table>
+<!--中部区域end-->
+
+<!--浏览器resize事件修正start-->
+<div id="resizeFix"></div>
+<!--浏览器resize事件修正end-->
+
+<!--载进度条start-->
+<div class="progressBg" id="progress" style="display:none;"><div class="progressBar"></div></div>
+<!--载进度条end-->
+</body>
+</html>

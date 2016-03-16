@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<!--框架必需start-->
+	<script type="text/javascript" src="../../js/jquery-1.4.js"></script>
+	<script type="text/javascript" src="../../js/framework.js"></script>
+	<link href="../../css/import_basic.css" rel="stylesheet" type="text/css"/>
+	<link  rel="stylesheet" type="text/css" id="skin" prePath="../../"/>
+	<!--框架必需end-->
+	<script type="text/javascript">
+		function toclose(){
+			top.Dialog.close();
+		}
+	</script>
+</head>
+
+<body>
+	<div>
+	<table class="tableStyle" transMode="true">
+			
+	 		<tr>
+				<td>节假日名称: </td>
+				<td>
+					<input  type="text" name="" id="name"></input><font color="red">&nbsp;&nbsp;*</font>
+				</td>
+			</tr>
+			<tr>
+				<td>起始日期: </td>
+				<td>
+					<input  type="text" class="Wdate" id="" style="width: 115px;"></input><font color="red">&nbsp;&nbsp;*</font>
+				</td>
+			</tr>
+			<tr>
+				<td>结束日期: </td>
+				<td>
+					<input  type="text" class="Wdate" id="" style="width: 115px;"></input><font color="red">&nbsp;&nbsp;*</font>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="4">
+					<button onclick="tosave();"><span class="icon_save">提交</span></button>&nbsp;&nbsp;&nbsp;&nbsp;
+					<button onclick="toclose();"><span class="icon_mark">关闭</span></button>
+				</td>
+			</tr>
+		</table>
+	</div>
+<script type="text/javascript" src="../../My97DatePicker/WdatePicker.js"></script>
+</body>
+</html>

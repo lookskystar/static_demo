@@ -1,0 +1,143 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<!--框架必需start-->
+	<script type="text/javascript" src="../js/jquery-1.4.js"></script>
+	<script type="text/javascript" src="../js/framework.js"></script>
+	<link href="../css/import_basic.css" rel="stylesheet" type="text/css"/>
+	<link  rel="stylesheet" type="text/css" id="skin" prePath="../"/>
+	<!--框架必需end-->
+	<script type="text/javascript" src="js/text/text-overflow.js"></script>
+</head>
+<body>
+	<div class="box2" panelTitle="选择一个具体的配件检修" roller="false" showStatus="false">
+		<div>
+			<form id="form" action="partFixAction!pjDynamicList.do" method="post">
+				<input type="hidden" id="unit" value="${firstUnitId}"/>
+				查询条件:
+				          车型:<select id="jcsType" onchange="getFirstUnit();" class="default" name="jcsType">
+				         <option value="">请选择机车型号</option>
+				        </select>
+				     大部件:<select id="first" class="default" name="firstUnitId">
+				         <option value="">请选择大部件</option>
+				        </select>
+				         状态:<select id="pjStatus" class="default" name="pjStatus">
+					     <option value="">请选择状态</option>
+					     <option value="1" >待修</option>
+					     <option value="3" >检修中</option>
+					    </select>
+				      &nbsp;&nbsp;
+				配件名称:<input type="text" style="width: 100px" name="pjName" value="" id="pjName"/>&nbsp;&nbsp;&nbsp;
+				配件编号:<input type="text" style="width: 100px" name="pjNum" value="" id="pjNum"/>&nbsp;&nbsp;&nbsp;
+				<input type="submit" value="查询"/>&nbsp;&nbsp;&nbsp;<input type="button" value="选择检修" onclick="choiceMulPJFix();"/>
+				<table class="tableStyle" headFixMode="true" useMultColor="true">
+					<tr align="center">
+						<th width="5%">选择</th>
+						<th width="5%"><span>配件标识</span></th>
+						<th width="15%">配件名</th>
+						<th width="15%"><span>配件编号</span></th>
+						<th width="10%"><span>专业</span></th>
+						<th width="10%"><span>存放位置</span></th>
+						<th width="10%"><span>状态</span></th>
+						<th width="8%"><span>备注</span></th>
+						<th width="10%"><span>操作</span></th>
+					</tr>
+				</table>
+			</form>
+		</div>
+		<div id="scrollContent" >
+			<table class="tableStyle"  useMultColor="true" >
+				<tr align="center">
+					<td width="5%"><input type="checkbox" name="pjchk" /></td>
+					<td width="5%">596</td>
+					<td width="15%">LAD-T-3型空气干燥器</td>
+					<td width="15%">
+						<input type="button" onclick="" value="手动输入"/>
+						<input type="button" onclick="" value="自动生成"/>
+					</td>
+					<td width="10%">制动</td>
+					<td width="10%">中心库</td>
+					<td width="10%">待修</td>
+					<td width="8%"></td>
+					<td width="10%">
+						  <a href="javascript:void(0)" onclick="" style="color:blue;">选择检修</a>&nbsp;&nbsp;
+						  <a href="javascript:void(0)" onclick="" style="color:blue;">委外检修</a>
+					</td>
+				</tr>
+				
+				<tr align="center">
+					<td width="5%"><input type="checkbox" name="pjchk" /></td>
+					<td width="5%">601</td>
+					<td width="15%">LAD-T-3型空气干燥器</td>
+					<td width="15%">
+						2013111909341954 
+					</td>
+					<td width="10%">制动</td>
+					<td width="10%">中心库</td>
+					<td width="10%">待修</td>
+					<td width="8%"></td>
+					<td width="10%">
+						  <a href="javascript:void(0)" onclick="" style="color:blue;">选择检修</a>&nbsp;&nbsp;
+						  <a href="javascript:void(0)" onclick="" style="color:blue;">委外检修</a>
+					</td>
+				</tr>
+				
+				<tr align="center">
+					<td width="5%"><input type="checkbox" name="pjchk" /></td>
+					<td width="5%">602</td>
+					<td width="15%">LAD-T-3型空气干燥器</td>
+					<td width="15%">
+						<input type="button" onclick="" value="手动输入"/>
+						<input type="button" onclick="" value="自动生成"/>
+					</td>
+					<td width="10%">制动</td>
+					<td width="10%">中心库</td>
+					<td width="10%">待修</td>
+					<td width="8%"></td>
+					<td width="10%">
+						  <a href="javascript:void(0)" onclick="" style="color:blue;">选择检修</a>&nbsp;&nbsp;
+						  <a href="javascript:void(0)" onclick="" style="color:blue;">委外检修</a>
+					</td>
+				</tr>
+				
+				<tr align="center">
+					<td width="5%"><input type="checkbox" name="pjchk" /></td>
+					<td width="5%">603</td>
+					<td width="15%">LAD-T-3型空气干燥器</td>
+					<td width="15%">
+						<input type="button" onclick="" value="手动输入"/>
+						<input type="button" onclick="" value="自动生成"/>
+					</td>
+					<td width="10%">制动</td>
+					<td width="10%">中心库</td>
+					<td width="10%">待修</td>
+					<td width="8%"></td>
+					<td width="10%">
+						  <a href="javascript:void(0)" onclick="" style="color:blue;">选择检修</a>&nbsp;&nbsp;
+						  <a href="javascript:void(0)" onclick="" style="color:blue;">委外检修</a>
+					</td>
+				</tr>
+				
+				<tr align="center">
+					<td width="5%"><input type="checkbox" name="pjchk" /></td>
+					<td width="5%">604</td>
+					<td width="15%">LAD-T-3型空气干燥器</td>
+					<td width="15%">
+						<input type="button" onclick="" value="手动输入"/>
+						<input type="button" onclick="" value="自动生成"/>
+					</td>
+					<td width="10%">制动</td>
+					<td width="10%">中心库</td>
+					<td width="10%">待修</td>
+					<td width="8%"></td>
+					<td width="10%">
+						  <a href="javascript:void(0)" onclick="" style="color:blue;">选择检修</a>&nbsp;&nbsp;
+						  <a href="javascript:void(0)" onclick="" style="color:blue;">委外检修</a>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+</body>
+</html>

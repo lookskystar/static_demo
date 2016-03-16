@@ -1,0 +1,150 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<!--框架必需start-->
+	<script type="text/javascript" src="../js/jquery-1.4.js"></script>
+	<script type="text/javascript" src="../js/framework.js"></script>
+	<link href="../css/import_basic.css" rel="stylesheet" type="text/css"/>
+	<link  rel="stylesheet" type="text/css" id="skin" prePath="../"/>
+	<!--框架必需end-->
+	<script type="text/javascript" src="../js/nav/ddaccordion.js"></script>
+	<script type="text/javascript" src="../js/text/text-overflow.js"></script>
+</head>
+<body>
+<div id="scrollContent">
+	<div class="box2" panelTitle="配件检修信息" roller="false">
+		<form id="form" action="" method="post">
+		          查询条件:
+		                    车型:<select id="jcsType" class="default" name="jcsType">
+		            	<option value="">请选择机车型号</option>
+		            	<option value="1">DF4</option>
+					    <option value="2">DF4D</option>
+					    <option value="3">SS3B</option>
+					    <option value="4">HXD3C</option>
+		            </select>
+		                    状态:<select id="pjStatus" class="default" name="pjStatus">
+                          <option value="">请选择状态</option>
+                          <option value="">合格</option>
+                          <option value="">待修</option>
+                          <option value="">报废</option>
+                          <option value="">检修中</option>
+		            </select>
+		          存储位置:<select id="storePosition" class="default" name="storePosition">
+			        	  <option value="">请选择</option>
+			        	  <option value="">中心库</option>
+                          <option value="">班组</option>
+                          <option value="">车上</option>
+                          <option value="">外地</option>
+		            </select>
+		              上车号 :<input type="text" style="width: 100px" name="getOnNum" value=""/>&nbsp;&nbsp;&nbsp;
+		          配件编号:<input type="text" style="width: 100px" name="pjNum" value=""/>&nbsp;&nbsp;&nbsp;
+		          配件名称:<input type="text" style="width: 100px" name="pjName" value=""/>&nbsp;&nbsp;&nbsp;
+		    <input type="submit" value="查询"/><br/>
+		    <button  onclick=""><span class="icon_add">添加</span></button>&nbsp;&nbsp;&nbsp;
+			<button  onclick=""><span class="icon_delete">删除</span></button>&nbsp;&nbsp;&nbsp;
+			<button  onclick=""><span class="icon_edit">待修配件</span></button><br/>
+		</form>
+	</div>
+	   <table width="100%" class="tableStyle" useCheckBox="false">
+			<tr>
+			    <th class="ver01" width="5%" align="center"><input type="checkbox" id="all"/>全选</th>
+				<th class="ver01" width="10%" align="center">配件名称</th>
+				<th class="ver01" width="17%" align="center">所属静态配件</th>
+				<th class="ver01" width="10%" align="center">配件编号</th>
+				<th class="ver01" width="8%" align="center">出厂编号</th>
+				<th class="ver01" width="10%" align="center">存储位置</th>
+			    <th class="ver01" width="5%" align="center">配件状态</th>
+			    <th class="ver01" width="8%" align="center">备注</th>
+				<th class="ver01" width="20%" align="center">操作</th>
+			</tr>
+			<tr>
+				<td class="ver01" align="center"><input type="checkbox" id="" name="pjIds" value=""/></td>
+				<td class="ver01" align="center">中继阀、遮断阀</td>
+				<td class="ver01" align="center">中继阀、遮断阀</td>
+				<td class="ver01" align="center">60</td>
+				<td class="ver01" align="center"></td>
+				<td class="ver01" align="center">中心库 </td>
+				<td class="ver01" align="center">检修中</td>
+				<td class="ver01" align="center"><input type="text" style="width:80px;" value="" name="comments" pjdId=""/></td>
+				<td class="ver01" align="center">
+					<a href="javascript:;" style="color:blue;" target="_blank">检修记录</a>&nbsp;&nbsp;
+				    <a href="javascript:;" style="color:blue;" onclick="">添加待修配件</a>&nbsp;&nbsp;
+				</td>
+			</tr>
+			<tr>
+				<td class="ver01" align="center"><input type="checkbox" id="" name="pjIds" value=""/></td>
+				<td class="ver01" align="center">制动电阻柜</td>
+				<td class="ver01" align="center">制动电阻柜</td>
+				<td class="ver01" align="center">856</td>
+				<td class="ver01" align="center"></td>
+				<td class="ver01" align="center">中心库 </td>
+				<td class="ver01" align="center">检修中</td>
+				<td class="ver01" align="center"><input type="text" style="width:80px;" value="" name="comments" pjdId=""/></td>
+				<td class="ver01" align="center">
+					<a href="javascript:;" style="color:blue;" target="_blank">检修记录</a>&nbsp;&nbsp;
+				    <a href="javascript:;" style="color:blue;" onclick="">添加待修配件</a>&nbsp;&nbsp;
+				</td>
+			</tr>
+			<tr>
+				<td class="ver01" align="center"><input type="checkbox" id="" name="pjIds" value=""/></td>
+				<td class="ver01" align="center">主、辅司控器</td>
+				<td class="ver01" align="center">主、辅司控器</td>
+				<td class="ver01" align="center">Z854</td>
+				<td class="ver01" align="center"></td>
+				<td class="ver01" align="center">中心库 </td>
+				<td class="ver01" align="center">检修中</td>
+				<td class="ver01" align="center"><input type="text" style="width:80px;" value="" name="comments" pjdId=""/></td>
+				<td class="ver01" align="center">
+					<a href="javascript:;" style="color:blue;" target="_blank">检修记录</a>&nbsp;&nbsp;
+				    <a href="javascript:;" style="color:blue;" onclick="">添加待修配件</a>&nbsp;&nbsp;
+				</td>
+			</tr>
+			<tr>
+				<td class="ver01" align="center"><input type="checkbox" id="" name="pjIds" value=""/></td>
+				<td class="ver01" align="center">真空主断路器</td>
+				<td class="ver01" align="center">真空主断路器</td>
+				<td class="ver01" align="center">2385</td>
+				<td class="ver01" align="center"></td>
+				<td class="ver01" align="center">中心库 </td>
+				<td class="ver01" align="center">检修中</td>
+				<td class="ver01" align="center"><input type="text" style="width:80px;" value="" name="comments" pjdId=""/></td>
+				<td class="ver01" align="center">
+					<a href="javascript:;" style="color:blue;" target="_blank">检修记录</a>&nbsp;&nbsp;
+				    <a href="javascript:;" style="color:blue;" onclick="">添加待修配件</a>&nbsp;&nbsp;
+				</td>
+			</tr>
+			<tr>
+				<td class="ver01" align="center"><input type="checkbox" id="" name="pjIds" value=""/></td>
+				<td class="ver01" align="center">高压电器柜</td>
+				<td class="ver01" align="center">高压电器柜</td>
+				<td class="ver01" align="center">G8425</td>
+				<td class="ver01" align="center"></td>
+				<td class="ver01" align="center">中心库 </td>
+				<td class="ver01" align="center">检修中</td>
+				<td class="ver01" align="center"><input type="text" style="width:80px;" value="" name="comments" pjdId=""/></td>
+				<td class="ver01" align="center">
+					<a href="javascript:;" style="color:blue;" target="_blank">检修记录</a>&nbsp;&nbsp;
+				    <a href="javascript:;" style="color:blue;" onclick="">添加待修配件</a>&nbsp;&nbsp;
+				</td>
+			</tr>
+			<tr>
+				<td class="ver01" align="center"><input type="checkbox" id="" name="pjIds" value=""/></td>
+				<td class="ver01" align="center">机车继电器</td>
+				<td class="ver01" align="center">机车继电器</td>
+				<td class="ver01" align="center">8452</td>
+				<td class="ver01" align="center"></td>
+				<td class="ver01" align="center">中心库 </td>
+				<td class="ver01" align="center">检修中</td>
+				<td class="ver01" align="center"><input type="text" style="width:80px;" value="" name="comments" pjdId=""/></td>
+				<td class="ver01" align="center">
+					<a href="javascript:;" style="color:blue;" target="_blank">检修记录</a>&nbsp;&nbsp;
+				    <a href="javascript:;" style="color:blue;" onclick="">添加待修配件</a>&nbsp;&nbsp;
+				</td>
+			</tr>
+	</table>
+	</div>
+</form>
+</div>
+</body>
+</html>

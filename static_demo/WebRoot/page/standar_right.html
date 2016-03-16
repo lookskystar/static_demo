@@ -1,0 +1,76 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<!--框架必需start-->
+	<script type="text/javascript" src="../js/jquery-1.4.js"></script>
+	<script type="text/javascript" src="../js/framework.js"></script>
+	<link href="../css/import_basic.css" rel="stylesheet" type="text/css"/>
+	<link  rel="stylesheet" type="text/css" id="skin"  prePath="../"/>
+	<!--框架必需end-->
+</head>
+<body>
+ 	<div>
+ 		<form action="" method="post" id="subfrom">
+ 		<table>
+ 			<tr>
+				<td>开始时间：</td>
+				<td><input type="text" class="Wdate" onclick="WdatePicker(({dateFmt:'yyyy-MM-dd HH:mm:ss'}))" id="dateStart"  name="dateStart"/></td>
+				<td>结束时间：</td>
+				<td><input type="text" class="Wdate" onclick="WdatePicker(({dateFmt:'yyyy-MM-dd HH:mm:ss'}))" id="dateEnd"  name="dateEnd"/></td>
+			</tr>
+ 			<tr>
+ 				<td>文档名称：</td>
+ 				<td><input type="text" watermark="输入文档名称" name="name" value=""/></td>
+ 				<td>上&nbsp;&nbsp;传&nbsp;&nbsp;人：</td>
+ 				<td><input type="text" watermark="输入上传人姓名"  name="uploader" value=""/></td>
+ 			</tr>
+ 			<tr>
+ 				<td>关&nbsp;&nbsp;键&nbsp;&nbsp;字：</td>
+ 				<td><input type="text" watermark="输入简介关键字"  name="description" value=""/></td>
+ 				<td><button onclick="sub();"><span class="icon_find" style="height: 22px;">查询</span></button></td>
+ 				
+ 			</tr>
+			<tr>
+				<td colspan="2">
+					<input type="button" value="新增" onclick=""/>&nbsp;&nbsp;
+					<input type="button" value="删除" onclick=""/>
+				</td>
+			</tr>
+		</table>
+		</form>
+	</div>
+   	<div id="scrollContent">
+		 <table class="tableStyle"  useMultColor="true"  useCheckBox="true" id="documentTable">
+		 	<tr>
+		 		<th width="30px" align="center"></th>
+		      	<th width="15%" align="center"><span>文档类型</span></th>
+		      	<th width="30%" align="center"><span>文档名称</span></th>
+		      	<th width="10%" align="center"><span>上传人</span></th> 
+		      	<th width="25%" align="center"><span>上传时间</span></th>
+		      	<th width="20%" align="center">操作</th>
+		    </tr>
+		 </table>
+	</div>
+	<div style="height:35px;">
+		<div class="float_right padding5 paging">
+			<div class="float_left padding_top4">
+			<span class="paging_disabled"><a href="javascript:;">上一页</a></span>
+			<span class="paging_current"><a href="javascript:;">1</a></span>
+			<span><a href="javascript:;">2</a></span>
+			<span><a href="javascript:;">3</a></span>
+			<span><a href="javascript:;">4</a></span>
+			<span><a href="javascript:;">5</a></span>
+			<span>...</span>
+			<span><a href="javascript:;">20</a></span>
+			<span><a href="javascript:;">下一页</a></span> 每页
+			</div>
+			<div class="float_left"><select autoWidth="true"><option>50</option><option>100</option><option>150</option></select></div>
+			<div class="float_left padding_top4">条记录</div>
+			<div class="clear"></div>
+		</div>
+		<div class="clear"></div>
+	</div>
+	<script type="text/javascript" src="../My97DatePicker/WdatePicker.js"></script>
+</body>
+</html>

@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<!--框架必需start-->
+	<script type="text/javascript" src="../js/jquery-1.4.js"></script>
+	<script type="text/javascript" src="../js/framework.js"></script>
+	<link href="../css/import_basic.css" rel="stylesheet" type="text/css"/>
+	<link  rel="stylesheet" type="text/css" id="skin"/>
+	<!--框架必需end-->
+	 
+	<!--多选框脚本start-->
+	<script type="text/javascript" src="../js/form/multiselect.js"></script>
+	<!--多选框脚本end-->
+	<!-- 表单验证 start -->
+	<script src="../js/form/validationEngine-cn.js" type="text/javascript"></script>
+	<script src="../js/form/validationEngine.js" type="text/javascript"></script>
+	<!-- 表单验证 end -->
+</head>
+<body>
+<div id="scrollContent">
+	<div class="box1" whiteBg="true" >
+	<fieldset> 
+		<legend>各班组交接信息</legend> 
+		<table class="tableStyle" transMode="true" footer="normal">
+			<tr>
+				<td width="10%">配件名称：</td>
+				<td><input type="text" style="float: left;" disabled="disabled" value="轴承"/></td>
+				<td width="10%">配件编号：</td>
+				<td width="40%"><input type="text" disabled="disabled" value="ZC-786"/></td>
+			</tr>
+			<tr>
+				<td width="10%">交旧数量：</td><td width="40%"><input type="text" disabled="disabled" value="1"/></td>
+				<td width="10%">交旧日期：</td>
+				<td><input type="text" disabled="disabled" value="2013-12-11"/></td>
+			</tr>
+			<tr>
+				<td width="10%">所属修程：</td><td width="40%"><input type="text" disabled="disabled" value="Z2"/></td>
+				<td width="10%">拆下车号：</td><td width="40%"><input type="text" disabled="disabled" value="DF4D1234"/></td>
+			</tr>
+			<tr>
+				<td width="10%">承修班组：</td>
+				<td width="40%"><input type="text" disabled="disabled" value="柴备组"/></td>
+				<td width="10%">交旧签章：</td><td width="40%"><input type="text" disabled="disabled" value="张三"/></td>
+			</tr>
+			<tr>
+				<td width="10%">承修签章：</td><td width="40%"><input type="text" disabled="disabled" value="李四"/></td>
+			</tr>
+		</table>
+	</fieldset> 
+	<fieldset> 
+		<legend>配件库人员交接信息</legend> 
+		<table class="tableStyle" transMode="true" footer="normal">
+			<tr>
+				<td width="10%">配件名称：</td>
+				<td><input type="text" class="validate[required,custom[chinese]]" style="float: left;" value="轴承"/><button style="float: left;margin-left: 5px;"><span class="icon_find">选择</span></button></td>
+				<td width="10%">配件编号：</td>
+				<td width="40%"><input type="text" class="validate[required]"/><span class="star">*</span></td>
+			</tr>
+			<tr>
+				<td width="10%">领取数量：</td><td width="40%"><input type="text" class="validate[required,custom[chinese],length[0,20]]" value="1"/><span class="star">*</span></td>
+				<td width="10%">领取日期：</td>
+				<td><input type="text" class="date validate[required,custom[date]]"/><span class="star">*</span></td>
+			</tr>
+			<tr>
+				<td width="10%">所属修程：</td><td width="40%"><input type="text" class="validate[required]" value="Z2"/><span class="star">*</span></td>
+				<td width="10%">上机车号：</td><td width="40%"><input type="text" class="validate[required]"/><span class="star">*</span></td>
+			</tr>
+			<tr>
+				<td width="10%">发件签章：</td><td width="40%"><input type="text" disabled="disabled" value="王五"/></td>
+				<td width="10%">预领关联：</td><td><button style="margin-left: 5px;"><span class="icon_find">选择</span></button></td>
+			</tr>
+		</table>
+	</fieldset> 
+	<div class="padding_top10">
+		<table class="tableStyle" transMode="true">
+			<tr>
+				<td colspan="4">
+					<input type="submit" value=" 提 交 "/>
+					<input type="reset" value=" 重 置 "/>
+				</td>
+			</tr>
+		</table>
+	</div> 
+	</div>
+</div>	
+</body>
+</html>

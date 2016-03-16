@@ -1,0 +1,207 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+	<title>查询结果</title>
+	<!--框架必需start-->
+	<script type="text/javascript" src="js/jquery-1.4.js"></script>
+	<script type="text/javascript" src="js/bsFormat.js"></script>
+	<link href="css/import_basic.css" rel="stylesheet" type="text/css"/>
+	<link href="skins/sky/import_skin.css" rel="stylesheet" type="text/css" id="skin" themeColor="blue"/>
+	
+	<link href="css/import_basic.css" rel="stylesheet" type="text/css"/>
+	<link  rel="stylesheet" type="text/css" id="skin" prePath="./"/>
+	<!--框架必需end-->
+	<!--表格样式和脚本-->
+    <!--[if IE 6]>
+	<script src="../js/iepngfx.js" language="javascript" type="text/javascript"></script>
+	<![endif]-->
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<style type="text/css">
+		TABLE.bluetable {
+			FONT: 100% Arial, Helvetica, sans-serif
+		}
+		TD {
+			FONT: 100% Arial, Helvetica, sans-serif
+		}
+		TABLE.bluetable {
+			MARGIN: 0.1em 0px; BORDER-COLLAPSE: collapse
+		}
+		TABLE.bluetable TH {
+			BORDER-BOTTOM: #2b3b58 1px solid; TEXT-ALIGN: left; BORDER-LEFT: #2b3b58 1px solid; PADDING-BOTTOM: 0.5em; PADDING-LEFT: 0.5em; PADDING-RIGHT: 0.5em; BORDER-TOP: #2b3b58 1px solid; BORDER-RIGHT: #2b3b58 1px solid; PADDING-TOP: 0.5em
+		}
+		TABLE.bluetable TD {
+			BORDER-BOTTOM: #2b3b58 1px solid; TEXT-ALIGN: left; BORDER-LEFT: #2b3b58 1px solid; PADDING-BOTTOM: 0.5em; PADDING-LEFT: 0.5em; PADDING-RIGHT: 0.5em; BORDER-TOP: #2b3b58 1px solid; BORDER-RIGHT: #2b3b58 1px solid; PADDING-TOP: 0.5em
+		}
+		TABLE.bluetable TH {
+			BACKGROUND: url(images/tr_back.gif) #328aa4 repeat-x; COLOR: #fff
+		}
+		TABLE.bluetable TD {
+			BACKGROUND: #e5f1f4
+		}
+		TABLE.bluetable TR.even TD {
+			BACKGROUND: #e5f1f4
+		}
+		TABLE.bluetable TR.odd TD {
+			BACKGROUND: #f8fbfc
+		}
+		TABLE.bluetable TH.over {
+			BACKGROUND: #4a98af
+		}
+		TABLE.bluetable TR.even TH.over {
+			BACKGROUND: #4a98af
+		}
+		TABLE.bluetable TR.odd TH.over {
+			BACKGROUND: #4a98af
+		}
+		TABLE.bluetable TH.down {
+			BACKGROUND: #bce774
+		}
+		TABLE.bluetable TR.even TH.down {
+			BACKGROUND: #bce774
+		}
+		TABLE.bluetable TR.odd TH.down {
+			BACKGROUND: #bce774
+		}
+		TABLE.bluetable TH.selected {
+			
+		}
+		TABLE.bluetable TR.even TH.selected {
+			
+		}
+		TABLE.bluetable TR.odd TH.selected {
+			
+		}
+		TABLE.bluetable TD.over {
+			BACKGROUND: #ecfbd4
+		}
+		TABLE.bluetable TR.even TD.over {
+			BACKGROUND: #ecfbd4
+		}
+		TABLE.bluetable TR.odd TD.over {
+			BACKGROUND: #ecfbd4
+		}
+		TABLE.bluetable TD.down {
+			BACKGROUND: #bce774; COLOR: #fff
+		}
+		TABLE.bluetable TR.even TD.down {
+			BACKGROUND: #bce774; COLOR: #fff
+		}
+		TABLE.bluetable TR.odd TD.down {
+			BACKGROUND: #bce774; COLOR: #fff
+		}
+		TABLE.bluetable TD.selected {
+			BACKGROUND: #bce774; COLOR: #555
+		}
+		TABLE.bluetable TR.even TD.selected {
+			BACKGROUND: #bce774; COLOR: #555
+		}
+		TABLE.bluetable TR.odd TD.selected {
+			BACKGROUND: #bce774; COLOR: #555
+		}
+		TABLE.bluetable TD.empty {
+			BACKGROUND: #fff
+		}
+		TABLE.bluetable TR.odd TD.empty {
+			BACKGROUND: #fff
+		}
+		TABLE.bluetable TR.even TD.empty {
+			BACKGROUND: #fff
+		}
+	</style>
+</head>
+<body style="background: #fff;">
+<div style="height:300px;">
+	<center style="margin-top: 10px;">
+	开始时间:<input type="text" class="date"/>
+	结束时间:<input type="text" class="date"/>
+  
+ 
+	机车编号:<input type="text" id="jcNum" name="jcNum"/>
+	修程修次:<input type="text" name="xcxc"/>&nbsp;&nbsp;
+	<input type="submit" value="查  询" />
+
+	<h2>机车检修查询结果</h2>
+	</center>
+	<table width="100%" class="bluetable">
+		<tr>
+			<th class="style10" style="text-align: center; font-family: 宋体, Arial, Helvetica, sans-serif; font-size: 14px;width:7%;">机车型号</th>
+			<th class="style10" style="text-align: center; font-family: 宋体, Arial, Helvetica, sans-serif; font-size: 14px;width:7%;">机车编号</th>
+			<th class="style10" style="text-align: center; font-family: 宋体, Arial, Helvetica, sans-serif; font-size: 14px;width:7%;">修程修次</th>
+			<th class="style10" style="text-align: center; font-family: 宋体, Arial, Helvetica, sans-serif; font-size: 14px;width:4%;">股道</th>
+			<th class="style10" style="text-align: center; font-family: 宋体, Arial, Helvetica, sans-serif; font-size: 14px;width:4%;">台位</th>
+			<th class="style10" style="text-align: center; font-family: 宋体, Arial, Helvetica, sans-serif; font-size: 14px;width: 10%;">扣车时间</th>
+			<th class="style10" style="text-align: center; font-family: 宋体, Arial, Helvetica, sans-serif; font-size: 14px;width: 15%;">计划起机时间/实际起机时间</th>
+			<th class="style10" style="text-align: center; font-family: 宋体, Arial, Helvetica, sans-serif; font-size: 14px;width: 15%;">计划交车时间/实际交车时间</th>
+			<th class="style10" style="text-align: center; font-family: 宋体, Arial, Helvetica, sans-serif; font-size: 14px;width:7%;">交车工长</th>
+			<th class="style10" style="text-align: center; font-family: 宋体, Arial, Helvetica, sans-serif; font-size: 14px;width:7%;">检修节点</th>
+			<th class="style10" style="text-align: center; font-family: 宋体, Arial, Helvetica, sans-serif; font-size: 14px;width:4%;">状态</th>
+			<th class="style10" style="text-align: center; font-family: 宋体, Arial, Helvetica, sans-serif; font-size: 14px;width: 10%;">操作</th>
+		</tr>
+	
+		
+			<tr>
+				<td style="text-align: center;">
+				  SS3B
+				  
+				</td>
+				<td style="text-align: center;">
+					1234
+				</td>
+				<td style="text-align: center;">X1</td>
+				<td style="text-align: center;">17</td>
+				<td style="text-align: center;">5</td>
+				<td style="text-align: center;">2014-04-30 07:00</td>
+				<td style="text-align: center;">04-30 13:30--</td>
+				<td style="text-align: center;">04-30 16:30--04-30 09:40</td>
+				<td style="text-align: center;">马昌利</td>
+				<td style="text-align: center;">机车交验</td>
+				<td style="text-align: center;">
+					
+					
+					
+					
+					转出
+				</td>
+				<td style="text-align: center;">
+					
+						<a href="query/jc_all_rec.html" target="_blank">记录查看</a>
+					
+					
+				</td>
+			</tr>
+			<tr>
+				<td style="text-align: center;">
+				  SS3B
+				  
+				</td>
+				<td style="text-align: center;">
+					1234
+				</td>
+				<td style="text-align: center;">X1</td>
+				<td style="text-align: center;">17</td>
+				<td style="text-align: center;">5</td>
+				<td style="text-align: center;">2014-04-30 07:00</td>
+				<td style="text-align: center;">04-30 13:30--</td>
+				<td style="text-align: center;">04-30 16:30--04-30 09:40</td>
+				<td style="text-align: center;">马昌利</td>
+				<td style="text-align: center;">机车交验</td>
+				<td style="text-align: center;">
+					
+					
+					
+					
+					转出
+				</td>
+				<td style="text-align: center;">
+					
+						<a href="query/jc_all_rec.html" target="_blank">记录查看</a>
+					
+					
+				</td>
+			</tr>
+		
+		<tr></tr>
+	</table>
+</div>
+</body>
+</html>

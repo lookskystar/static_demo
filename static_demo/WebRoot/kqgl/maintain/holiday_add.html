@@ -1,0 +1,90 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<!--框架必需start-->
+	<script type="text/javascript" src="../../js/jquery-1.4.js"></script>
+	<script type="text/javascript" src="../../js/framework.js"></script>
+	<link href="../../css/import_basic.css" rel="stylesheet" type="text/css"/>
+	<link  rel="stylesheet" type="text/css" id="skin" prePath="../../"/>
+	<!--框架必需end-->
+	
+</head>
+
+<body>
+  <form action="" method="post" id="form">
+	<input type="hidden" id="removeTime" value="0" />
+	<table class="tableStyle" >
+			<tr align="center">	
+				<td>
+				春节放假时间:&nbsp;&nbsp;<input  type="text" class="Wdate" id="" style="width: 115px;"></input>&nbsp;&nbsp;至&nbsp;&nbsp;
+					<input  type="text" class="Wdate" id="" style="width: 115px;"/>
+					
+				</td>	
+			</tr>
+			<tr align="center">	
+				<td>
+					五一放假时间:&nbsp;&nbsp;<input  type="text" class="Wdate" id="" style="width: 115px;"></input>&nbsp;&nbsp;至&nbsp;&nbsp;
+					<input  type="text" class="Wdate" id="" style="width: 115px;"/>
+				</td>	
+			</tr>
+			<tr align="center">	
+				<td>
+					端午放假时间:&nbsp;&nbsp; <input  type="text" class="Wdate" id="" style="width: 115px;"></input>&nbsp;&nbsp;至&nbsp;&nbsp;
+					<input  type="text" class="Wdate" id="" style="width: 115px;"/>
+				</td>	
+			</tr>
+			<tr align="center">	
+				<td>
+					中秋放假时间:&nbsp;&nbsp; <input  type="text" class="Wdate" id="" style="width: 115px;"></input>&nbsp;&nbsp;至&nbsp;&nbsp;
+					<input  type="text" class="Wdate" id="" style="width: 115px;"/>
+				</td>	
+			</tr>
+			<tr align="center">	
+				<td>
+					国庆放假时间:&nbsp;&nbsp;<input  type="text" class="Wdate" id="" style="width: 115px;"></input>&nbsp;&nbsp;至&nbsp;&nbsp;
+					<input  type="text" class="Wdate" id="" style="width: 115px;"/>
+				</td>	
+			</tr>
+			<tr align="center">	
+				<td>
+					元旦放假时间:&nbsp;&nbsp;<input  type="text" class="Wdate" id="" style="width: 115px;"></input>&nbsp;&nbsp;至&nbsp;&nbsp;
+					<input  type="text" class="Wdate" id="" style="width: 115px;"/>
+				</td>	
+				
+			</tr>
+			
+			</table>
+			<center>
+					<input type="button" value="添加" id="add"/>&nbsp;&nbsp;&nbsp;&nbsp;
+					<input type="submit" value=" 提 交 "/>&nbsp;&nbsp;&nbsp;&nbsp;
+					<input type="button" onclick="toclose();" value=" 关 闭 "/>
+			</center>	
+	</form>	
+</div>
+<script type="text/javascript" src="../../My97DatePicker/WdatePicker.js"></script>
+</body>
+<script type="text/javascript">
+		$("#add").click(function(){
+		    var obj=$("<tr >"	
+							+"<td align='center'>"
+								+"放假原因：&nbsp;&nbsp;<input type='text' style='width:100px;'/>"
+								+"&nbsp;&nbsp;时间:&nbsp;&nbsp;<input  type='text' class='Wdate' id='' style='width: 115px;'></input>&nbsp;&nbsp;至&nbsp;&nbsp;"
+								+"<input  type='text' class='Wdate' id='' style='width: 115px;'/>"
+								+"<input type='button' value='移除' onclick='delText(this);'/> "
+							+"</td>	"
+					+"</tr>");
+		    $("table").append(obj);
+	    });
+	    
+	    function delText(obj){
+	    	var removeTime = $("#removeTime").val();
+	    	$("#removeTime").val(parseInt(removeTime) + 1 );
+	   	    $(obj).parent().parent().remove();
+	    }
+
+	    function toclose(){
+			top.Dialog.close();
+		}
+	</script>
+</html>

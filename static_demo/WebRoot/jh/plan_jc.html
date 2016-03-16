@@ -1,0 +1,191 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<!--框架必需start-->
+	<script type="text/javascript" src="../js/jquery-1.4.js"></script>
+	<script type="text/javascript" src="../js/framework.js"></script>
+	<link href="../css/import_basic.css" rel="stylesheet" type="text/css"/>
+	<link  rel="stylesheet" type="text/css" id="skin"/>
+	<!--框架必需end-->
+</head>
+<body>
+	<div id="planJC" class="box2" panelTitle="已计划检修机车" showStatus="false">
+	   	<table width="100%" class="tableStyle" useColor="false" useHover="false" useClick="false">
+	   		<tr>
+				<th colspan="8" align="left">&nbsp;
+					<select class="default">
+						<option>全部机车</option>
+						<option value="SS3B">SS3B</option>
+						<option value="DF4">DF4</option>
+					</select>&nbsp;
+					<input type="text" watermark="输入机车号"/>&nbsp;&nbsp;
+					<button><span>查询</span></button>&nbsp;&nbsp;
+					<button><span>删除</span></button>
+				</th>
+			</tr>
+			<tr>
+				<th class="ver01" width="30px" align="center"><input type="checkbox"/></th>
+				<th class="ver01" width="30px" align="center">序号</th>
+				<th class="ver01" width="15%" align="center">车型车号</th>
+				<th class="ver01" width="15%" align="center">计划日期</th>
+				<th class="ver01" width="10%" align="center">计划修程</th>
+				<th class="ver01" width="15%" align="center">上次日期</th>
+				<th class="ver01" width="15%" align="center">上次修程</th>
+				<th class="ver01" align="center">备注</th>
+			</tr>
+		    <tr>
+		    	<td class="ver01" align="center"><input type="checkbox"/></td>
+				<td class="ver01" align="center">1</td>
+				<td class="ver01" align="center">SS3B-1234</td>
+				<td class="ver01" align="center"><input type="text" watermark="计划扣车时间" style="width: 80px"/></td>
+				<td class="ver01" align="center"><input type="text" watermark="修程修次" style="width: 80px"/></td>
+				<td class="ver01" align="center">2012-10-01</td>
+				<td class="ver01" align="center">F1</td>
+				<td class="ver01" align="center"><input type="text" watermark="备注" style="width: 100px"/></td>
+		    </tr>
+		    <tr>
+		    	<td class="ver01" align="center"><input type="checkbox"/></td>
+				<td class="ver01" align="center" style="font-weight: bolder;color: blue;">2</td>
+				<td class="ver01" align="center" style="font-weight: bolder;color: blue;">SS3B-1234</td>
+				<td class="ver01" align="center" style="font-weight: bolder;color: blue;">2012-11-11</td>
+				<td class="ver01" align="center" style="font-weight: bolder;color: blue;">Z1</td>
+				<td class="ver01" align="center" style="font-weight: bolder;color: blue;">2012-10-01</td>
+				<td class="ver01" align="center" style="font-weight: bolder;color: blue;">F1</td>
+				<td class="ver01" align="center" style="font-weight: bolder;color: blue;">4343</td>
+		    </tr>
+		    <tr>
+		    	<td class="ver01" align="center"><input type="checkbox"/></td>
+				<td class="ver01" align="center" style="font-weight: bolder;color: blue;">3</td>
+				<td class="ver01" align="center" style="font-weight: bolder;color: blue;">SS3B-1234</td>
+				<td class="ver01" align="center" style="font-weight: bolder;color: blue;">2012-11-11</td>
+				<td class="ver01" align="center" style="font-weight: bolder;color: blue;">Z1</td>
+				<td class="ver01" align="center" style="font-weight: bolder;color: blue;">2012-10-01</td>
+				<td class="ver01" align="center" style="font-weight: bolder;color: blue;">F1</td>
+				<td class="ver01" align="center" style="font-weight: bolder;color: blue;">4343</td>
+		    </tr>
+		    <tr>
+		    	<td class="ver01" align="center"><input type="checkbox"/></td>
+				<td class="ver01" align="center">4</td>
+				<td class="ver01" align="center">SS3B-1234</td>
+				<td class="ver01" align="center">2012-11-11</td>
+				<td class="ver01" align="center">Z1</td>
+				<td class="ver01" align="center">2012-10-01</td>
+				<td class="ver01" align="center">F1</td>
+				<td class="ver01" align="center">4343</td>
+		    </tr>
+		   <tr>
+		    	<td class="ver01" align="center"><input type="checkbox"/></td>
+				<td class="ver01" align="center" style="font-weight: bolder;color: red;">5</td>
+				<td class="ver01" align="center" style="font-weight: bolder;color: red;">SS3B-1234</td>
+				<td class="ver01" align="center" style="font-weight: bolder;color: red;">2012-11-11</td>
+				<td class="ver01" align="center" style="font-weight: bolder;color: red;">Z1</td>
+				<td class="ver01" align="center" style="font-weight: bolder;color: red;">2012-10-01</td>
+				<td class="ver01" align="center" style="font-weight: bolder;color: red;">F1</td>
+				<td class="ver01" align="center" style="font-weight: bolder;color: red;">4343</td>
+		    </tr>
+		    <tr>
+		    	<td class="ver01" align="center"><input type="checkbox"/></td>
+				<td class="ver01" align="center" style="font-weight: bolder;color: red;">6</td>
+				<td class="ver01" align="center" style="font-weight: bolder;color: red;">SS3B-1234</td>
+				<td class="ver01" align="center" style="font-weight: bolder;color: red;">2012-11-11</td>
+				<td class="ver01" align="center" style="font-weight: bolder;color: red;">Z1</td>
+				<td class="ver01" align="center" style="font-weight: bolder;color: red;">2012-10-01</td>
+				<td class="ver01" align="center" style="font-weight: bolder;color: red;">F1</td>
+				<td class="ver01" align="center" style="font-weight: bolder;color: red;">4343</td>
+		    </tr>
+		    <tr>
+		    	<td class="ver01" align="center"><input type="checkbox"/></td>
+				<td class="ver01" align="center">7</td>
+				<td class="ver01" align="center">SS3B-1234</td>
+				<td class="ver01" align="center">2012-11-11</td>
+				<td class="ver01" align="center">Z1</td>
+				<td class="ver01" align="center">2012-10-01</td>
+				<td class="ver01" align="center">F1</td>
+				<td class="ver01" align="center">4343</td>
+		    </tr>
+		    <tr>
+		    	<td class="ver01" align="center"><input type="checkbox"/></td>
+				<td class="ver01" align="center">8</td>
+				<td class="ver01" align="center">SS3B-1234</td>
+				<td class="ver01" align="center">2012-11-11</td>
+				<td class="ver01" align="center">Z1</td>
+				<td class="ver01" align="center">2012-10-01</td>
+				<td class="ver01" align="center">F1</td>
+				<td class="ver01" align="center">4343</td>
+		    </tr>
+		    <tr>
+		    	<td class="ver01" align="center"><input type="checkbox"/></td>
+				<td class="ver01" align="center">9</td>
+				<td class="ver01" align="center">SS3B-1234</td>
+				<td class="ver01" align="center">2012-11-11</td>
+				<td class="ver01" align="center">Z1</td>
+				<td class="ver01" align="center">2012-10-01</td>
+				<td class="ver01" align="center">F1</td>
+				<td class="ver01" align="center">4343</td>
+		    </tr>
+		    <tr>
+		    	<td class="ver01" align="center"><input type="checkbox"/></td>
+				<td class="ver01" align="center">10</td>
+				<td class="ver01" align="center">SS3B-1234</td>
+				<td class="ver01" align="center">2012-11-11</td>
+				<td class="ver01" align="center">Z1</td>
+				<td class="ver01" align="center">2012-10-01</td>
+				<td class="ver01" align="center">F1</td>
+				<td class="ver01" align="center">4343</td>
+		    </tr>
+		    <tr>
+		    	<td class="ver01" align="center"><input type="checkbox"/></td>
+				<td class="ver01" align="center">11</td>
+				<td class="ver01" align="center">SS3B-1234</td>
+				<td class="ver01" align="center">2012-11-11</td>
+				<td class="ver01" align="center">Z1</td>
+				<td class="ver01" align="center">2012-10-01</td>
+				<td class="ver01" align="center">F1</td>
+				<td class="ver01" align="center">4343</td>
+		    </tr>
+		    <tr>
+		    	<td class="ver01" align="center"><input type="checkbox"/></td>
+				<td class="ver01" align="center">12</td>
+				<td class="ver01" align="center">SS3B-1234</td>
+				<td class="ver01" align="center">2012-11-11</td>
+				<td class="ver01" align="center">Z1</td>
+				<td class="ver01" align="center">2012-10-01</td>
+				<td class="ver01" align="center">F1</td>
+				<td class="ver01" align="center">4343</td>
+		    </tr>
+		    <tr>
+		    	<td class="ver01" align="center"><input type="checkbox"/></td>
+				<td class="ver01" align="center">13</td>
+				<td class="ver01" align="center">SS3B-1234</td>
+				<td class="ver01" align="center">2012-11-11</td>
+				<td class="ver01" align="center">Z1</td>
+				<td class="ver01" align="center">2012-10-01</td>
+				<td class="ver01" align="center">F1</td>
+				<td class="ver01" align="center">4343</td>
+		    </tr>
+		    <tr>
+		    	<td class="ver01" align="center"><input type="checkbox"/></td>
+				<td class="ver01" align="center">14</td>
+				<td class="ver01" align="center">SS3B-1234</td>
+				<td class="ver01" align="center">2012-11-11</td>
+				<td class="ver01" align="center">Z1</td>
+				<td class="ver01" align="center">2012-10-01</td>
+				<td class="ver01" align="center">F1</td>
+				<td class="ver01" align="center">4343</td>
+		    </tr>
+		    <tr>
+		    	<td class="ver01" align="center"><input type="checkbox"/></td>
+				<td class="ver01" align="center">15</td>
+				<td class="ver01" align="center">SS3B-1234</td>
+				<td class="ver01" align="center">2012-11-11</td>
+				<td class="ver01" align="center">Z1</td>
+				<td class="ver01" align="center">2012-10-01</td>
+				<td class="ver01" align="center">F1</td>
+				<td class="ver01" align="center">4343</td>
+		    </tr>
+		    <tr><td class="ver01" colspan="8"></td></tr>
+		</table>
+	</div>
+</body>
+</html>

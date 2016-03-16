@@ -1,0 +1,332 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>领导查询页面</title>
+	<!--框架必需start-->
+	<script type="text/javascript" src="../js/jquery-1.4.js"></script>
+	<script type="text/javascript" src="../js/framework.js"></script>
+	<link href="../css/import_basic.css" rel="stylesheet" type="text/css" />
+	<link href="skins/sky/import_skin.css" rel="stylesheet" type="text/css"
+		id="skin" themeColor="blue" />
+	<!--框架必需end-->
+	<!--修正IE6支持透明png图片start-->
+	<script type="text/javascript" src="../js/method/pngFix/supersleight.js"></script>
+	<!--修正IE6支持透明png图片end-->
+</head>
+<body>
+	<div id="scrollContent">
+		<table width="100%" border="0" cellspacing="0" cellpadding="0"
+			align="center">
+			<tr>
+				<td>
+					<center>
+						<div class="box4">
+							<div>
+								<form action="query!count.do" method="post">
+									日期：<input type="text" class="Wdate" onfocus="WdatePicker()"
+										name="time" value="" /> <input type="submit" value="查  询" />
+								</form>
+							</div>
+							<table width="80%" class="tableStyle" style="margin-top: 10px;">
+								<tr>
+									<th>机务段</th>
+									<th colspan="3">大修</th>
+									<th colspan="3">中修</th>
+									<th colspan="3">小辅修</th>
+									<th colspan="3">临修</th>
+									<th colspan="3">其它</th>
+									<th colspan="3">合计</th>
+								</tr>
+								<tr>
+									<th></th>
+									<th>计划</th>
+									<th>实际</th>
+									<th>未兑现</th>
+									<th>计划</th>
+									<th>实际</th>
+									<th>未兑现</th>
+									<th>计划</th>
+									<th>实际</th>
+									<th>未兑现</th>
+									<th>计划</th>
+									<th>实际</th>
+									<th>未兑现</th>
+									<th>计划</th>
+									<th>实际</th>
+									<th>未兑现</th>
+									<th>计划</th>
+									<th>实际</th>
+									<th>未兑现</th>
+								</tr>
+								<tr>
+									<td style="text-align: center;"><a
+										href="local_station_reports.html" style="color:blue;">株洲段</a></td>
+									<td style="text-align: center;"><a href=""
+										style="color:blue;">0</a></td>
+									<td style="text-align: center;"><a href=""
+										style="color:blue;">0</a></td>
+									<td style="text-align: center;"><a href=""
+										style="color:blue;">0</a></td>
+									<td style="text-align: center;"><a href=""
+										style="color:blue;">10</a></td>
+									<td style="text-align: center;"><a href=""
+										style="color:blue;">8</a></td>
+									<td style="text-align: center;"><a href=""
+										style="color:red;">2</a></td>
+									<td style="text-align: center;"><a href=""
+										style="color:blue;">25</a></td>
+									<td style="text-align: center;"><a href=""
+										style="color:blue;">22</a></td>
+									<td style="text-align: center;"><a href=""
+										style="color:red;">3</a></td>
+									<td style="text-align: center;"><a href=""
+										style="color:blue;">10</a></td>
+									<td style="text-align: center;"><a href=""
+										style="color:blue;">10</a></td>
+									<td style="text-align: center;"><a href=""
+										style="color:red;">0</a></td>
+									<td style="text-align: center;"><a href=""
+										style="color:blue;">20</a></td>
+									<td style="text-align: center;"><a href=""
+										style="color:blue;">10</a></td>
+									<td style="text-align: center;"><a href=""
+										style="color:red;">10</a></td>
+									<td style="text-align: center;"><a href=""
+										style="color:blue;">65</a></td>
+									<td style="text-align: center;"><a href=""
+										style="color:blue;">50</a></td>
+									<td style="text-align: center;"><a href=""
+										style="color:red;">15</a></td>
+								</tr>
+								<tr>
+									<td style="text-align: center;"><a
+										href="local_station_reports.html" style="color:blue;">广州段</a></td>
+									<td style="text-align: center;"><a href=""
+										style="color:blue;">0</a></td>
+									<td style="text-align: center;"><a href=""
+										style="color:blue;">0</a></td>
+									<td style="text-align: center;"><a href=""
+										style="color:blue;">0</a></td>
+									<td style="text-align: center;"><a href=""
+										style="color:blue;">10</a></td>
+									<td style="text-align: center;"><a href=""
+										style="color:blue;">8</a></td>
+									<td style="text-align: center;"><a href=""
+										style="color:red;">2</a></td>
+									<td style="text-align: center;"><a href=""
+										style="color:blue;">25</a></td>
+									<td style="text-align: center;"><a href=""
+										style="color:blue;">22</a></td>
+									<td style="text-align: center;"><a href=""
+										style="color:red;">3</a></td>
+									<td style="text-align: center;"><a href=""
+										style="color:blue;">10</a></td>
+									<td style="text-align: center;"><a href=""
+										style="color:blue;">10</a></td>
+									<td style="text-align: center;"><a href=""
+										style="color:red;">0</a></td>
+									<td style="text-align: center;"><a href=""
+										style="color:blue;">20</a></td>
+									<td style="text-align: center;"><a href=""
+										style="color:blue;">10</a></td>
+									<td style="text-align: center;"><a href=""
+										style="color:red;">10</a></td>
+									<td style="text-align: center;"><a href=""
+										style="color:blue;">65</a></td>
+									<td style="text-align: center;"><a href=""
+										style="color:blue;">50</a></td>
+									<td style="text-align: center;"><a href=""
+										style="color:red;">15</a></td>
+								</tr>
+								<tr>
+									<td style="text-align: center;"><a
+										href="local_station_reports.html" style="color:blue;">长沙段</a></td>
+									<td style="text-align: center;"><a href=""
+										style="color:blue;">0</a></td>
+									<td style="text-align: center;"><a href=""
+										style="color:blue;">0</a></td>
+									<td style="text-align: center;"><a href=""
+										style="color:blue;">0</a></td>
+									<td style="text-align: center;"><a href=""
+										style="color:blue;">10</a></td>
+									<td style="text-align: center;"><a href=""
+										style="color:blue;">8</a></td>
+									<td style="text-align: center;"><a href=""
+										style="color:red;">2</a></td>
+									<td style="text-align: center;"><a href=""
+										style="color:blue;">25</a></td>
+									<td style="text-align: center;"><a href=""
+										style="color:blue;">22</a></td>
+									<td style="text-align: center;"><a href=""
+										style="color:red;">3</a></td>
+									<td style="text-align: center;"><a href=""
+										style="color:blue;">10</a></td>
+									<td style="text-align: center;"><a href=""
+										style="color:blue;">10</a></td>
+									<td style="text-align: center;"><a href=""
+										style="color:red;">0</a></td>
+									<td style="text-align: center;"><a href=""
+										style="color:blue;">20</a></td>
+									<td style="text-align: center;"><a href=""
+										style="color:blue;">10</a></td>
+									<td style="text-align: center;"><a href=""
+										style="color:red;">10</a></td>
+									<td style="text-align: center;"><a href=""
+										style="color:blue;">65</a></td>
+									<td style="text-align: center;"><a href=""
+										style="color:blue;">50</a></td>
+									<td style="text-align: center;"><a href=""
+										style="color:red;">15</a></td>
+								</tr>
+								<tr>
+									<td style="text-align: center;"><a
+										href="local_station_reports.html" style="color:blue;">怀化段</a></td>
+									<td style="text-align: center;"><a href=""
+										style="color:blue;">0</a></td>
+									<td style="text-align: center;"><a href=""
+										style="color:blue;">0</a></td>
+									<td style="text-align: center;"><a href=""
+										style="color:blue;">0</a></td>
+									<td style="text-align: center;"><a href=""
+										style="color:blue;">10</a></td>
+									<td style="text-align: center;"><a href=""
+										style="color:blue;">8</a></td>
+									<td style="text-align: center;"><a href=""
+										style="color:red;">2</a></td>
+									<td style="text-align: center;"><a href=""
+										style="color:blue;">25</a></td>
+									<td style="text-align: center;"><a href=""
+										style="color:blue;">22</a></td>
+									<td style="text-align: center;"><a href=""
+										style="color:red;">3</a></td>
+									<td style="text-align: center;"><a href=""
+										style="color:blue;">10</a></td>
+									<td style="text-align: center;"><a href=""
+										style="color:blue;">10</a></td>
+									<td style="text-align: center;"><a href=""
+										style="color:red;">0</a></td>
+									<td style="text-align: center;"><a href=""
+										style="color:blue;">20</a></td>
+									<td style="text-align: center;"><a href=""
+										style="color:blue;">10</a></td>
+									<td style="text-align: center;"><a href=""
+										style="color:red;">10</a></td>
+									<td style="text-align: center;"><a href=""
+										style="color:blue;">65</a></td>
+									<td style="text-align: center;"><a href=""
+										style="color:blue;">50</a></td>
+									<td style="text-align: center;"><a href=""
+										style="color:red;">15</a></td>
+								</tr>
+								<tr>
+									<td style="text-align: center;"><a
+										href="local_station_reports.html" style="color:blue;">龙川段</a></td>
+									<td style="text-align: center;"><a href=""
+										style="color:blue;">0</a></td>
+									<td style="text-align: center;"><a href=""
+										style="color:blue;">0</a></td>
+									<td style="text-align: center;"><a href=""
+										style="color:blue;">0</a></td>
+									<td style="text-align: center;"><a href=""
+										style="color:blue;">10</a></td>
+									<td style="text-align: center;"><a href=""
+										style="color:blue;">8</a></td>
+									<td style="text-align: center;"><a href=""
+										style="color:red;">2</a></td>
+									<td style="text-align: center;"><a href=""
+										style="color:blue;">25</a></td>
+									<td style="text-align: center;"><a href=""
+										style="color:blue;">22</a></td>
+									<td style="text-align: center;"><a href=""
+										style="color:red;">3</a></td>
+									<td style="text-align: center;"><a href=""
+										style="color:blue;">10</a></td>
+									<td style="text-align: center;"><a href=""
+										style="color:blue;">10</a></td>
+									<td style="text-align: center;"><a href=""
+										style="color:red;">0</a></td>
+									<td style="text-align: center;"><a href=""
+										style="color:blue;">20</a></td>
+									<td style="text-align: center;"><a href=""
+										style="color:blue;">10</a></td>
+									<td style="text-align: center;"><a href=""
+										style="color:red;">10</a></td>
+									<td style="text-align: center;"><a href=""
+										style="color:blue;">65</a></td>
+									<td style="text-align: center;"><a href=""
+										style="color:blue;">50</a></td>
+									<td style="text-align: center;"><a href=""
+										style="color:red;">15</a></td>
+								</tr>
+								<tr>
+									<td style="text-align: center;"><a
+										href="local_station_reports.html" style="color:blue;">三水段</a></td>
+									<td style="text-align: center;"><a href=""
+										style="color:blue;">0</a></td>
+									<td style="text-align: center;"><a href=""
+										style="color:blue;">0</a></td>
+									<td style="text-align: center;"><a href=""
+										style="color:blue;">0</a></td>
+									<td style="text-align: center;"><a href=""
+										style="color:blue;">10</a></td>
+									<td style="text-align: center;"><a href=""
+										style="color:blue;">8</a></td>
+									<td style="text-align: center;"><a href=""
+										style="color:red;">2</a></td>
+									<td style="text-align: center;"><a href=""
+										style="color:blue;">25</a></td>
+									<td style="text-align: center;"><a href=""
+										style="color:blue;">22</a></td>
+									<td style="text-align: center;"><a href=""
+										style="color:red;">3</a></td>
+									<td style="text-align: center;"><a href=""
+										style="color:blue;">10</a></td>
+									<td style="text-align: center;"><a href=""
+										style="color:blue;">10</a></td>
+									<td style="text-align: center;"><a href=""
+										style="color:red;">0</a></td>
+									<td style="text-align: center;"><a href=""
+										style="color:blue;">20</a></td>
+									<td style="text-align: center;"><a href=""
+										style="color:blue;">10</a></td>
+									<td style="text-align: center;"><a href=""
+										style="color:red;">10</a></td>
+									<td style="text-align: center;"><a href=""
+										style="color:blue;">65</a></td>
+									<td style="text-align: center;"><a href=""
+										style="color:blue;">50</a></td>
+									<td style="text-align: center;"><a href=""
+										style="color:red;">15</a></td>
+								</tr>
+								<tr>
+									<td style="text-align: center; ">总计</td>
+									<td style="text-align: center; ">0</td>
+									<td style="text-align: center; ">0</td>
+									<td style="text-align: center; ">0</td>
+									<td style="text-align: center; ">60</td>
+									<td style="text-align: center; ">48</td>
+									<td style="text-align: center; ">12</td>
+									<td style="text-align: center; ">150</td>
+									<td style="text-align: center; ">135</td>
+									<td style="text-align: center; ">15</td>
+									<td style="text-align: center; ">60</td>
+									<td style="text-align: center; ">60</td>
+									<td style="text-align: center; ">0</td>
+									<td style="text-align: center; ">120</td>
+									<td style="text-align: center; ">60</td>
+									<td style="text-align: center; ">60</td>
+									<td style="text-align: center; ">390</td>
+									<td style="text-align: center; ">300</td>
+									<td style="text-align: center; ">90</td>
+								</tr>
+							</table>
+						</div>
+					</center>
+				</td>
+			</tr>
+		</table>
+	</div>
+	<script type="text/javascript" src="../My97DatePicker/WdatePicker.js"></script>
+</body>
+</html>

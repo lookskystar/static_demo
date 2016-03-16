@@ -1,0 +1,1720 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>行安&nbsp;&nbsp;检修记录
+</title>
+<link href="../css/test.css" type="text/css" rel="stylesheet" />
+<link href="../css/linkcss.css" type="text/css" rel="stylesheet" />
+<link href="../js/tree/dtree/dtree.css" type="text/css" rel="stylesheet" />
+<script type="text/javascript" src="../js/test.js"></script>
+<script type="text/javascript" src="../js/jquery-1.4.js"></script>
+<script type="text/javascript" src="../js/jquery.floatDiv.js"></script>
+<script type="text/javascript" src="../js/menu.js"></script>
+<script type="text/javascript" charset="UTF-8" src="../js/float.js"></script>
+<script type="text/javascript" charset="UTF-8" src="../js/print.js"></script>
+<style type="text/css"> 
+	#nav, #nav ul{
+	margin:0;
+	padding:0;
+	list-style-type:none;
+	list-style-position:outside;
+	position:relative;
+	line-height:1.5em; 
+	}
+	
+	#nav a{
+	display:block;
+	padding:0px 5px;
+	border:1px solid #333;
+	color:#fff;
+	font-weight:bold;
+	text-decoration:none;
+	background-color:#328aa4;
+	}
+	
+	#nav a:hover{
+	background-color:#fff;
+	color:red;
+	}
+	/*#nav a:visited{
+	background-color:#fff;
+	color:blue;
+	}*/
+	
+	#nav li{
+	float:left;
+	position:relative;
+	}
+	
+	#nav ul {
+	position:absolute;
+	display:none;
+	width:12em;
+	top:1.5em;
+	}
+	
+	#nav li ul a{
+	width:12em;
+	height:auto;
+	float:left;
+	}
+	
+	#nav ul ul{
+	top:auto;
+	}	
+	
+	#nav li ul ul {
+	left:12em;
+	margin:0px 0 0 10px;
+	}
+	
+	#nav li:hover ul ul, #nav li:hover ul ul ul, #nav li:hover ul ul ul ul{
+	display:none;
+	}
+	#nav li:hover ul, #nav li li:hover ul, #nav li li li:hover ul, #nav li li li li:hover ul{
+	display:block;
+	}
+</style>
+<script language="JavaScript" type="text/javascript"> 
+  	//合并表格的单元格
+	function cellMege(table,col){
+		var lines=$('#'+table+' tr').size();
+		if(lines<=2) return ;
+		var v,l=0,current='',index=1;
+		for(var i=1;i<lines;i++){
+			var tr=$('#'+table+' tr').eq(i);
+			v=tr.find('td[name="'+col+'"]').html();
+			//alert(tr.find('td[name="secondname"]').size());
+			l++;
+			//alert(v);
+			if(v!=current||i==(lines-1)){//如果两个值不相同或者是最后一行
+				if(i==(lines-1)) l++;
+				if(l>1){//草果两行，合并
+					var td=$('#'+table+' tr').eq(index).find('td[name="'+col+'"]');
+					td.attr('rowspan',l);
+					for(var j=1;j<l;j++){
+						var td=$('#'+table+' tr').eq(index+j).find('td[name="'+col+'"]').remove();
+					}
+				}
+				l=0;//从新计数
+				current=v;
+				index=i;
+			}
+		}
+	}
+	$(function(){
+		cellMege('datatabel','firstname');
+		cellMege('datatabel','secondname');
+		cellMege('datatabel','fixitemname');
+		cellMege('datatabel2','preType');
+		$('#scoll_div_id').floatdiv("middletop");
+	});
+</script>
+</head>
+ 
+<body bgcolor="#f8f7f7">
+<div id="scoll_div_id" style="background:#328aa4;width:864px;height:23px;">
+<ul id="nav">
+    <li><a href="#">◇整车记录 </a></li>
+    <li><a href="javascript:void(0);">◇机车部件</a>
+      <ul>
+            <li><a href="#">行安</a></li>
+            <li><a href="#">制动</a></li>
+            <li><a href="#">电子</a></li>
+            <li><a href="#">仪表</a></li>
+      </ul>
+    </li>
+    <li><a href="javascript:void(0);">◇检修班组</a>
+       <ul>
+            <li><a href="#">制动组</a></li>
+            <li><a href="#">电机组</a></li>
+            <li><a href="#">受电弓组</a></li>
+            <li><a href="#">仪表组</a></li>
+      </ul>
+    </li>
+    <li><a href="javascript:void(0);">◇机车试验</a>
+       <ul>
+            <li><a href="#">水阻试验</a></li>
+            <li><a href="#">高低压试验</a></li>
+            <li><a href="#">顶轮试验</a></li>
+            <li><a href="#">试运行试验</a></li>
+      </ul>
+    </li>
+    <li><a href="jc_all_pj.html">◇配件记录</a></li>
+    <li><a href="#">◇未完成记录 </a></li>
+    <li><a href="#">◇报活记录 </a></li>
+    <li><a href="#">◇记录导出 </a></li>
+    <li><a href="#">◇交车竣工 </a></li>
+    <li><a href="#">◇打印 </a>
+        <ul>
+            <li><a href="#">直接打印</a></li>
+            <li><a href="#">打印设置</a></li>
+            <li><a href="#">打印预览</a></li>
+      </ul>
+    </li>
+</ul>
+</div>
+<br><br>
+<div style="width:870px;margin-left:-435px;left:50%;position:absolute;" id="content2">
+<table width="864" border="0" align="center" cellspacing="0" vspace="0" style="padding-top:10px;">
+	<tr>
+		<td colspan="6" align="center" height="40">
+			<h2 align="center">
+				<font style="font-family:'隶书'">
+					<b>行安&nbsp;&nbsp;&nbsp;&nbsp;检修记录</b>
+				</font>
+			</h2>
+		</td>
+		<td  align="right"></td>
+	</tr>
+	<tr>
+		<td width="163" align="right">机车号：</td>
+		<td width="240">SS3  0627</td>
+		<td width="55" align="left">修程：</td><td width="251">X5</td>
+		<td width="140" align="left">检修日期：</td><td width="195" algin="left">2013-07-23 07:00</td>
+	</tr>
+<tr><td colspan="6">
+<table width="864" border="0" align="center" cellspacing="0" vspace="0">
+ 	<tr>
+		<td align="center" colspan="3" class="tbCELL3">
+			<table width="864" border="0" align="center" cellspacing="0" vspace="0" id="datatabel">
+				<tr style="line-height:40px;height: 40px;background-color: #328aa4;font-weight: bolder;">
+					<td class="tbCELL1" align="center" style="white-space:nowrap;color:#ffffff;" width="10%">大部件</td>
+					<td class="tbCELL1" align="center" style="white-space:nowrap;color:#ffffff;; min-width" width="15%">检修部件</td>
+					<td class="tbCELL1" align="center" style="white-space:nowrap;color:#ffffff;" width="25%">检修项目</td>
+					<td class="tbCELL1" align="center" style="white-space:nowrap;color:#ffffff;" width="10%">部位</td>
+					<td class="tbCELL1" align="center" style="white-space:nowrap;color:#ffffff;" width="10%">检修情况</td>
+					<td class="tbCELL1" align="center" style="white-space:nowrap;color:#ffffff;" width="6%">检修人</td>
+					<td class="tbCELL1" align="center" style="white-space:nowrap;color:#ffffff;" width="6%">工长</td>
+					<td class="tbCELL1" align="center" style="white-space:nowrap;color:#ffffff;" width="6%">质检员</td>
+					<td class="tbCELL1" align="center" style="white-space:nowrap;color:#ffffff;" width="6%">技术员</td>
+					<td class="tbCELL1" align="center" style="white-space:nowrap;color:#ffffff;" width="6%">交车工长</td>
+					<td class="tbCELL1" align="center" style="white-space:nowrap;color:#ffffff;" width="6%">验收员</td>
+				</tr>
+				
+					<tr>
+						<td class="tbCELL1" align="center" name="firstname">行安&nbsp;</td>
+						<td class="tbCELL1" align="center" name="secondname">光电传感器&nbsp;</td>
+						<td class="tbCELL1" align="center" name="fixitemname">测速电机安装牢固，插头外观及状态检查。&nbsp;</td>
+						<td class="tbCELL1" align="center">&nbsp;</td>
+						<td class="tbCELL1" align="center">良好&nbsp;
+						   
+						</td>
+				      	<td class="tbCELL1" align="center">
+			                   
+								
+								
+									冯湘伟<br>07-23 10:25
+								
+							
+			               </td>
+			               <td class="tbCELL1" align="center">
+							
+								
+								
+									赵纪伟<br>07-23 10:27
+								
+							
+			               </td>
+			               <td class="tbCELL1" align="center">
+							
+								
+			                    
+								
+									谭勇<br>07-23 14:41
+									
+							
+			               </td>
+			               <td class="tbCELL1" align="center">
+			                
+								
+			                    
+								
+									龙明元<br>07-24 08:21
+									
+							
+			               </td>
+			               <td class="tbCELL1" align="center">
+			                
+								
+			                    /
+									
+							
+			               </td>
+			               <td class="tbCELL1" align="center">
+			                
+								
+			                    /
+									
+							
+			               </td>
+					</tr>
+				
+					<tr>
+						<td class="tbCELL1" align="center" name="firstname">行安&nbsp;</td>
+						<td class="tbCELL1" align="center" name="secondname">机车视频装置&nbsp;</td>
+						<td class="tbCELL1" align="center" name="fixitemname">视频监控主机、摄像头安装牢固，插头接线正常,视频性能检测正常&nbsp;</td>
+						<td class="tbCELL1" align="center">&nbsp;</td>
+						<td class="tbCELL1" align="center">良好&nbsp;
+						   
+						</td>
+				      	<td class="tbCELL1" align="center">
+			                   
+								
+								
+									冯湘伟<br>07-23 10:25
+								
+							
+			               </td>
+			               <td class="tbCELL1" align="center">
+							
+								
+								
+									赵纪伟<br>07-23 10:27
+								
+							
+			               </td>
+			               <td class="tbCELL1" align="center">
+							
+								
+			                    
+								
+									谭勇<br>07-23 14:41
+									
+							
+			               </td>
+			               <td class="tbCELL1" align="center">
+			                
+								
+			                    
+								
+									龙明元<br>07-24 08:21
+									
+							
+			               </td>
+			               <td class="tbCELL1" align="center">
+			                
+								
+			                    /
+									
+							
+			               </td>
+			               <td class="tbCELL1" align="center">
+			                
+								
+			                    /
+									
+							
+			               </td>
+					</tr>
+				
+					<tr>
+						<td class="tbCELL1" align="center" name="firstname">行安&nbsp;</td>
+						<td class="tbCELL1" align="center" name="secondname">机车视频装置&nbsp;</td>
+						<td class="tbCELL1" align="center" name="fixitemname">所有连线、分线盒、无破损，安装座板牢固&nbsp;</td>
+						<td class="tbCELL1" align="center">&nbsp;</td>
+						<td class="tbCELL1" align="center">良好&nbsp;
+						   
+						</td>
+				      	<td class="tbCELL1" align="center">
+			                   
+								
+								
+									冯湘伟<br>07-23 10:25
+								
+							
+			               </td>
+			               <td class="tbCELL1" align="center">
+							
+								
+								
+									赵纪伟<br>07-23 10:27
+								
+							
+			               </td>
+			               <td class="tbCELL1" align="center">
+							
+								
+			                    
+								
+									谭勇<br>07-23 14:41
+									
+							
+			               </td>
+			               <td class="tbCELL1" align="center">
+			                
+								
+			                    
+								
+									龙明元<br>07-24 08:21
+									
+							
+			               </td>
+			               <td class="tbCELL1" align="center">
+			                
+								
+			                    /
+									
+							
+			               </td>
+			               <td class="tbCELL1" align="center">
+			                
+								
+			                    /
+									
+							
+			               </td>
+					</tr>
+				
+					<tr>
+						<td class="tbCELL1" align="center" name="firstname">行安&nbsp;</td>
+						<td class="tbCELL1" align="center" name="secondname">机车视频装置&nbsp;</td>
+						<td class="tbCELL1" align="center" name="fixitemname">封条状态检查、无缺损&nbsp;</td>
+						<td class="tbCELL1" align="center">&nbsp;</td>
+						<td class="tbCELL1" align="center">良好&nbsp;
+						   
+						</td>
+				      	<td class="tbCELL1" align="center">
+			                   
+								
+								
+									冯湘伟<br>07-23 10:25
+								
+							
+			               </td>
+			               <td class="tbCELL1" align="center">
+							
+								
+								
+									赵纪伟<br>07-23 10:27
+								
+							
+			               </td>
+			               <td class="tbCELL1" align="center">
+							
+								
+			                    
+								
+									谭勇<br>07-23 14:41
+									
+							
+			               </td>
+			               <td class="tbCELL1" align="center">
+			                
+								
+			                    
+								
+									龙明元<br>07-24 08:21
+									
+							
+			               </td>
+			               <td class="tbCELL1" align="center">
+			                
+								
+			                    /
+									
+							
+			               </td>
+			               <td class="tbCELL1" align="center">
+			                
+								
+			                    /
+									
+							
+			               </td>
+					</tr>
+				
+					<tr>
+						<td class="tbCELL1" align="center" name="firstname">行安&nbsp;</td>
+						<td class="tbCELL1" align="center" name="secondname">欠风压保护装置&nbsp;</td>
+						<td class="tbCELL1" align="center" name="fixitemname">检查欠风压保护装置主机安装状态及其插头连线&nbsp;</td>
+						<td class="tbCELL1" align="center">&nbsp;</td>
+						<td class="tbCELL1" align="center">良好&nbsp;
+						   
+						</td>
+				      	<td class="tbCELL1" align="center">
+			                   
+								
+								
+									冯湘伟<br>07-23 10:25
+								
+							
+			               </td>
+			               <td class="tbCELL1" align="center">
+							
+								
+								
+									赵纪伟<br>07-23 10:27
+								
+							
+			               </td>
+			               <td class="tbCELL1" align="center">
+							
+								
+			                    
+								
+									谭勇<br>07-23 14:41
+									
+							
+			               </td>
+			               <td class="tbCELL1" align="center">
+			                
+								
+			                    
+								
+									龙明元<br>07-24 08:21
+									
+							
+			               </td>
+			               <td class="tbCELL1" align="center">
+			                
+								
+			                    /
+									
+							
+			               </td>
+			               <td class="tbCELL1" align="center">
+			                
+								
+			                    /
+									
+							
+			               </td>
+					</tr>
+				
+					<tr>
+						<td class="tbCELL1" align="center" name="firstname">行安&nbsp;</td>
+						<td class="tbCELL1" align="center" name="secondname">欠风压保护装置&nbsp;</td>
+						<td class="tbCELL1" align="center" name="fixitemname">检查报警盒安装状态及其连线&nbsp;</td>
+						<td class="tbCELL1" align="center">&nbsp;</td>
+						<td class="tbCELL1" align="center">良好&nbsp;
+						   
+						</td>
+				      	<td class="tbCELL1" align="center">
+			                   
+								
+								
+									冯湘伟<br>07-23 10:25
+								
+							
+			               </td>
+			               <td class="tbCELL1" align="center">
+							
+								
+								
+									赵纪伟<br>07-23 10:27
+								
+							
+			               </td>
+			               <td class="tbCELL1" align="center">
+							
+								
+			                    
+								
+									谭勇<br>07-23 14:41
+									
+							
+			               </td>
+			               <td class="tbCELL1" align="center">
+			                
+								
+			                    
+								
+									龙明元<br>07-24 08:21
+									
+							
+			               </td>
+			               <td class="tbCELL1" align="center">
+			                
+								
+			                    /
+									
+							
+			               </td>
+			               <td class="tbCELL1" align="center">
+			                
+								
+			                    /
+									
+							
+			               </td>
+					</tr>
+				
+					<tr>
+						<td class="tbCELL1" align="center" name="firstname">行安&nbsp;</td>
+						<td class="tbCELL1" align="center" name="secondname">欠风压保护装置&nbsp;</td>
+						<td class="tbCELL1" align="center" name="fixitemname">检查气阀柜传感器及其连线状态 &nbsp;</td>
+						<td class="tbCELL1" align="center">&nbsp;</td>
+						<td class="tbCELL1" align="center">良好&nbsp;
+						   
+						</td>
+				      	<td class="tbCELL1" align="center">
+			                   
+								
+								
+									冯湘伟<br>07-23 10:25
+								
+							
+			               </td>
+			               <td class="tbCELL1" align="center">
+							
+								
+								
+									赵纪伟<br>07-23 10:27
+								
+							
+			               </td>
+			               <td class="tbCELL1" align="center">
+							
+								
+			                    
+								
+									谭勇<br>07-23 14:41
+									
+							
+			               </td>
+			               <td class="tbCELL1" align="center">
+			                
+								
+			                    
+								
+									龙明元<br>07-24 08:21
+									
+							
+			               </td>
+			               <td class="tbCELL1" align="center">
+			                
+								
+			                    /
+									
+							
+			               </td>
+			               <td class="tbCELL1" align="center">
+			                
+								
+			                    /
+									
+							
+			               </td>
+					</tr>
+				
+					<tr>
+						<td class="tbCELL1" align="center" name="firstname">行安&nbsp;</td>
+						<td class="tbCELL1" align="center" name="secondname">欠风压保护装置&nbsp;</td>
+						<td class="tbCELL1" align="center" name="fixitemname">欠风压装置整体性能试验&nbsp;</td>
+						<td class="tbCELL1" align="center">&nbsp;</td>
+						<td class="tbCELL1" align="center">良好&nbsp;
+						   
+						</td>
+				      	<td class="tbCELL1" align="center">
+			                   
+								
+								
+									冯湘伟<br>07-23 10:25
+								
+							
+			               </td>
+			               <td class="tbCELL1" align="center">
+							
+								
+								
+									赵纪伟<br>07-23 10:27
+								
+							
+			               </td>
+			               <td class="tbCELL1" align="center">
+							
+								
+			                    
+								
+									谭勇<br>07-23 14:41
+									
+							
+			               </td>
+			               <td class="tbCELL1" align="center">
+			                
+								
+			                    
+								
+									龙明元<br>07-24 08:21
+									
+							
+			               </td>
+			               <td class="tbCELL1" align="center">
+			                
+								
+			                    /
+									
+							
+			               </td>
+			               <td class="tbCELL1" align="center">
+			                
+								
+			                    /
+									
+							
+			               </td>
+					</tr>
+				
+					<tr>
+						<td class="tbCELL1" align="center" name="firstname">行安&nbsp;</td>
+						<td class="tbCELL1" align="center" name="secondname">自动过分相装置&nbsp;</td>
+						<td class="tbCELL1" align="center" name="fixitemname">检查自动过分相车感器、灯显盒、主机及连线、插头座各部件及安装状态。&nbsp;</td>
+						<td class="tbCELL1" align="center">&nbsp;</td>
+						<td class="tbCELL1" align="center">良好&nbsp;
+						   
+						</td>
+				      	<td class="tbCELL1" align="center">
+			                   
+								
+								
+									冯湘伟<br>07-23 10:25
+								
+							
+			               </td>
+			               <td class="tbCELL1" align="center">
+							
+								
+								
+									赵纪伟<br>07-23 10:27
+								
+							
+			               </td>
+			               <td class="tbCELL1" align="center">
+							
+								
+			                    
+								
+									谭勇<br>07-23 14:41
+									
+							
+			               </td>
+			               <td class="tbCELL1" align="center">
+			                
+								
+			                    
+								
+									龙明元<br>07-24 08:21
+									
+							
+			               </td>
+			               <td class="tbCELL1" align="center">
+			                
+								
+			                    /
+									
+							
+			               </td>
+			               <td class="tbCELL1" align="center">
+			                
+								
+			                    /
+									
+							
+			               </td>
+					</tr>
+				
+					<tr>
+						<td class="tbCELL1" align="center" name="firstname">行安&nbsp;</td>
+						<td class="tbCELL1" align="center" name="secondname">车顶绝缘装置&nbsp;</td>
+						<td class="tbCELL1" align="center" name="fixitemname">清扫检查控制盒及安装状态。&nbsp;</td>
+						<td class="tbCELL1" align="center">&nbsp;</td>
+						<td class="tbCELL1" align="center">良好&nbsp;
+						   
+						</td>
+				      	<td class="tbCELL1" align="center">
+			                   
+								
+								
+									冯湘伟<br>07-23 10:25
+								
+							
+			               </td>
+			               <td class="tbCELL1" align="center">
+							
+								
+								
+									赵纪伟<br>07-23 10:27
+								
+							
+			               </td>
+			               <td class="tbCELL1" align="center">
+							
+								
+			                    
+								
+									谭勇<br>07-23 14:41
+									
+							
+			               </td>
+			               <td class="tbCELL1" align="center">
+			                
+								
+			                    
+								
+									龙明元<br>07-24 08:21
+									
+							
+			               </td>
+			               <td class="tbCELL1" align="center">
+			                
+								
+			                    /
+									
+							
+			               </td>
+			               <td class="tbCELL1" align="center">
+			                
+								
+			                    /
+									
+							
+			               </td>
+					</tr>
+				
+					<tr>
+						<td class="tbCELL1" align="center" name="firstname">行安&nbsp;</td>
+						<td class="tbCELL1" align="center" name="secondname">车顶绝缘装置&nbsp;</td>
+						<td class="tbCELL1" align="center" name="fixitemname">清扫检查各导线、插头、插座及端子排有关接线情况。&nbsp;</td>
+						<td class="tbCELL1" align="center">&nbsp;</td>
+						<td class="tbCELL1" align="center">良好&nbsp;
+						   
+						</td>
+				      	<td class="tbCELL1" align="center">
+			                   
+								
+								
+									冯湘伟<br>07-23 10:25
+								
+							
+			               </td>
+			               <td class="tbCELL1" align="center">
+							
+								
+								
+									赵纪伟<br>07-23 10:27
+								
+							
+			               </td>
+			               <td class="tbCELL1" align="center">
+							
+								
+			                    
+								
+									谭勇<br>07-23 14:41
+									
+							
+			               </td>
+			               <td class="tbCELL1" align="center">
+			                
+								
+			                    
+								
+									龙明元<br>07-24 08:21
+									
+							
+			               </td>
+			               <td class="tbCELL1" align="center">
+			                
+								
+			                    /
+									
+							
+			               </td>
+			               <td class="tbCELL1" align="center">
+			                
+								
+			                    /
+									
+							
+			               </td>
+					</tr>
+				
+					<tr>
+						<td class="tbCELL1" align="center" name="firstname">行安&nbsp;</td>
+						<td class="tbCELL1" align="center" name="secondname">车顶绝缘装置&nbsp;</td>
+						<td class="tbCELL1" align="center" name="fixitemname">清扫检查各检测试验按钮。&nbsp;</td>
+						<td class="tbCELL1" align="center">&nbsp;</td>
+						<td class="tbCELL1" align="center">良好&nbsp;
+						   
+						</td>
+				      	<td class="tbCELL1" align="center">
+			                   
+								
+								
+									冯湘伟<br>07-23 10:25
+								
+							
+			               </td>
+			               <td class="tbCELL1" align="center">
+							
+								
+								
+									赵纪伟<br>07-23 10:27
+								
+							
+			               </td>
+			               <td class="tbCELL1" align="center">
+							
+								
+			                    
+								
+									谭勇<br>07-23 14:41
+									
+							
+			               </td>
+			               <td class="tbCELL1" align="center">
+			                
+								
+			                    
+								
+									龙明元<br>07-24 08:21
+									
+							
+			               </td>
+			               <td class="tbCELL1" align="center">
+			                
+								
+			                    /
+									
+							
+			               </td>
+			               <td class="tbCELL1" align="center">
+			                
+								
+			                    /
+									
+							
+			               </td>
+					</tr>
+				
+					<tr>
+						<td class="tbCELL1" align="center" name="firstname">行安&nbsp;</td>
+						<td class="tbCELL1" align="center" name="secondname">车顶绝缘装置&nbsp;</td>
+						<td class="tbCELL1" align="center" name="fixitemname">性能试验。&nbsp;</td>
+						<td class="tbCELL1" align="center">&nbsp;</td>
+						<td class="tbCELL1" align="center">良好&nbsp;
+						   
+						</td>
+				      	<td class="tbCELL1" align="center">
+			                   
+								
+								
+									冯湘伟<br>07-23 10:25
+								
+							
+			               </td>
+			               <td class="tbCELL1" align="center">
+							
+								
+								
+									赵纪伟<br>07-23 10:27
+								
+							
+			               </td>
+			               <td class="tbCELL1" align="center">
+							
+								
+			                    
+								
+									谭勇<br>07-23 14:41
+									
+							
+			               </td>
+			               <td class="tbCELL1" align="center">
+			                
+								
+			                    
+								
+									龙明元<br>07-24 08:21
+									
+							
+			               </td>
+			               <td class="tbCELL1" align="center">
+			                
+								
+			                    
+								
+									高为民<br>07-24 08:22
+									
+							
+			               </td>
+			               <td class="tbCELL1" align="center">
+			                
+								
+			                    
+								
+									黄初开<br>07-24 08:37
+									
+							
+			               </td>
+					</tr>
+				
+					<tr>
+						<td class="tbCELL1" align="center" name="firstname">行安&nbsp;</td>
+						<td class="tbCELL1" align="center" name="secondname">轮缘喷油装置&nbsp;</td>
+						<td class="tbCELL1" align="center" name="fixitemname">检查喷脂罐油位、安装状况&nbsp;</td>
+						<td class="tbCELL1" align="center">&nbsp;</td>
+						<td class="tbCELL1" align="center">良好&nbsp;
+						   
+						</td>
+				      	<td class="tbCELL1" align="center">
+			                   
+								
+								
+									冯湘伟<br>07-23 10:25
+								
+							
+			               </td>
+			               <td class="tbCELL1" align="center">
+							
+								
+								
+									赵纪伟<br>07-23 10:27
+								
+							
+			               </td>
+			               <td class="tbCELL1" align="center">
+							
+								
+			                    
+								
+									谭勇<br>07-23 14:41
+									
+							
+			               </td>
+			               <td class="tbCELL1" align="center">
+			                
+								
+			                    
+								
+									龙明元<br>07-24 08:21
+									
+							
+			               </td>
+			               <td class="tbCELL1" align="center">
+			                
+								
+			                    /
+									
+							
+			               </td>
+			               <td class="tbCELL1" align="center">
+			                
+								
+			                    /
+									
+							
+			               </td>
+					</tr>
+				
+					<tr>
+						<td class="tbCELL1" align="center" name="firstname">行安&nbsp;</td>
+						<td class="tbCELL1" align="center" name="secondname">轮缘喷油装置&nbsp;</td>
+						<td class="tbCELL1" align="center" name="fixitemname">更换不良喷头&nbsp;</td>
+						<td class="tbCELL1" align="center">&nbsp;</td>
+						<td class="tbCELL1" align="center">良好&nbsp;
+						   
+						</td>
+				      	<td class="tbCELL1" align="center">
+			                   
+								
+								
+									冯湘伟<br>07-23 10:25
+								
+							
+			               </td>
+			               <td class="tbCELL1" align="center">
+							
+								
+								
+									赵纪伟<br>07-23 10:27
+								
+							
+			               </td>
+			               <td class="tbCELL1" align="center">
+							
+								
+			                    
+								
+									谭勇<br>07-23 14:41
+									
+							
+			               </td>
+			               <td class="tbCELL1" align="center">
+			                
+								
+			                    
+								
+									龙明元<br>07-24 08:21
+									
+							
+			               </td>
+			               <td class="tbCELL1" align="center">
+			                
+								
+			                    /
+									
+							
+			               </td>
+			               <td class="tbCELL1" align="center">
+			                
+								
+			                    /
+									
+							
+			               </td>
+					</tr>
+				
+					<tr>
+						<td class="tbCELL1" align="center" name="firstname">行安&nbsp;</td>
+						<td class="tbCELL1" align="center" name="secondname">轮缘喷油装置&nbsp;</td>
+						<td class="tbCELL1" align="center" name="fixitemname">清扫并检查风、油管状况，无破裂、老化&nbsp;</td>
+						<td class="tbCELL1" align="center">&nbsp;</td>
+						<td class="tbCELL1" align="center">良好&nbsp;
+						   
+						</td>
+				      	<td class="tbCELL1" align="center">
+			                   
+								
+								
+									冯湘伟<br>07-23 10:25
+								
+							
+			               </td>
+			               <td class="tbCELL1" align="center">
+							
+								
+								
+									赵纪伟<br>07-23 10:27
+								
+							
+			               </td>
+			               <td class="tbCELL1" align="center">
+							
+								
+			                    
+								
+									谭勇<br>07-23 14:41
+									
+							
+			               </td>
+			               <td class="tbCELL1" align="center">
+			                
+								
+			                    
+								
+									龙明元<br>07-24 08:21
+									
+							
+			               </td>
+			               <td class="tbCELL1" align="center">
+			                
+								
+			                    /
+									
+							
+			               </td>
+			               <td class="tbCELL1" align="center">
+			                
+								
+			                    /
+									
+							
+			               </td>
+					</tr>
+				
+					<tr>
+						<td class="tbCELL1" align="center" name="firstname">行安&nbsp;</td>
+						<td class="tbCELL1" align="center" name="secondname">轮缘喷油装置&nbsp;</td>
+						<td class="tbCELL1" align="center" name="fixitemname">清扫并检查喷嘴状况，安装位置、角度正确，喷嘴无油泥&nbsp;</td>
+						<td class="tbCELL1" align="center">&nbsp;</td>
+						<td class="tbCELL1" align="center">良好&nbsp;
+						   
+						</td>
+				      	<td class="tbCELL1" align="center">
+			                   
+								
+								
+									冯湘伟<br>07-23 10:25
+								
+							
+			               </td>
+			               <td class="tbCELL1" align="center">
+							
+								
+								
+									赵纪伟<br>07-23 10:27
+								
+							
+			               </td>
+			               <td class="tbCELL1" align="center">
+							
+								
+			                    
+								
+									谭勇<br>07-23 14:41
+									
+							
+			               </td>
+			               <td class="tbCELL1" align="center">
+			                
+								
+			                    
+								
+									龙明元<br>07-24 08:21
+									
+							
+			               </td>
+			               <td class="tbCELL1" align="center">
+			                
+								
+			                    /
+									
+							
+			               </td>
+			               <td class="tbCELL1" align="center">
+			                
+								
+			                    /
+									
+							
+			               </td>
+					</tr>
+				
+					<tr>
+						<td class="tbCELL1" align="center" name="firstname">行安&nbsp;</td>
+						<td class="tbCELL1" align="center" name="secondname">轮缘喷油装置&nbsp;</td>
+						<td class="tbCELL1" align="center" name="fixitemname">试验喷油器应作用良好&nbsp;</td>
+						<td class="tbCELL1" align="center">&nbsp;</td>
+						<td class="tbCELL1" align="center">良好&nbsp;
+						   
+						</td>
+				      	<td class="tbCELL1" align="center">
+			                   
+								
+								
+									冯湘伟<br>07-23 10:25
+								
+							
+			               </td>
+			               <td class="tbCELL1" align="center">
+							
+								
+								
+									赵纪伟<br>07-23 10:27
+								
+							
+			               </td>
+			               <td class="tbCELL1" align="center">
+							
+								
+			                    
+								
+									谭勇<br>07-23 14:41
+									
+							
+			               </td>
+			               <td class="tbCELL1" align="center">
+			                
+								
+			                    
+								
+									龙明元<br>07-24 08:21
+									
+							
+			               </td>
+			               <td class="tbCELL1" align="center">
+			                
+								
+			                    /
+									
+							
+			               </td>
+			               <td class="tbCELL1" align="center">
+			                
+								
+			                    /
+									
+							
+			               </td>
+					</tr>
+				
+					<tr>
+						<td class="tbCELL1" align="center" name="firstname">行安&nbsp;</td>
+						<td class="tbCELL1" align="center" name="secondname">轴报装置（430车载走行部监测装置）&nbsp;</td>
+						<td class="tbCELL1" align="center" name="fixitemname">用500V摇表检查线路绝缘。(MΩ)（430装置不检测绝缘）&nbsp;</td>
+						<td class="tbCELL1" align="center">&nbsp;</td>
+						<td class="tbCELL1" align="center">没有启用MΩ&nbsp;
+						   
+						</td>
+				      	<td class="tbCELL1" align="center">
+			                   
+								
+								
+									冯湘伟<br>07-23 10:26
+								
+							
+			               </td>
+			               <td class="tbCELL1" align="center">
+							
+								
+								
+									赵纪伟<br>07-23 10:27
+								
+							
+			               </td>
+			               <td class="tbCELL1" align="center">
+							
+								
+			                    
+								
+									谭勇<br>07-23 14:41
+									
+							
+			               </td>
+			               <td class="tbCELL1" align="center">
+			                
+								
+			                    
+								
+									龙明元<br>07-24 08:21
+									
+							
+			               </td>
+			               <td class="tbCELL1" align="center">
+			                
+								
+			                    /
+									
+							
+			               </td>
+			               <td class="tbCELL1" align="center">
+			                
+								
+			                    
+								
+									黄初开<br>07-24 08:37
+									
+							
+			               </td>
+					</tr>
+				
+					<tr>
+						<td class="tbCELL1" align="center" name="firstname">行安&nbsp;</td>
+						<td class="tbCELL1" align="center" name="secondname">轴报装置（430车载走行部监测装置）&nbsp;</td>
+						<td class="tbCELL1" align="center" name="fixitemname">轴报装置（430车载走行部监测装置）电缆线安装牢固、线卡完好，各插头插座紧固良好。&nbsp;</td>
+						<td class="tbCELL1" align="center">&nbsp;</td>
+						<td class="tbCELL1" align="center">良好&nbsp;
+						   
+						</td>
+				      	<td class="tbCELL1" align="center">
+			                   
+								
+								
+									冯湘伟<br>07-23 10:25
+								
+							
+			               </td>
+			               <td class="tbCELL1" align="center">
+							
+								
+								
+									赵纪伟<br>07-23 10:27
+								
+							
+			               </td>
+			               <td class="tbCELL1" align="center">
+							
+								
+			                    
+								
+									谭勇<br>07-23 14:41
+									
+							
+			               </td>
+			               <td class="tbCELL1" align="center">
+			                
+								
+			                    
+								
+									龙明元<br>07-24 08:21
+									
+							
+			               </td>
+			               <td class="tbCELL1" align="center">
+			                
+								
+			                    /
+									
+							
+			               </td>
+			               <td class="tbCELL1" align="center">
+			                
+								
+			                    /
+									
+							
+			               </td>
+					</tr>
+				
+					<tr>
+						<td class="tbCELL1" align="center" name="firstname">行安&nbsp;</td>
+						<td class="tbCELL1" align="center" name="secondname">轴报装置（430车载走行部监测装置）&nbsp;</td>
+						<td class="tbCELL1" align="center" name="fixitemname">副机各轴位和温度显示正常。&nbsp;</td>
+						<td class="tbCELL1" align="center">&nbsp;</td>
+						<td class="tbCELL1" align="center">良好&nbsp;
+						   
+						</td>
+				      	<td class="tbCELL1" align="center">
+			                   
+								
+								
+									冯湘伟<br>07-23 10:25
+								
+							
+			               </td>
+			               <td class="tbCELL1" align="center">
+							
+								
+								
+									赵纪伟<br>07-23 10:27
+								
+							
+			               </td>
+			               <td class="tbCELL1" align="center">
+							
+								
+			                    
+								
+									谭勇<br>07-23 14:41
+									
+							
+			               </td>
+			               <td class="tbCELL1" align="center">
+			                
+								
+			                    
+								
+									龙明元<br>07-24 08:21
+									
+							
+			               </td>
+			               <td class="tbCELL1" align="center">
+			                
+								
+			                    /
+									
+							
+			               </td>
+			               <td class="tbCELL1" align="center">
+			                
+								
+			                    /
+									
+							
+			               </td>
+					</tr>
+				
+					<tr>
+						<td class="tbCELL1" align="center" name="firstname">行安&nbsp;</td>
+						<td class="tbCELL1" align="center" name="secondname">轴报装置（430车载走行部监测装置）&nbsp;</td>
+						<td class="tbCELL1" align="center" name="fixitemname">接线盒安装牢固。&nbsp;</td>
+						<td class="tbCELL1" align="center">&nbsp;</td>
+						<td class="tbCELL1" align="center">良好&nbsp;
+						   
+						</td>
+				      	<td class="tbCELL1" align="center">
+			                   
+								
+								
+									冯湘伟<br>07-23 10:25
+								
+							
+			               </td>
+			               <td class="tbCELL1" align="center">
+							
+								
+								
+									赵纪伟<br>07-23 10:27
+								
+							
+			               </td>
+			               <td class="tbCELL1" align="center">
+							
+								
+			                    
+								
+									谭勇<br>07-23 14:41
+									
+							
+			               </td>
+			               <td class="tbCELL1" align="center">
+			                
+								
+			                    
+								
+									龙明元<br>07-24 08:21
+									
+							
+			               </td>
+			               <td class="tbCELL1" align="center">
+			                
+								
+			                    /
+									
+							
+			               </td>
+			               <td class="tbCELL1" align="center">
+			                
+								
+			                    /
+									
+							
+			               </td>
+					</tr>
+				
+					<tr>
+						<td class="tbCELL1" align="center" name="firstname">行安&nbsp;</td>
+						<td class="tbCELL1" align="center" name="secondname">轴报装置（430车载走行部监测装置）&nbsp;</td>
+						<td class="tbCELL1" align="center" name="fixitemname">温度传感器安装牢固，空心铜螺杆无滑扣。&nbsp;</td>
+						<td class="tbCELL1" align="center">&nbsp;</td>
+						<td class="tbCELL1" align="center">良好&nbsp;
+						   
+						</td>
+				      	<td class="tbCELL1" align="center">
+			                   
+								
+								
+									冯湘伟<br>07-23 10:25
+								
+							
+			               </td>
+			               <td class="tbCELL1" align="center">
+							
+								
+								
+									赵纪伟<br>07-23 10:27
+								
+							
+			               </td>
+			               <td class="tbCELL1" align="center">
+							
+								
+			                    
+								
+									谭勇<br>07-23 14:41
+									
+							
+			               </td>
+			               <td class="tbCELL1" align="center">
+			                
+								
+			                    
+								
+									龙明元<br>07-24 08:21
+									
+							
+			               </td>
+			               <td class="tbCELL1" align="center">
+			                
+								
+			                    /
+									
+							
+			               </td>
+			               <td class="tbCELL1" align="center">
+			                
+								
+			                    /
+									
+							
+			               </td>
+					</tr>
+				
+					<tr>
+						<td class="tbCELL1" align="center" name="firstname">行安&nbsp;</td>
+						<td class="tbCELL1" align="center" name="secondname">轴报装置（430车载走行部监测装置）&nbsp;</td>
+						<td class="tbCELL1" align="center" name="fixitemname">传感器连线间无断线、短路。&nbsp;</td>
+						<td class="tbCELL1" align="center">&nbsp;</td>
+						<td class="tbCELL1" align="center">良好&nbsp;
+						   
+						</td>
+				      	<td class="tbCELL1" align="center">
+			                   
+								
+								
+									冯湘伟<br>07-23 10:25
+								
+							
+			               </td>
+			               <td class="tbCELL1" align="center">
+							
+								
+								
+									赵纪伟<br>07-23 10:27
+								
+							
+			               </td>
+			               <td class="tbCELL1" align="center">
+							
+								
+			                    
+								
+									谭勇<br>07-23 14:41
+									
+							
+			               </td>
+			               <td class="tbCELL1" align="center">
+			                
+								
+			                    
+								
+									龙明元<br>07-24 08:21
+									
+							
+			               </td>
+			               <td class="tbCELL1" align="center">
+			                
+								
+			                    /
+									
+							
+			               </td>
+			               <td class="tbCELL1" align="center">
+			                
+								
+			                    /
+									
+							
+			               </td>
+					</tr>
+				
+					<tr>
+						<td class="tbCELL1" align="center" name="firstname">行安&nbsp;</td>
+						<td class="tbCELL1" align="center" name="secondname">轴报装置（430车载走行部监测装置）&nbsp;</td>
+						<td class="tbCELL1" align="center" name="fixitemname">传感器螺杆紧固状态良好。&nbsp;</td>
+						<td class="tbCELL1" align="center">&nbsp;</td>
+						<td class="tbCELL1" align="center">良好&nbsp;
+						   
+						</td>
+				      	<td class="tbCELL1" align="center">
+			                   
+								
+								
+									冯湘伟<br>07-23 10:25
+								
+							
+			               </td>
+			               <td class="tbCELL1" align="center">
+							
+								
+								
+									赵纪伟<br>07-23 10:27
+								
+							
+			               </td>
+			               <td class="tbCELL1" align="center">
+							
+								
+			                    
+								
+									谭勇<br>07-23 14:41
+									
+							
+			               </td>
+			               <td class="tbCELL1" align="center">
+			                
+								
+			                    
+								
+									龙明元<br>07-24 08:21
+									
+							
+			               </td>
+			               <td class="tbCELL1" align="center">
+			                
+								
+			                    /
+									
+							
+			               </td>
+			               <td class="tbCELL1" align="center">
+			                
+								
+			                    /
+									
+							
+			               </td>
+					</tr>
+				
+					<tr>
+						<td class="tbCELL1" align="center" name="firstname">行安&nbsp;</td>
+						<td class="tbCELL1" align="center" name="secondname">轴报装置（430车载走行部监测装置）&nbsp;</td>
+						<td class="tbCELL1" align="center" name="fixitemname">装置性能试验，确认装置工作正常&nbsp;</td>
+						<td class="tbCELL1" align="center">&nbsp;</td>
+						<td class="tbCELL1" align="center">良好&nbsp;
+						   
+						</td>
+				      	<td class="tbCELL1" align="center">
+			                   
+								
+								
+									冯湘伟<br>07-23 10:25
+								
+							
+			               </td>
+			               <td class="tbCELL1" align="center">
+							
+								
+								
+									赵纪伟<br>07-23 10:27
+								
+							
+			               </td>
+			               <td class="tbCELL1" align="center">
+							
+								
+			                    
+								
+									谭勇<br>07-23 14:41
+									
+							
+			               </td>
+			               <td class="tbCELL1" align="center">
+			                
+								
+			                    
+								
+									龙明元<br>07-24 08:21
+									
+							
+			               </td>
+			               <td class="tbCELL1" align="center">
+			                
+								
+			                    /
+									
+							
+			               </td>
+			               <td class="tbCELL1" align="center">
+			                
+								
+			                    /
+									
+							
+			               </td>
+					</tr>
+				
+				<tr></tr>
+			</table>
+	  </td>
+  </tr>
+  </table>
+  </td>
+  </tr>
+  </table>
+  </div>
+</form>
+</body>
+</html>

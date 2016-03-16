@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<!--框架必需start-->
+	<script type="text/javascript" src="../js/jquery-1.4.js"></script>
+	<script type="text/javascript" src="../js/framework.js"></script>
+	<link href="../css/import_basic.css" rel="stylesheet" type="text/css"/>
+	<link  rel="stylesheet" type="text/css" id="skin"  prePath="../"/>
+	<!--框架必需end-->
+</head>
+<body>
+<div>
+<div class="box2" panelTitle="日报查询" roller="false">
+<form id="form" action="" method="post">	
+	班组：<select id="jcsType" onchange="getFirstUnit();" class="default" name="jcsType">
+	       	<option value="">请选择班组</option>
+	       	<option value="1">行安组</option>
+			<option value="2">制动组</option>
+			<option value="3">电上组</option>
+			<option value="4">微电阻</option>
+       </select>
+	时间：<input type="text" class="date"></input>
+	姓名：<input type="text" style="width: 115px" name="pjName" value=""/>&nbsp;&nbsp;&nbsp;
+	工号：<input type="text" style="width: 115px" name="pjName" value=""/>&nbsp;&nbsp;&nbsp;
+        <button><span class="icon_find">查询</span></button>&nbsp;&nbsp;
+        <button><span class="icon_edit">打印</span></button>&nbsp;&nbsp;
+        <button><span class="icon_xls">Excel导出</span></button><br/>
+</form>
+</div>
+
+	<table class="tableStyle" style="text-align:center; margin-top:10px;">
+	<tr>
+		<th>序号</th>
+		<th>姓名</th>
+		<th>工号</th>
+		<th>工种</th>
+		<th>班组</th>
+		<th>时间</th>
+		<th>工作内容</th>
+		<th>工时得分</th>
+		<th>操作</th>
+	</tr>
+	<tr>
+		<td align="center">1</td>
+		<td align="center">张三</td>
+		<td align="center">630324</td>
+		<td align="center">机车钳工</td>
+		<td align="center">柴备组</td>
+		<td align="center">2014-04-21</td>
+		<td align="center">气缸套25个</td>
+		<td align="center">8</td>
+		<td align="center">
+			<span style="color:blue;">查看详情</span>&nbsp;&nbsp;&nbsp;&nbsp;
+			<span style="color:blue;">编辑</span>
+		</td>
+	</tr>
+	<tr>
+		<td align="center">2</td>
+		<td align="center">张三</td>
+		<td align="center">630324</td>
+		<td align="center">机车钳工</td>
+		<td align="center">柴备组</td>
+		<td align="center">2014-04-21</td>
+		<td align="center">气缸套25个</td>
+		<td align="center">7</td>
+		<td align="center">
+			<span style="color:blue;">查看详情</span>&nbsp;&nbsp;&nbsp;&nbsp;
+			<span style="color:blue;">编辑</span>
+		</td>
+	</tr>
+	<tr>
+		<td align="center">3</td>
+		<td align="center">张三</td>
+		<td align="center">630324</td>
+		<td align="center">机车钳工</td>
+		<td align="center">柴备组</td>
+		<td align="center">2014-04-21</td>
+		<td align="center">气缸套25个</td>
+		<td align="center">6</td>
+		<td align="center">
+			<span style="color:blue;">查看详情</span>&nbsp;&nbsp;&nbsp;&nbsp;
+			<span style="color:blue;">编辑</span>
+		</td>
+	</tr>
+	<tr>
+		<td align="center">4</td>
+		<td align="center">张三</td>
+		<td align="center">630324</td>
+		<td align="center">机车钳工</td>
+		<td align="center">柴备组</td>
+		<td align="center">2014-04-21</td>
+		<td align="center">气缸套25个</td>
+		<td align="center">5</td>
+		<td align="center">
+			<span style="color:blue;">查看详情</span>&nbsp;&nbsp;&nbsp;&nbsp;
+			<span style="color:blue;">编辑</span>
+		</td>
+	</tr>
+	</table>
+</div>
+</body>
+</html>

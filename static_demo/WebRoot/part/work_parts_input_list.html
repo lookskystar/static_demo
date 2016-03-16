@@ -1,0 +1,126 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"> 
+<head>
+	<title>配件入库</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<!--框架必需start-->
+	<script type="text/javascript" src="../js/jquery-1.4.js"></script>
+	<script type="text/javascript" src="../js/framework.js"></script>
+	<link href="../css/import_basic.css" rel="stylesheet" type="text/css"/>
+	<link  rel="stylesheet" type="text/css" id="skin"/>
+	<!--框架必需end-->
+	<!--引入弹窗组件start-->
+	<script type="text/javascript" src="../js/attention/zDialog/zDrag.js"></script>
+	<script type="text/javascript" src="../js/attention/zDialog/zDialog.js"></script>
+	<!--引入弹窗组件end-->
+	<!--截取文字start-->
+	<script type="text/javascript" src="../js/text/text-overflow.js"></script>
+	<!--截取文字end-->
+	<script type="text/javascript">
+		function add(){
+			var diag = new top.Dialog();
+			diag.Title = "配件入库登记表";
+			diag.URL = "page/work_parts_input_tips.html";
+			diag.Height=480;
+			diag.MessageTitle="表单标题";
+			diag.Message="配件入库登记表";
+			diag.CancelEvent = function(){
+				diag.innerFrame.contentWindow.location.reload();
+				diag.close();
+				};
+			diag.show();
+		}
+	</script>		
+</head>
+<body>
+	<div class="box2" panelTitle="配件入库登记记录" roller="false">
+		<table>
+			<tr>
+				<td>修程:</td>
+				<td><select id="dd">
+					<option value="0">请选择</option>
+					<option value="1">Z1</option>
+					<option value="2">Z3</option>
+					<option value="3">F3</option>
+					<option value="4">X4</option>
+				</select></td>
+				<td>日期：</td>
+				<td><input type="text" class="date"/></td>
+				<td>配件名称：</td>
+				<td><input type="text" /></td>
+				<td><button><span class="icon_find">查询</span></button></td>
+			</tr>
+			<tr>
+				<td colspan="7">
+					<button onclick="add();"><span class="icon_page">新建</span></button>&nbsp;&nbsp;&nbsp;
+					<button><span class="icon_edit">编辑</span></button>&nbsp;&nbsp;&nbsp;
+					<button><span class="icon_delete">删除</span></button>
+				</td>
+			</tr>
+		</table>
+	</div>
+	<div>
+		<table class="tableStyle"  headFixMode="true" useMultColor="true" useCheckBox="true">
+			<tr>
+				<th width="5%"></th>
+				<th width="10%"><span>配件名称</span></th>
+				<th width="10%"><span>配件编号</span></th>
+				<th width="10%"><span>拆下车号</span></th>
+				<th width="10%"><span>入库数量</span></th>
+				<th width="10%"><span>交接日期</span></th>
+				<th width="10%"><span>交单签章</span></th>
+				<th width="10%"><span>收单签章</span></th>
+				<th width="15%"><span>入库类型</span></th>
+				<th><span>备注</span></th>
+			</tr>
+		</table>
+	</div>
+	<div id="scrollContent" >
+		<table class="tableStyle"  useMultColor="true" useCheckBox="true">
+			<tr align="center">
+				<td width="5%"><input type="checkbox"/></td>
+				<td width="10%">轴承</td>
+				<td width="10%">ZC-786</td>
+				<td width="10%">DF4D1234</td>
+				<td width="10%">1</td>
+				<td width="10%">2013-12-11</td>
+				<td width="10%">张三</td>
+				<td width="10%">王五</td>
+				<td width="15%">新购配件入库</td>
+				<td></td>
+			</tr>
+			<tr align="center">
+				<td width="5%"><input type="checkbox"/></td>
+				<td width="10%">平波电抗器</td>
+				<td width="10%">ZC-623</td>
+				<td width="10%"></td>
+				<td width="10%">1</td>
+				<td width="10%">2013-12-11</td>
+				<td width="10%">张三</td>
+				<td width="10%">王五</td>
+				<td width="15%">交旧配件入库</td>
+				<td></td>
+			</tr>
+		</table>
+	</div>
+	<div style="height:45px;">
+		<div class="float_right padding5 paging">
+			<div class="float_left padding_top4">
+			<span class="paging_disabled"><a href="javascript:;">上一页</a></span>
+			<span class="paging_current"><a href="javascript:;">1</a></span>
+			<span><a href="javascript:;">2</a></span>
+			<span><a href="javascript:;">3</a></span>
+			<span><a href="javascript:;">4</a></span>
+			<span><a href="javascript:;">5</a></span>
+			<span>...</span>
+			<span><a href="javascript:;">20</a></span>
+			<span><a href="javascript:;">下一页</a></span> 每页
+			</div>
+			<div class="float_left"><select autoWidth="true"><option>50</option><option>100</option><option>150</option></select></div>
+			<div class="float_left padding_top4">条记录</div>
+			<div class="clear"></div>
+		</div>
+		<div class="clear"></div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<!--框架必需start-->
+	<script type="text/javascript" src="../js/jquery-1.4.js"></script>
+	<script type="text/javascript" src="../js/framework.js"></script>
+	<link href="../css/import_basic.css" rel="stylesheet" type="text/css"/>
+	<link  rel="stylesheet" type="text/css" id="skin"  prePath="../"/>
+	<!--框架必需end-->
+</head>
+<body>
+ 	<div class="box2" panelTitle="临修分析" roller="false">
+ 		<form action="" method="post" id="subfrom">
+ 		<table>
+ 			<tr>
+			    <td>整修类型</td>
+				<td><select onchange="getFirstUnit();" class="default">
+	             	    <option value="1">大修</option>
+					    <option value="2">中修</option>
+					    <option value="3">小修</option>
+					    <option value="4">辅修</option>
+	             </select>
+				 </td>
+				 <td>机车编号：</td>
+ 				<td><input type="text" watermark="输入机车编号" /></td>
+            </tr>
+			<tr>
+			    <td>开始时间：</td>
+				<td><input type="text" class="Wdate" onclick="WdatePicker(({dateFmt:'yyyy-MM-dd HH:mm:ss'}))" style="width:  115px;"/></td>
+				<td>结束时间：</td>
+				<td><input type="text" class="Wdate" onclick="WdatePicker(({dateFmt:'yyyy-MM-dd HH:mm:ss'}))" style="width: 115px;"/></td>
+ 				
+ 				<td><button onclick="sub();"><span class="icon_find" style="height: 22px;">查询</span></button></td>
+ 			</tr>
+		</table>
+		</form>
+	</div>
+	<div id="scrollContent">
+		 <table class="tableStyle"  useMultColor="true">
+		 	<tr>
+		      	<th width="8%" align="center"><span>机车类型</span></th>
+		      	<th width="8%" align="center"><span>机车编号</span></th>
+		      	<th width="8%" align="center"><span>修程修次</span></th> 
+		      	<th width="18%" align="center"><span>扣车时间</span></th>
+				<th width="18%" align="center"><span>起机时间</span></th>
+				<th width="18%" align="center"><span>交车时间</span></th>
+				<th width="8%" align="center"><span>交车工长</span></th>
+		      	<th width="14%" align="center">操作</th>
+		    </tr>
+            <tr align="center">
+			   <td width="8%" >SS3</td>
+			   <td width="8%" >4147</td>
+			   <td width="8%" >X5</td>
+			   <td width="18%" >2012-11-27 03:00</td>
+			   <td width="18%" >2012-11-27 21:43:46</td>
+			   <td width="18%" >2012-11-27 21:44:33</td>
+			   <td width="8%" >熊青岩</td>
+			   <td width="14%" >
+			          <a href="javascript:void(0)" onclick="" style="color:blue;">查看记录</a>
+			   </td>
+			</tr>
+			<tr align="center">
+			   <td width="8%" >SS3</td>
+			   <td width="8%" >4148</td>
+			   <td width="8%" >X5</td>
+			   <td width="18%" >2012-12-27 03:00</td>
+			   <td width="18%" >2012-12-27 21:43:46</td>
+			   <td width="18%" >2012-12-27 21:44:33</td>
+			   <td width="8%" >唐小和</td>
+			   <td width="14%" >
+			          <a href="javascript:void(0)" onclick="" style="color:blue;">查看记录</a>
+			   </td>
+			</tr>
+			<tr align="center">
+			   <td width="8%" >SS3</td>
+			   <td width="8%" >4149</td>
+			   <td width="8%" >X5</td>
+			   <td width="18%" >2013-03-27 03:00</td>
+			   <td width="18%" >2013-03-27 21:43:46</td>
+			   <td width="18%" >2013-03-27 21:44:33</td>
+			   <td width="8%" >陈百元</td>
+			   <td width="14%" >
+			          <a href="javascript:void(0)" onclick="" style="color:blue;">查看记录</a>
+			   </td>
+			</tr>
+			<tr align="center">
+			   <td width="8%" >SS3</td>
+			   <td width="8%" >4153</td>
+			   <td width="8%" >X5</td>
+			   <td width="18%" >2013-10-27 03:00</td>
+			   <td width="18%" >2013-10-27 21:43:46</td>
+			   <td width="18%" >2013-10-27 21:44:33</td>
+			   <td width="8%" >李志勇</td>
+			   <td width="14%" >
+			          <a href="javascript:void(0)" onclick="" style="color:blue;">查看记录</a>
+			   </td>
+			</tr>
+         </table>
+	</div>
+	<script type="text/javascript" src="../My97DatePicker/WdatePicker.js"></script>
+</body>
+</html>

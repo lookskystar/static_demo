@@ -1,0 +1,62 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<!--框架必需start-->
+	<script type="text/javascript" src="../js/jquery-1.4.js"></script>
+	<script type="text/javascript" src="../js/framework.js"></script>
+	<link href="../css/import_basic.css" rel="stylesheet" type="text/css"/>
+	<link  rel="stylesheet" type="text/css" id="skin" prePath="../"/>
+	<!--框架必需end-->
+</head>
+<body>
+	<div class="box2" panelTitle="未完成的检修配件列表" roller="false" showStatus="false">
+		<div>
+			<form id="form" action="" method="post">
+			 查询条件:
+			           车型:<select id="jcsType" onchange="getFirstUnit();" class="default" name="jcsType">
+	                    <option value="">请选择机车型号</option>
+	                 </select>
+	                                专业:<select id="first" class="default" name="firstUnitId">
+	                    <option value="">请选择大部件</option>
+	                 </select>&nbsp;
+			 配件编号:<input type="text" style="width: 200px" name="pjNum" value=""/>&nbsp;
+			 配件名称:<input type="text" style="width: 200px" name="pjName" value=""/>&nbsp;
+			<input type="submit" value="查询"/>
+			</form>
+		</div>
+		
+		<div id="scrollContent" >
+			<table class="tableStyle" headFixMode="true" useMultColor="true">
+				<tr align="center">
+					<th width="10%"><span>配件标识</span></th>
+					<th width="15%"><span>配件名</span></th>
+					<th width="20%"><span>配件编号</span></th>
+					<th width="25%"><span>机车类型</span></th>
+					<th width="10%"><span>专业</span></th>
+					<th width="10%"><span>状态</span></th>
+					<th width="10%"><span>操作</span></th>
+				</tr>
+				<tr align="center">
+					<td width="10%">512</td>
+					<td width="15%">紧急阀</td>
+					<td width="20%">jjf001 </td>
+					<td width="25%">SS3B</td>
+					<td width="10%">制动 </td>
+					<td width="10%">检修中</td>
+					<td width="10%"><input type="button" value="进入签认" onclick=''/></td>
+				</tr>
+				<tr align="center">
+					<td width="10%">514</td>
+					<td width="15%">紧急阀</td>
+					<td width="20%">jjf002 </td>
+					<td width="25%">SS3B</td>
+					<td width="10%">制动 </td>
+					<td width="10%">检修中</td>
+					<td width="10%"><input type="button" value="进入签认" onclick=''/></td>
+				</tr>
+			</table>
+		</div>
+	</div>
+</body>
+</html>

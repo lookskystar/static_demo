@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<!--框架必需start-->
+	<script type="text/javascript" src="../js/jquery-1.4.js"></script>
+	<script type="text/javascript" src="../js/framework.js"></script>
+	<link href="../css/import_basic.css" rel="stylesheet" type="text/css"/>
+	<link  rel="stylesheet" type="text/css" id="skin"/>
+	<!--框架必需end-->
+	<script type="text/javascript">
+		function editPlan(jctype,jcnum){
+			top.Dialog.open({
+				InnerHtml:"<div style=\"text-align:center;color:red;font-size:14px;\">直接输出html，使用 <b>InnerHtml</b> 属性。</div>",
+				Title:"编制计划"
+			});
+		}
+	</script>
+</head>
+<body>
+	<div id="planJC" class="box2" panelTitle="待计划检修机车" showStatus="false">
+	   	<table width="100%" class="tableStyle">
+	   		<tr>
+				<th colspan="5" align="left">&nbsp;
+					<select class="default">
+						<option>全部机车</option>
+						<option value="SS3B">SS3B</option>
+						<option value="DF4">DF4</option>
+					</select>&nbsp;
+					<input type="text" watermark="输入机车号"/>&nbsp;&nbsp;
+					<button><span>查询</span></button>&nbsp;&nbsp;
+					<button><span>批量选择</span></button>
+				</th>
+			</tr>
+			<tr>
+				<th class="ver01" width="30px" align="center"><input type="checkbox"/></th>
+				<th class="ver01" width="30px" align="center">序号</th>
+				<th class="ver01" width="20%" align="center">车型车号</th>
+				<th class="ver01" width="30%" align="center">上次日期</th>
+				<th class="ver01" width="40%" align="center">上次修程</th>
+			</tr>
+		    <tr ondblclick="editPlan('SS3B','1234');">
+		    	<td class="ver01" align="center"><input type="checkbox"/></td>
+				<td class="ver01" align="center">1</td>
+				<td class="ver01" align="center"><a href="javascript:editPlan('SS3B','1234');" style="color: #00f;">SS3B-1234</a></td>
+				<td class="ver01" align="center">2012-10-01</td>
+				<td class="ver01" align="center">F1</td>
+		    </tr>
+		    <tr>
+		    	<td class="ver01" align="center"><input type="checkbox"/></td>
+				<td class="ver01" align="center">2</td>
+				<td class="ver01" align="center"><a href="javascript:editPlan('SS3B','1234');" style="color: #00f;">SS3B-1234</a></td>
+				<td class="ver01" align="center">2012-10-01</td>
+				<td class="ver01" align="center">F1</td>
+		    </tr>
+		    <tr>
+		    	<td class="ver01" align="center"><input type="checkbox"/></td>
+				<td class="ver01" align="center">3</td>
+				<td class="ver01" align="center"><a href="javascript:editPlan('SS3B','1234');" style="color: #00f;">SS3B-1234</a></td>
+				<td class="ver01" align="center">2012-10-01</td>
+				<td class="ver01" align="center">F1</td>
+		    </tr>
+		    <tr><td class="ver01" colspan="5"></td></tr>
+		</table>
+	</div>
+</body>
+</html>

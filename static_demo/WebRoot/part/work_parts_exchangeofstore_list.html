@@ -1,0 +1,203 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"> 
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<!--框架必需start-->
+	<script type="text/javascript" src="../js/jquery-1.4.js"></script>
+	<script type="text/javascript" src="../js/framework.js"></script>
+	<link href="../css/import_basic.css" rel="stylesheet" type="text/css"/>
+	<link  rel="stylesheet" type="text/css" id="skin"/>
+	<!--框架必需end-->
+	<!--引入弹窗组件start-->
+	<script type="text/javascript" src="../js/attention/zDialog/zDrag.js"></script>
+	<script type="text/javascript" src="../js/attention/zDialog/zDialog.js"></script>
+	<!--引入弹窗组件end-->
+	<!--截取文字start-->
+	<script type="text/javascript" src="../js/text/text-overflow.js"></script>
+	<!--截取文字end-->
+	<script type="text/javascript">
+		function sign(){
+			var diag = new top.Dialog();
+			diag.MessageTitle="互换配件交接单";
+			diag.Message="";
+			diag.CancelEvent = function(){
+				diag.innerFrame.contentWindow.location.reload();
+				diag.close();
+			};
+			diag.Width = 810;
+			diag.Height = 480;
+			diag.URL = "page/work_parts_exchangeofstore_tips.html";
+			diag.show();
+		}
+	</script>		
+</head>
+<body>
+	<div class="box2" panelTitle="互换配件交接单记录" roller="false">
+		<table>
+			<tr>
+				<td>车型:</td>
+				<td><select id="dd">
+					<option value="0">请选择</option>
+					<option value="1">DF4</option>
+					<option value="2">DF4D</option>
+					<option value="3">SS3B</option>
+					<option value="4">HXD3C</option>
+				</select></td>
+				<td>承修班组:</td>
+				<td><select id="dd">
+					<option value="0">请选择</option>
+					<option value="1">制动组</option>
+					<option value="2">柴备组</option>
+					<option value="3">行安组</option>
+					<option value="4">电器上车组</option>
+				</select></td>
+				<td>日期：</td>
+				<td><input type="text" class="date"/></td>
+				<td>配件名称：</td>
+				<td><input type="text" /></td>
+				<td><button><span class="icon_find">查询</span></button></td>
+			</tr>
+		</table>
+	</div>
+	<div>
+		<table class="tableStyle"  headFixMode="true" useMultColor="true">
+			<tr>
+				<th colspan="7">交旧信息</th>
+				<th colspan="2">承修信息</th>
+				<th colspan="8">发件信息</th>
+			</tr>
+			<tr>
+				<th width="10%"><span>配件名称</span></th>
+				
+				<th width="6%"><span>配件编号</span></th>
+				<th width="6%"><span>拆下车号</span></th>
+				<th width="5%"><span>修程</span></th>
+				<th width="5%"><span>交旧数量</span></th>
+				<th width="6%"><span>交旧日期</span></th>
+				<th width="6%"><span>交旧签章</span></th>
+				
+				<th width="6%"><span>承修班组</span></th>
+				<th width="6%"><span>承修签章</span></th>
+				
+				<th width="6%"><span>配件编号</span></th>
+				<th width="6%"><span>上机车号</span></th>
+				<th width="5%"><span>领取数量</span></th>
+				<th width="6%"><span>领取日期</span></th>
+				<th width="6%"><span>发件签章</span></th>
+				<th width="6%"><span>状态</span></th>
+				<th><span>备注</span></th>
+			</tr>
+		</table>
+	</div>
+	<div id="scrollContent" >
+		<table class="tableStyle"  useMultColor="true" >
+			<tr align="center">
+				<td width="10%">示波器</td>
+				
+				<td width="6%">SBQ-1567</td>
+				<td width="6%">DF4D2563</td>
+				<td width="5%">Z1</td>
+				<td width="5%">1</td>
+				<td width="6%">2013-12-09</td>
+				<td width="6%">张三</td>
+				
+				<td width="6%">柴备组</td>
+				<td width="6%"></td>
+				
+				<td width="6%"></td>
+				<td width="6%"></td>
+				<td width="5%"></td>
+				<td width="6%"></td>
+				<td width="6%"></td>
+				<td width="6%"><font style="color: blue;">交旧</font></td>
+				<td></td>
+			</tr>
+			<tr align="center">
+				<td width="10%">轴承</td>
+				
+				
+				<td width="6%">ZC-786</td>
+				<td width="6%">DF4D1234</td>
+				<td width="5%">Z2</td>
+				<td width="5%">1</td>
+				<td width="6%">2013-12-11</td>
+				<td width="6%">张三</td>
+				
+				<td width="6%">柴备组</td>
+				<td width="6%">李四</td>
+				
+				<td width="6%"></td>
+				<td width="6%"></td>
+				<td width="5%"></td>
+				<td width="6%"></td>
+				<td width="6%"><span><button onclick="sign();">签章</button></span></td>
+				<td width="6%"><font style="color: #CD4900">承修</font></td>
+				<td></td>
+			</tr>
+			<tr align="center">
+				<td width="10%">轴承</td>
+				
+				
+				<td width="6%">ZC-786</td>
+				<td width="6%">DF4D1234</td>
+				<td width="5%">Z2</td>
+				<td width="5%">1</td>
+				<td width="6%">2013-12-11</td>
+				<td width="6%">张三</td>
+				
+				<td width="6%">柴备组</td>
+				<td width="6%">李四</td>
+				
+				<td width="6%">ZC899</td>
+				<td width="6%">DF4D2889</td>
+				<td width="5%">1</td>
+				<td width="6%">2013-12-12</td>
+				<td width="6%">王五</td>
+				<td width="6%"><font style="color: #B14685">发件</font></td>
+				<td>正常</td>
+			</tr>
+			<tr align="center">
+				<td width="10%">轴承</td>
+				
+				
+				<td width="6%">ZC-786</td>
+				<td width="6%">DF4D1234</td>
+				<td width="5%">Z2</td>
+				<td width="5%">1</td>
+				<td width="6%">2013-12-11</td>
+				<td width="6%">张三</td>
+				
+				<td width="6%">柴备组</td>
+				<td width="6%">李四</td>
+				
+				<td width="6%">ZC899</td>
+				<td width="6%">DF4D2889</td>
+				<td width="5%">1</td>
+				<td width="6%">2013-12-12</td>
+				<td width="6%">王五</td>
+				<td width="6%"><font style="color: #B14685">发件</font></td>
+				<td>预领</td>
+			</tr>
+		</table>
+	</div>
+	<div style="height:45px;">
+		<div class="float_right padding5 paging">
+			<div class="float_left padding_top4">
+			<span class="paging_disabled"><a href="javascript:;">上一页</a></span>
+			<span class="paging_current"><a href="javascript:;">1</a></span>
+			<span><a href="javascript:;">2</a></span>
+			<span><a href="javascript:;">3</a></span>
+			<span><a href="javascript:;">4</a></span>
+			<span><a href="javascript:;">5</a></span>
+			<span>...</span>
+			<span><a href="javascript:;">20</a></span>
+			<span><a href="javascript:;">下一页</a></span> 每页
+			</div>
+			<div class="float_left"><select autoWidth="true"><option>50</option><option>100</option><option>150</option></select></div>
+			<div class="float_left padding_top4">条记录</div>
+			<div class="clear"></div>
+		</div>
+		<div class="clear"></div>
+	</div>
+</body>
+</html>

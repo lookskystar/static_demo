@@ -1,0 +1,88 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<!--框架必需start-->
+	<script type="text/javascript" src="../../js/jquery-1.4.js"></script>
+	<script type="text/javascript" src="../../js/framework.js"></script>
+	<link href="../../css/import_basic.css" rel="stylesheet" type="text/css"/>
+	<link  rel="stylesheet" type="text/css" id="skin" prePath="../../"/>
+	<!--框架必需end-->
+	<script type="text/javascript">
+		function toEdite(){
+			top.Dialog.open({
+				URL:"kqgl/maintain/rule_add.html",
+				Width:600,
+				Height:300,
+				Title:"设备入库"
+			});
+		}
+		
+	</script>
+</head>
+
+<body>
+   <div class="box2" panelTitle="考勤设置" roller="false" >
+	<table>
+		<tr>
+			<td>
+				<button onclick="toEdite()"><span class="icon_add">新增</span></button>
+			</td>
+		</tr>
+	</table>
+	</div>
+	<div id="scrollContent" >
+	  <table class="tableStyle" useMultColor="true">
+		<tr>
+			<th width="5%" align="center"></th>
+			<th width="9%" align="center">上班时间</th>
+			<th width="9%" align="center">下班时间</th>
+			<th width="9%" align="center">迟到多久签到有效</th>
+			<th width="9%" align="center">多久内不算迟到</th>
+			<th width="9%" align="center">迟到或早退计旷工</th>
+			<th width="9%" align="center">晚退多久签到有效</th>
+			<th width="9%" align="center">多久内不算早退</th>
+			<th width="9%" align="center">加班起算时间</th>
+			<th width="9%" align="center">中途休息开始时间</th>
+			<th width="9%" align="center">中途休息结束时间</th>
+			<th width="5%" align="center">操作</th>
+		</tr>
+		<tr>
+			<td align="center"><input id="" name="rec" type="checkbox" width="30px" value=""/></td>
+			<td align="center">08:00</td>
+			<td align="center">17:30</td>
+			<td align="center">60 分钟</td>
+			<td align="center">30 分钟</td>
+			<td align="center">60 分钟</td>
+			<td align="center">60 分钟</td>
+			<td align="center">60 分钟</td>
+			<td align="center">18:00</td>
+			<td align="center">11:30</td>
+			<td align="center">13:30</td>
+			<td align="center">
+				<a href="javascript:void(0);" onclick="toEdite();" style="color:blue;">修改</a>&nbsp;&nbsp;
+				<a href="javascript:void(0);" onclick="" style="color:blue;">删除</a>&nbsp;&nbsp;
+			</td>
+		</tr>
+		<tr>
+			<td align="center"><input id="" name="rec" type="checkbox" width="30px" value=""/></td>
+			<td align="center">18:00</td>
+			<td align="center">24:00</td>
+			<td align="center">60 分钟</td>
+			<td align="center">30 分钟</td>
+			<td align="center">60 分钟</td>
+			<td align="center">60 分钟</td>
+			<td align="center">60 分钟</td>
+			<td align="center">24:00</td>
+			<td align="center">21:30</td>
+			<td align="center">22:00</td>
+			<td align="center">
+				<a href="javascript:void(0);" onclick="toEdite();" style="color:blue;">修改</a>&nbsp;&nbsp;
+				<a href="javascript:void(0);" onclick="" style="color:blue;">删除</a>&nbsp;&nbsp;
+			</td>
+		</tr>
+	  </table>	
+	</div>
+<script type="text/javascript" src="../../My97DatePicker/WdatePicker.js"></script>
+</body>
+</html>

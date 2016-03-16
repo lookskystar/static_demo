@@ -1,0 +1,87 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<!--框架必需start-->
+	<script type="text/javascript" src="../js/jquery-1.4.js"></script>
+	<script type="text/javascript" src="../js/framework.js"></script>
+	<link href="../css/import_basic.css" rel="stylesheet" type="text/css"/>
+	<link  rel="stylesheet" type="text/css" id="skin"  prePath="../"/>
+	<!--框架必需end-->
+</head>
+<body>
+<div>
+<div class="box2" panelTitle="月报查询" roller="false">
+<form id="form" action="" method="post">	
+	班组：<select id="jcsType" onchange="getFirstUnit();" class="default" name="jcsType" style="width:115px;">
+	       	<option value="">请选择班组</option>
+	       	<option value="1">行安组</option>
+			<option value="2">制动组</option>
+			<option value="3">电上组</option>
+			<option value="4">微电阻</option>
+       </select>
+	时间：<select class="default" style="width:60px;">
+			<option>2014</option>
+			<option>2013</option>
+			<option>2012</option>
+			<option>2011</option>
+	   </select>&nbsp;&nbsp;年
+	   <select class="default" style="width:48px;">
+			<option>01</option>
+			<option>02</option>
+			<option>03</option>
+			<option>04</option>
+	   </select>&nbsp;&nbsp;月&nbsp;&nbsp;&nbsp;&nbsp;
+       <button><span class="icon_find">查询</span></button>&nbsp;&nbsp;
+       <button><span class="icon_edit">打印</span></button>&nbsp;&nbsp;
+       <button><span class="icon_xls">Excel导出</span></button><br/>
+</form>
+</div>
+	<table class="tableStyle" style="text-align:center; margin-top:10px;">
+	<tr>
+		<th>序号</th>
+		<th>人员</th>
+		<th>时间</th>
+		<th>工时得分</th>
+		<th>操作</th>
+	</tr>
+	<tr>
+		<td align="center">1</td>
+		<td align="center">宁左心</td>
+		<td align="center">2014-04</td>
+		<td align="center">88</td>
+		<td align="center">
+			<span style="color:blue;">查看详情</span>&nbsp;&nbsp;&nbsp;&nbsp;
+		</td>
+	</tr>
+	<tr>
+		<td align="center">2</td>
+		<td align="center">廖伦乐</td>
+		<td align="center">2014-04</td>
+		<td align="center">67</td>
+		<td align="center">
+			<span style="color:blue;">查看详情</span>&nbsp;&nbsp;&nbsp;&nbsp;
+		</td>
+	</tr>
+	<tr>
+		<td align="center">3</td>
+		<td align="center">吴鑫</td>
+		<td align="center">2014-04</td>
+		<td align="center">78</td>
+		<td align="center">
+			<span style="color:blue;">查看详情</span>&nbsp;&nbsp;&nbsp;&nbsp;
+		</td>
+	</tr>
+	<tr>
+		<td align="center">4</td>
+		<td align="center">黄明</td>
+		<td align="center">2014-04</td>
+		<td align="center">56</td>
+		<td align="center">
+			<span style="color:blue;">查看详情</span>&nbsp;&nbsp;&nbsp;&nbsp;
+		</td>
+	</tr>
+	</table>
+</div>
+</body>
+</html>

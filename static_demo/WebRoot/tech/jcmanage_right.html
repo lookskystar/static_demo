@@ -1,0 +1,92 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<!--框架必需start-->
+	<script type="text/javascript" src="../js/jquery-1.4.js"></script>
+	<script type="text/javascript" src="../js/framework.js"></script>
+	<link href="../css/import_basic.css" rel="stylesheet" type="text/css"/>
+	<link  rel="stylesheet" type="text/css" id="skin"  prePath="../"/>
+	<!--框架必需end-->
+</head>
+<body>
+ 	<div>
+ 		<form action="" method="post" id="subfrom">
+ 		<table>
+ 			<tr>
+ 				<td>机&nbsp;&nbsp;车&nbsp;&nbsp;号：</td>
+ 				<td><input type="text" watermark="输入机车编号"  name="description" value=""/></td>
+ 				<td><button onclick="sub();"><span class="icon_find" style="height: 22px;">查询</span></button></td>
+ 				
+ 			</tr>
+			<tr>
+
+			    <td><button  onclick=""><span class="icon_add">添加</span></button></td>
+		        <td><button  onclick=""><span class="icon_delete">删除</span></button></td>
+			</tr>
+		</table>
+		</form>
+	</div>
+   	<div id="scrollContent">
+		 <table class="tableStyle"  useMultColor="true"   useCheckBox="true" id="dictTable">
+		 	<tr>
+		 	    <th width="5%" align="center"></th>
+		        <th width="8%" align="center"><span>机车ID</span></th>
+				<th width="13%" align="center"><span>机车类型</span></th>
+		      	<th width="14%" align="center"><span>机车编号</span></th>
+		      	<th width="20%" align="center"><span>当日走行公里</span></th> 
+		      	<th width="20%" align="center"><span>总走行公里</span></th>
+		      	<th width="20%" align="center">操作</th>
+		    </tr>
+            <tr align="center">
+               <td width="5%"><input type="checkbox"/></td>
+			   <td width="8%" >23</td>
+			   <td width="13%" >SS3</td>
+			   <td width="14%" >4147</td>
+			   <td width="20%" >25324</td>
+			   <td width="20%" >152559</td>
+			   <td width="20%" >
+			          <a href="javascript:void(0)" onclick="" style="color:blue;">修改</a>&nbsp;&nbsp;
+                      <a href="javascript:void(0)" onclick="" style="color:blue;">删除</a>
+			   </td>
+			</tr>
+			<tr align="center">
+			   <td width="5%"><input type="checkbox"/></td>
+			   <td width="8%" >24</td> 
+			   <td width="13%" >SS3</td>
+			   <td width="14%" >4148</td>
+			   <td width="20%" >20524</td>
+			   <td width="20%" >152159</td>
+			   <td width="20%" >
+			         <a href="javascript:void(0)" onclick="" style="color:blue;">修改</a>&nbsp;&nbsp;
+                      <a href="javascript:void(0)" onclick="" style="color:blue;">删除</a>
+			   </td>
+			</tr>
+			<tr align="center">
+			   <td width="5%"><input type="checkbox"/></td>
+			   <td width="8%" >25</td>
+			   <td width="13%" >SS3</td>
+			   <td width="14%" >4149</td>
+			   <td width="20%" >26924</td>
+			   <td width="20%" >153659</td>
+			   <td width="20%" >
+			          <a href="javascript:void(0)" onclick="" style="color:blue;">修改</a>&nbsp;&nbsp;
+                      <a href="javascript:void(0)" onclick="" style="color:blue;">删除</a>
+			   </td>
+			</tr>
+			<tr align="center">
+			   <td width="5%"><input type="checkbox"/></td>
+			   <td width="8%" >26</td>
+			   <td width="13%" >SS3</td>
+			   <td width="14%" >4153</td>
+			   <td width="20%" >26924</td>
+			   <td width="20%" >186359</td>
+			   <td width="20%" >
+			          <a href="javascript:void(0)" onclick="" style="color:blue;">修改</a>&nbsp;&nbsp;
+                      <a href="javascript:void(0)" onclick="" style="color:blue;">删除</a>
+			   </td>
+			</tr>
+		</table>
+	</div>
+</body>
+</html>

@@ -1,0 +1,365 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>机务检修系统</title>
+	<!--框架必需start-->
+	<script type="text/javascript" src="../js/jquery-1.4.js"></script>
+	<script type="text/javascript" src="../js/bsFormat.js"></script>
+	<link href="../css/import_basic.css" rel="stylesheet" type="text/css"/>
+	<link href="../skins/sky/import_skin.css" rel="stylesheet" type="text/css" id="skin" themeColor="blue"/>
+	<!--框架必需end-->
+	<!--表格样式和脚本-->
+	<link href="../tablecloth/tablecloth.css" rel="stylesheet" type="text/css" media="screen" />
+    <script type="text/javascript" src="../tablecloth/tablecloth.js"></script>
+    <!--[if IE 6]>
+	<script src="../js/iepngfx.js" language="javascript" type="text/javascript"></script>
+	<![endif]-->
+	<style type="text/css"> 
+		html,body,ul,li{padding:0; margin:0;}
+		body {font:12px/normal Verdana, Arial, Helvetica, sans-serif; padding:0px;}
+		ul,li {list-style-type:none; text-transform:capitalize;}
+		/*menu*/
+		#nav { display:block;}
+		#nav .jquery_out {float:left;line-height:32px;display:block; border-right:1px solid #fff; text-align:center; color:#fff;font:18px/32px "微软雅黑"; background:#062723 url(../images/slide-panel_03.png) 0 0 repeat-x;}
+		#nav .jquery_out .smile {padding-left:1em;}
+		#nav .jquery_inner {margin-left:16px;}
+		#nav .jquery {margin-right:1px;padding:0 2em;}
+		#nav .mainlevel {background:#E4E6EB; float:left; border-right:1px solid #fff; width:140px;/*IE6 only*/}
+		#nav .mainlevel a {color:#0362BE; text-decoration:none; line-height:32px; display:block; padding:0 20px; width:100px;font-weight: bold;}
+		#nav .mainlevel a:hover {color:#000; text-decoration:none;background:#E4E6EB; }
+		#nav .mainlevel ul {display:none; position:absolute;}
+		#nav .mainlevel li {border-top:1px solid #fff; background:#E4E6EB; width:140px;/*IE6 only*/}
+	</style> 
+</head>
+<body>
+	<div id="mainFrame">
+	  	<div id="content">
+		    <table cellspacing="0" cellpadding="0">
+				<tr>
+					<th>序号</th>
+					<th>机车号</th>
+					<th>修程</th>
+					<th>股道</th>
+					<th>台位</th>
+					<th>扣车时间</th>
+					<th>计划起机时间</th>
+					<th>计划交车时间</th>
+					<th>交车工长</th>
+					<th>状态</th>
+				<!-- <th>报活操作</th>  -->	
+					<th>记录查看</th>
+				</tr>
+				<tr>
+					<td>1</td>
+					<td><a href="../query/jc_all_rec.html" target="_blank" style="color: blue;">DF4-3354</a></td>
+					<td>小辅修</td>
+					<td>3</td>
+					<td>4</td>
+					<td>2013-08-27</td>
+					<td>2013-08-27</td>
+					<td>2013-08-27</td>
+					<td>孔张明</td>
+					<td>在修</td>
+				<!-- 	<td><a href="javascript:void(0);">报活</a>&nbsp;<a href="#">我报的活</a></td>  -->
+					<td>
+						<a href="../query/jc_unit_rec.html" target="_blank" style="color: blue;">记录详情</a>
+						<!-- 
+					   <a href="../query/jc_unit_rec.html" target="_blank" style="color: blue;">检修记录</a>&nbsp;
+					   <a href="../query/jc_all_report.html" target="_blank" style="color: blue;">报活记录</a>&nbsp;
+					   <a href="../query/jc_jiaoche_rec.html" target="_blank" style="color: blue;">交车试验</a>&nbsp;
+					   <a href="../query/jc_all_pj.html" target="_blank" style="color: blue;">配件记录</a>
+					    -->
+					</td>
+				</tr>	
+	            		<tr>
+					<td>1</td>
+					<td><a href="../query/jc_all_rec.html" target="_blank" style="color: blue;">DF4-3354</a></td>
+					<td>小辅修</td>
+					<td>3</td>
+					<td>4</td>
+					<td>2013-08-27</td>
+					<td>2013-08-27</td>
+					<td>2013-08-27</td>
+					<td>孔张明</td>
+					<td>在修</td>
+					<!-- 	<td><a href="javascript:void(0);">报活</a>&nbsp;<a href="#">我报的活</a></td>  -->
+					<td>
+						<a href="../query/jc_unit_rec.html" target="_blank" style="color: blue;">记录详情</a>
+						<!-- 
+					   <a href="../query/jc_unit_rec.html" target="_blank" style="color: blue;">检修记录</a>&nbsp;
+					   <a href="../query/jc_all_report.html" target="_blank" style="color: blue;">报活记录</a>&nbsp;
+					   <a href="../query/jc_jiaoche_rec.html" target="_blank" style="color: blue;">交车试验</a>&nbsp;
+					   <a href="../query/jc_all_pj.html" target="_blank" style="color: blue;">配件记录</a>
+					    -->
+					</td>
+				</tr>	
+						<tr>
+					<td>1</td>
+					<td><a href="../query/jc_all_rec.html" target="_blank" style="color: blue;">DF4-3354</a></td>
+					<td>小辅修</td>
+					<td>3</td>
+					<td>4</td>
+					<td>2013-08-27</td>
+					<td>2013-08-27</td>
+					<td>2013-08-27</td>
+					<td>孔张明</td>
+					<td>在修</td>
+					<!-- 	<td><a href="javascript:void(0);">报活</a>&nbsp;<a href="#">我报的活</a></td>  -->
+					<td>
+						<a href="../query/jc_unit_rec.html" target="_blank" style="color: blue;">记录详情</a>
+						<!-- 
+					   <a href="../query/jc_unit_rec.html" target="_blank" style="color: blue;">检修记录</a>&nbsp;
+					   <a href="../query/jc_all_report.html" target="_blank" style="color: blue;">报活记录</a>&nbsp;
+					   <a href="../query/jc_jiaoche_rec.html" target="_blank" style="color: blue;">交车试验</a>&nbsp;
+					   <a href="../query/jc_all_pj.html" target="_blank" style="color: blue;">配件记录</a>
+					    -->
+					</td>
+				</tr>	
+						<tr>
+					<td>1</td>
+					<td><a href="../query/jc_all_rec.html" target="_blank" style="color: blue;">DF4-3354</a></td>
+					<td>小辅修</td>
+					<td>3</td>
+					<td>4</td>
+					<td>2013-08-27</td>
+					<td>2013-08-27</td>
+					<td>2013-08-27</td>
+					<td>孔张明</td>
+					<td>在修</td>
+					<!-- 	<td><a href="javascript:void(0);">报活</a>&nbsp;<a href="#">我报的活</a></td>  -->
+					<td>
+						<a href="../query/jc_unit_rec.html" target="_blank" style="color: blue;">记录详情</a>
+						<!-- 
+					   <a href="../query/jc_unit_rec.html" target="_blank" style="color: blue;">检修记录</a>&nbsp;
+					   <a href="../query/jc_all_report.html" target="_blank" style="color: blue;">报活记录</a>&nbsp;
+					   <a href="../query/jc_jiaoche_rec.html" target="_blank" style="color: blue;">交车试验</a>&nbsp;
+					   <a href="../query/jc_all_pj.html" target="_blank" style="color: blue;">配件记录</a>
+					    -->
+					</td>
+				</tr>	
+						<tr>
+					<td>1</td>
+					<td><a href="../query/jc_all_rec.html" target="_blank" style="color: blue;">DF4-3354</a></td>
+					<td>小辅修</td>
+					<td>3</td>
+					<td>4</td>
+					<td>2013-08-27</td>
+					<td>2013-08-27</td>
+					<td>2013-08-27</td>
+					<td>孔张明</td>
+					<td>在修</td>
+					<!-- 	<td><a href="javascript:void(0);">报活</a>&nbsp;<a href="#">我报的活</a></td>  -->
+					<td>
+						<a href="../query/jc_unit_rec.html" target="_blank" style="color: blue;">记录详情</a>
+						<!-- 
+					   <a href="../query/jc_unit_rec.html" target="_blank" style="color: blue;">检修记录</a>&nbsp;
+					   <a href="../query/jc_all_report.html" target="_blank" style="color: blue;">报活记录</a>&nbsp;
+					   <a href="../query/jc_jiaoche_rec.html" target="_blank" style="color: blue;">交车试验</a>&nbsp;
+					   <a href="../query/jc_all_pj.html" target="_blank" style="color: blue;">配件记录</a>
+					    -->
+					</td>
+				</tr>	
+						<tr>
+					<td>1</td>
+					<td><a href="../query/jc_all_rec.html" target="_blank" style="color: blue;">DF4-3354</a></td>
+					<td>小辅修</td>
+					<td>3</td>
+					<td>4</td>
+					<td>2013-08-27</td>
+					<td>2013-08-27</td>
+					<td>2013-08-27</td>
+					<td>孔张明</td>
+					<td>在修</td>
+					<!-- 	<td><a href="javascript:void(0);">报活</a>&nbsp;<a href="#">我报的活</a></td>  -->
+					<td>
+						<a href="../query/jc_unit_rec.html" target="_blank" style="color: blue;">记录详情</a>
+						<!-- 
+					   <a href="../query/jc_unit_rec.html" target="_blank" style="color: blue;">检修记录</a>&nbsp;
+					   <a href="../query/jc_all_report.html" target="_blank" style="color: blue;">报活记录</a>&nbsp;
+					   <a href="../query/jc_jiaoche_rec.html" target="_blank" style="color: blue;">交车试验</a>&nbsp;
+					   <a href="../query/jc_all_pj.html" target="_blank" style="color: blue;">配件记录</a>
+					    -->
+					</td>
+				</tr>	
+						<tr>
+					<td>1</td>
+					<td><a href="../query/jc_all_rec.html" target="_blank" style="color: blue;">DF4-3354</a></td>
+					<td>小辅修</td>
+					<td>3</td>
+					<td>4</td>
+					<td>2013-08-27</td>
+					<td>2013-08-27</td>
+					<td>2013-08-27</td>
+					<td>孔张明</td>
+					<td>在修</td>
+					<!-- 	<td><a href="javascript:void(0);">报活</a>&nbsp;<a href="#">我报的活</a></td>  -->
+					<td>
+						<a href="../query/jc_unit_rec.html" target="_blank" style="color: blue;">记录详情</a>
+						<!-- 
+					   <a href="../query/jc_unit_rec.html" target="_blank" style="color: blue;">检修记录</a>&nbsp;
+					   <a href="../query/jc_all_report.html" target="_blank" style="color: blue;">报活记录</a>&nbsp;
+					   <a href="../query/jc_jiaoche_rec.html" target="_blank" style="color: blue;">交车试验</a>&nbsp;
+					   <a href="../query/jc_all_pj.html" target="_blank" style="color: blue;">配件记录</a>
+					    -->
+					</td>
+				</tr>	
+						<tr>
+					<td>1</td>
+					<td><a href="../query/jc_all_rec.html" target="_blank" style="color: blue;">DF4-3354</a></td>
+					<td>小辅修</td>
+					<td>3</td>
+					<td>4</td>
+					<td>2013-08-27</td>
+					<td>2013-08-27</td>
+					<td>2013-08-27</td>
+					<td>孔张明</td>
+					<td>在修</td>
+					<!-- 	<td><a href="javascript:void(0);">报活</a>&nbsp;<a href="#">我报的活</a></td>  -->
+					<td>
+						<a href="../query/jc_unit_rec.html" target="_blank" style="color: blue;">记录详情</a>
+						<!-- 
+					   <a href="../query/jc_unit_rec.html" target="_blank" style="color: blue;">检修记录</a>&nbsp;
+					   <a href="../query/jc_all_report.html" target="_blank" style="color: blue;">报活记录</a>&nbsp;
+					   <a href="../query/jc_jiaoche_rec.html" target="_blank" style="color: blue;">交车试验</a>&nbsp;
+					   <a href="../query/jc_all_pj.html" target="_blank" style="color: blue;">配件记录</a>
+					    -->
+					</td>
+				</tr>	
+						<tr>
+					<td>1</td>
+					<td><a href="../query/jc_all_rec.html" target="_blank" style="color: blue;">DF4-3354</a></td>
+					<td>小辅修</td>
+					<td>3</td>
+					<td>4</td>
+					<td>2013-08-27</td>
+					<td>2013-08-27</td>
+					<td>2013-08-27</td>
+					<td>孔张明</td>
+					<td>在修</td>
+					<!-- 	<td><a href="javascript:void(0);">报活</a>&nbsp;<a href="#">我报的活</a></td>  -->
+					<td>
+						<a href="../query/jc_unit_rec.html" target="_blank" style="color: blue;">记录详情</a>
+						<!-- 
+					   <a href="../query/jc_unit_rec.html" target="_blank" style="color: blue;">检修记录</a>&nbsp;
+					   <a href="../query/jc_all_report.html" target="_blank" style="color: blue;">报活记录</a>&nbsp;
+					   <a href="../query/jc_jiaoche_rec.html" target="_blank" style="color: blue;">交车试验</a>&nbsp;
+					   <a href="../query/jc_all_pj.html" target="_blank" style="color: blue;">配件记录</a>
+					    -->
+					</td>
+				</tr>	
+						<tr>
+					<td>1</td>
+					<td><a href="../query/jc_all_rec.html" target="_blank" style="color: blue;">DF4-3354</a></td>
+					<td>小辅修</td>
+					<td>3</td>
+					<td>4</td>
+					<td>2013-08-27</td>
+					<td>2013-08-27</td>
+					<td>2013-08-27</td>
+					<td>孔张明</td>
+					<td>在修</td>
+					<!-- 	<td><a href="javascript:void(0);">报活</a>&nbsp;<a href="#">我报的活</a></td>  -->
+					<td>
+						<a href="../query/jc_unit_rec.html" target="_blank" style="color: blue;">记录详情</a>
+						<!-- 
+					   <a href="../query/jc_unit_rec.html" target="_blank" style="color: blue;">检修记录</a>&nbsp;
+					   <a href="../query/jc_all_report.html" target="_blank" style="color: blue;">报活记录</a>&nbsp;
+					   <a href="../query/jc_jiaoche_rec.html" target="_blank" style="color: blue;">交车试验</a>&nbsp;
+					   <a href="../query/jc_all_pj.html" target="_blank" style="color: blue;">配件记录</a>
+					    -->
+					</td>
+				</tr>	
+						<tr>
+					<td>1</td>
+					<td><a href="../query/jc_all_rec.html" target="_blank" style="color: blue;">DF4-3354</a></td>
+					<td>小辅修</td>
+					<td>3</td>
+					<td>4</td>
+					<td>2013-08-27</td>
+					<td>2013-08-27</td>
+					<td>2013-08-27</td>
+					<td>孔张明</td>
+					<td>在修</td>
+					<!-- 	<td><a href="javascript:void(0);">报活</a>&nbsp;<a href="#">我报的活</a></td>  -->
+					<td>
+						<a href="../query/jc_unit_rec.html" target="_blank" style="color: blue;">记录详情</a>
+						<!-- 
+					   <a href="../query/jc_unit_rec.html" target="_blank" style="color: blue;">检修记录</a>&nbsp;
+					   <a href="../query/jc_all_report.html" target="_blank" style="color: blue;">报活记录</a>&nbsp;
+					   <a href="../query/jc_jiaoche_rec.html" target="_blank" style="color: blue;">交车试验</a>&nbsp;
+					   <a href="../query/jc_all_pj.html" target="_blank" style="color: blue;">配件记录</a>
+					    -->
+					</td>
+				</tr>	
+						<tr>
+					<td>1</td>
+					<td><a href="../query/jc_all_rec.html" target="_blank" style="color: blue;">DF4-3354</a></td>
+					<td>小辅修</td>
+					<td>3</td>
+					<td>4</td>
+					<td>2013-08-27</td>
+					<td>2013-08-27</td>
+					<td>2013-08-27</td>
+					<td>孔张明</td>
+					<td>在修</td>
+					<!-- 	<td><a href="javascript:void(0);">报活</a>&nbsp;<a href="#">我报的活</a></td>  -->
+					<td>
+						<a href="../query/jc_unit_rec.html" target="_blank" style="color: blue;">记录详情</a>
+						<!-- 
+					   <a href="../query/jc_unit_rec.html" target="_blank" style="color: blue;">检修记录</a>&nbsp;
+					   <a href="../query/jc_all_report.html" target="_blank" style="color: blue;">报活记录</a>&nbsp;
+					   <a href="../query/jc_jiaoche_rec.html" target="_blank" style="color: blue;">交车试验</a>&nbsp;
+					   <a href="../query/jc_all_pj.html" target="_blank" style="color: blue;">配件记录</a>
+					    -->
+					</td>
+				</tr>	
+						<tr>
+					<td>1</td>
+					<td><a href="../query/jc_all_rec.html" target="_blank" style="color: blue;">DF4-3354</a></td>
+					<td>小辅修</td>
+					<td>3</td>
+					<td>4</td>
+					<td>2013-08-27</td>
+					<td>2013-08-27</td>
+					<td>2013-08-27</td>
+					<td>孔张明</td>
+					<td>在修</td>
+					<!-- 	<td><a href="javascript:void(0);">报活</a>&nbsp;<a href="#">我报的活</a></td>  -->
+					<td>
+						<a href="../query/jc_unit_rec.html" target="_blank" style="color: blue;">记录详情</a>
+						<!-- 
+					   <a href="../query/jc_unit_rec.html" target="_blank" style="color: blue;">检修记录</a>&nbsp;
+					   <a href="../query/jc_all_report.html" target="_blank" style="color: blue;">报活记录</a>&nbsp;
+					   <a href="../query/jc_jiaoche_rec.html" target="_blank" style="color: blue;">交车试验</a>&nbsp;
+					   <a href="../query/jc_all_pj.html" target="_blank" style="color: blue;">配件记录</a>
+					    -->
+					</td>
+				</tr>	
+						<tr>
+					<td>1</td>
+					<td><a href="../query/jc_all_rec.html" target="_blank" style="color: blue;">DF4-3354</a></td>
+					<td>小辅修</td>
+					<td>3</td>
+					<td>4</td>
+					<td>2013-08-27</td>
+					<td>2013-08-27</td>
+					<td>2013-08-27</td>
+					<td>孔张明</td>
+					<td>在修</td>
+					<!-- 	<td><a href="javascript:void(0);">报活</a>&nbsp;<a href="#">我报的活</a></td>  -->
+					<td>
+						<a href="../query/jc_unit_rec.html" target="_blank" style="color: blue;">记录详情</a>
+						<!-- 
+					   <a href="../query/jc_unit_rec.html" target="_blank" style="color: blue;">检修记录</a>&nbsp;
+					   <a href="../query/jc_all_report.html" target="_blank" style="color: blue;">报活记录</a>&nbsp;
+					   <a href="../query/jc_jiaoche_rec.html" target="_blank" style="color: blue;">交车试验</a>&nbsp;
+					   <a href="../query/jc_all_pj.html" target="_blank" style="color: blue;">配件记录</a>
+					    -->
+					</td>
+				</tr>	
+			</table>
+		</div>
+	</div>
+</body>
+</html>

@@ -1,0 +1,171 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<!--框架必需start-->
+	<script type="text/javascript" src="../js/jquery-1.4.js"></script>
+	<script type="text/javascript" src="../js/framework.js"></script>
+	<link href="../css/import_basic.css" rel="stylesheet" type="text/css"/>
+	<link  rel="stylesheet" type="text/css" id="skin"/>
+	<!--框架必需end-->
+	<script type="text/javascript">
+		//机车列表
+		function open(){
+			top.Dialog.open({
+				URL:"page/jg_jc.html",
+				Width:700,
+				Height:420,
+				Title:"加改机车列表"
+			});
+		}
+		//添加项目
+		function addItem(){
+			top.Dialog.open({
+				URL:"page/jg_add_item.html",
+				Width:950,
+				Height:460,
+				Title:"新增加改项目"
+			});
+		}
+		//修改项目
+		function editItem(){
+			top.Dialog.open({
+				URL:"page/jg_edit_item.html",
+				Width:600,
+				Height:320,
+				Title:"修改加改项目"
+			});
+		}
+		//追加记录
+		function addJC(){
+			top.Dialog.open({
+				URL:"page/jg_add_jc.html",
+				Width:700,
+				Height:420,
+				Title:"追加加改历史记录"
+			});
+		}
+		
+	</script>
+</head>
+<body>
+<div>
+	<table class="tableStyle" headFixMode="true">
+		<tr>
+			<th colspan="10" align="left">
+				<button onclick="addItem();"><span class="icon_page">新建项目</span></button>
+				<button onclick="editItem();"><span class="icon_edit">编辑项目</span></button>
+				<button onclick="addJC();"><span class="icon_mark">追加记录</span></button>
+				<button><span class="icon_delete">删除项目</span></button>
+			</th>
+		</tr>
+		<tr>
+			<th>加改项目/机车车型</th>
+			<th width="80">DF4</th>
+			<th width="80">DF5</th>
+			<th width="80">DF12</th>
+			<th width="80">SS3</th>
+			<th width="80">SS3B</th>
+			<th width="80">SS6B</th>
+			<th width="80">HXD1C</th>
+			<th width="80">HXD3C</th>
+			<th width="80">合计</th>
+		</tr>
+		<tr>
+			<th>配属台数</th>
+			<th>50</th>
+			<th>20</th>
+			<th>15</th>
+			<th>15</th>
+			<th>15</th>
+			<th>20</th>
+			<th>10</th>
+			<th>15</th>
+			<th>240</th>
+		</tr>
+	</table>
+</div>
+<div id="scrollContent" >
+	<table class="tableStyle"  useCheckBox="true" useColor="false" useHover="false" useClick="true" useCheckBox="true">
+		<tr align="center">
+			<td width="30" rowspan="2"><input type="checkbox"/></td>
+			<td rowspan="2">加改项目一</td>
+			<td	width="50">计划</td>
+			<td	width="80"><input type="text" style="width:75px;" value="10"/></td>
+			<td	width="80"><input type="text" style="width:75px;" value="10"/></td>
+			<td	width="80"><input type="text" style="width:75px;" value="10"/></td>
+			<td	width="80"><input type="text" style="width:75px;" value="10"/></td>
+			<td	width="80"><input type="text" style="width:75px;" value="10"/></td>
+			<td	width="80"><input type="text" style="width:75px;" value="10"/></td>
+			<td	width="80"><input type="text" style="width:75px;" value="10"/></td>
+			<td	width="80"><input type="text" style="width:75px;" value="10"/></td>
+			<td width="80">80</td>
+		</tr>
+		<tr align="center">
+			<td	width="50">实际</td>
+			<td	width="80"><a href="javascript:open();" style="color: #00f;font-weight: bold;">10</a></td>
+			<td	width="80"><a href="javascript:open();" style="color: #f00;font-weight: bold;">5</a></td>
+			<td	width="80"><a href="javascript:open();" style="color: #00f;font-weight: bold;">10</a></td>
+			<td	width="80"><a href="javascript:open();" style="color: #00f;font-weight: bold;">10</a></td>
+			<td	width="80"><a href="javascript:open();" style="color: #00f;font-weight: bold;">10</a></td>
+			<td	width="80"><a href="javascript:open();" style="color: #00f;font-weight: bold;">10</a></td>
+			<td	width="80"><a href="javascript:open();" style="color: #00f;font-weight: bold;">10</a></td>
+			<td	width="80"><a href="javascript:open();" style="color: #00f;font-weight: bold;">10</a></td>
+			<td	width="80"><a href="javascript:open();" style="color: #00f;font-weight: bold;">75</a></td>
+		</tr>
+		<tr align="center">
+			<td width="30" rowspan="2"><input type="checkbox"/></td>
+			<td rowspan="2">加改项目二</td>
+			<td	width="50">计划</td>
+			<td	width="80"><input type="text" style="width:75px;" value="10"/></td>
+			<td	width="80"><input type="text" style="width:75px;" value="10"/></td>
+			<td	width="80"><input type="text" style="width:75px;" value="10"/></td>
+			<td	width="80"><input type="text" style="width:75px;" value="10"/></td>
+			<td	width="80"><input type="text" style="width:75px;" value="10"/></td>
+			<td	width="80"><input type="text" style="width:75px;" value="10"/></td>
+			<td	width="80"><input type="text" style="width:75px;" value="10"/></td>
+			<td	width="80"><input type="text" style="width:75px;" value="10"/></td>
+			<td width="80">80</td>
+		</tr>
+		<tr align="center">
+			<td	width="50">实际</td>
+			<td	width="80"><a href="javascript:open();" style="color: #00f;font-weight: bold;">10</a></td>
+			<td	width="80"><a href="javascript:open();" style="color: #f00;font-weight: bold;">5</a></td>
+			<td	width="80"><a href="javascript:open();" style="color: #00f;font-weight: bold;">10</a></td>
+			<td	width="80"><a href="javascript:open();" style="color: #00f;font-weight: bold;">10</a></td>
+			<td	width="80"><a href="javascript:open();" style="color: #00f;font-weight: bold;">10</a></td>
+			<td	width="80"><a href="javascript:open();" style="color: #00f;font-weight: bold;">10</a></td>
+			<td	width="80"><a href="javascript:open();" style="color: #00f;font-weight: bold;">10</a></td>
+			<td	width="80"><a href="javascript:open();" style="color: #00f;font-weight: bold;">10</a></td>
+			<td	width="80"><a href="javascript:open();" style="color: #00f;font-weight: bold;">75</a></td>
+		</tr>
+		<tr align="center">
+			<td width="30" rowspan="2"><input type="checkbox"/></td>
+			<td rowspan="2">加改项目三</td>
+			<td	width="50">计划</td>
+			<td	width="80"><input type="text" style="width:75px;" value="10"/></td>
+			<td	width="80"><input type="text" style="width:75px;" value="10"/></td>
+			<td	width="80"><input type="text" style="width:75px;" value="10"/></td>
+			<td	width="80"><input type="text" style="width:75px;" value="10"/></td>
+			<td	width="80"><input type="text" style="width:75px;" value="10"/></td>
+			<td	width="80"><input type="text" style="width:75px;" value="10"/></td>
+			<td	width="80"><input type="text" style="width:75px;" value="10"/></td>
+			<td	width="80"><input type="text" style="width:75px;" value="10"/></td>
+			<td width="80">80</td>
+		</tr>
+		<tr align="center">
+			<td	width="50">实际</td>
+			<td	width="80"><a href="javascript:open();" style="color: #f00;font-weight: bold;">0</a></td>
+			<td	width="80"><a href="javascript:open();" style="color: #f00;font-weight: bold;">0</a></td>
+			<td	width="80"><a href="javascript:open();" style="color: #f00;font-weight: bold;">0</a></td>
+			<td	width="80"><a href="javascript:open();" style="color: #f00;font-weight: bold;">0</a></td>
+			<td	width="80"><a href="javascript:open();" style="color: #f00;font-weight: bold;">0</a></td>
+			<td	width="80"><a href="javascript:open();" style="color: #f00;font-weight: bold;">0</a></td>
+			<td	width="80"><a href="javascript:open();" style="color: #f00;font-weight: bold;">0</a></td>
+			<td	width="80"><a href="javascript:open();" style="color: #f00;font-weight: bold;">0</a></td>
+			<td	width="80"><a href="javascript:open();" style="color: #f00;font-weight: bold;">0</a></td>
+		</tr>
+	</table>
+</div>
+</body>
+</html>

@@ -1,0 +1,129 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<!--框架必需start-->
+	<script type="text/javascript" src="../js/jquery-1.4.js"></script>
+	<script type="text/javascript" src="../js/framework.js"></script>
+	<link href="../css/import_basic.css" rel="stylesheet" type="text/css"/>
+	<link  rel="stylesheet" type="text/css" id="skin"/>
+	<!--框架必需end-->
+	<script type="text/javascript" src="../js/table/treeTable.js"></script>
+	<style type="text/css">
+	*html{
+	 background-image:url(about:blank);
+	 background-attachment:fixed;
+	 }
+	 
+	#sign{
+	  position:fixed;
+	  margin-top:5px;
+	  margin-left:5px;
+	  top:0px;
+	  
+	 _position:absolute;
+	 _bottom:auto;
+	 _top:expression(eval(document.documentElement.scrollTop));
+	 _margin-top:5px;
+	 _margin-left:5px;
+	 }
+	 
+	#newreport{
+	position:fixed;
+	margin-top:5px;
+	margin-left:70px;
+	top:0px;
+	
+	_position:absolute;
+	_bottom:auto;
+	_top:expression(eval(document.documentElement.scrollTop));
+	_margin-top:5px;
+	_margin-left:70px;
+	}
+	</style>
+</head>
+<body>
+<button id="sign" onclick="ratify();" ><span class="icon_save">签名</span></button>
+<button id="newreport" ><span class="icon_print">报活</span></button>
+<table class="treeTable" style="text-align: center;margin-top: 30px;" initState="collapsed" id="freeItemTab">
+	<tr style="background-color: lightblue;"><td colspan="11" align="left" style="font-weight: bolder;">交车项目</td></tr>
+	<tr>
+		<th width="20px">选择</th>
+		<th width="20%">分类</th>
+		<th width="30%">检修项目</th>
+		<th width="20%">检修情况(检测值)</th>
+		<th width="30%">检修人</th>
+	</tr>
+    <tr id="node-1">
+		<td style="width: 5%;">&nbsp;<input type="checkbox"/></td>
+		<td colspan="4" align="left"><span class="folder">行安检测</span></td>
+	</tr>
+	<tr class="child-of-node-1">
+	    <td>
+			<input type="checkbox""/>
+		</td> 
+		<td>行安检测</td>
+		<td>车顶绝缘检测</td>
+		<td align="left"><input type="text" /></td>
+		<td>谭建慈 2013-07-22 10:37:29</td>
+		
+	</tr>
+	<tr id="node-2">
+		<td style="width: 5%;">&nbsp;<input type="checkbox"/></td>
+		<td colspan="4" align="left"><span class="folder">行安检测</span></td>
+	</tr>
+	<tr class="child-of-node-2">
+	    <td>
+			<input type="checkbox""/>
+		</td> 
+		<td>行安检测</td>
+		<td>车顶绝缘检测</td>
+		<td align="left"><input type="text" /></td>
+		<td>谭建慈 2013-07-22 10:37:29</td>
+		
+	</tr>
+	<tr id="node-3">
+		<td style="width: 5%;">&nbsp;<input type="checkbox"/></td>
+		<td colspan="4" align="left"><span class="folder">行安检测</span></td>
+	</tr>
+	<tr class="child-of-node-3">
+	    <td>
+			<input type="checkbox""/>
+		</td> 
+		<td>行安检测</td>
+		<td>车顶绝缘检测</td>
+		<td align="left"><input type="text" /></td>
+		<td>谭建慈 2013-07-22 10:37:29</td>
+		
+	</tr>
+	<tr id="node-4">
+		<td style="width: 5%;">&nbsp;<input type="checkbox"/></td>
+		<td colspan="4" align="left"><span class="folder">行安检测</span></td>
+	</tr>
+	<tr class="child-of-node-4">
+	    <td>
+			<input type="checkbox""/>
+		</td> 
+		<td>行安检测</td>
+		<td>车顶绝缘检测</td>
+		<td align="left"><input type="text" /></td>
+		<td>谭建慈 2013-07-22 10:37:29</td>
+		
+	</tr>
+	<tr id="node-5">
+		<td style="width: 5%;">&nbsp;<input type="checkbox"/></td>
+		<td colspan="4" align="left"><span class="folder">行安检测</span></td>
+	</tr>
+	<tr class="child-of-node-5">
+	    <td>
+			<input type="checkbox""/>
+		</td> 
+		<td>行安检测</td>
+		<td>车顶绝缘检测</td>
+		<td align="left"><input type="text" /></td>
+		<td>谭建慈 2013-07-22 10:37:29</td>
+		
+	</tr>
+</table>
+</body>
+</html>

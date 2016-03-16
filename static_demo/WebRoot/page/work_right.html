@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<!--框架必需start-->
+	<script type="text/javascript" src="../js/jquery-1.4.js"></script>
+	<script type="text/javascript" src="../js/framework.js"></script>
+	<link href="../css/import_basic.css" rel="stylesheet" type="text/css"/>
+	<link  rel="stylesheet" type="text/css" id="skin" prePath="../"/>
+	
+	<!--框架必需end-->
+	<script type="text/javascript" src="../js/nav/tab.js"></script>
+	<script type="text/javascript">
+		$( function() {
+			var h = $(parent).height()-$("#tab_menu").height()-10;
+			$("#page").height(h);
+			
+			var tab = new TabView( {
+				containerId :'tab_menu',
+				pageid :'page',
+				cid :'tab',
+				position :"top"
+			});
+			tab.add( {
+				id :'tab_index0',
+				title :"检查项目",
+				url :"work_check_item.html",
+				isClosed :false
+			});
+			tab.add( {
+				id :'tab_index1',
+				title :"检测项目",
+				url :"work_test_item.html",
+				isClosed :false
+			});
+			tab.add( {
+				id :'tab_index2',
+				title :"报活签字",
+				url :"work_reportworkitem.html",
+				isClosed :false
+			});
+			tab.add( {
+				id :'tab_index3',
+				title :"我报的活",
+				url :"work_reportworkitem_private.html",
+				isClosed :false
+			});
+			tab.add( {
+				id :'tab_index4',
+				title :"交车项目",
+				url :"work_finish_trial.html",
+				isClosed :false
+			});
+	
+			tab.activate("tab_index0")
+		});
+	</script>
+</head>
+<body>
+	<div id="tab_menu"></div>
+	<div id="page" style="width:100%;"></div>
+</body>
+</html>

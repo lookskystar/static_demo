@@ -1,0 +1,232 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<!--框架必需start-->
+	<script type="text/javascript" src="../js/jquery-1.4.js"></script>
+	<script type="text/javascript" src="../js/framework.js"></script>
+	<link href="../css/import_basic.css" rel="stylesheet" type="text/css"/>
+	<link  rel="stylesheet" type="text/css" id="skin" prePath="../"/>
+	<!--框架必需end-->
+</head>
+<body>
+	<div class="box2" panelTitle="配件信息" roller="false">
+   		<form id="form" action="" method="post">
+	   		<table>
+	       		<tr>
+		          	<td>
+			                      车型:<select id="jcsType" onchange="getFirstUnit();" class="default" name="jcsType">
+	                     <option value="">请选择机车型号</option>
+	                     <option value="1">DF4</option>
+					     <option value="2">DF4D</option>
+					     <option value="3">SS3B</option>
+					     <option value="4">HXD3C</option>
+	                    </select>
+	               	</td>
+	               	<td>
+	                                          大部件：<select id="firstUnitId" class="default" name="firstUnitId">
+	                        <option value="">请选择大部件</option>
+	                        <option value="1">电器</option>
+                            <option value="2">电机</option>
+                            <option value="3">走行</option>
+	                         </select>
+	               	</td> 
+	               	<td>    
+	                                          配件名称:<input type="text" style="width: 100px" name="pjName" value="" id="pjName"/>&nbsp;&nbsp;&nbsp;
+	               	</td>
+               		<td>
+					   	<button onclick="query();";>
+						   	<span class="icon_find">查询</span>
+					   	</button>
+                	</td>
+	      		</tr>
+	   		</table>
+		</form>
+	</div>
+	<div>
+		<table class="tableStyle">
+			<tr align="center">
+				<td >配件名</td>
+				<td >车型</td>
+				<td >待修数量</td>
+				<td >检修中数量</td>
+				<td >合格数量</td>
+				<td >操作</td>
+			</tr>
+			<tr>
+				<td align="center">
+				    <script type="text/javascript">
+				       document.write('<a style="color:blue;" href="'+encodeURI("work_parts_dynamic_list.html")+'">LAD-T-3型空气干燥器 </a>');
+				    </script>
+				</td>
+				<td align="center">
+				    SS3B 
+				</td>
+				<td align="center">
+				    <script type="text/javascript">
+		       			document.write('<a style="color:red;" href="'+encodeURI("work_parts_dynamic_list.html")+'">有 5 待修配件 </a>');
+		    		</script>
+				</td>
+				<td align="center">
+				       <script type="text/javascript">
+				       		document.write('<a href="'+encodeURI("")+'">0</a>');
+				       </script>
+				</td>
+				<td align="center">
+					0
+				</td>
+				<td align="center">
+			       <script type="text/javascript">
+			       		document.write('<a style="color:blue;" href="'+encodeURI("")+'">查看</a>');
+			       </script>
+				</td>
+			</tr>
+			
+			<tr>
+				<td align="center">
+				    <script type="text/javascript">
+				       document.write('<a style="color:blue;" href="'+encodeURI("work_parts_dynamic_list.html")+'">空气制动阀  </a>');
+				    </script>
+				</td>
+				<td align="center">
+				    SS3B 
+				</td>
+				<td align="center">
+				    <script type="text/javascript">
+		       			document.write('<a style="color:red;" href="'+encodeURI("work_parts_dynamic_list.html")+'">有 3 待修配件 </a>');
+		    		</script>
+				</td>
+				<td align="center">
+				       <script type="text/javascript">
+				       		document.write('<a href="'+encodeURI("")+'">5</a>');
+				       </script>
+				</td>
+				<td align="center">
+					9
+				</td>
+				<td align="center">
+			       <script type="text/javascript">
+			       		document.write('<a style="color:blue;" href="'+encodeURI("")+'">查看</a>');
+			       </script>
+				</td>
+			</tr>				
+			
+			<tr>
+				<td align="center">
+				    <script type="text/javascript">
+				       document.write('<a style="color:blue;" href="'+encodeURI("work_parts_dynamic_list.html")+'">分配阀  </a>');
+				    </script>
+				</td>
+				<td align="center">
+				    SS3B 
+				</td>
+				<td align="center">
+				    <script type="text/javascript">
+		       			document.write('<a style="color:red;" href="'+encodeURI("work_parts_dynamic_list.html")+'">有 1 待修配件 </a>');
+		    		</script>
+				</td>
+				<td align="center">
+				       <script type="text/javascript">
+				       		document.write('<a href="'+encodeURI("")+'">6</a>');
+				       </script>
+				</td>
+				<td align="center">
+					1
+				</td>
+				<td align="center">
+			       <script type="text/javascript">
+			       		document.write('<a style="color:blue;" href="'+encodeURI("")+'">查看</a>');
+			       </script>
+				</td>
+			</tr>				
+			
+			<tr>
+				<td align="center">
+				    <script type="text/javascript">
+				       document.write('<a style="color:blue;" href="'+encodeURI("work_parts_dynamic_list.html")+'">紧急阀  </a>');
+				    </script>
+				</td>
+				<td align="center">
+				    SS3B 
+				</td>
+				<td align="center">
+				    <script type="text/javascript">
+		       			document.write('<a style="color:red;" href="'+encodeURI("work_parts_dynamic_list.html")+'">有 2 待修配件 </a>');
+		    		</script>
+				</td>
+				<td align="center">
+				       <script type="text/javascript">
+				       		document.write('<a href="'+encodeURI("")+'">3</a>');
+				       </script>
+				</td>
+				<td align="center">
+					0
+				</td>
+				<td align="center">
+			       <script type="text/javascript">
+			       		document.write('<a style="color:blue;" href="'+encodeURI("")+'">查看</a>');
+			       </script>
+				</td>
+			</tr>				
+			
+			<tr>
+				<td align="center">
+				    <script type="text/javascript">
+				       document.write('<a style="color:blue;" href="'+encodeURI("work_parts_dynamic_list.html")+'">中继阀、遮断阀  </a>');
+				    </script>
+				</td>
+				<td align="center">
+				    SS3B 
+				</td>
+				<td align="center">
+				    <script type="text/javascript">
+		       			document.write('<a style="color:red;" href="'+encodeURI("work_parts_dynamic_list.html")+'">有 3 待修配件 </a>');
+		    		</script>
+				</td>
+				<td align="center">
+				       <script type="text/javascript">
+				       		document.write('<a href="'+encodeURI("")+'">6</a>');
+				       </script>
+				</td>
+				<td align="center">
+					6
+				</td>
+				<td align="center">
+			       <script type="text/javascript">
+			       		document.write('<a style="color:blue;" href="'+encodeURI("")+'">查看</a>');
+			       </script>
+				</td>
+			</tr>				
+			
+			<tr>
+				<td align="center">
+				    <script type="text/javascript">
+				       document.write('<a style="color:blue;" href="'+encodeURI("work_parts_dynamic_list.html")+'">TSA-230A螺杆式 </a>');
+				    </script>
+				</td>
+				<td align="center">
+				    SS3B 
+				</td>
+				<td align="center">
+				    <script type="text/javascript">
+		       			document.write('<a style="color:red;" href="'+encodeURI("work_parts_dynamic_list.html")+'">有 5 待修配件 </a>');
+		    		</script>
+				</td>
+				<td align="center">
+				       <script type="text/javascript">
+				       		document.write('<a href="'+encodeURI("")+'">5</a>');
+				       </script>
+				</td>
+				<td align="center">
+					0
+				</td>
+				<td align="center">
+			       <script type="text/javascript">
+			       		document.write('<a style="color:blue;" href="'+encodeURI("")+'">查看</a>');
+			       </script>
+				</td>
+			</tr>									
+		</table>
+	</div>
+</body>
+</html>

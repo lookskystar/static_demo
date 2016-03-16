@@ -1,0 +1,223 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<!--框架必需start-->
+	<script type="text/javascript" src="../js/jquery-1.4.js"></script>
+	<script type="text/javascript" src="../js/framework.js"></script>
+	<link href="../css/import_basic.css" rel="stylesheet" type="text/css"/>
+	<link  rel="stylesheet" type="text/css" id="skin"/>
+	<!--框架必需end-->
+	<style>
+		#infotable,#bzFinishiInfo{
+			border-collapse: collapse;
+		}
+		
+		#infotable th,#infotable td,#bzFinishiInfo th,#bzFinishiInfo td{
+			border:1px solid #82A8F9;
+			padding-left:2px;
+			padding-right:2px;
+			height:25px;
+			line-height:25px;
+		}
+		
+		#jcinfo a{
+			font-size:12px;
+			border:1px solid #999;
+			display:block;
+			float:left;
+			width:60px;
+			text-decoration: none;
+			height:20px;
+			line-height: 20px;
+			text-align: center;
+			margin-right:5px;
+			font-weight: bold;
+			background-color:#900;
+			color:#fff;
+		}
+	</style>
+	<script type="text/javascript">
+		function showOrHide(){
+			$("#bzFinishiInfo").show();
+		}
+	</script>
+</head>
+<body>
+<table class="tableStyle" style="width:550px;" id="infotable">
+	<tr>
+		<th align="center">车型</th>
+		<th align="center">车号</th>
+		<th align="center">修程</th>
+		<th align="center">扣车时间</th>
+		<th align="center">计划起机时间</th>
+		<th align="center">计划交车时间</th>
+		<th align="center">检修状态</th>
+	</tr>
+	<tr>
+		<td>DF4</td>
+		<td>2615</td>
+		<td>X1</td>
+		<td>2013-10-25 07:00</td>
+		<td>2013-10-25 13:30</td>
+		<td>2013-10-25 16:30</td>
+		<td>
+			检修作业
+		</td>
+	</tr>
+</table>
+<table class="tableStyle" style="width:550px;" id="jcinfo">
+	<tr>
+		<td>
+			<a href="">专业</a>
+			<a href="">班组</a>
+			<a href="">机车</a>
+			<a href="">历史</a>
+			<a href="">报活</a>
+			<a href="">竣工</a>
+			<a href="">交车</a>
+			<a href="">化验单</a>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<table width="100%">
+				<tr>
+				<td align="right">
+					股道号：<input type="text" value="28" style="width: 40px;" id="gdh" onkeyup="this.value=this.value.replace(/\D/g,'')"/>&nbsp;&nbsp;
+					台位号：<input type="text" value="4" id="twh" style="width: 40px;" onkeyup="this.value=this.value.replace(/\D/g,'')"/>
+				</td>
+				<td align="left"><a href="javascript:void(0);" onclick="move('${datePlan.rjhmId}')">股道转移</a></td>
+				<td align="right">
+					机车号：<input type="text" value="2615" style="width: 80px;" id="jcnum"/>
+				</td>
+				<td align="left">
+					<a href="javascript:void(0);" onclick="searchJC()">查询</a>
+				</td>
+				</tr>
+			</table>
+		</td>
+	</tr>
+</table>
+<table id="bzFinishiInfo" class="tableStyle" style="width:550px;">
+	<tr><th align="center">检修班组</th><th align="center">完成时间</th><th align="center">检修情况</th><th align="center">所处节点</th></tr>
+	<tr>
+		<td align="center">电器上车组</td>
+		<td align="center"></td>
+		<td align="center">
+			<a  style="color: #f00" href="" target="_blank">未完成</a>
+		</td>
+		<td align="center">小辅修</td>
+	</tr>
+	<tr>
+		<td align="center">电机上车组</td>
+		<td align="center"></td>
+		<td align="center">
+			<a  style="color: #f00" href="" target="_blank">未完成</a>
+		</td>
+		<td align="center">小辅修</td>
+	</tr>
+	<tr>
+		<td align="center">台车上车组</td>
+		<td align="center"></td>
+		<td align="center">
+			<a  style="color: #f00" href="" target="_blank">未完成</a>
+		</td>
+		<td align="center">小辅修</td>
+	</tr>
+	<tr>
+		<td align="center">制动组</td>
+		<td align="center"></td>
+		<td align="center">
+			<a  style="color: #f00" href="" target="_blank">未完成</a>
+		</td>
+		<td align="center">小辅修</td>
+	</tr>
+	<tr>
+		<td align="center">行安设备组</td>
+		<td align="center"></td>
+		<td align="center">
+			<a  style="color: #f00" href="" target="_blank">未完成</a>
+		</td>
+		<td align="center">小辅修</td>
+	</tr>
+	<tr>
+		<td align="center">柴上组</td>
+		<td align="center"></td>
+		<td align="center">
+			<a  style="color: #f00" href="" target="_blank">未完成</a>
+		</td>
+		<td align="center">小辅修</td>
+	</tr>
+	<tr>
+		<td align="center">充电组</td>
+		<td align="center"></td>
+		<td align="center">
+			<a  style="color: #f00" href="" target="_blank">未完成</a>
+		</td>
+		<td align="center">小辅修</td>
+	</tr>
+	<tr>
+		<td align="center">探伤组</td>
+		<td align="center"></td>
+		<td align="center">
+			<a  style="color: #f00" href="" target="_blank">未完成</a>
+		</td>
+		<td align="center">小辅修</td>
+	</tr>
+	<tr>
+		<td align="center">轴检组</td>
+		<td align="center"></td>
+		<td align="center">
+			<a  style="color: #f00" href="" target="_blank">未完成</a>
+		</td>
+		<td align="center">小辅修</td>
+	</tr>
+	<tr>
+		<td align="center">内燃备品组</td>
+		<td align="center"></td>
+		<td align="center">
+			<a  style="color: #f00" href="" target="_blank">未完成</a>
+		</td>
+		<td align="center">小辅修</td>
+	</tr>
+	<tr>
+		<td align="center">传上组</td>
+		<td align="center"></td>
+		<td align="center">
+			<a  style="color: #f00" href="" target="_blank">未完成</a>
+		</td>
+		<td align="center">小辅修</td>
+	</tr>
+	<tr>
+		<td align="center">仪表组</td>
+		<td align="center"></td>
+		<td align="center">
+			<a  style="color: #f00" href="" target="_blank">未完成</a>
+		</td>
+		<td align="center">小辅修</td>
+	</tr>
+</table>
+<br/>
+<table id="bzFinishiInfo" class="tableStyle" style="width:550px;">
+	<tr>
+      	<th align="center">试验项目</th>
+      	<th align="center">工人</th>
+      	<th align="center">工长</th>
+      	<th align="center">质检员</th>
+      	<th align="center">技术员</th>
+      	<th align="center">交车工长</th>
+      	<th align="center">验收员</th>
+	</tr>
+   	<tr>
+	    <td>机车试验</td>
+	    <td><font style="color: #f00">未签完</font></td>
+	    <td><font style="color: #f00">未签完</font></td>
+	    <td><font style="color: #f00">未签完</font></td>
+	    <td><font style="color: #f00">未签完</font></td>
+	    <td><font style="color: #f00">未签完</font></td>
+	    <td><font style="color: #f00">未签完</font></td>
+   	</tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,51 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<!--框架必需start-->
+	<script type="text/javascript" src="../../js/jquery-1.4.js"></script>
+	<script type="text/javascript" src="../../js/framework.js"></script>
+	<link href="../../css/import_basic.css" rel="stylesheet" type="text/css"/>
+	<link  rel="stylesheet" type="text/css" id="skin" prePath="../../"/>
+	<!--框架必需end-->
+	
+	<!--修正IE6支持透明PNG图start-->
+	<script type="text/javascript" src="../../js/method/pngFix/supersleight.js"></script>
+	<!--修正IE6支持透明PNG图end-->
+</head>
+<body>	
+	<form action="tsAction!inputRecordList.do" method="post">
+	<div class="box1" panelTitle="探伤记录" overflow="auto">
+		<div>
+		<table>
+			<tr>
+			<td>报活起始时间：
+				<input name="btime" type="text" class="Wdate"	onclick="WdatePicker(({dateFmt:'yyyy-MM-dd'}))" value="" style="width:125px;"/>
+			</td>
+			<td>报活结束时间：
+				<input name="etime" type="text" class="Wdate"	onclick="WdatePicker(({dateFmt:'yyyy-MM-dd'}))" value="" style="width:125px;"/>
+			</td>
+			<td><input type="submit" value="查询" /></td>
+			</tr>
+		</table>	
+		</div>
+		<div>
+		<table class="tableStyle" overflow="auto">
+			<tr align="center">
+				<td>机车类型</td>
+				<td>机车号</td>
+				<td>修程</td>
+				<td>修次</td>
+				<td>部件</td>
+				<td>报活时间</td>
+				<td>报活人</td>
+				<td>操作</td>
+			</tr>
+		</table>
+		</div>
+	</div>
+	</form>
+</body>
+<link href="../../My97DatePicker/skin/WdatePicker.css" rel="stylesheet" type="text/css" />
+<script type="text/javascript" src="../../My97DatePicker/WdatePicker.js"></script>
+</html>

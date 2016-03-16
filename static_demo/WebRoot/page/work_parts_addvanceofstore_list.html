@@ -1,0 +1,116 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"> 
+<head>
+	<title>上下车班组预领配件</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<!--框架必需start-->
+	<script type="text/javascript" src="../js/jquery-1.4.js"></script>
+	<script type="text/javascript" src="../js/framework.js"></script>
+	<link href="../css/import_basic.css" rel="stylesheet" type="text/css"/>
+	<link  rel="stylesheet" type="text/css" id="skin"/>
+	<!--框架必需end-->
+	<!--引入弹窗组件start-->
+	<script type="text/javascript" src="../js/attention/zDialog/zDrag.js"></script>
+	<script type="text/javascript" src="../js/attention/zDialog/zDialog.js"></script>
+	<!--引入弹窗组件end-->
+	<!--截取文字start-->
+	<script type="text/javascript" src="../js/text/text-overflow.js"></script>
+	<!--截取文字end-->
+	<script type="text/javascript">
+		function add(){
+			var diag = new top.Dialog();
+			diag.Title = "互换配件预领单";
+			diag.URL = "page/work_parts_addvance_tips.html";
+			diag.Height=480;
+			diag.MessageTitle="表单标题";
+			diag.Message="互换配件预领单";
+			diag.CancelEvent = function(){
+				diag.innerFrame.contentWindow.location.reload();
+				diag.close();
+				};
+			diag.show();
+		}
+	</script>		
+</head>
+<body>
+	<div class="box2" panelTitle="互换配件交接单记录" roller="false">
+		<table>
+			<tr>
+				<td>修程:</td>
+				<td><select id="dd">
+					<option value="0">请选择</option>
+					<option value="1">Z1</option>
+					<option value="2">Z3</option>
+					<option value="3">F3</option>
+					<option value="4">X4</option>
+				</select></td>
+				<td>日期：</td>
+				<td><input type="text" class="date"/></td>
+				<td>配件名称：</td>
+				<td><input type="text" /></td>
+				<td><button><span class="icon_find">查询</span></button></td>
+			</tr>
+		</table>
+	</div>
+	<div>
+		<table class="tableStyle"  headFixMode="true" useMultColor="true" >
+			<tr>
+				<th width="15%"><span>配件名称</span></th>
+				<th width="10%"><span>配件编号</span></th>
+				<th width="10%"><span>装机车号</span></th>
+				<th width="10%"><span>修程</span></th>
+				<th width="10%"><span>预领数量</span></th>
+				<th width="10%"><span>预领日期</span></th>
+				<th width="10%"><span>预领签章</span></th>
+				<th width="10%"><span>发件签章</span></th>
+				<th width="10%"><span>状态</span></th>
+			</tr>
+		</table>
+	</div>
+	<div id="scrollContent" >
+		<table class="tableStyle"  useMultColor="true" useCheckBox="true">
+			<tr align="center">
+				<td width="15%">轴承</td>
+				<td width="10%">ZC-786</td>
+				<td width="10%">DF4D1234</td>
+				<td width="10%">Z2</td>
+				<td width="10%">1</td>
+				<td width="10%">2013-12-11</td>
+				<td width="10%">张三</td>
+				<td width="10%"><span><button onclick="sign();">签章</button></span></td>
+				<td width="10%"><font color="blue">预领</font></td>
+			</tr>
+			<tr align="center">
+				<td width="15%">轴承</td>
+				<td width="10%">ZC-786</td>
+				<td width="10%">DF4D1234</td>
+				<td width="10%">Z2</td>
+				<td width="10%">1</td>
+				<td width="10%">2013-12-11</td>
+				<td width="10%">张三</td>
+				<td width="10%">王五</td>
+				<td width="10%"><font style="color: #B14685">发件</font></td>
+			</tr>
+		</table>
+	</div>
+	<div style="height:45px;">
+		<div class="float_right padding5 paging">
+			<div class="float_left padding_top4">
+			<span class="paging_disabled"><a href="javascript:;">上一页</a></span>
+			<span class="paging_current"><a href="javascript:;">1</a></span>
+			<span><a href="javascript:;">2</a></span>
+			<span><a href="javascript:;">3</a></span>
+			<span><a href="javascript:;">4</a></span>
+			<span><a href="javascript:;">5</a></span>
+			<span>...</span>
+			<span><a href="javascript:;">20</a></span>
+			<span><a href="javascript:;">下一页</a></span> 每页
+			</div>
+			<div class="float_left"><select autoWidth="true"><option>50</option><option>100</option><option>150</option></select></div>
+			<div class="float_left padding_top4">条记录</div>
+			<div class="clear"></div>
+		</div>
+		<div class="clear"></div>
+	</div>
+</body>
+</html>

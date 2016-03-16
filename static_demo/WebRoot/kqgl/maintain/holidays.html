@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<!--框架必需start-->
+	<script type="text/javascript" src="../../js/jquery-1.4.js"></script>
+	<script type="text/javascript" src="../../js/framework.js"></script>
+	<link href="../../css/import_basic.css" rel="stylesheet" type="text/css"/>
+	<link  rel="stylesheet" type="text/css" id="skin" prePath="../../"/>
+	<!--框架必需end-->
+	<script type="text/javascript">
+		function toAdd(){
+			top.Dialog.open({
+				URL:"kqgl/maintain/holiday_add.html",
+				Width:600,
+				Height:400,
+				Title:"新增"
+			});
+		}
+	
+		function toedit(){
+			top.Dialog.open({
+				URL:"kqgl/maintain/holiday_edit.html",
+				Width:400,
+				Height:200,
+				Title:"修改"
+			});
+		}
+	
+	</script>
+</head>
+
+<body>
+	<div class="box2" panelTitle="节日" roller="false" >
+	<form action="" method="post" id="subfrom">
+		<table>
+			<tr>
+				<td>
+					<button onclick="toAdd()">新增</button>
+				</td>
+			</tr>
+		</table>	
+	</form>
+	</div>
+	<div id="scrollContent" >
+		<table class="tableStyle" useMultColor="true">
+		<tr>
+			<th width="3%" align="center"></th>
+			<th width="15%" align="center">编号</th>
+			<th width="15%" align="center">节假日名称</th>
+			<th width="15%" align="center">起始日期</th>
+			<th width="17%" align="center">结束日期</th>
+			<th width="15%" align="center">操作</th>
+		</tr>
+		<tr>
+			<td align="center"><input id="" name="rec" type="checkbox" width="30px" value=""/></td>
+			<td align="center">1</td>
+			<td align="center">春节</td>
+			<td align="center">2014-02-9</td>
+			<td align="center">2014-02-16</td>
+			<td align="center">
+				<a href="javascript:void(0);" onclick="toedit();" style="color:blue;">修改</a>&nbsp;&nbsp;
+				<a href="javascript:void(0);" onclick="" style="color:blue;">删除</a>
+			</td>
+		</tr>
+		<tr>
+			<td align="center"><input id="" name="rec" type="checkbox" width="30px" value=""/></td>
+			<td align="center">2</td>
+			<td align="center">端午节</td>
+			<td align="center">2014-06-13</td>
+			<td align="center">2014-06-16</td>
+			<td align="center">
+				<a href="javascript:void(0);" onclick="toedit();" style="color:blue;">修改</a>&nbsp;&nbsp;
+				<a href="javascript:void(0);" onclick="" style="color:blue;">删除</a>
+			</td>
+		</tr>
+	</table>
+	</div>
+</body>
+</html>

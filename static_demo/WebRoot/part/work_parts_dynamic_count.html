@@ -1,0 +1,95 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<!--框架必需start-->
+	<script type="text/javascript" src="../js/jquery-1.4.js"></script>
+	<script type="text/javascript" src="../js/framework.js"></script>
+	<link href="../css/import_basic.css" rel="stylesheet" type="text/css"/>
+	<link  rel="stylesheet" type="text/css" id="skin" prePath="../"/>
+	<!--框架必需end-->
+	<script type="text/javascript" src="../js/table/treeTable.js"></script>
+</head>
+<body>
+	<form id="form" action="" method="post">
+		<div id="showImage">
+		查询条件：
+		      机务段：<select style="width:80px;" class="default" name="jcsType">
+	             	<option value="">请选择</option>
+	             	<option value="">株洲段</option>
+	             	<option value="">广州段</option>
+	             	<option value="">长沙段</option>
+	             	<option value="">怀化段</option>
+	             	<option value="">龙川段</option>
+	             	<option value="">三水段</option>
+	             </select>
+	        &nbsp;   &nbsp;  &nbsp;  &nbsp;    
+		          车型：<select id="jcsType" onchange="getFirstUnit();" class="default" name="jcsType">
+	             	<option value="">请选择机车型号</option>
+	             </select>
+		<table class="treeTable" initState="collapsed">
+			<tr>
+				<th width="180">专业</th>
+				<th width="120">配件名称</th>
+				<th width="120">适用车型</th>
+				<th width="120">配件数量</th>
+			</tr>
+			<tr id="node-1">
+				<td><span class="folder">电器</span></td>
+				<td align="center"></td>
+				<td align="center">DF4D</td>
+				<td align="center">13</td>
+			</tr>
+			<tr id="11" class="child-of-node-1">
+				<td align="center">电器</td>
+				<td align="center"><a href="javascript:;"><span class="file" onclick='top.Dialog.open({URL:"page/work_parts_dynamic_detail.html",Width:"100",Height:"100",Title:"机车互换配件(固定资产)分寸卡"});'>真空主断路器</span></a></td>
+				<td align="center">DF4D</td>
+				<td align="center">5</td>
+			</tr>
+			<tr id="12" class="child-of-node-1">
+				<td align="center">电器</td>
+				<td align="center"><a href=""><span class="file">高压电器柜</span></a></td>
+				<td align="center">DF4D</td>
+				<td align="center">8</td>
+			</tr>
+			<tr id="node-2">
+				<td><span class="folder">制动</span></td>
+				<td align="center"></td>
+				<td align="center">DF4D</td>
+				<td align="center">13</td>
+			</tr>
+			<tr id="13" class="child-of-node-2">
+				<td align="center">制动</td>
+				<td align="center"><a href="javascript:;"><span class="file" onclick='top.Dialog.open({URL:"page/work_parts_dynamic_detail.html",Width:"100",Height:"100",Title:"机车互换配件(固定资产)分寸卡"});'>紧急阀</span></a></td>
+				<td align="center">DF4D</td>
+				<td align="center">5</td>
+			</tr>
+			<tr id="14" class="child-of-node-2">
+				<td align="center">制动</td>
+				<td align="center"><a href=""><span class="file">空气制动阀</span></a></td>
+				<td align="center">DF4D</td>
+				<td align="center">8</td>
+			</tr>
+			<tr id="node-3">
+				<td><span class="folder">走行</span></td>
+				<td align="center"></td>
+				<td align="center">DF4D</td>
+				<td align="center">13</td>
+			</tr>
+			<tr id="15" class="child-of-node-3">
+				<td align="center">走行</td>
+				<td align="center"><a href="javascript:;"><span class="file" onclick='top.Dialog.open({URL:"page/work_parts_dynamic_detail.html",Width:"100",Height:"100",Title:"机车互换配件(固定资产)分寸卡"});'>制动器</span></a></td>
+				<td align="center">DF4D</td>
+				<td align="center">5</td>
+			</tr>
+			<tr id="16" class="child-of-node-3">
+				<td align="center">走行</td>
+				<td align="center"><a href=""><span class="file">车钩及缓冲器</span></a></td>
+				<td align="center">DF4D</td>
+				<td align="center">8</td>
+			</tr>
+		</table>                 
+		</div>
+	</form>
+</body>
+</html>

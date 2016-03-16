@@ -1,0 +1,385 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>小辅修流程检修记录
+</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="../css/test.css" type="text/css" rel="stylesheet" />
+<link href="../css/linkcss.css" type="text/css" rel="stylesheet" />
+<script type="text/javascript" src="../js/test.js"></script>
+<script type="text/javascript" src="../js/jquery-1.4.js"></script>
+<script type="text/javascript" src="../js/jquery.floatDiv.js"></script>
+<script type="text/javascript" src="../js/menu.js"></script>
+<script type="text/javascript" charset="UTF-8" src="../js/float.js"></script>
+<script type="text/javascript" charset="UTF-8" src="../js/print.js"></script>
+
+<style type="text/css"> 
+	#nav, #nav ul{
+	margin:0;
+	padding:0;
+	list-style-type:none;
+	list-style-position:outside;
+	position:relative;
+	line-height:1.5em; 
+	}
+	
+	#nav a{
+	display:block;
+	padding:0px 5px;
+	border:1px solid #333;
+	color:#fff;
+	font-weight:bold;
+	text-decoration:none;
+	background-color:#328aa4;
+	}
+	
+	#nav a:hover{
+	background-color:#fff;
+	color:red;
+	}
+	/*#nav a:visited{
+	background-color:#fff;
+	color:blue;
+	}*/
+	
+	#nav li{
+	float:left;
+	position:relative;
+	}
+	
+	#nav ul {
+	position:absolute;
+	display:none;
+	width:12em;
+	top:1.5em;
+	}
+	
+	#nav li ul a{
+	width:12em;
+	height:auto;
+	float:left;
+	}
+	
+	#nav ul ul{
+	top:auto;
+	}	
+	
+	#nav li ul ul {
+	left:12em;
+	margin:0px 0 0 10px;
+	}
+	
+	#nav li:hover ul ul, #nav li:hover ul ul ul, #nav li:hover ul ul ul ul{
+	display:none;
+	}
+	#nav li:hover ul, #nav li li:hover ul, #nav li li li:hover ul, #nav li li li li:hover ul{
+	display:block;
+	}
+</style>
+<script type="text/javascript"> 
+	//合并表格的单元格
+	function cellMege(table,col){
+		var lines=$('#'+table+' tr').size();
+		if(lines<=2) return ;
+		var v,l=0,current='',index=1;
+		for(var i=1;i<lines;i++){
+			var tr=$('#'+table+' tr').eq(i);
+			v=tr.find('td[name="'+col+'"]').html();
+			//alert(tr.find('td[name="secondname"]').size());
+			l++;
+			//alert(v);
+			if(v!=current||i==(lines-1)){//如果两个值不相同或者是最后一行
+				if(i==(lines-1)) l++;
+				if(l>1){//草果两行，合并
+					var td=$('#'+table+' tr').eq(index).find('td[name="'+col+'"]');
+					td.attr('rowspan',l);
+					for(var j=1;j<l;j++){
+						var td=$('#'+table+' tr').eq(index+j).find('td[name="'+col+'"]').remove();
+					}
+				}
+				l=0;//从新计数
+				current=v;
+				index=i;
+			}
+		}
+	}
+	$(function(){
+		cellMege('datatabel','firstname');
+		cellMege('datatabel','secondname');
+		cellMege('datatabel','fixitemname');
+		cellMege('datatabel2','preType');
+		$('#scoll_div_id').floatdiv("middletop");
+	});
+	
+</script>
+</head>
+ 
+<body bgcolor="#f8f7f7" style="height:900px;">
+<div id="scoll_div_id" style="background:#328aa4;width:864px;height:23px;">
+<ul id="nav">
+    <li><a href="#">◇整车记录 </a></li>
+    <li><a href="javascript:void(0);">◇机车部件</a>
+      <ul>
+            <li><a href="#">行安</a></li>
+            <li><a href="#">制动</a></li>
+            <li><a href="#">电子</a></li>
+            <li><a href="#">仪表</a></li>
+      </ul>
+    </li>
+    <li><a href="javascript:void(0);">◇检修班组</a>
+       <ul>
+            <li><a href="#">制动组</a></li>
+            <li><a href="#">电机组</a></li>
+            <li><a href="#">受电弓组</a></li>
+            <li><a href="#">仪表组</a></li>
+      </ul>
+    </li>
+    <li><a href="javascript:void(0);">◇机车试验</a>
+       <ul>
+            <li><a href="#">水阻试验</a></li>
+            <li><a href="#">高低压试验</a></li>
+            <li><a href="#">顶轮试验</a></li>
+            <li><a href="#">试运行试验</a></li>
+      </ul>
+    </li>
+    <li><a href="jc_all_pj.html">◇配件记录</a></li>
+    <li><a href="#">◇未完成记录 </a></li>
+    <li><a href="#">◇报活记录 </a></li>
+    <li><a href="#">◇记录导出 </a></li>
+    <li><a href="#">◇交车竣工 </a></li>
+    <li><a href="#">◇打印 </a>
+        <ul>
+            <li><a href="#">直接打印</a></li>
+            <li><a href="#">打印设置</a></li>
+            <li><a href="#">打印预览</a></li>
+      </ul>
+    </li>
+</ul>
+</div>
+<br><br>
+<form id="form1" name="form1" method="post" action="">
+<div style="width:870px;margin-left:-435px;left:50%;position:absolute;" id="content2">
+<table width="864" border="0" align="center" cellspacing="0" vspace="0" style="padding-top:10px;">
+<tr>
+<td colspan="6" align="center" height="40"><h2 align="center"><font style="font-family:'隶书'">
+<b>报活&nbsp;&nbsp;记录
+</b></font></h2></td>
+<td  align="right"></td>
+</tr>
+<tr>
+<td width="163" align="right">机车号：</td>
+<td width="240">DF4  3148</td>
+<td width="55" align="left">修程：</td><td width="251">X3</td>
+<td width="140" align="left">检修日期：</td><td width="195" algin="left">2013-07-22 07:00</td>
+</tr>
+<tr><td colspan="6">
+<table width="864" border="0" align="center" cellspacing="0" vspace="0">
+  <tr>
+  <td>
+  <!-- 报活项目 begin-->
+	<table width="864" border="0" align="center" cellspacing="0" id="datatabel2">
+		<tr style="line-height:40px;height: 40px;background-color: #328aa4;font-weight: bolder;">
+			<td class="mytbCELL1" align="center" style="white-space:nowrap" width="10%">报活类别</td>
+			<td class="mytbCELL1" align="center" style="white-space:nowrap" width="20%">报活内容</td>
+			<td class="mytbCELL1" align="center" style="white-space:nowrap" width="6%">报活人</td>
+			<td class="mytbCELL1" align="center" style="white-space:nowrap" width="10%">报活时间</td>
+			<td class="mytbCELL1" align="center" style="white-space:nowrap" width="15%">检修情况</td>
+			<td class="mytbCELL1" align="center" style="white-space:nowrap" width="6%">检修人</td>
+			<td class="mytbCELL1" align="center" style="white-space:nowrap" width="6%">工长</td>
+			<td class="mytbCELL1" align="center" style="white-space:nowrap" width="6%">质检员</td>
+			<td class="mytbCELL1" align="center" style="white-space:nowrap" width="6%">技术员</td>
+			<td class="mytbCELL1" align="center" style="white-space:nowrap" width="6%">交车工长</td>
+			<td class="mytbCELL1" align="center" style="white-space:nowrap" width="6%">验收员</td>
+		</tr>
+		
+			<tr>
+				<td class="mytbCELL1" align="center"  name="preType">
+						复检报活
+				</td>
+				<td class="mytbCELL1" align="center">更换辅机胶圈&nbsp;</td>
+				<td class="mytbCELL1" align="center">孙永进&nbsp;</td>
+				<td class="mytbCELL1" align="center">2013-07-22 14:23&nbsp;</td>
+				<td class="mytbCELL1" align="center">更换&nbsp;</td>
+				<td class="mytbCELL1" align="center">
+					陈轩<br>07-22 14:28&nbsp;
+				</td>
+				<td class="mytbCELL1" align="center">
+					孙永进<br>07-22 14:30&nbsp;
+				</td>
+				<td class="mytbCELL1" align="center">谭勇<br>08-30 10:03&nbsp;</td>
+				<td class="mytbCELL1" align="center">刘云生<br>07-22 16:31&nbsp;</td>
+				<td class="mytbCELL1" align="center"><br>&nbsp;</td>
+				<td class="mytbCELL1" align="center"><br>&nbsp;</td>
+			</tr>
+			<tr>
+				<td class="mytbCELL1" align="center"  name="preType">
+						复检报活
+				</td>
+				<td class="mytbCELL1" align="center">水箱座子螺丝松&nbsp;</td>
+				<td class="mytbCELL1" align="center">孙永进&nbsp;</td>
+				<td class="mytbCELL1" align="center">2013-07-22 14:24&nbsp;</td>
+				<td class="mytbCELL1" align="center">紧固&nbsp;</td>
+				<td class="mytbCELL1" align="center">
+					陈轩<br>07-22 14:28&nbsp;
+				</td>
+				<td class="mytbCELL1" align="center">
+					孙永进<br>07-22 14:30&nbsp;
+				</td>
+				<td class="mytbCELL1" align="center">周雁飞<br>07-22 15:47&nbsp;</td>
+				<td class="mytbCELL1" align="center">刘云生<br>07-22 16:31&nbsp;</td>
+				<td class="mytbCELL1" align="center"><br>&nbsp;</td>
+				<td class="mytbCELL1" align="center"><br>&nbsp;</td>
+			</tr>
+			<tr>
+				<td class="mytbCELL1" align="center"  name="preType">
+						复检报活
+				</td>
+				<td class="mytbCELL1" align="center">低温马达卸油管卡子脱焊&nbsp;</td>
+				<td class="mytbCELL1" align="center">孙永进&nbsp;</td>
+				<td class="mytbCELL1" align="center">2013-07-22 14:25&nbsp;</td>
+				<td class="mytbCELL1" align="center">烧焊&nbsp;</td>
+				<td class="mytbCELL1" align="center">
+					陈轩<br>07-22 14:29&nbsp;
+				</td>
+				<td class="mytbCELL1" align="center">
+					孙永进<br>07-22 14:30&nbsp;
+				</td>
+				<td class="mytbCELL1" align="center">周雁飞<br>07-22 15:47&nbsp;</td>
+				<td class="mytbCELL1" align="center">刘云生<br>07-22 16:31&nbsp;</td>
+				<td class="mytbCELL1" align="center"><br>&nbsp;</td>
+				<td class="mytbCELL1" align="center"><br>&nbsp;</td>
+			</tr>
+		
+			<tr>
+				<td class="mytbCELL1" align="center"  name="preType">
+						复检报活
+				</td>
+				<td class="mytbCELL1" align="center">高温静液压油缸回油管卡子松&nbsp;</td>
+				<td class="mytbCELL1" align="center">孙永进&nbsp;</td>
+				<td class="mytbCELL1" align="center">2013-07-22 14:26&nbsp;</td>
+				<td class="mytbCELL1" align="center">紧固&nbsp;</td>
+				<td class="mytbCELL1" align="center">
+					陈轩<br>07-22 14:28&nbsp;
+				</td>
+				<td class="mytbCELL1" align="center">
+					孙永进<br>07-22 14:30&nbsp;
+				</td>
+				<td class="mytbCELL1" align="center">周雁飞<br>07-22 15:47&nbsp;</td>
+				<td class="mytbCELL1" align="center">刘云生<br>07-22 16:31&nbsp;</td>
+				<td class="mytbCELL1" align="center"><br>&nbsp;</td>
+				<td class="mytbCELL1" align="center"><br>&nbsp;</td>
+			</tr>
+		
+			<tr>
+				<td class="mytbCELL1" align="center"  name="preType">
+						复检报活
+				</td>
+				<td class="mytbCELL1" align="center">高低温控阀配止钉&nbsp;</td>
+				<td class="mytbCELL1" align="center">孙永进&nbsp;</td>
+				<td class="mytbCELL1" align="center">2013-07-22 14:24&nbsp;</td>
+				<td class="mytbCELL1" align="center">已配&nbsp;</td>
+				<td class="mytbCELL1" align="center">
+					陈轩<br>07-22 14:29&nbsp;
+				</td>
+				<td class="mytbCELL1" align="center">
+					孙永进<br>07-22 14:30&nbsp;
+				</td>
+				<td class="mytbCELL1" align="center">周雁飞<br>07-22 15:47&nbsp;</td>
+				<td class="mytbCELL1" align="center">刘云生<br>07-22 16:31&nbsp;</td>
+				<td class="mytbCELL1" align="center"><br>&nbsp;</td>
+				<td class="mytbCELL1" align="center"><br>&nbsp;</td>
+			</tr>
+		
+			<tr>
+				<td class="mytbCELL1" align="center"  name="preType">
+						复检报活
+				</td>
+				<td class="mytbCELL1" align="center">后通风机座子螺丝松&nbsp;</td>
+				<td class="mytbCELL1" align="center">孙永进&nbsp;</td>
+				<td class="mytbCELL1" align="center">2013-07-22 14:23&nbsp;</td>
+				<td class="mytbCELL1" align="center">紧固&nbsp;</td>
+				<td class="mytbCELL1" align="center">
+					陈轩<br>07-22 14:28&nbsp;
+				</td>
+				<td class="mytbCELL1" align="center">
+					孙永进<br>07-22 14:31&nbsp;
+				</td>
+				<td class="mytbCELL1" align="center">周雁飞<br>07-22 15:47&nbsp;</td>
+				<td class="mytbCELL1" align="center">刘云生<br>07-22 16:31&nbsp;</td>
+				<td class="mytbCELL1" align="center"><br>&nbsp;</td>
+				<td class="mytbCELL1" align="center"><br>&nbsp;</td>
+			</tr>
+		
+			<tr>
+				<td class="mytbCELL1" align="center"  name="preType">
+						复检报活
+				</td>
+				<td class="mytbCELL1" align="center">高温控制阀进出油管接头漏油&nbsp;</td>
+				<td class="mytbCELL1" align="center">孙永进&nbsp;</td>
+				<td class="mytbCELL1" align="center">2013-07-22 14:22&nbsp;</td>
+				<td class="mytbCELL1" align="center">紧固&nbsp;</td>
+				<td class="mytbCELL1" align="center">
+					陈轩<br>07-22 14:28&nbsp;
+				</td>
+				<td class="mytbCELL1" align="center">
+					孙永进<br>07-22 14:30&nbsp;
+				</td>
+				<td class="mytbCELL1" align="center">周雁飞<br>07-22 15:47&nbsp;</td>
+				<td class="mytbCELL1" align="center">刘云生<br>07-22 16:31&nbsp;</td>
+				<td class="mytbCELL1" align="center"><br>&nbsp;</td>
+				<td class="mytbCELL1" align="center"><br>&nbsp;</td>
+			</tr>
+		
+			<tr>
+				<td class="mytbCELL1" align="center"  name="preType">
+						复检报活
+				</td>
+				<td class="mytbCELL1" align="center">低温液压回油管与大热交换器出水法兰靠磨&nbsp;</td>
+				<td class="mytbCELL1" align="center">孙永进&nbsp;</td>
+				<td class="mytbCELL1" align="center">2013-07-22 14:22&nbsp;</td>
+				<td class="mytbCELL1" align="center">加毛毡&nbsp;</td>
+				<td class="mytbCELL1" align="center">
+					陈轩<br>07-22 14:29&nbsp;
+				</td>
+				<td class="mytbCELL1" align="center">
+					孙永进<br>07-22 14:30&nbsp;
+				</td>
+				<td class="mytbCELL1" align="center">周雁飞<br>07-22 15:47&nbsp;</td>
+				<td class="mytbCELL1" align="center">刘云生<br>07-22 16:31&nbsp;</td>
+				<td class="mytbCELL1" align="center"><br>&nbsp;</td>
+				<td class="mytbCELL1" align="center"><br>&nbsp;</td>
+			</tr>
+		
+			<tr>
+				<td class="mytbCELL1" align="center"  name="preType">
+						复检报活
+				</td>
+				<td class="mytbCELL1" align="center">预热锅炉进水管卡子脱焊&nbsp;</td>
+				<td class="mytbCELL1" align="center">孙永进&nbsp;</td>
+				<td class="mytbCELL1" align="center">2013-07-22 14:27&nbsp;</td>
+				<td class="mytbCELL1" align="center">烧焊&nbsp;</td>
+				<td class="mytbCELL1" align="center">
+					陈轩<br>07-22 14:29&nbsp;
+				</td>
+				<td class="mytbCELL1" align="center">
+					孙永进<br>07-22 14:30&nbsp;
+				</td>
+				<td class="mytbCELL1" align="center">周雁飞<br>07-22 15:47&nbsp;</td>
+				<td class="mytbCELL1" align="center">刘云生<br>07-22 16:31&nbsp;</td>
+				<td class="mytbCELL1" align="center"><br>&nbsp;</td>
+				<td class="mytbCELL1" align="center"><br>&nbsp;</td>
+			</tr>
+		
+	</table>
+	<!-- 报活项目 end-->
+	</td>
+	</tr>
+  </table>
+  </td>
+  </tr>
+  </table>
+  </div>
+</form>
+</body>
+</html>
+

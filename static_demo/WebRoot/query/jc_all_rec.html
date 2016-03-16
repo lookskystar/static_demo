@@ -1,0 +1,6481 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>小辅修流程检修记录
+</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link href="../css/test.css" type="text/css" rel="stylesheet" />
+<link href="../css/linkcss.css" type="text/css" rel="stylesheet" />
+<script type="text/javascript" src="../js/test.js"></script>
+<script type="text/javascript" src="../js/jquery-1.4.js"></script>
+<script type="text/javascript" src="../js/jquery.floatDiv.js"></script>
+<script type="text/javascript" src="../js/menu.js"></script>
+<script type="text/javascript" charset="UTF-8" src="../js/float.js"></script>
+<script type="text/javascript" charset="UTF-8" src="../js/print.js"></script>
+
+
+<script type="text/javascript"> 
+	//合并表格的单元格
+	function cellMege(table,col){
+		var lines=$('#'+table+' tr').size();
+		if(lines<=2) return ;
+		var v,l=0,current='',index=1;
+		for(var i=1;i<lines;i++){
+			var tr=$('#'+table+' tr').eq(i);
+			v=tr.find('td[name="'+col+'"]').html();
+			//alert(tr.find('td[name="secondname"]').size());
+			l++;
+			//alert(v);
+			if(v!=current||i==(lines-1)){//如果两个值不相同或者是最后一行
+				if(i==(lines-1)) l++;
+				if(l>1){//草果两行，合并
+					var td=$('#'+table+' tr').eq(index).find('td[name="'+col+'"]');
+					td.attr('rowspan',l);
+					for(var j=1;j<l;j++){
+						var td=$('#'+table+' tr').eq(index+j).find('td[name="'+col+'"]').remove();
+					}
+				}
+				l=0;//从新计数
+				current=v;
+				index=i;
+			}
+		}
+	}
+	$(function(){
+		cellMege('datatabel','firstname');
+		cellMege('datatabel','secondname');
+		cellMege('datatabel','fixitemname');
+		cellMege('datatabel2','preType');
+		$('#scoll_div_id').floatdiv("middletop");
+	});
+	
+	function query(num){
+	  if(num==1){
+	    window.location.href="../query/jc_all_rec.html";
+	  }else if(num==2){
+	    window.location.href="../query/jc_unit_rec.html";
+	  }
+	}
+</script>
+<style type="text/css"> 
+	#nav, #nav ul{
+	margin:0;
+	padding:0;
+	list-style-type:none;
+	list-style-position:outside;
+	position:relative;
+	line-height:1.5em; 
+	}
+	
+	#nav a{
+	display:block;
+	padding:0px 5px;
+	border:1px solid #333;
+	color:#fff;
+	font-weight:bold;
+	text-decoration:none;
+	background-color:#328aa4;
+	}
+	
+	#nav a:link{
+	background-color:#328aa4;
+	}
+	
+    /*#nav a:visited{
+	background-color:#fff;
+	color:blue;
+	}*/
+	
+	#nav a:hover{
+	background-color:#fff;
+	color:red;
+	}
+	
+	#nav li{
+	float:left;
+	position:relative;
+	}
+	
+	#nav ul {
+	position:absolute;
+	display:none;
+	width:12em;
+	top:1.5em;
+	}
+	
+	#nav li ul a{
+	width:12em;
+	height:auto;
+	float:left;
+	}
+	
+	#nav ul ul{
+	top:auto;
+	}	
+	
+	#nav li ul ul {
+	left:12em;
+	margin:0px 0 0 10px;
+	}
+	
+	#nav li:hover ul ul, #nav li:hover ul ul ul, #nav li:hover ul ul ul ul{
+	display:none;
+	}
+	#nav li:hover ul, #nav li li:hover ul, #nav li li li:hover ul, #nav li li li li:hover ul{
+	display:block;
+	}
+	
+	.mytbCELL1  {border-bottom:1px solid; border-left: 1px solid; border-right: 0px solid;  border-top: 0px  solid;  border-color:#000000}
+    .mytbCELL3  {border-bottom:1px solid; border-left: 1px solid; border-right: 1px solid;  border-top: 1px  solid;  border-color:#000000}
+</style>
+</head>
+ 
+<body bgcolor="#f8f7f7">
+<div id="scoll_div_id" style="background:#328aa4;width:864px;height:23px;">
+<ul id="nav">
+    <li><a href="javascript:void(0)" onclick="query(1)" >整车记录 </a></li>
+    <li><a href="javascript:void(0);" onclick="query(1)">◇机车部件</a>
+      <ul>
+            <li><a href="javascript:void(0);" onclick="query(2)">行安</a></li>
+            <li><a href="javascript:void(0);" onclick="query(2)">制动</a></li>
+            <li><a href="javascript:void(0);" onclick="query(2)">电子</a></li>
+            <li><a href="javascript:void(0);" onclick="query(2)">仪表</a></li>
+      </ul>
+    </li>
+    <li><a href="javascript:void(0);">◇检修班组</a>
+       <ul>
+            <li><a href="javascript:void(0);" onclick="query(2)">制动组</a></li>
+            <li><a href="javascript:void(0);" onclick="query(2)">电机组</a></li>
+            <li><a href="javascript:void(0);" onclick="query(2)">受电弓组</a></li>
+            <li><a href="javascript:void(0);" onclick="query(2)">仪表组</a></li>
+      </ul>
+    </li>
+    <li><a href="javascript:void(0);">◇机车试验</a>
+       <ul>
+            <li><a href="#">水阻试验</a></li>
+            <li><a href="#">高低压试验</a></li>
+            <li><a href="#">顶轮试验</a></li>
+            <li><a href="#">试运行试验</a></li>
+      </ul>
+    </li>
+    <li><a href="#">配件记录</a></li>
+    <li><a href="#">未完成记录 </a></li>
+    <li><a href="#">记录导出 </a></li>
+    <li><a href="#">◇打印 </a>
+        <ul>
+            <li><a href="#">直接打印</a></li>
+            <li><a href="#">打印设置</a></li>
+            <li><a href="#">打印预览</a></li>
+      </ul>
+    </li>
+</ul>
+</div>
+<br><br>
+<form id="form1" name="form1" method="post" action="">
+<div style="width:870px;margin-left:-435px;left:50%;position:absolute;" id="content2">
+<table width="864" border="0" align="center" cellspacing="0" vspace="0" style="padding-top:10px;">
+<tr>
+<td colspan="6" align="center" height="40"><h2 align="center"><font style="font-family:'隶书'">
+<b>小辅修流程&nbsp;&nbsp;
+检修记录
+</b></font></h2></td>
+<td  align="right"></td>
+</tr>
+<tr>
+<td width="163" align="right">机车号：</td>
+<td width="240">DF4  3148</td>
+<td width="55" align="left">修程：</td><td width="251">X3</td>
+<td width="140" align="left">检修日期：</td><td width="195" algin="left">2013-07-22 07:00</td>
+</tr>
+<tr><td colspan="6">
+<table width="864" border="0" align="center" cellspacing="0" vspace="0">
+ <tr>
+	<td align="center" colspan="3" class="mytbCELL3">
+	<table width="864" border="0" align="center" cellspacing="0" vspace="0" id="datatabel">
+		<tr style="line-height:40px;height: 40px;background-color: #328aa4;font-weight: bolder;">
+			<td class="mytbCELL1" align="center" style="white-space:nowrap;color:#ffffff;" width="10%">大部件</td>
+			<td class="mytbCELL1" align="center" style="white-space:nowrap;color:#ffffff;; min-width" width="15%">检修部件</td>
+			<td class="mytbCELL1" align="center" style="white-space:nowrap;color:#ffffff;" width="25%">检修项目</td>
+			<td class="mytbCELL1" align="center" style="white-space:nowrap;color:#ffffff;" width="10%">部位</td>
+			<td class="mytbCELL1" align="center" style="white-space:nowrap;color:#ffffff;" width="10%">检修情况</td>
+			<td class="mytbCELL1" align="center" style="white-space:nowrap;color:#ffffff;" width="6%">检修人</td>
+			<td class="mytbCELL1" align="center" style="white-space:nowrap;color:#ffffff;" width="6%">工长</td>
+			<td class="mytbCELL1" align="center" style="white-space:nowrap;color:#ffffff;" width="6%">质检员</td>
+			<td class="mytbCELL1" align="center" style="white-space:nowrap;color:#ffffff;" width="6%">技术员</td>
+			<td class="mytbCELL1" align="center" style="white-space:nowrap;color:#ffffff;" width="6%">交车工长</td>
+			<td class="mytbCELL1" align="center" style="white-space:nowrap;color:#ffffff;" width="6%">验收员</td>
+		</tr>
+		
+		<tr>
+			<td class="mytbCELL1" align="center" name="firstname">电机&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="secondname">主发电机&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="fixitemname">清扫@用压缩空气吹扫各电机内部，清除积灰，擦净滑环，瓷瓶。&nbsp;</td>
+			<td class="mytbCELL1" align="center">&nbsp;</td>
+			<td class="mytbCELL1" align="center">良好&nbsp;
+			   	  
+			</td>
+		      <td class="mytbCELL1" align="center">
+                            
+					
+					
+						徐光远<br>07-22 11:08
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+					
+						胡映强<br>07-22 13:59
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+                    
+					
+						周雁飞<br>07-22 15:44
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    
+					
+						尹源华<br>07-23 08:09
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+	                                  
+		</tr>
+		
+		<tr>
+			<td class="mytbCELL1" align="center" name="firstname">电机&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="secondname">主发电机&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="fixitemname">电机外部检查@检查各电机座、端盖无裂纹、变形，通风良好；轴承外观及端盖无过热、变色。&nbsp;</td>
+			<td class="mytbCELL1" align="center">&nbsp;</td>
+			<td class="mytbCELL1" align="center">良好&nbsp;
+			   	  
+			</td>
+		      <td class="mytbCELL1" align="center">
+                            
+					
+					
+						徐光远<br>07-22 11:08
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+					
+						胡映强<br>07-22 13:59
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+                    
+					
+						周雁飞<br>07-22 15:44
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    
+					
+						尹源华<br>07-23 08:09
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+	                                  
+		</tr>
+		
+		<tr>
+			<td class="mytbCELL1" align="center" name="firstname">电机&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="secondname">主发电机&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="fixitemname">电机外部检查@接线盒、盖齐全，完好，接线柱间无松动、滑扣及歪斜；主发大线卡子为防火卡子且紧固良好。&nbsp;</td>
+			<td class="mytbCELL1" align="center">&nbsp;</td>
+			<td class="mytbCELL1" align="center">良好&nbsp;
+			   	  
+			</td>
+		      <td class="mytbCELL1" align="center">
+                            
+					
+					
+						徐光远<br>07-22 11:08
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+					
+						胡映强<br>07-22 13:59
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+                    
+					
+						周雁飞<br>07-22 15:44
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    
+					
+						尹源华<br>07-23 08:09
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+	                                  
+		</tr>
+		
+		<tr>
+			<td class="mytbCELL1" align="center" name="firstname">电机&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="secondname">主发电机&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="fixitemname">电机内部检查@主发电机的磁极螺栓，风扇叶片无松动、脱落、滑环及碳刷的工作状态良好，其它可见部位状态是否良好，检查转子筋板是否裂纹。&nbsp;</td>
+			<td class="mytbCELL1" align="center">&nbsp;</td>
+			<td class="mytbCELL1" align="center">良好&nbsp;
+			   	  
+			</td>
+		      <td class="mytbCELL1" align="center">
+                            
+					
+					
+						徐光远<br>07-22 11:08
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+					
+						胡映强<br>07-22 13:59
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+                    
+					
+						周雁飞<br>07-22 15:44
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    
+					
+						尹源华<br>07-23 08:09
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+	                                  
+		</tr>
+		
+		<tr>
+			<td class="mytbCELL1" align="center" name="firstname">电机&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="secondname">主发电机&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="fixitemname">电机内部检查@电枢轴、油封前后支架、风扇、均衡块无裂纹、损伤、变色及松动；&nbsp;</td>
+			<td class="mytbCELL1" align="center">&nbsp;</td>
+			<td class="mytbCELL1" align="center">良好&nbsp;
+			   	  
+			</td>
+		      <td class="mytbCELL1" align="center">
+                            
+					
+					
+						徐光远<br>07-22 11:08
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+					
+						胡映强<br>07-22 13:59
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+                    
+					
+						周雁飞<br>07-22 15:44
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    
+					
+						尹源华<br>07-23 08:09
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+	                                  
+		</tr>
+		
+		<tr>
+			<td class="mytbCELL1" align="center" name="firstname">电机&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="secondname">主发电机&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="fixitemname">检查电机刷架，刷架圈锁紧及定位装置，刷盒连线，绝缘杆，刷盒及碳刷压指、弹簧、碳刷等状态。&nbsp;</td>
+			<td class="mytbCELL1" align="center">&nbsp;</td>
+			<td class="mytbCELL1" align="center">良好&nbsp;
+			   	  
+			</td>
+		      <td class="mytbCELL1" align="center">
+                            
+					
+					
+						徐光远<br>07-22 11:08
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+					
+						胡映强<br>07-22 13:59
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+                    
+					
+						周雁飞<br>07-22 15:44
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    
+					
+						尹源华<br>07-23 08:09
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+	                                  
+		</tr>
+		
+		<tr>
+			<td class="mytbCELL1" align="center" name="firstname">电机&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="secondname">主发电机&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="fixitemname">检查滑环表面状态。&nbsp;</td>
+			<td class="mytbCELL1" align="center">&nbsp;</td>
+			<td class="mytbCELL1" align="center">良好&nbsp;
+			   	  
+			</td>
+		      <td class="mytbCELL1" align="center">
+                            
+					
+					
+						徐光远<br>07-22 11:08
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+					
+						胡映强<br>07-22 13:59
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+                    
+					
+						周雁飞<br>07-22 15:44
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    
+					
+						尹源华<br>07-23 08:09
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+	                                  
+		</tr>
+		
+		<tr>
+			<td class="mytbCELL1" align="center" name="firstname">电机&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="secondname">主发电机&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="fixitemname">检查各电机碳刷状态，电机碳刷与刷盒间隙，应能上下自由移动，&nbsp;</td>
+			<td class="mytbCELL1" align="center">&nbsp;</td>
+			<td class="mytbCELL1" align="center">良好&nbsp;
+			   	  
+			</td>
+		      <td class="mytbCELL1" align="center">
+                            
+					
+					
+						徐光远<br>07-22 11:08
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+					
+						胡映强<br>07-22 13:59
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+                    
+					
+						周雁飞<br>07-22 15:44
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    
+					
+						尹源华<br>07-23 08:09
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+	                                  
+		</tr>
+		
+		<tr>
+			<td class="mytbCELL1" align="center" name="firstname">电机&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="secondname">主发电机&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="fixitemname">电机内部检查@电机刷盒、碳刷、压子、压子弹簧等互换件更换情况&nbsp;</td>
+			<td class="mytbCELL1" align="center">&nbsp;</td>
+			<td class="mytbCELL1" align="center">良好&nbsp;
+			   	  
+			</td>
+		      <td class="mytbCELL1" align="center">
+                            
+					
+					
+						徐光远<br>07-22 11:08
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+					
+						胡映强<br>07-22 13:59
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+                    
+					
+						周雁飞<br>07-22 15:44
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    
+					
+						尹源华<br>07-23 08:09
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    
+					
+						张森林<br>07-23 15:52
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    
+					
+						周斐<br>07-23 16:13
+						
+				
+                        </td>
+	                                  
+		</tr>
+		
+		<tr>
+			<td class="mytbCELL1" align="center" name="firstname">仪表&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="secondname">互换&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="fixitemname">检查互换到期风表、仪表、传感器。所有仪表有效期不足40天时更换。&nbsp;</td>
+			<td class="mytbCELL1" align="center">&nbsp;</td>
+			<td class="mytbCELL1" align="center">良好&nbsp;
+			   	  
+			</td>
+		      <td class="mytbCELL1" align="center">
+                            
+					
+					
+						郑国强<br>07-22 10:55
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+					
+						陈宗山<br>07-22 10:56
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+                    
+					
+						周雁飞<br>07-22 15:45
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    
+					
+						尹源华<br>07-23 08:09
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+	                                  
+		</tr>
+		
+		<tr>
+			<td class="mytbCELL1" align="center" name="firstname">仪表&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="secondname">仪表&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="fixitemname">检查机械间各风压表、油压表状态。&nbsp;</td>
+			<td class="mytbCELL1" align="center">&nbsp;</td>
+			<td class="mytbCELL1" align="center">良好&nbsp;
+			   	  
+			</td>
+		      <td class="mytbCELL1" align="center">
+                            
+					
+					
+						郑国强<br>07-22 10:55
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+					
+						陈宗山<br>07-22 10:56
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+                    
+					
+						周雁飞<br>07-22 15:45
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    
+					
+						尹源华<br>07-23 08:09
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+	                                  
+		</tr>
+		
+		<tr>
+			<td class="mytbCELL1" align="center" name="firstname">仪表&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="secondname">仪表&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="fixitemname">检查各仪表及DF接线状态并清除灰尘。&nbsp;</td>
+			<td class="mytbCELL1" align="center">II室&nbsp;</td>
+			<td class="mytbCELL1" align="center">良好&nbsp;
+			   	  
+			</td>
+		      <td class="mytbCELL1" align="center">
+                            
+					
+					
+						郑国强<br>07-22 10:55
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+					
+						陈宗山<br>07-22 10:56
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+                    
+					
+						周雁飞<br>07-22 15:45
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    
+					
+						尹源华<br>07-23 08:09
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+	                                  
+		</tr>
+		
+		<tr>
+			<td class="mytbCELL1" align="center" name="firstname">仪表&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="secondname">仪表&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="fixitemname">检查各仪表外壳及玻璃罩应完整、严密、清洁，刻度及字迹清晰。&nbsp;</td>
+			<td class="mytbCELL1" align="center">I室&nbsp;</td>
+			<td class="mytbCELL1" align="center">良好&nbsp;
+			   	  
+			</td>
+		      <td class="mytbCELL1" align="center">
+                            
+					
+					
+						郑国强<br>07-22 10:55
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+					
+						陈宗山<br>07-22 10:56
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+                    
+					
+						周雁飞<br>07-22 15:45
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    
+					
+						尹源华<br>07-23 08:09
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+	                                  
+		</tr>
+		
+		<tr>
+			<td class="mytbCELL1" align="center" name="firstname">仪表&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="secondname">仪表&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="fixitemname">检查核对风压表、电测压力表、电测温度表、电流表、电压表、转速表、速度传感器状态及各仪表接线状态&nbsp;</td>
+			<td class="mytbCELL1" align="center">I室&nbsp;</td>
+			<td class="mytbCELL1" align="center">良好&nbsp;
+			   	  
+			</td>
+		      <td class="mytbCELL1" align="center">
+                            
+					
+					
+						郑国强<br>07-22 10:55
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+					
+						陈宗山<br>07-22 10:56
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+                    
+					
+						周雁飞<br>07-22 15:45
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    
+					
+						尹源华<br>07-23 08:09
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+	                                  
+		</tr>
+		
+		<tr>
+			<td class="mytbCELL1" align="center" name="firstname">仪表&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="secondname">仪表&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="fixitemname">检查各仪表及DF接线状态并清除灰尘。&nbsp;</td>
+			<td class="mytbCELL1" align="center">I室&nbsp;</td>
+			<td class="mytbCELL1" align="center">良好&nbsp;
+			   	  
+			</td>
+		      <td class="mytbCELL1" align="center">
+                            
+					
+					
+						郑国强<br>07-22 10:55
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+					
+						陈宗山<br>07-22 10:56
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+                    
+					
+						周雁飞<br>07-22 15:45
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    
+					
+						尹源华<br>07-23 08:09
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+	                                  
+		</tr>
+		
+		<tr>
+			<td class="mytbCELL1" align="center" name="firstname">仪表&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="secondname">仪表&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="fixitemname">检查核对风压表、电测压力表、电测温度表、电流表、电压表、转速表、速度传感器状态及各仪表接线状态&nbsp;</td>
+			<td class="mytbCELL1" align="center">II室&nbsp;</td>
+			<td class="mytbCELL1" align="center">良好&nbsp;
+			   	  
+			</td>
+		      <td class="mytbCELL1" align="center">
+                            
+					
+					
+						郑国强<br>07-22 10:55
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+					
+						陈宗山<br>07-22 10:56
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+                    
+					
+						周雁飞<br>07-22 15:45
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    
+					
+						尹源华<br>07-23 08:09
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+	                                  
+		</tr>
+		
+		<tr>
+			<td class="mytbCELL1" align="center" name="firstname">仪表&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="secondname">仪表&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="fixitemname">检查各仪表外壳及玻璃罩应完整、严密、清洁，刻度及字迹清晰。&nbsp;</td>
+			<td class="mytbCELL1" align="center">II室&nbsp;</td>
+			<td class="mytbCELL1" align="center">良好&nbsp;
+			   	  
+			</td>
+		      <td class="mytbCELL1" align="center">
+                            
+					
+					
+						郑国强<br>07-22 10:55
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+					
+						陈宗山<br>07-22 10:56
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+                    
+					
+						周雁飞<br>07-22 15:45
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    
+					
+						尹源华<br>07-23 08:09
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+	                                  
+		</tr>
+		
+		<tr>
+			<td class="mytbCELL1" align="center" name="firstname">仪表&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="secondname">仪表&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="fixitemname">检查校对机械转速表、测速发电机及其接线状态&nbsp;</td>
+			<td class="mytbCELL1" align="center">&nbsp;</td>
+			<td class="mytbCELL1" align="center">良好&nbsp;
+			   	  
+			</td>
+		      <td class="mytbCELL1" align="center">
+                            
+					
+					
+						郑国强<br>07-22 10:55
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+					
+						陈宗山<br>07-22 10:56
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+                    
+					
+						周雁飞<br>07-22 15:45
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    
+					
+						尹源华<br>07-23 08:09
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+	                                  
+		</tr>
+		
+		<tr>
+			<td class="mytbCELL1" align="center" name="firstname">仪表&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="secondname">仪表油管路&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="fixitemname">检查各传感器、风压表、油压继电器油接头无松动、泄漏、抗劲，油管无接磨、严重磨损、扭曲，油管卡子布置合理，卡子安装牢固、作用良好。&nbsp;</td>
+			<td class="mytbCELL1" align="center">&nbsp;</td>
+			<td class="mytbCELL1" align="center">良好&nbsp;
+			   	  
+			</td>
+		      <td class="mytbCELL1" align="center">
+                            
+					
+					
+						郑国强<br>07-22 10:55
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+					
+						陈宗山<br>07-22 10:56
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+                    
+					
+						周雁飞<br>07-22 15:45
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    
+					
+						尹源华<br>07-23 08:09
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+	                                  
+		</tr>
+		
+		<tr>
+			<td class="mytbCELL1" align="center" name="firstname">仪表&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="secondname">仪表油管路&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="fixitemname">检查各传感器、油压继电器油管接头无松动、泄漏、抗劲，油管无接磨、严重磨损、扭曲，油管卡子布置合理，卡子安装牢固、作用良好。&nbsp;</td>
+			<td class="mytbCELL1" align="center">&nbsp;</td>
+			<td class="mytbCELL1" align="center">良好&nbsp;
+			   	  
+			</td>
+		      <td class="mytbCELL1" align="center">
+                            
+					
+					
+						郑国强<br>07-22 10:55
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+					
+						陈宗山<br>07-22 10:56
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+                    
+					
+						周雁飞<br>07-22 15:45
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    
+					
+						尹源华<br>07-23 08:09
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+	                                  
+		</tr>
+		
+		<tr>
+			<td class="mytbCELL1" align="center" name="firstname">行安&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="secondname">光电传感器&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="fixitemname">光电传感器绝缘检查&nbsp;</td>
+			<td class="mytbCELL1" align="center">&nbsp;</td>
+			<td class="mytbCELL1" align="center">没有启用&nbsp;
+			   	  
+			</td>
+		      <td class="mytbCELL1" align="center">
+                            
+					
+					
+						谭建慈<br>07-22 10:37
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+					
+						吴伟<br>07-22 10:44
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+                    
+					
+						周雁飞<br>07-22 15:45
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    
+					
+						尹源华<br>07-23 08:09
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+	                                  
+		</tr>
+		
+		<tr>
+			<td class="mytbCELL1" align="center" name="firstname">行安&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="secondname">光电传感器&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="fixitemname">光电传感器换新&nbsp;</td>
+			<td class="mytbCELL1" align="center">&nbsp;</td>
+			<td class="mytbCELL1" align="center">没有启用&nbsp;
+			   	  
+			</td>
+		      <td class="mytbCELL1" align="center">
+                            
+					
+					
+						谭建慈<br>07-22 10:37
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+					
+						吴伟<br>07-22 10:44
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+                    
+					
+						周雁飞<br>07-22 15:45
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    
+					
+						尹源华<br>07-23 08:09
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+	                                  
+		</tr>
+		
+		<tr>
+			<td class="mytbCELL1" align="center" name="firstname">行安&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="secondname">光电传感器&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="fixitemname">车轴探伤拆光电传感器&nbsp;</td>
+			<td class="mytbCELL1" align="center">&nbsp;</td>
+			<td class="mytbCELL1" align="center">没有启用&nbsp;
+			   	  
+			</td>
+		      <td class="mytbCELL1" align="center">
+                            
+					
+					
+						谭建慈<br>07-22 10:37
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+					
+						吴伟<br>07-22 10:44
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+                    
+					
+						周雁飞<br>07-22 15:45
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    
+					
+						尹源华<br>07-23 08:09
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+	                                  
+		</tr>
+		
+		<tr>
+			<td class="mytbCELL1" align="center" name="firstname">行安&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="secondname">光电传感器&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="fixitemname">测速电机安装牢固，插头外观及状态检查&nbsp;</td>
+			<td class="mytbCELL1" align="center">&nbsp;</td>
+			<td class="mytbCELL1" align="center">没有启用&nbsp;
+			   	  
+			</td>
+		      <td class="mytbCELL1" align="center">
+                            
+					
+					
+						谭建慈<br>07-22 10:37
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+					
+						吴伟<br>07-22 10:44
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+                    
+					
+						周雁飞<br>07-22 15:45
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    
+					
+						尹源华<br>07-23 08:09
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+	                                  
+		</tr>
+		
+		<tr>
+			<td class="mytbCELL1" align="center" name="firstname">柴油机&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="secondname">其它&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="fixitemname">检查和更换围墙盖、凸轮轴箱盖、曲轴箱盖的橡胶密封圈，更换增压器不良帆布筒。（不得渗漏）&nbsp;</td>
+			<td class="mytbCELL1" align="center">&nbsp;</td>
+			<td class="mytbCELL1" align="center">检修良好&nbsp;
+			   	  
+			</td>
+		      <td class="mytbCELL1" align="center">
+                            
+					
+					
+						张自骞<br>07-22 16:25
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+					
+						张应忠<br>07-22 16:28
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+                    
+					
+						刘超甫<br>07-23 15:59
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    
+					
+						王永华<br>07-23 07:01
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+	                                  
+		</tr>
+		
+		<tr>
+			<td class="mytbCELL1" align="center" name="firstname">柴油机&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="secondname">其它&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="fixitemname">检查呼吸管套良好，卡码无松动&nbsp;</td>
+			<td class="mytbCELL1" align="center">&nbsp;</td>
+			<td class="mytbCELL1" align="center">检修良好&nbsp;
+			   	  
+			</td>
+		      <td class="mytbCELL1" align="center">
+                            
+					
+					
+						张自骞<br>07-22 16:25
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+					
+						张应忠<br>07-22 16:28
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+                    
+					
+						刘超甫<br>07-23 15:59
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    
+					
+						王永华<br>07-23 07:01
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+	                                  
+		</tr>
+		
+		<tr>
+			<td class="mytbCELL1" align="center" name="firstname">柴油机&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="secondname">其它&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="fixitemname">检查燃油总管、各胶管状态应良好，胶管老化、发胀等不良时应更换；检查胶管应有生产日期标牌，否则更换&nbsp;</td>
+			<td class="mytbCELL1" align="center">&nbsp;</td>
+			<td class="mytbCELL1" align="center">检修良好&nbsp;
+			   	  
+			</td>
+		      <td class="mytbCELL1" align="center">
+                            
+					
+					
+						张自骞<br>07-22 16:25
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+					
+						张应忠<br>07-22 16:28
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+                    
+					
+						刘超甫<br>07-23 15:59
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    
+					
+						王永华<br>07-23 07:01
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+	                                  
+		</tr>
+		
+		<tr>
+			<td class="mytbCELL1" align="center" name="firstname">柴油机&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="secondname">其它&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="fixitemname">检查进、出水支管状态，有泄漏时，更换不良件。&nbsp;</td>
+			<td class="mytbCELL1" align="center">&nbsp;</td>
+			<td class="mytbCELL1" align="center">检修良好&nbsp;
+			   	  
+			</td>
+		      <td class="mytbCELL1" align="center">
+                            
+					
+					
+						张自骞<br>07-22 16:25
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+					
+						张应忠<br>07-22 16:28
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+                    
+					
+						刘超甫<br>07-23 15:59
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    
+					
+						王永华<br>07-23 07:01
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+	                                  
+		</tr>
+		
+		<tr>
+			<td class="mytbCELL1" align="center" name="firstname">柴油机&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="secondname">其它&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="fixitemname">检查各油水管路状态应良好，不得相碰，卡码应牢固齐全&nbsp;</td>
+			<td class="mytbCELL1" align="center">&nbsp;</td>
+			<td class="mytbCELL1" align="center">检修良好&nbsp;
+			   	  
+			</td>
+		      <td class="mytbCELL1" align="center">
+                            
+					
+					
+						张自骞<br>07-22 16:25
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+					
+						张应忠<br>07-22 16:28
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+                    
+					
+						刘超甫<br>07-23 15:59
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    
+					
+						王永华<br>07-23 07:01
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+	                                  
+		</tr>
+		
+		<tr>
+			<td class="mytbCELL1" align="center" name="firstname">柴油机&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="secondname">其它&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="fixitemname">检查连接箱内弹性联轴节状态应良好&nbsp;</td>
+			<td class="mytbCELL1" align="center">&nbsp;</td>
+			<td class="mytbCELL1" align="center">检修良好&nbsp;
+			   	  
+			</td>
+		      <td class="mytbCELL1" align="center">
+                            
+					
+					
+						张自骞<br>07-22 16:25
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+					
+						张应忠<br>07-22 16:28
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+                    
+					
+						刘超甫<br>07-23 15:59
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    
+					
+						王永华<br>07-23 07:01
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+	                                  
+		</tr>
+		
+		<tr>
+			<td class="mytbCELL1" align="center" name="firstname">柴油机&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="secondname">其它&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="fixitemname">检查差示管应良好畅通，不得弯扭和堵塞&nbsp;</td>
+			<td class="mytbCELL1" align="center">&nbsp;</td>
+			<td class="mytbCELL1" align="center">检修良好&nbsp;
+			   	  
+			</td>
+		      <td class="mytbCELL1" align="center">
+                            
+					
+					
+						张自骞<br>07-22 16:25
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+					
+						张应忠<br>07-22 16:28
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+                    
+					
+						刘超甫<br>07-23 15:59
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    
+					
+						王永华<br>07-23 07:01
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+	                                  
+		</tr>
+		
+		<tr>
+			<td class="mytbCELL1" align="center" name="firstname">传动&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="secondname">其它&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="fixitemname">检查各梯子、扶手、顶棚大盖安装螺丝，安装牢固，焊缝无裂纹。&nbsp;</td>
+			<td class="mytbCELL1" align="center">&nbsp;</td>
+			<td class="mytbCELL1" align="center">良好&nbsp;
+			   	  
+			</td>
+		      <td class="mytbCELL1" align="center">
+                            
+					
+					
+						陈轩<br>07-22 14:32
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+					
+						孙永进<br>07-22 14:33
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+                    
+					
+						周雁飞<br>07-22 15:46
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    
+					
+						刘云生<br>07-22 16:30
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+	                                  
+		</tr>
+		
+		<tr>
+			<td class="mytbCELL1" align="center" name="firstname">传动&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="secondname">其它&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="fixitemname">检查修复地板、门窗、座椅、门锁、把手&nbsp;</td>
+			<td class="mytbCELL1" align="center">&nbsp;</td>
+			<td class="mytbCELL1" align="center">良好&nbsp;
+			   	  
+			</td>
+		      <td class="mytbCELL1" align="center">
+                            
+					
+					
+						陈轩<br>07-22 14:32
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+					
+						孙永进<br>07-22 14:33
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+                    
+					
+						周雁飞<br>07-22 15:46
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    
+					
+						刘云生<br>07-22 16:30
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+	                                  
+		</tr>
+		
+		<tr>
+			<td class="mytbCELL1" align="center" name="firstname">制动&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="secondname">其它&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="fixitemname">检查低压风缸减压阀，整定值符合要求。&nbsp;</td>
+			<td class="mytbCELL1" align="center">II室&nbsp;</td>
+			<td class="mytbCELL1" align="center">良好&nbsp;
+			   	  
+			</td>
+		      <td class="mytbCELL1" align="center">
+                            
+					
+					
+						郭晓斌<br>07-22 17:33
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+					
+						许陆<br>07-23 11:33
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+                    
+					
+						刘超甫<br>07-23 15:55
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    
+					
+						李元<br>07-23 15:30
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+	                                  
+		</tr>
+		
+		<tr>
+			<td class="mytbCELL1" align="center" name="firstname">制动&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="secondname">其它&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="fixitemname">检查不良的风笛，雨刷&nbsp;</td>
+			<td class="mytbCELL1" align="center">&nbsp;</td>
+			<td class="mytbCELL1" align="center">良好&nbsp;
+			   	  
+			</td>
+		      <td class="mytbCELL1" align="center">
+                            
+					
+					
+						郭晓斌<br>07-22 17:33
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+					
+						许陆<br>07-23 11:33
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+                    
+					
+						刘超甫<br>07-23 15:55
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    
+					
+						李元<br>07-23 15:30
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+	                                  
+		</tr>
+		
+		<tr>
+			<td class="mytbCELL1" align="center" name="firstname">制动&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="secondname">其它&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="fixitemname">低压管路各阀接头无漏泄&nbsp;</td>
+			<td class="mytbCELL1" align="center">&nbsp;</td>
+			<td class="mytbCELL1" align="center">良好&nbsp;
+			   	  
+			</td>
+		      <td class="mytbCELL1" align="center">
+                            
+					
+					
+						郭晓斌<br>07-22 17:33
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+					
+						许陆<br>07-23 11:33
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+                    
+					
+						刘超甫<br>07-23 15:55
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    
+					
+						李元<br>07-23 15:30
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+	                                  
+		</tr>
+		
+		<tr>
+			<td class="mytbCELL1" align="center" name="firstname">制动&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="secondname">其它&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="fixitemname">撒砂阀及撤砂装置检查&nbsp;</td>
+			<td class="mytbCELL1" align="center">&nbsp;</td>
+			<td class="mytbCELL1" align="center">良好&nbsp;
+			   	  
+			</td>
+		      <td class="mytbCELL1" align="center">
+                            
+					
+					
+						郭晓斌<br>07-22 17:33
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+					
+						许陆<br>07-23 11:33
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+                    
+					
+						刘超甫<br>07-23 15:55
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    
+					
+						李元<br>07-23 15:30
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+	                                  
+		</tr>
+		
+		<tr>
+			<td class="mytbCELL1" align="center" name="firstname">制动&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="secondname">其它&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="fixitemname">制动缸软管、撒砂软管管卡齐全，固定牢固，其软管不得与其它部件碰触，外观无裂损、老化变形、腐蚀及磨损现象&nbsp;</td>
+			<td class="mytbCELL1" align="center">&nbsp;</td>
+			<td class="mytbCELL1" align="center">良好&nbsp;
+			   	  
+			</td>
+		      <td class="mytbCELL1" align="center">
+                            
+					
+					
+						郭晓斌<br>07-22 17:33
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+					
+						许陆<br>07-23 11:33
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+                    
+					
+						刘超甫<br>07-23 15:55
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    
+					
+						李元<br>07-23 15:30
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+	                                  
+		</tr>
+		
+		<tr>
+			<td class="mytbCELL1" align="center" name="firstname">制动&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="secondname">其它&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="fixitemname">检查电动放风阀的电控阀、缩孔&nbsp;</td>
+			<td class="mytbCELL1" align="center">&nbsp;</td>
+			<td class="mytbCELL1" align="center">良好&nbsp;
+			   	  
+			</td>
+		      <td class="mytbCELL1" align="center">
+                            
+					
+					
+						郭晓斌<br>07-22 17:33
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+					
+						许陆<br>07-23 11:33
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+                    
+					
+						刘超甫<br>07-23 15:55
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    
+					
+						李元<br>07-23 15:30
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    
+					
+						张森林<br>07-23 15:52
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+	                                  
+		</tr>
+		
+		<tr>
+			<td class="mytbCELL1" align="center" name="firstname">传动&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="secondname">冷却系统&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="fixitemname">检查水泵及冷却系统各水阀接头及垫应良好无泄漏，卡子螺栓应紧固无松动，检查水泵密封性能。&nbsp;</td>
+			<td class="mytbCELL1" align="center">&nbsp;</td>
+			<td class="mytbCELL1" align="center">良好&nbsp;
+			   	  
+			</td>
+		      <td class="mytbCELL1" align="center">
+                            
+					
+					
+						陈轩<br>07-22 14:32
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+					
+						孙永进<br>07-22 14:33
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+                    
+					
+						周雁飞<br>07-22 15:46
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    
+					
+						刘云生<br>07-22 16:30
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+	                                  
+		</tr>
+		
+		<tr>
+			<td class="mytbCELL1" align="center" name="firstname">传动&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="secondname">冷却系统&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="fixitemname">每次清扫单节表面。检查各冷却单节有无漏水现象，漏水者应修复或更换，倒片面积超过10％要梳片。&nbsp;</td>
+			<td class="mytbCELL1" align="center">&nbsp;</td>
+			<td class="mytbCELL1" align="center">良好&nbsp;
+			   	  
+			</td>
+		      <td class="mytbCELL1" align="center">
+                            
+					
+					
+						陈轩<br>07-22 14:32
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+					
+						孙永进<br>07-22 14:33
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+                    
+					
+						周雁飞<br>07-22 15:46
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    
+					
+						刘云生<br>07-22 16:30
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+	                                  
+		</tr>
+		
+		<tr>
+			<td class="mytbCELL1" align="center" name="firstname">传动&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="secondname">冷却系统&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="fixitemname">检查各百叶窗动作是否灵活，传动杆销子是否完好。&nbsp;</td>
+			<td class="mytbCELL1" align="center">&nbsp;</td>
+			<td class="mytbCELL1" align="center">良好&nbsp;
+			   	  
+			</td>
+		      <td class="mytbCELL1" align="center">
+                            
+					
+					
+						陈轩<br>07-22 14:32
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+					
+						孙永进<br>07-22 14:33
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+                    
+					
+						周雁飞<br>07-22 15:46
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    
+					
+						刘云生<br>07-22 16:30
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+	                                  
+		</tr>
+		
+		<tr>
+			<td class="mytbCELL1" align="center" name="firstname">传动&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="secondname">冷却系统&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="fixitemname">检查冷却系统各管、各接头、逆止阀状态无泄漏，胶管老化发胀者应更换。&nbsp;</td>
+			<td class="mytbCELL1" align="center">&nbsp;</td>
+			<td class="mytbCELL1" align="center">良好&nbsp;
+			   	  
+			</td>
+		      <td class="mytbCELL1" align="center">
+                            
+					
+					
+						陈轩<br>07-22 14:32
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+					
+						孙永进<br>07-22 14:33
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+                    
+					
+						周雁飞<br>07-22 15:46
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    
+					
+						刘云生<br>07-22 16:30
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+	                                  
+		</tr>
+		
+		<tr>
+			<td class="mytbCELL1" align="center" name="firstname">传动&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="secondname">冷却系统&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="fixitemname">检查冷却风扇叶片上、下有无裂纹、变形、叶轮是否松旷。&nbsp;</td>
+			<td class="mytbCELL1" align="center">&nbsp;</td>
+			<td class="mytbCELL1" align="center">良好&nbsp;
+			   	  
+			</td>
+		      <td class="mytbCELL1" align="center">
+                            
+					
+					
+						陈轩<br>07-22 14:32
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+					
+						孙永进<br>07-22 14:33
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+                    
+					
+						周雁飞<br>07-22 15:46
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    
+					
+						刘云生<br>07-22 16:30
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+	                                  
+		</tr>
+		
+		<tr>
+			<td class="mytbCELL1" align="center" name="firstname">传动&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="secondname">冷却系统&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="fixitemname">热风机检查各管路状态是否良好。四月份后要排干净管路水份。防寒期检查试验各阀，泄漏者应更换。(10月份至隔年3月15日每次小修要进行检查修理，并检查各排水阀，胶管是否良好，管路是否腐蚀)&nbsp;</td>
+			<td class="mytbCELL1" align="center">&nbsp;</td>
+			<td class="mytbCELL1" align="center">良好&nbsp;
+			   	  
+			</td>
+		      <td class="mytbCELL1" align="center">
+                            
+					
+					
+						陈轩<br>07-22 14:32
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+					
+						孙永进<br>07-22 14:33
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+                    
+					
+						周雁飞<br>07-22 15:46
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    
+					
+						刘云生<br>07-22 16:30
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+	                                  
+		</tr>
+		
+		<tr>
+			<td class="mytbCELL1" align="center" name="firstname">柴油机&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="secondname">凸轮轴箱&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="fixitemname">撬动各滚轮，检查有无卡死、松动、滚轮表面有无剥离、拉伤。发现有铜屑时应拆检推杆体、泵下体检查滚轮衬套。&nbsp;</td>
+			<td class="mytbCELL1" align="center">&nbsp;</td>
+			<td class="mytbCELL1" align="center">检修良好&nbsp;
+			   	  
+			</td>
+		      <td class="mytbCELL1" align="center">
+                            
+					
+					
+						张自骞<br>07-22 16:25
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+					
+						张应忠<br>07-22 16:28
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+                    
+					
+						刘超甫<br>07-23 15:59
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    
+					
+						王永华<br>07-23 07:01
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+	                                  
+		</tr>
+		
+		<tr>
+			<td class="mytbCELL1" align="center" name="firstname">柴油机&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="secondname">凸轮轴箱&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="fixitemname">检查各回油管有无断裂，接头是否松动。各回油管软管是否都接入了回油总管，没有软管的要求配好软管。&nbsp;</td>
+			<td class="mytbCELL1" align="center">&nbsp;</td>
+			<td class="mytbCELL1" align="center">检修良好&nbsp;
+			   	  
+			</td>
+		      <td class="mytbCELL1" align="center">
+                            
+					
+					
+						张自骞<br>07-22 16:25
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+					
+						张应忠<br>07-22 16:28
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+                    
+					
+						刘超甫<br>07-23 15:59
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    
+					
+						王永华<br>07-23 07:01
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+	                                  
+		</tr>
+		
+		<tr>
+			<td class="mytbCELL1" align="center" name="firstname">柴油机&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="secondname">凸轮轴箱&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="fixitemname">检查凸轮轴瓦，定位螺钉应完整，无松动，防缓齐全，推动轴瓦(上半瓦)应能轴向移动。。&nbsp;</td>
+			<td class="mytbCELL1" align="center">&nbsp;</td>
+			<td class="mytbCELL1" align="center">检修良好&nbsp;
+			   	  
+			</td>
+		      <td class="mytbCELL1" align="center">
+                            
+					
+					
+						张自骞<br>07-22 16:25
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+					
+						张应忠<br>07-22 16:28
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+                    
+					
+						刘超甫<br>07-23 15:59
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    
+					
+						王永华<br>07-23 07:01
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+	                                  
+		</tr>
+		
+		<tr>
+			<td class="mytbCELL1" align="center" name="firstname">柴油机&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="secondname">凸轮轴箱&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="fixitemname">盘车检查各缸进、排气和供油凸轮状态，凸轮型面有拉伤、剥离时应予以处理。&nbsp;</td>
+			<td class="mytbCELL1" align="center">&nbsp;</td>
+			<td class="mytbCELL1" align="center">检修良好&nbsp;
+			   	  
+			</td>
+		      <td class="mytbCELL1" align="center">
+                            
+					
+					
+						张自骞<br>07-22 16:25
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+					
+						张应忠<br>07-22 16:28
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+                    
+					
+						刘超甫<br>07-23 15:59
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    
+					
+						王永华<br>07-23 07:01
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+	                                  
+		</tr>
+		
+		<tr>
+			<td class="mytbCELL1" align="center" name="firstname">柴油机&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="secondname">凸轮轴箱&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="fixitemname">撬动各滚轮，检查有无卡死、松动、滚轮表面有无剥离、拉伤。发现有铜屑时应拆检推杆体、泵下体检查滚轮衬套。&nbsp;</td>
+			<td class="mytbCELL1" align="center">&nbsp;</td>
+			<td class="mytbCELL1" align="center">检修良好&nbsp;
+			   	  
+			</td>
+		      <td class="mytbCELL1" align="center">
+                            
+					
+					
+						张自骞<br>07-22 16:25
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+					
+						张应忠<br>07-22 16:28
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+                    
+					
+						刘超甫<br>07-23 15:59
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    
+					
+						王永华<br>07-23 07:01
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+	                                  
+		</tr>
+		
+		<tr>
+			<td class="mytbCELL1" align="center" name="firstname">柴油机&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="secondname">凸轮轴箱&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="fixitemname">检查各回油管有无断裂，接头是否松动。各回油管软管是否都接入了回油总管，没有软管的要求配好软管。&nbsp;</td>
+			<td class="mytbCELL1" align="center">&nbsp;</td>
+			<td class="mytbCELL1" align="center">检修良好&nbsp;
+			   	  
+			</td>
+		      <td class="mytbCELL1" align="center">
+                            
+					
+					
+						张自骞<br>07-22 16:25
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+					
+						张应忠<br>07-22 16:28
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+                    
+					
+						刘超甫<br>07-23 15:59
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    
+					
+						王永华<br>07-23 07:01
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+	                                  
+		</tr>
+		
+		<tr>
+			<td class="mytbCELL1" align="center" name="firstname">柴油机&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="secondname">凸轮轴箱&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="fixitemname">检查凸轮轴瓦，定位螺钉应完整，无松动，防缓齐全，推动轴瓦(上半瓦)应能轴向移动。。&nbsp;</td>
+			<td class="mytbCELL1" align="center">&nbsp;</td>
+			<td class="mytbCELL1" align="center">检修良好&nbsp;
+			   	  
+			</td>
+		      <td class="mytbCELL1" align="center">
+                            
+					
+					
+						张自骞<br>07-22 16:25
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+					
+						张应忠<br>07-22 16:28
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+                    
+					
+						刘超甫<br>07-23 15:59
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    
+					
+						王永华<br>07-23 07:01
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+	                                  
+		</tr>
+		
+		<tr>
+			<td class="mytbCELL1" align="center" name="firstname">柴油机&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="secondname">凸轮轴箱&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="fixitemname">盘车检查各缸进、排气和供油凸轮状态，凸轮型面有拉伤、剥离时应予以处理。&nbsp;</td>
+			<td class="mytbCELL1" align="center">&nbsp;</td>
+			<td class="mytbCELL1" align="center">检修良好&nbsp;
+			   	  
+			</td>
+		      <td class="mytbCELL1" align="center">
+                            
+					
+					
+						张自骞<br>07-22 16:25
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+					
+						张应忠<br>07-22 16:28
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+                    
+					
+						刘超甫<br>07-23 15:59
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    
+					
+						王永华<br>07-23 07:01
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+	                                  
+		</tr>
+		
+		<tr>
+			<td class="mytbCELL1" align="center" name="firstname">制动&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="secondname">制动系统及阀类&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="fixitemname">主阀和作用阀管道滤尘器清洗&nbsp;</td>
+			<td class="mytbCELL1" align="center">&nbsp;</td>
+			<td class="mytbCELL1" align="center">良好&nbsp;
+			   	  
+			</td>
+		      <td class="mytbCELL1" align="center">
+                            
+					
+					
+						郭晓斌<br>07-22 17:33
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+					
+						许陆<br>07-23 11:33
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+                    
+					
+						刘超甫<br>07-23 15:55
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    
+					
+						李元<br>07-23 15:30
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+	                                  
+		</tr>
+		
+		<tr>
+			<td class="mytbCELL1" align="center" name="firstname">制动&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="secondname">制动系统及阀类&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="fixitemname">制动机进行综合试验，各项性能作用良好，符合机车运用要求。&nbsp;</td>
+			<td class="mytbCELL1" align="center">I&nbsp;</td>
+			<td class="mytbCELL1" align="center">良好&nbsp;
+			   	  
+			</td>
+		      <td class="mytbCELL1" align="center">
+                            
+					
+					
+						郭晓斌<br>07-22 17:33
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+					
+						许陆<br>07-23 11:33
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+                    
+					
+						刘超甫<br>07-23 15:55
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    
+					
+						李元<br>07-23 15:30
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+	                                  
+		</tr>
+		
+		<tr>
+			<td class="mytbCELL1" align="center" name="firstname">制动&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="secondname">制动系统及阀类&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="fixitemname">制动、供风软管：软管无老化、变形、裂纹、鼓包、磨损。联接器状态良好，卡子、胶圈帽齐全。折角塞门安全角度符合要求。(2)检验牌拴挂牢固，检验日期清晰、有效期不足40天时更换。&nbsp;</td>
+			<td class="mytbCELL1" align="center">II&nbsp;</td>
+			<td class="mytbCELL1" align="center">良好&nbsp;
+			   	  
+			</td>
+		      <td class="mytbCELL1" align="center">
+                            
+					
+					
+						郭晓斌<br>07-22 17:33
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+					
+						许陆<br>07-23 11:33
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+                    
+					
+						刘超甫<br>07-23 15:55
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    
+					
+						李元<br>07-23 15:30
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+	                                  
+		</tr>
+		
+		<tr>
+			<td class="mytbCELL1" align="center" name="firstname">制动&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="secondname">制动系统及阀类&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="fixitemname">制动机进行综合试验，各项性能作用良好，符合机车运用要求。&nbsp;</td>
+			<td class="mytbCELL1" align="center">II&nbsp;</td>
+			<td class="mytbCELL1" align="center">良好&nbsp;
+			   	  
+			</td>
+		      <td class="mytbCELL1" align="center">
+                            
+					
+					
+						郭晓斌<br>07-22 17:33
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+					
+						许陆<br>07-23 11:33
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+                    
+					
+						刘超甫<br>07-23 15:55
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    
+					
+						李元<br>07-23 15:30
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    
+					
+						张森林<br>07-23 15:52
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+	                                  
+		</tr>
+		
+		<tr>
+			<td class="mytbCELL1" align="center" name="firstname">制动&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="secondname">制动系统及阀类&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="fixitemname">检查逆止阀、安全阀、电磁放风阀及检查各止阀、折角塞门、接头、管系不得泄漏，风管腐蚀严重应更换。&nbsp;</td>
+			<td class="mytbCELL1" align="center">&nbsp;</td>
+			<td class="mytbCELL1" align="center">良好&nbsp;
+			   	  
+			</td>
+		      <td class="mytbCELL1" align="center">
+                            
+					
+					
+						郭晓斌<br>07-22 17:33
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+					
+						许陆<br>07-23 11:33
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+                    
+					
+						刘超甫<br>07-23 15:55
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    
+					
+						李元<br>07-23 15:30
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+	                                  
+		</tr>
+		
+		<tr>
+			<td class="mytbCELL1" align="center" name="firstname">制动&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="secondname">制动系统及阀类&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="fixitemname">互换分配阀、作用阀。&nbsp;</td>
+			<td class="mytbCELL1" align="center">&nbsp;</td>
+			<td class="mytbCELL1" align="center">良好&nbsp;
+			   	  
+			</td>
+		      <td class="mytbCELL1" align="center">
+                            
+					
+					
+						郭晓斌<br>07-22 17:33
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+					
+						许陆<br>07-23 11:33
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+                    
+					
+						刘超甫<br>07-23 15:55
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    
+					
+						李元<br>07-23 15:30
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+	                                  
+		</tr>
+		
+		<tr>
+			<td class="mytbCELL1" align="center" name="firstname">制动&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="secondname">制动系统及阀类&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="fixitemname">制动、供风软管：软管无老化、变形、裂纹、鼓包、磨损。联接器状态良好，卡子、胶圈帽齐全。折角塞门安全角度符合要求。(2)检验牌拴挂牢固，检验日期清晰、有效期不足40天时更换。&nbsp;</td>
+			<td class="mytbCELL1" align="center">I&nbsp;</td>
+			<td class="mytbCELL1" align="center">良好&nbsp;
+			   	  
+			</td>
+		      <td class="mytbCELL1" align="center">
+                            
+					
+					
+						郭晓斌<br>07-22 17:33
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+					
+						许陆<br>07-23 11:33
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+                    
+					
+						刘超甫<br>07-23 15:55
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    
+					
+						李元<br>07-23 15:30
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+	                                  
+		</tr>
+		
+		<tr>
+			<td class="mytbCELL1" align="center" name="firstname">走行&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="secondname">制动装置&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="fixitemname">检查各闸瓦自动调整装置完好，螺栓旋转灵活，测量闸瓦间隙，自动调整装置作用良好，调整闸瓦不偏磨；检查闸瓦间隙4～8mm，闸缸行程为74-123mm。&nbsp;</td>
+			<td class="mytbCELL1" align="center">Ⅰ架（1~3轴左右侧）&nbsp;</td>
+			<td class="mytbCELL1" align="center">7mm&nbsp;
+			   	  
+			</td>
+		      <td class="mytbCELL1" align="center">
+                            
+					
+					
+						王勐<br>07-22 16:04
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+					
+						王力甫<br>07-22 16:47
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+                    
+					
+						刘超甫<br>07-23 15:54
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    
+					
+						李鹏<br>07-23 15:57
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    
+					
+						周斐<br>07-23 16:13
+						
+				
+                        </td>
+	                                  
+		</tr>
+		
+		<tr>
+			<td class="mytbCELL1" align="center" name="firstname">走行&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="secondname">制动装置&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="fixitemname">手制动装置状态应良好，作用应灵活，钢丝绳无断裂。&nbsp;</td>
+			<td class="mytbCELL1" align="center">Ⅰ架（1~3轴左右侧）&nbsp;</td>
+			<td class="mytbCELL1" align="center">良好&nbsp;
+			   	  
+			</td>
+		      <td class="mytbCELL1" align="center">
+                            
+					
+					
+						王勐<br>07-22 16:01
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+					
+						王力甫<br>07-22 16:47
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+                    
+					
+						刘超甫<br>07-23 15:54
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    
+					
+						李鹏<br>07-23 15:57
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+	                                  
+		</tr>
+		
+		<tr>
+			<td class="mytbCELL1" align="center" name="firstname">走行&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="secondname">制动装置&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="fixitemname">检查各闸瓦自动调整装置完好，螺栓旋转灵活，测量闸瓦间隙，自动调整装置作用良好，调整闸瓦不偏磨；检查闸瓦间隙4～8mm，闸缸行程为74-123mm。&nbsp;</td>
+			<td class="mytbCELL1" align="center">Ⅱ架（4~6轴左右侧）&nbsp;</td>
+			<td class="mytbCELL1" align="center">没有启用mm&nbsp;
+			   	  
+			</td>
+		      <td class="mytbCELL1" align="center">
+                            
+					
+					
+						王超<br>07-22 13:35
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+					
+						王力甫<br>07-22 16:47
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+                    
+					
+						刘超甫<br>07-23 15:54
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    
+					
+						李鹏<br>07-23 15:57
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    
+					
+						周斐<br>07-23 16:13
+						
+				
+                        </td>
+	                                  
+		</tr>
+		
+		<tr>
+			<td class="mytbCELL1" align="center" name="firstname">走行&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="secondname">制动装置&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="fixitemname">手制动装置状态应良好，作用应灵活，钢丝绳无断裂。&nbsp;</td>
+			<td class="mytbCELL1" align="center">Ⅱ架（4~6轴左右侧）&nbsp;</td>
+			<td class="mytbCELL1" align="center">良好&nbsp;
+			   	  
+			</td>
+		      <td class="mytbCELL1" align="center">
+                            
+					
+					
+						王超<br>07-22 13:33
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+					
+						王力甫<br>07-22 16:47
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+                    
+					
+						刘超甫<br>07-23 15:54
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    
+					
+						李鹏<br>07-23 15:57
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+	                                  
+		</tr>
+		
+		<tr>
+			<td class="mytbCELL1" align="center" name="firstname">电器&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="secondname">动力间电器&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="fixitemname">差示压力计接线检查：大气管应与车底稳压箱畅通，胶管与差示计相连的接口处应箍紧，胶管无裂损、折堵。检查电极（银针）状态，接线紧固、且无短路可能。导电液补充，必要时清洗、更换差示计。&nbsp;</td>
+			<td class="mytbCELL1" align="center">&nbsp;</td>
+			<td class="mytbCELL1" align="center">良好&nbsp;
+			   	  
+			</td>
+		      <td class="mytbCELL1" align="center">
+                            
+					
+					
+						曹天辉<br>07-22 14:09
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+					
+						熊继业<br>07-23 11:51
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+                    
+					
+						刘超甫<br>07-23 15:54
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    
+					
+						尹源华<br>07-23 14:38
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+	                                  
+		</tr>
+		
+		<tr>
+			<td class="mytbCELL1" align="center" name="firstname">电器&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="secondname">动力间电器&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="fixitemname">清扫检查1H接线及动力间各电器线路。&nbsp;</td>
+			<td class="mytbCELL1" align="center">&nbsp;</td>
+			<td class="mytbCELL1" align="center">良好&nbsp;
+			   	  
+			</td>
+		      <td class="mytbCELL1" align="center">
+                            
+					
+					
+						曹天辉<br>07-22 14:09
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+					
+						熊继业<br>07-23 11:51
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+                    
+					
+						刘超甫<br>07-23 15:54
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    
+					
+						尹源华<br>07-23 14:38
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+	                                  
+		</tr>
+		
+		<tr>
+			<td class="mytbCELL1" align="center" name="firstname">电器&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="secondname">动力间电器&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="fixitemname">检查ZLS安装及接线状态。&nbsp;</td>
+			<td class="mytbCELL1" align="center">&nbsp;</td>
+			<td class="mytbCELL1" align="center">良好&nbsp;
+			   	  
+			</td>
+		      <td class="mytbCELL1" align="center">
+                            
+					
+					
+						曹天辉<br>07-22 14:09
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+					
+						熊继业<br>07-23 11:51
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+                    
+					
+						刘超甫<br>07-23 15:54
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    
+					
+						尹源华<br>07-23 14:38
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+	                                  
+		</tr>
+		
+		<tr>
+			<td class="mytbCELL1" align="center" name="firstname">电器&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="secondname">励磁整流柜&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="fixitemname">检查各电线路的绑扎，卡码及线管出口的紧固包扎状态，导线的绝缘、接线端子、线号、紧固件状态。&nbsp;</td>
+			<td class="mytbCELL1" align="center">&nbsp;</td>
+			<td class="mytbCELL1" align="center">清洗良好&nbsp;
+			   	  
+			</td>
+		      <td class="mytbCELL1" align="center">
+                            
+					
+					
+						曹天辉<br>07-23 07:45
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+					
+						熊继业<br>07-23 11:51
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+                    
+					
+						刘超甫<br>07-23 15:54
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    
+					
+						尹源华<br>07-23 14:38
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+	                                  
+		</tr>
+		
+		<tr>
+			<td class="mytbCELL1" align="center" name="firstname">电机&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="secondname">励磁机&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="fixitemname">电机外部检查@检查各电机座、端盖无裂纹、变形，通风道、油管畅通,油堵良好 。&nbsp;</td>
+			<td class="mytbCELL1" align="center">&nbsp;</td>
+			<td class="mytbCELL1" align="center">良好&nbsp;
+			   	  
+			</td>
+		      <td class="mytbCELL1" align="center">
+                            
+					
+					
+						徐光远<br>07-22 11:08
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+					
+						胡映强<br>07-22 13:59
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+                    
+					
+						周雁飞<br>07-22 15:44
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    
+					
+						尹源华<br>07-23 08:09
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+	                                  
+		</tr>
+		
+		<tr>
+			<td class="mytbCELL1" align="center" name="firstname">电机&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="secondname">励磁机&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="fixitemname">电机外部检查@接线盒、盖齐全，完好，接线柱间无松动、滑扣及歪斜；轴承外观及端盖无过热、变色。&nbsp;</td>
+			<td class="mytbCELL1" align="center">&nbsp;</td>
+			<td class="mytbCELL1" align="center">良好&nbsp;
+			   	  
+			</td>
+		      <td class="mytbCELL1" align="center">
+                            
+					
+					
+						徐光远<br>07-22 11:08
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+					
+						胡映强<br>07-22 13:59
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+                    
+					
+						周雁飞<br>07-22 15:44
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    
+					
+						尹源华<br>07-23 08:09
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+	                                  
+		</tr>
+		
+		<tr>
+			<td class="mytbCELL1" align="center" name="firstname">仪表&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="secondname">压力表&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="fixitemname">检查机械间各风压表、油压表状态。&nbsp;</td>
+			<td class="mytbCELL1" align="center">&nbsp;</td>
+			<td class="mytbCELL1" align="center">良好&nbsp;
+			   	  
+			</td>
+		      <td class="mytbCELL1" align="center">
+                            
+					
+					
+						郑国强<br>07-22 10:55
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+					
+						陈宗山<br>07-22 10:56
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+                    
+					
+						周雁飞<br>07-22 15:45
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    
+					
+						尹源华<br>07-23 08:09
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+	                                  
+		</tr>
+		
+		<tr>
+			<td class="mytbCELL1" align="center" name="firstname">仪表&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="secondname">压力表&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="fixitemname">检查油压表、风压表有效期，按规定互换各压力表（不足40天时更换）。&nbsp;</td>
+			<td class="mytbCELL1" align="center">&nbsp;</td>
+			<td class="mytbCELL1" align="center">良好&nbsp;
+			   	  
+			</td>
+		      <td class="mytbCELL1" align="center">
+                            
+					
+					
+						郑国强<br>07-22 10:55
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+					
+						陈宗山<br>07-22 10:56
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+                    
+					
+						周雁飞<br>07-22 15:45
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    
+					
+						尹源华<br>07-23 08:09
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+	                                  
+		</tr>
+		
+		<tr>
+			<td class="mytbCELL1" align="center" name="firstname">传动&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="secondname">变速箱与传动装置&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="fixitemname">各变速箱安装螺栓、轴承端螺栓紧固无松动。&nbsp;</td>
+			<td class="mytbCELL1" align="center">&nbsp;</td>
+			<td class="mytbCELL1" align="center">良好&nbsp;
+			   	  
+			</td>
+		      <td class="mytbCELL1" align="center">
+                            
+					
+					
+						陈轩<br>07-22 14:31
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+					
+						孙永进<br>07-22 14:33
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+                    
+					
+						周雁飞<br>07-22 15:46
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    
+					
+						刘云生<br>07-22 16:30
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+	                                  
+		</tr>
+		
+		<tr>
+			<td class="mytbCELL1" align="center" name="firstname">传动&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="secondname">变速箱与传动装置&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="fixitemname">检查前万向轴叉头法兰，十字节状态和轴承盖螺栓紧固状态。&nbsp;</td>
+			<td class="mytbCELL1" align="center">&nbsp;</td>
+			<td class="mytbCELL1" align="center">良好&nbsp;
+			   	  
+			</td>
+		      <td class="mytbCELL1" align="center">
+                            
+					
+					
+						陈轩<br>07-22 14:31
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+					
+						孙永进<br>07-22 14:33
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+                    
+					
+						周雁飞<br>07-22 15:46
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    
+					
+						刘云生<br>07-22 16:30
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+	                                  
+		</tr>
+		
+		<tr>
+			<td class="mytbCELL1" align="center" name="firstname">传动&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="secondname">变速箱与传动装置&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="fixitemname">检查后传动轴叉头法兰，十字节锁紧螺母和轴承压盖螺栓紧固状态。&nbsp;</td>
+			<td class="mytbCELL1" align="center">&nbsp;</td>
+			<td class="mytbCELL1" align="center">良好&nbsp;
+			   	  
+			</td>
+		      <td class="mytbCELL1" align="center">
+                            
+					
+					
+						陈轩<br>07-22 14:31
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+					
+						孙永进<br>07-22 14:33
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+                    
+					
+						周雁飞<br>07-22 15:46
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    
+					
+						刘云生<br>07-22 16:30
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+	                                  
+		</tr>
+		
+		<tr>
+			<td class="mytbCELL1" align="center" name="firstname">传动&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="secondname">变速箱与传动装置&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="fixitemname">检查各弹性联轴节、尼龙绳的联接状态。&nbsp;</td>
+			<td class="mytbCELL1" align="center">&nbsp;</td>
+			<td class="mytbCELL1" align="center">良好&nbsp;
+			   	  
+			</td>
+		      <td class="mytbCELL1" align="center">
+                            
+					
+					
+						陈轩<br>07-22 14:31
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+					
+						孙永进<br>07-22 14:33
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+                    
+					
+						周雁飞<br>07-22 15:46
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    
+					
+						刘云生<br>07-22 16:30
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+	                                  
+		</tr>
+		
+		<tr>
+			<td class="mytbCELL1" align="center" name="firstname">传动&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="secondname">变速箱与传动装置&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="fixitemname">检查变速箱油位情况。&nbsp;</td>
+			<td class="mytbCELL1" align="center">&nbsp;</td>
+			<td class="mytbCELL1" align="center">良好&nbsp;
+			   	  
+			</td>
+		      <td class="mytbCELL1" align="center">
+                            
+					
+					
+						陈轩<br>07-22 14:31
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+					
+						孙永进<br>07-22 14:33
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+                    
+					
+						周雁飞<br>07-22 15:46
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    
+					
+						刘云生<br>07-22 16:30
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+	                                  
+		</tr>
+		
+		<tr>
+			<td class="mytbCELL1" align="center" name="firstname">传动&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="secondname">变速箱与传动装置&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="fixitemname">检查万向轴和传动轴紧固螺栓无松动，防缓标记齐全。&nbsp;</td>
+			<td class="mytbCELL1" align="center">&nbsp;</td>
+			<td class="mytbCELL1" align="center">良好&nbsp;
+			   	  
+			</td>
+		      <td class="mytbCELL1" align="center">
+                            
+					
+					
+						陈轩<br>07-22 14:31
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+					
+						孙永进<br>07-22 14:33
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+                    
+					
+						周雁飞<br>07-22 15:46
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    
+					
+						刘云生<br>07-22 16:30
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+	                                  
+		</tr>
+		
+		<tr>
+			<td class="mytbCELL1" align="center" name="firstname">传动&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="secondname">变速箱与传动装置&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="fixitemname">启动后检查变速箱运转是否平稳，有无异音。&nbsp;</td>
+			<td class="mytbCELL1" align="center">&nbsp;</td>
+			<td class="mytbCELL1" align="center">良好&nbsp;
+			   	  
+			</td>
+		      <td class="mytbCELL1" align="center">
+                            
+					
+					
+						陈轩<br>07-22 14:31
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+					
+						孙永进<br>07-22 14:33
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+                    
+					
+						周雁飞<br>07-22 15:46
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    
+					
+						刘云生<br>07-22 16:30
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+	                                  
+		</tr>
+		
+		<tr>
+			<td class="mytbCELL1" align="center" name="firstname">传动&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="secondname">变速箱与传动装置&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="fixitemname">检查变速箱油封情况，不应有漏油现象。&nbsp;</td>
+			<td class="mytbCELL1" align="center">&nbsp;</td>
+			<td class="mytbCELL1" align="center">良好&nbsp;
+			   	  
+			</td>
+		      <td class="mytbCELL1" align="center">
+                            
+					
+					
+						陈轩<br>07-22 14:31
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+					
+						孙永进<br>07-22 14:33
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+                    
+					
+						周雁飞<br>07-22 15:46
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    
+					
+						刘云生<br>07-22 16:30
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+	                                  
+		</tr>
+		
+		<tr>
+			<td class="mytbCELL1" align="center" name="firstname">电器&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="secondname">司机室&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="fixitemname">检查I、II室琴键开关、指示灯、自动开关、接线排接线状态，插座作用性能，并清扫灰尘。&nbsp;</td>
+			<td class="mytbCELL1" align="center">&nbsp;</td>
+			<td class="mytbCELL1" align="center">清洗良好&nbsp;
+			   	  
+			</td>
+		      <td class="mytbCELL1" align="center">
+                            
+					
+					
+						曹天辉<br>07-23 07:45
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+					
+						熊继业<br>07-23 11:51
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+                    
+					
+						刘超甫<br>07-23 15:54
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    
+					
+						尹源华<br>07-23 14:38
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+	                                  
+		</tr>
+		
+		<tr>
+			<td class="mytbCELL1" align="center" name="firstname">电器&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="secondname">司机室&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="fixitemname">检查I、II室操纵台下各电线路的绑扎，卡码及线管出口的紧固包扎状态，导线的绝缘、接线端子、线号、紧固件状态。&nbsp;</td>
+			<td class="mytbCELL1" align="center">&nbsp;</td>
+			<td class="mytbCELL1" align="center">清洗良好&nbsp;
+			   	  
+			</td>
+		      <td class="mytbCELL1" align="center">
+                            
+					
+					
+						曹天辉<br>07-23 07:45
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+					
+						熊继业<br>07-23 11:51
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+                    
+					
+						刘超甫<br>07-23 15:54
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    
+					
+						尹源华<br>07-23 14:38
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+	                                  
+		</tr>
+		
+		<tr>
+			<td class="mytbCELL1" align="center" name="firstname">电器&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="secondname">司机室&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="fixitemname">检查I、II室TKS型司控器机械联锁装置性能，各凸轮与轴的配合应无松旷现象，检查插头、插座触片及辅助联锁、接线状态，&nbsp;</td>
+			<td class="mytbCELL1" align="center">&nbsp;</td>
+			<td class="mytbCELL1" align="center">清洗良好&nbsp;
+			   	  
+			</td>
+		      <td class="mytbCELL1" align="center">
+                            
+					
+					
+						曹天辉<br>07-23 07:45
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+					
+						熊继业<br>07-23 11:51
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+                    
+					
+						刘超甫<br>07-23 15:54
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    
+					
+						尹源华<br>07-23 14:38
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+	                                  
+		</tr>
+		
+		<tr>
+			<td class="mytbCELL1" align="center" name="firstname">电器&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="secondname">司机室&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="fixitemname">检查I、II室电炉及控制线路导线的接线端子、线号、紧固件状态良好，检查电炉接触器动作良好，调整电炉接触器各触头开距、超程和接触状态，打磨烧损及接触不良触头，检查电炉固定状态良好&nbsp;</td>
+			<td class="mytbCELL1" align="center">&nbsp;</td>
+			<td class="mytbCELL1" align="center">清洗良好&nbsp;
+			   	  
+			</td>
+		      <td class="mytbCELL1" align="center">
+                            
+					
+					
+						曹天辉<br>07-23 07:45
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+					
+						熊继业<br>07-23 11:51
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+                    
+					
+						刘超甫<br>07-23 15:54
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    
+					
+						尹源华<br>07-23 14:38
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    
+					
+						周斐<br>07-23 16:13
+						
+				
+                        </td>
+	                                  
+		</tr>
+		
+		<tr>
+			<td class="mytbCELL1" align="center" name="firstname">电器&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="secondname">司机室&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="fixitemname">检查I、II室头灯、边灯安装正确、作用良好，各灯具、灯头不得松动、烧损，接线不得松动，开关应作用良好&nbsp;</td>
+			<td class="mytbCELL1" align="center">&nbsp;</td>
+			<td class="mytbCELL1" align="center">清洗良好&nbsp;
+			   	  
+			</td>
+		      <td class="mytbCELL1" align="center">
+                            
+					
+					
+						曹天辉<br>07-23 07:45
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+					
+						熊继业<br>07-23 11:51
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+                    
+					
+						刘超甫<br>07-23 15:54
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    
+					
+						尹源华<br>07-23 14:38
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+	                                  
+		</tr>
+		
+		<tr>
+			<td class="mytbCELL1" align="center" name="firstname">电器&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="secondname">司机室&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="fixitemname">清扫I、II室接线排、各电器元件、灯具、开关、插座、接线座积灰及油污，检查各电器部件安装状态，&nbsp;</td>
+			<td class="mytbCELL1" align="center">&nbsp;</td>
+			<td class="mytbCELL1" align="center">清洗良好&nbsp;
+			   	  
+			</td>
+		      <td class="mytbCELL1" align="center">
+                            
+					
+					
+						曹天辉<br>07-23 07:45
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+					
+						熊继业<br>07-23 11:51
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+                    
+					
+						刘超甫<br>07-23 15:54
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    
+					
+						尹源华<br>07-23 14:38
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+	                                  
+		</tr>
+		
+		<tr>
+			<td class="mytbCELL1" align="center" name="firstname">柴油机&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="secondname">喷油器&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="fixitemname">互换喷油器、喷油器导杆。&nbsp;</td>
+			<td class="mytbCELL1" align="center">&nbsp;</td>
+			<td class="mytbCELL1" align="center">检修良好&nbsp;
+			   	  
+			</td>
+		      <td class="mytbCELL1" align="center">
+                            
+					
+					
+						张永生<br>07-22 14:36
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+					
+						宋宗满<br>07-22 14:36
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+                    
+					
+						周雁飞<br>07-22 15:46
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    
+					
+						王永华<br>07-23 07:00
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+	                                  
+		</tr>
+		
+		<tr>
+			<td class="mytbCELL1" align="center" name="firstname">柴油机&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="secondname">喷油器&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="fixitemname">喷油器铜垫圈换新。&nbsp;</td>
+			<td class="mytbCELL1" align="center">&nbsp;</td>
+			<td class="mytbCELL1" align="center">检修良好&nbsp;
+			   	  
+			</td>
+		      <td class="mytbCELL1" align="center">
+                            
+					
+					
+						张永生<br>07-22 14:36
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+					
+						宋宗满<br>07-22 14:36
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+                    
+					
+						周雁飞<br>07-22 15:46
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    
+					
+						王永华<br>07-23 07:00
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+	                                  
+		</tr>
+		
+		<tr>
+			<td class="mytbCELL1" align="center" name="firstname">柴油机&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="secondname">喷油器&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="fixitemname">清除喷头积碳。&nbsp;</td>
+			<td class="mytbCELL1" align="center">&nbsp;</td>
+			<td class="mytbCELL1" align="center">检修良好&nbsp;
+			   	  
+			</td>
+		      <td class="mytbCELL1" align="center">
+                            
+					
+					
+						张永生<br>07-22 14:36
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+					
+						宋宗满<br>07-22 14:36
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+                    
+					
+						周雁飞<br>07-22 15:46
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    
+					
+						王永华<br>07-23 07:00
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+	                                  
+		</tr>
+		
+		<tr>
+			<td class="mytbCELL1" align="center" name="firstname">柴油机&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="secondname">喷油器&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="fixitemname">互换喷油器必须在试验台进行试验，应符合要求。&nbsp;</td>
+			<td class="mytbCELL1" align="center">&nbsp;</td>
+			<td class="mytbCELL1" align="center">检修良好&nbsp;
+			   	  
+			</td>
+		      <td class="mytbCELL1" align="center">
+                            
+					
+					
+						张永生<br>07-22 14:36
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+					
+						宋宗满<br>07-22 14:36
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+                    
+					
+						周雁飞<br>07-22 15:46
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    
+					
+						王永华<br>07-23 07:00
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+	                                  
+		</tr>
+		
+		<tr>
+			<td class="mytbCELL1" align="center" name="firstname">柴油机&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="secondname">喷油器及喷油泵&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="fixitemname">互换喷油器&nbsp;</td>
+			<td class="mytbCELL1" align="center">&nbsp;</td>
+			<td class="mytbCELL1" align="center">更换良好&nbsp;
+			   	  
+			</td>
+		      <td class="mytbCELL1" align="center">
+                            
+					
+					
+						骆汉伟<br>07-22 16:24
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+					
+						张应忠<br>07-22 16:28
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+                    
+					
+						刘超甫<br>07-23 15:59
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    
+					
+						王永华<br>07-23 07:01
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+	                                  
+		</tr>
+		
+		<tr>
+			<td class="mytbCELL1" align="center" name="firstname">柴油机&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="secondname">喷油器及喷油泵&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="fixitemname">检查喷油器进油管接头垫无裂纹、丝扣良好，保护帽丝扣良好。&nbsp;</td>
+			<td class="mytbCELL1" align="center">&nbsp;</td>
+			<td class="mytbCELL1" align="center">更换良好&nbsp;
+			   	  
+			</td>
+		      <td class="mytbCELL1" align="center">
+                            
+					
+					
+						骆汉伟<br>07-22 16:24
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+					
+						张应忠<br>07-22 16:28
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+                    
+					
+						刘超甫<br>07-23 15:59
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    
+					
+						王永华<br>07-23 07:01
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+	                                  
+		</tr>
+		
+		<tr>
+			<td class="mytbCELL1" align="center" name="firstname">柴油机&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="secondname">喷油器及喷油泵&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="fixitemname">检查喷油器回油管路无泄漏，回油进污油箱。污油箱排污阀应良好。&nbsp;</td>
+			<td class="mytbCELL1" align="center">&nbsp;</td>
+			<td class="mytbCELL1" align="center">更换良好&nbsp;
+			   	  
+			</td>
+		      <td class="mytbCELL1" align="center">
+                            
+					
+					
+						骆汉伟<br>07-22 16:24
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+					
+						张应忠<br>07-22 16:28
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+                    
+					
+						刘超甫<br>07-23 15:59
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    
+					
+						王永华<br>07-23 07:01
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+	                                  
+		</tr>
+		
+		<tr>
+			<td class="mytbCELL1" align="center" name="firstname">柴油机&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="secondname">喷油器及喷油泵&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="fixitemname">检查各泵齿条在0刻度线，齿条应灵活，无犯卡，喷油泵外观无裂纹。&nbsp;</td>
+			<td class="mytbCELL1" align="center">&nbsp;</td>
+			<td class="mytbCELL1" align="center">更换良好&nbsp;
+			   	  
+			</td>
+		      <td class="mytbCELL1" align="center">
+                            
+					
+					
+						骆汉伟<br>07-22 16:24
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+					
+						张应忠<br>07-22 16:28
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+                    
+					
+						刘超甫<br>07-23 15:59
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    
+					
+						王永华<br>07-23 07:01
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+	                                  
+		</tr>
+		
+		<tr>
+			<td class="mytbCELL1" align="center" name="firstname">柴油机&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="secondname">喷油器及喷油泵&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="fixitemname">各喷油泵安装座螺丝应紧固良好，无松动。&nbsp;</td>
+			<td class="mytbCELL1" align="center">&nbsp;</td>
+			<td class="mytbCELL1" align="center">更换良好&nbsp;
+			   	  
+			</td>
+		      <td class="mytbCELL1" align="center">
+                            
+					
+					
+						骆汉伟<br>07-22 16:24
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+					
+						张应忠<br>07-22 16:28
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+                    
+					
+						刘超甫<br>07-23 15:59
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    
+					
+						王永华<br>07-23 07:01
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+	                                  
+		</tr>
+		
+		<tr>
+			<td class="mytbCELL1" align="center" name="firstname">柴油机&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="secondname">喷油器及喷油泵&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="fixitemname">启机后各接头无泄漏，单泵齿条抖动不超过0.5刻线。&nbsp;</td>
+			<td class="mytbCELL1" align="center">&nbsp;</td>
+			<td class="mytbCELL1" align="center">更换良好&nbsp;
+			   	  
+			</td>
+		      <td class="mytbCELL1" align="center">
+                            
+					
+					
+						骆汉伟<br>07-22 16:24
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+					
+						张应忠<br>07-22 16:28
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+                    
+					
+						刘超甫<br>07-23 15:59
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    
+					
+						王永华<br>07-23 07:01
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+	                                  
+		</tr>
+		
+		<tr>
+			<td class="mytbCELL1" align="center" name="firstname">柴油机&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="secondname">喷油器及喷油泵&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="fixitemname">检查喷油泵夹头销与喷油泵齿条拨叉座之间径向间隙应符合要求。&nbsp;</td>
+			<td class="mytbCELL1" align="center">&nbsp;</td>
+			<td class="mytbCELL1" align="center">1.0mm&nbsp;
+			   	  
+			</td>
+		      <td class="mytbCELL1" align="center">
+                            
+					
+					
+						张自骞<br>07-22 16:25
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+					
+						张应忠<br>07-22 16:28
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+                    
+					
+						刘超甫<br>07-23 15:59
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    
+					
+						王永华<br>07-23 07:01
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    
+					
+						周斐<br>07-23 16:13
+						
+				
+                        </td>
+	                                  
+		</tr>
+		
+		<tr>
+			<td class="mytbCELL1" align="center" name="firstname">柴油机&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="secondname">喷油器及喷油泵&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="fixitemname">启机检查喷油泵各接头无泄漏，用手摸泵体无过热及强振动，手感高压油管脉冲规律正常，无异状、无异音。&nbsp;</td>
+			<td class="mytbCELL1" align="center">&nbsp;</td>
+			<td class="mytbCELL1" align="center">更换良好&nbsp;
+			   	  
+			</td>
+		      <td class="mytbCELL1" align="center">
+                            
+					
+					
+						骆汉伟<br>07-22 16:24
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+					
+						张应忠<br>07-22 16:28
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+                    
+					
+						刘超甫<br>07-23 15:59
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    
+					
+						王永华<br>07-23 07:01
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+	                                  
+		</tr>
+		
+		<tr>
+			<td class="mytbCELL1" align="center" name="firstname">柴油机&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="secondname">喷油器及喷油泵&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="fixitemname">检查喷油泵防护罩应良好，否则更换。&nbsp;</td>
+			<td class="mytbCELL1" align="center">&nbsp;</td>
+			<td class="mytbCELL1" align="center">更换良好&nbsp;
+			   	  
+			</td>
+		      <td class="mytbCELL1" align="center">
+                            
+					
+					
+						骆汉伟<br>07-22 16:24
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+					
+						张应忠<br>07-22 16:28
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+                    
+					
+						刘超甫<br>07-23 15:59
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    
+					
+						王永华<br>07-23 07:01
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+	                                  
+		</tr>
+		
+		<tr>
+			<td class="mytbCELL1" align="center" name="firstname">柴油机&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="secondname">增压系统&nbsp;</td>
+			<td class="mytbCELL1" align="center" name="fixitemname">检查增压器转子是否灵活，不灵活和有擦碰现象的要吊修(以手扳为准)。发现压气端排污孔内有滑油流出，要吊修该增压器。&nbsp;</td>
+			<td class="mytbCELL1" align="center">&nbsp;</td>
+			<td class="mytbCELL1" align="center">检修良好&nbsp;
+			   	  
+			</td>
+		      <td class="mytbCELL1" align="center">
+                            
+					
+					
+						张自骞<br>07-22 16:25
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+					
+						张应忠<br>07-22 16:28
+					
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+				
+					
+                    
+					
+						刘超甫<br>07-23 15:59
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    
+					
+						王永华<br>07-23 07:01
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+                        <td class="mytbCELL1" align="center">
+                
+					
+                    /
+						
+				
+                        </td>
+	                                  
+		</tr>
+		
+	</table>
+  </td>
+  </tr>
+  <tr>
+  <td>
+    <!-- 处理分页 -->
+<div style="height:35px;" align="right">
+	<div class="float_right padding5 paging">
+		<div class="float_left padding_top4">	
+		<span >共410条数据&nbsp;&nbsp;&nbsp;&nbsp;</span>	
+		
+			
+			  
+			
+			
+		    
+		  	
+			 	<span><a href="query!getInfoByJC.do?rjhmId=29440&jcStype=DF4&jcNum=3148&xcxc=X3&psize=100&pager.offset=0" id="first">首页</a></span>
+		  	
+		  	
+	  	  	
+				
+					
+						<span class="paging_current"><a href="javascript:;" style="color:red;">1</a></span>
+					
+					
+				
+			
+				
+					
+					
+						<span><a href="query!getInfoByJC.do?rjhmId=29440&jcStype=DF4&jcNum=3148&xcxc=X3&psize=100&pager.offset=100">2</a></span>
+					
+				
+			
+				
+					
+					
+						<span><a href="query!getInfoByJC.do?rjhmId=29440&jcStype=DF4&jcNum=3148&xcxc=X3&psize=100&pager.offset=200">3</a></span>
+					
+				
+			
+				
+					
+					
+						<span><a href="query!getInfoByJC.do?rjhmId=29440&jcStype=DF4&jcNum=3148&xcxc=X3&psize=100&pager.offset=300">4</a></span>
+					
+				
+			
+				
+					
+					
+						<span><a href="query!getInfoByJC.do?rjhmId=29440&jcStype=DF4&jcNum=3148&xcxc=X3&psize=100&pager.offset=400">5</a></span>
+					
+				
+			
+			
+				<span><a href="query!getInfoByJC.do?rjhmId=29440&jcStype=DF4&jcNum=3148&xcxc=X3&psize=100&pager.offset=100">下一页</a></span>
+			
+			
+				<span><a href="query!getInfoByJC.do?rjhmId=29440&jcStype=DF4&jcNum=3148&xcxc=X3&psize=100&pager.offset=400">末页</a></span>
+			
+			
+			<div class="clear"></div>
+		</div>
+	</div>
+</div>
+  <!-- 报活项目 begin-->
+	<table width="864" border="0" align="center" cellspacing="0" id="datatabel2">
+		<tr style="line-height:40px;height: 40px;background-color: #328aa4;font-weight: bolder;">
+			<td class="mytbCELL1" align="center" style="white-space:nowrap" width="10%">报活类别</td>
+			<td class="mytbCELL1" align="center" style="white-space:nowrap" width="20%">报活内容</td>
+			<td class="mytbCELL1" align="center" style="white-space:nowrap" width="6%">报活人</td>
+			<td class="mytbCELL1" align="center" style="white-space:nowrap" width="10%">报活时间</td>
+			<td class="mytbCELL1" align="center" style="white-space:nowrap" width="15%">检修情况</td>
+			<td class="mytbCELL1" align="center" style="white-space:nowrap" width="6%">检修人</td>
+			<td class="mytbCELL1" align="center" style="white-space:nowrap" width="6%">工长</td>
+			<td class="mytbCELL1" align="center" style="white-space:nowrap" width="6%">质检员</td>
+			<td class="mytbCELL1" align="center" style="white-space:nowrap" width="6%">技术员</td>
+			<td class="mytbCELL1" align="center" style="white-space:nowrap" width="6%">交车工长</td>
+			<td class="mytbCELL1" align="center" style="white-space:nowrap" width="6%">验收员</td>
+		</tr>
+		
+			<tr>
+				<td class="mytbCELL1" align="center"  name="preType">
+					
+					
+						复检报活
+					
+					
+					
+				</td>
+				<td class="mytbCELL1" align="center">更换辅机胶圈&nbsp;</td>
+				<td class="mytbCELL1" align="center">孙永进&nbsp;</td>
+				<td class="mytbCELL1" align="center">2013-07-22 14:23&nbsp;</td>
+				<td class="mytbCELL1" align="center">更换&nbsp;</td>
+				<td class="mytbCELL1" align="center">
+					
+					
+					
+					陈轩<br>07-22 14:28&nbsp;
+				</td>
+				<td class="mytbCELL1" align="center">
+					
+					孙永进<br>07-22 14:30&nbsp;
+				</td>
+				<td class="mytbCELL1" align="center">谭勇<br>08-30 10:03&nbsp;</td>
+				<td class="mytbCELL1" align="center">刘云生<br>07-22 16:31&nbsp;</td>
+				<td class="mytbCELL1" align="center"><br>&nbsp;</td>
+				<td class="mytbCELL1" align="center"><br>&nbsp;</td>
+			</tr>
+		
+			<tr>
+				<td class="mytbCELL1" align="center"  name="preType">
+					
+					
+						复检报活
+					
+					
+					
+				</td>
+				<td class="mytbCELL1" align="center">水箱座子螺丝松&nbsp;</td>
+				<td class="mytbCELL1" align="center">孙永进&nbsp;</td>
+				<td class="mytbCELL1" align="center">2013-07-22 14:24&nbsp;</td>
+				<td class="mytbCELL1" align="center">紧固&nbsp;</td>
+				<td class="mytbCELL1" align="center">
+					
+					
+					
+					陈轩<br>07-22 14:28&nbsp;
+				</td>
+				<td class="mytbCELL1" align="center">
+					
+					孙永进<br>07-22 14:30&nbsp;
+				</td>
+				<td class="mytbCELL1" align="center">周雁飞<br>07-22 15:47&nbsp;</td>
+				<td class="mytbCELL1" align="center">刘云生<br>07-22 16:31&nbsp;</td>
+				<td class="mytbCELL1" align="center"><br>&nbsp;</td>
+				<td class="mytbCELL1" align="center"><br>&nbsp;</td>
+			</tr>
+		
+			<tr>
+				<td class="mytbCELL1" align="center"  name="preType">
+					
+					
+						复检报活
+					
+					
+					
+				</td>
+				<td class="mytbCELL1" align="center">低温马达卸油管卡子脱焊&nbsp;</td>
+				<td class="mytbCELL1" align="center">孙永进&nbsp;</td>
+				<td class="mytbCELL1" align="center">2013-07-22 14:25&nbsp;</td>
+				<td class="mytbCELL1" align="center">烧焊&nbsp;</td>
+				<td class="mytbCELL1" align="center">
+					
+					
+					
+					陈轩<br>07-22 14:29&nbsp;
+				</td>
+				<td class="mytbCELL1" align="center">
+					
+					孙永进<br>07-22 14:30&nbsp;
+				</td>
+				<td class="mytbCELL1" align="center">周雁飞<br>07-22 15:47&nbsp;</td>
+				<td class="mytbCELL1" align="center">刘云生<br>07-22 16:31&nbsp;</td>
+				<td class="mytbCELL1" align="center"><br>&nbsp;</td>
+				<td class="mytbCELL1" align="center"><br>&nbsp;</td>
+			</tr>
+		
+			<tr>
+				<td class="mytbCELL1" align="center"  name="preType">
+					
+					
+						复检报活
+					
+					
+					
+				</td>
+				<td class="mytbCELL1" align="center">高温静液压油缸回油管卡子松&nbsp;</td>
+				<td class="mytbCELL1" align="center">孙永进&nbsp;</td>
+				<td class="mytbCELL1" align="center">2013-07-22 14:26&nbsp;</td>
+				<td class="mytbCELL1" align="center">紧固&nbsp;</td>
+				<td class="mytbCELL1" align="center">
+					
+					
+					
+					陈轩<br>07-22 14:28&nbsp;
+				</td>
+				<td class="mytbCELL1" align="center">
+					
+					孙永进<br>07-22 14:30&nbsp;
+				</td>
+				<td class="mytbCELL1" align="center">周雁飞<br>07-22 15:47&nbsp;</td>
+				<td class="mytbCELL1" align="center">刘云生<br>07-22 16:31&nbsp;</td>
+				<td class="mytbCELL1" align="center"><br>&nbsp;</td>
+				<td class="mytbCELL1" align="center"><br>&nbsp;</td>
+			</tr>
+		
+			<tr>
+				<td class="mytbCELL1" align="center"  name="preType">
+					
+					
+						复检报活
+					
+					
+					
+				</td>
+				<td class="mytbCELL1" align="center">高低温控阀配止钉&nbsp;</td>
+				<td class="mytbCELL1" align="center">孙永进&nbsp;</td>
+				<td class="mytbCELL1" align="center">2013-07-22 14:24&nbsp;</td>
+				<td class="mytbCELL1" align="center">已配&nbsp;</td>
+				<td class="mytbCELL1" align="center">
+					
+					
+					
+					陈轩<br>07-22 14:29&nbsp;
+				</td>
+				<td class="mytbCELL1" align="center">
+					
+					孙永进<br>07-22 14:30&nbsp;
+				</td>
+				<td class="mytbCELL1" align="center">周雁飞<br>07-22 15:47&nbsp;</td>
+				<td class="mytbCELL1" align="center">刘云生<br>07-22 16:31&nbsp;</td>
+				<td class="mytbCELL1" align="center"><br>&nbsp;</td>
+				<td class="mytbCELL1" align="center"><br>&nbsp;</td>
+			</tr>
+		
+			<tr>
+				<td class="mytbCELL1" align="center"  name="preType">
+					
+					
+						复检报活
+					
+					
+					
+				</td>
+				<td class="mytbCELL1" align="center">后通风机座子螺丝松&nbsp;</td>
+				<td class="mytbCELL1" align="center">孙永进&nbsp;</td>
+				<td class="mytbCELL1" align="center">2013-07-22 14:23&nbsp;</td>
+				<td class="mytbCELL1" align="center">紧固&nbsp;</td>
+				<td class="mytbCELL1" align="center">
+					
+					
+					
+					陈轩<br>07-22 14:28&nbsp;
+				</td>
+				<td class="mytbCELL1" align="center">
+					
+					孙永进<br>07-22 14:31&nbsp;
+				</td>
+				<td class="mytbCELL1" align="center">周雁飞<br>07-22 15:47&nbsp;</td>
+				<td class="mytbCELL1" align="center">刘云生<br>07-22 16:31&nbsp;</td>
+				<td class="mytbCELL1" align="center"><br>&nbsp;</td>
+				<td class="mytbCELL1" align="center"><br>&nbsp;</td>
+			</tr>
+		
+			<tr>
+				<td class="mytbCELL1" align="center"  name="preType">
+					
+					
+						复检报活
+					
+					
+					
+				</td>
+				<td class="mytbCELL1" align="center">高温控制阀进出油管接头漏油&nbsp;</td>
+				<td class="mytbCELL1" align="center">孙永进&nbsp;</td>
+				<td class="mytbCELL1" align="center">2013-07-22 14:22&nbsp;</td>
+				<td class="mytbCELL1" align="center">紧固&nbsp;</td>
+				<td class="mytbCELL1" align="center">
+					
+					
+					
+					陈轩<br>07-22 14:28&nbsp;
+				</td>
+				<td class="mytbCELL1" align="center">
+					
+					孙永进<br>07-22 14:30&nbsp;
+				</td>
+				<td class="mytbCELL1" align="center">周雁飞<br>07-22 15:47&nbsp;</td>
+				<td class="mytbCELL1" align="center">刘云生<br>07-22 16:31&nbsp;</td>
+				<td class="mytbCELL1" align="center"><br>&nbsp;</td>
+				<td class="mytbCELL1" align="center"><br>&nbsp;</td>
+			</tr>
+		
+			<tr>
+				<td class="mytbCELL1" align="center"  name="preType">
+					
+					
+						复检报活
+					
+					
+					
+				</td>
+				<td class="mytbCELL1" align="center">低温液压回油管与大热交换器出水法兰靠磨&nbsp;</td>
+				<td class="mytbCELL1" align="center">孙永进&nbsp;</td>
+				<td class="mytbCELL1" align="center">2013-07-22 14:22&nbsp;</td>
+				<td class="mytbCELL1" align="center">加毛毡&nbsp;</td>
+				<td class="mytbCELL1" align="center">
+					
+					
+					
+					陈轩<br>07-22 14:29&nbsp;
+				</td>
+				<td class="mytbCELL1" align="center">
+					
+					孙永进<br>07-22 14:30&nbsp;
+				</td>
+				<td class="mytbCELL1" align="center">周雁飞<br>07-22 15:47&nbsp;</td>
+				<td class="mytbCELL1" align="center">刘云生<br>07-22 16:31&nbsp;</td>
+				<td class="mytbCELL1" align="center"><br>&nbsp;</td>
+				<td class="mytbCELL1" align="center"><br>&nbsp;</td>
+			</tr>
+		
+			<tr>
+				<td class="mytbCELL1" align="center"  name="preType">
+					
+					
+						复检报活
+					
+					
+					
+				</td>
+				<td class="mytbCELL1" align="center">预热锅炉进水管卡子脱焊&nbsp;</td>
+				<td class="mytbCELL1" align="center">孙永进&nbsp;</td>
+				<td class="mytbCELL1" align="center">2013-07-22 14:27&nbsp;</td>
+				<td class="mytbCELL1" align="center">烧焊&nbsp;</td>
+				<td class="mytbCELL1" align="center">
+					
+					
+					
+					陈轩<br>07-22 14:29&nbsp;
+				</td>
+				<td class="mytbCELL1" align="center">
+					
+					孙永进<br>07-22 14:30&nbsp;
+				</td>
+				<td class="mytbCELL1" align="center">周雁飞<br>07-22 15:47&nbsp;</td>
+				<td class="mytbCELL1" align="center">刘云生<br>07-22 16:31&nbsp;</td>
+				<td class="mytbCELL1" align="center"><br>&nbsp;</td>
+				<td class="mytbCELL1" align="center"><br>&nbsp;</td>
+			</tr>
+		
+	</table>
+	<!-- 报活项目 end-->
+	</td>
+	</tr>
+  </table>
+  </td>
+  </tr>
+  </table>
+  </div>
+</form>
+</body>
+</html>
+

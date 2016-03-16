@@ -1,0 +1,135 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>报活签认</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<!--框架必需start-->
+	<script type="text/javascript" src="../js/jquery-1.4.js"></script>
+	<script type="text/javascript" src="../js/jquery.form.js"></script>
+	<script type="text/javascript" src="../js/framework.js"></script>
+	<link href="../css/import_basic.css" rel="stylesheet" type="text/css" />
+	<link rel="stylesheet" type="text/css" id="skin" />
+	<!--框架必需end-->
+	<style type="text/css">
+	*html{
+	 background-image:url(about:blank);
+	 background-attachment:fixed;
+	 }
+	 
+	#sign1{
+	position:fixed;
+	margin-top:5px;
+	margin-left:5px;
+	top:0px;
+	
+	 _position:absolute;
+	 _bottom:auto;
+	 _top:expression(eval(document.documentElement.scrollTop));
+	 _margin-top:5px;
+	 _margin-left:5px;
+	 }
+	 
+	#allsign1{
+	position:fixed;
+	margin-top:5px;
+	margin-left:75px;
+	top:0px;
+	
+	_position:absolute;
+	_bottom:auto;
+	_top:expression(eval(document.documentElement.scrollTop));
+	_margin-top:5px;
+	_margin-left:75px;
+	}
+	
+	#print1{
+	position:fixed;
+	margin-top:5px;
+	margin-left:75px;
+    top:0px;
+	
+	_position:absolute;
+	_bottom:auto;
+	_top:expression(eval(document.documentElement.scrollTop));
+	_margin-top:5px;
+	_margin-left:75px;
+	}
+	
+	#newreport1{
+	position:fixed;
+	margin-top:5px;
+	margin-left:145px;
+	top:0px;
+	  
+	_position:absolute;
+	_bottom:auto;
+	_top:expression(eval(document.documentElement.scrollTop));
+	_margin-top:5px;
+	_margin-left:14px;
+	}
+	</style>
+</head>
+<body>
+	<button id="sign1"><span class="icon_ok">签认</span></button>
+	<button id="print1" ><span class="icon_print">打印</span></button>
+	<button id="newreport1"><span class="icon_print">报活</span></button>
+	<table width="100%" class="tableStyle" id="checkboxTable" useCheckBox="false" style="margin-top: 30px;">
+		<tr align="center">
+			<th class="ver01" width="25"></th>
+			<th class="ver01">
+				具体报活部位
+			</th>
+			<th class="ver01">
+				故障情况
+			</th>
+			<th class="ver01">
+				报活人
+			</th>
+			<th class="ver01">
+				报活时间
+			</th>
+			<th class="ver01">
+				类型
+			</th>
+			<th class="ver01">
+				分工处理人
+			</th>
+			<th class="ver01">
+				处理情况
+			</th>
+			<th class="ver01">
+				检修人签字
+			</th>
+		</tr>
+		<tr align="center">
+			<td class="ver01">
+		        <input type="checkbox" value="${entry.preDictId}" name="report_item"/>
+			</td>
+			<td class="ver01">
+				空气干燥器
+			</td>
+			<td class="ver01">
+				控制盒电磁阀漏风 
+			</td>
+			<td class="ver01">
+				吴绩远 
+			</td>
+			<td class="ver01">
+				2013-11-07 10:49 
+			</td>
+			<td class="ver01">
+				检修过程报活
+			</td>
+			<td class="ver01">
+				吴绩远 
+			</td>
+			<td class="ver01">
+				检查良好
+			</td>
+			<td class="ver01">
+				吴绩远2013-11-07 10:49:33 
+			</td>
+		</tr>
+	</table>
+</body>
+</html>

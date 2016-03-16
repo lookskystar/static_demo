@@ -1,0 +1,1038 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>整车配件检修记录</title>
+<link href="../css/test.css" type="text/css" rel="stylesheet" />
+<link href="../css/linkcss.css" type="text/css" rel="stylesheet" />
+<link href="../js/tree/dtree/dtree.css" type="text/css" rel="stylesheet" />
+<script type="text/javascript" src="../js/test.js"></script>
+<script type="text/javascript" src="../js/jquery-1.4.js"></script>
+<script type="text/javascript" src="../js/tree/dtree/dtree.js"></script>
+<script type="text/javascript" charset="UTF-8" src="../js/float.js"></script>
+<script type="text/javascript" charset="UTF-8" src="../js/print.js"></script>
+<script language="JavaScript" type="text/javascript"> 
+			
+function renovate(url, name){
+	var substance = document.getElementById('substance');
+	if(substance != undefined && url != null && url.length > 0) {
+		if(url.indexOf("?")>=0)
+			url+="&"+Math.random();
+		else
+			url+="?"+Math.random();
+		substance.src = url;
+	}
+	
+	if ('2' == '2' && (url.indexOf('enterApp=FI') > -1 || url.indexOf('fi.alisoft.com') > -1)) {
+		mainbody.css('border-bottom=1px solid #4677b5,border-top=1px solid #4677b5,width=1030px,float=left,margin-left=-35px,_margin-left=0');
+		mainbottom.hidden();
+		iframe1.css('width=1030px,height=480px,float=left');
+	} else {
+		mainbody.css('border-bottom=0px,border-top=0px,width=958px,float=none,margin-left=0px');
+		mainbottom.show();
+		iframe1.css('width=938px,height=480px,float=none,margin-left=10px');
+	}
+	if(KB.bom.ie=='6.0'){
+		mainbody.css('margin-left=0');
+	}
+	return false;
+}
+ 
+ 
+function setWinH(){
+	SetWinHeight(document.getElementById('substance'));
+}
+ 
+ function SetWinHeight(obj){
+      try {
+      	var win=obj;
+		var h = 0;
+       if (document.getElementById) {
+			if (win && !window.opera) {
+				if (win.contentDocument && win.contentDocument.body.offsetHeight) {
+					win.style.height = win.contentDocument.body.offsetHeight;
+					h=win.contentDocument.body.offsetHeight;
+				} else if(win.Document && win.Document.body.scrollHeight) {
+					win.style.height = win.Document.body.scrollHeight;
+					h=win.Document.body.scrollHeight;
+				} else {
+					h=win.contentDocument.body.offsetHeight;
+				}
+			} else {
+				//win.height = 600;
+			}
+       } else {
+		//win.height = 600;
+	   }
+ 
+		h = parseInt(h);
+		iframe1.css('height='+h+'px');
+      } catch (e) {
+	     //win.height = 600;
+      }
+ }
+function init(){
+	var navs ;
+	/*--初始导航--*/
+	var navs = new KB('ul@nav:li');
+	/*--初始导航--*/
+	var debugx = 0;
+	var debugInt = true;
+	/*--解决IE6下背景图片加载缓慢问题--*/
+	if(KB.bom.ie=='6.0'){
+       try{
+         document.execCommand("BackgroundImageCache", false, true);
+        }catch(e){}
+    }
+	
+	for(var i=0; i<navs.nod.length; i++){
+		if(KB.isNode('subnav_'+navs.nod[i].id)){
+			var pos = KB.getPos(navs.nod[i]);
+			var x = parseInt(pos.x)-160;
+			if(debugInt){
+				if(x<110){
+					debugx = 110-x;	
+				}
+				if(x>120){
+					debugx = 120-x;
+				}
+				debugInt = false;
+			}
+			x = x+debugx+'px';
+			var y = 45+'px';
+			var s = new KB('dl=subnav_'+navs.nod[i].id);
+			s.css('position=absolute,left='+x+',top='+y);
+		}
+		(function(i,k){
+				 	KB.reg(k.nod[i],'mouseover',function(){
+														 		if(k.nod[i].className=="nav_active")return;
+																new KB('div@header').css('position=relative');
+																if(KB.isNode('subnav_'+k.nod[i].id)){
+																	var s = new KB('dl=subnav_'+k.nod[i].id);
+																	s.show();
+																	k.nod[i].className='vor';
+																}
+															}); 
+					KB.reg(k.nod[i],'mouseout',function(){
+														 		new KB('div@header').css('position=static');
+																if(k.nod[i].className=="nav_active")return;
+																if(KB.isNode('subnav_'+k.nod[i].id)){
+																	var s = new KB('dl=subnav_'+k.nod[i].id);
+																	s.hidden();
+																	k.nod[i].className='';
+																}
+															});
+				 })(i,navs);	
+	}
+	//KB.regHover(navs,'','','mainmenu_1_on',changeMenu);
+	/*--初始top链接切换--*/
+	navs = new KB('dl@top_right:li');
+	KB.regHover(navs,'','','margin10',DHchange);
+	navs = new KB('div=topnav1:div');
+	KB.regHover(navs,'top_nav_hover','','');
+	navs = new KB('div=topnav2:div');
+	KB.regHover(navs,'top_nav_hover','','');
+	 /*--初始ShortCut快捷方式--*/
+	ShortCut.cut = new KB('div@shortcut');
+	var f = ShortCut.cut.getChild('*');
+	for(var i=0; i<f.length; i++){
+		(function(i){
+				  KB.reg(f[i],'mouseover',ShortCut.show);
+				  })(i);	
+	}
+	var scubtn = new KB('b=short_cu');
+	ShortCut.cuBtn = scubtn.nod[0];
+	ShortCut.title1 = '开启前端显示';
+	ShortCut.title2 = '关闭前端显示';
+	ShortCut.cutBtn = new KB('div=shortcut_btn');
+	scubtn.show();
+	ShortCut.init();
+	tips.width=80;
+	tips.xdebug = 140;
+}
+ 
+function openTopnav(num,t){
+	if(t){
+		new KB('div=topnav'+num).show();
+	}else{
+		new KB('div=topnav'+num).hidden();
+	}
+}
+</script>
+<script type="text/javascript"> 
+	try{
+		if(top.location != self.location) {
+		   //top.location.href = 'home.jspa';
+		}
+	}catch(e){}
+	
+	//合并表格的单元格
+	function cellMege(table,col){
+		var lines=$('#'+table+' tr').size();
+		if(lines<=2) return ;
+		var v,l=0,current='',index=1;
+		for(var i=1;i<lines;i++){
+			var tr=$('#'+table+' tr').eq(i);
+			v=tr.find('td[name="'+col+'"]').html();
+			//alert(tr.find('td[name="secondname"]').size());
+			l++;
+			//alert(v);
+			if(v!=current||i==(lines-1)){//如果两个值不相同或者是最后一行
+				if(i==(lines-1)) l++;
+				if(l>1){//草果两行，合并
+					var td=$('#'+table+' tr').eq(index).find('td[name="'+col+'"]');
+					td.attr('rowspan',l);
+					for(var j=1;j<l;j++){
+						var td=$('#'+table+' tr').eq(index+j).find('td[name="'+col+'"]').remove();
+					}
+				}
+				l=0;//从新计数
+				current=v;
+				index=i;
+			}
+		}
+	}
+	KB.ready(init);
+	$(function(){
+		cellMege('datatabel','proteamname');
+		cellMege('datatabel','secondname');
+		cellMege('datatabel','fixitemname');
+		cellMege('datatabe2','preType');
+		//cellMege(0);
+		//cellMege('secondname');
+		$('.add-collect-to').float({
+			position:'rm'
+		});
+		//右侧菜单浮动
+		$('.shortcut').float({
+			position:'l'
+		});
+		$('.shortcut_btn').float({
+			position:'l'
+		});
+	});
+	$(function(){
+	    d = new dTree('d');//创建一个树对象   
+		d.add(0,-1,'检修记录'); //创建一个树对象 
+        d.add('bj',0,'机车部件'); //创建一个树对象 
+         	d.add(1,'bj','行安','../query/zx_unit_rec.html');
+         	d.add(2,'bj','电子','../query/zx_unit_rec.html');
+         	d.add(3,'bj','制动','../query/zx_unit_rec.html');
+         	d.add(4,'bj','仪表','../query/zx_unit_rec.html');
+         	d.add(5,'bj','蓄电池','../query/zx_unit_rec.html');
+         	d.add(6,'bj','电器','../query/zx_unit_rec.html');
+         	d.add(7,'bj','电机','../query/zx_unit_rec.html');
+         	d.add(8,'bj','走行','../query/zx_unit_rec.html');
+         	d.add(9,'bj','受电弓','../query/zx_unit_rec.html');
+ 		d.add('sy',0,'试验记录');//班组树形
+         	d.add('sy_1','sy','水阻试验','../query/exp_shuizu.html','水阻试验');
+         	d.add('sy_2','sy','顶轮试验','../query/exp_dinglun.html','顶轮试验');
+         	d.add('sy_3','sy','高低压试验','../query/exp_gaodiya.html','高低压试验');
+         	d.add('sy_4','sy','试运行试验','../query/exp_shiyunxing.html','试运行试验');
+ 		d.add('pj', 0, "配件记录","../query/zx_all_pj.html");
+ 		d.add('ts', 0, "探伤记录","../query/zx_all_ts.html");
+ 		d.add('daochu', 0, "记录导出","javascript:void(0);");
+ 		d.add('left_work', 0, '未完成记录','../query/zx_unfinish_rec.html');
+        $('#tt').append(d.toString());
+	});
+</script>
+</head>
+ 
+<body bgcolor="#f8f7f7">
+<form id="form1" name="form1" method="post" action="">
+<!--top end-->
+<div class="top" id="top" style="display:none">
+  <!--top_right begin-->
+  <dl class="top_right">
+    <dd>
+      <ul>
+      
+        <li style="position: static;" class=""><a onclick="openTopnav(1,true)" href="javascript:void(0)">系统设置</a><b class="icon9"></b>
+          <div id="topnav1" class="top_nav" style="display: none;">
+            <h2><a onclick="openTopnav(1,true)" href="javascript:void(0)">系统设置</a><b class="icon9"></b></h2>
+            <div><a onclick="openUrlToNewPage('#','初始设置');'return false';" href="javascript:void(0)">初始设置</a></div>
+            <iframe frameborder="0" style="z-index:-1; position:absolute; top:0; left:0; width:100px; height:140px; opacity:0; filter:alpha(opacity=0)"></iframe>
+          </div>
+        </li>
+        <li class="margin10">|</li>
+        <li style="position: static;" class=""><a onclick="openTopnav(2,true)" href="javascript:void(0)">在线帮助</a><b class="icon9"></b>
+          <div id="topnav2" class="top_nav" style="display: none;">
+            <h2><a onclick="openTopnav(2,false)" href="javascript:void(0)">在线帮助</a><b class="icon9"></b></h2>
+            <div><a href="" target="_blank">在线帮助</a></div>
+            <div><a href="javascript:changeFaceAdpter('STATIC_SERVER/c2c/face0/images','0');">新手上路</a></div>
+            <iframe frameborder="0" style="z-index:-1; position:absolute; top:0; left:0; width:100px; height:140px; opacity:0; filter:alpha(opacity=0)"></iframe>
+          </div>
+        </li>
+        <li class="margin10">|</li>
+      </ul>
+    </dd>
+  </dl>
+</div>
+<!--left box-->
+<div class="shortcut" style="z-index:1000">
+  <div class="shortcut_top"><span>机车配件检修记录</span><b class="icon57" title="" id="short_cu" onclick="ShortCut.cu()" style="display:none;"></b></div>
+  <div class="shortcut_wrap"></div>
+  <div class="shortcut_body" id="left_menu">
+  <ul id="tt" class="easyui-tree">  
+  <!-- 
+    <li>  
+        <span>机车部件</span>  
+        <ul>  
+            
+  				<li><a href="http://localhost:8080/min/query!view.do?jcStype=&jcNum=&xcxc=&fristUnit=11"><span class="icon10"></span>制动</a></li>
+ 			
+  				<li><a href="http://localhost:8080/min/query!view.do?jcStype=&jcNum=&xcxc=&fristUnit=19"><span class="icon10"></span>行安</a></li>
+ 			
+  				<li><a href="http://localhost:8080/min/query!view.do?jcStype=&jcNum=&xcxc=&fristUnit=21"><span class="icon10"></span>电子</a></li>
+ 			
+  				<li><a href="http://localhost:8080/min/query!view.do?jcStype=&jcNum=&xcxc=&fristUnit=14"><span class="icon10"></span>仪表</a></li>
+ 			
+  				<li><a href="http://localhost:8080/min/query!view.do?jcStype=&jcNum=&xcxc=&fristUnit=15"><span class="icon10"></span>蓄电池</a></li>
+ 			
+  				<li><a href="http://localhost:8080/min/query!view.do?jcStype=&jcNum=&xcxc=&fristUnit=10"><span class="icon10"></span>电器</a></li>
+ 			
+  				<li><a href="http://localhost:8080/min/query!view.do?jcStype=&jcNum=&xcxc=&fristUnit=16"><span class="icon10"></span>电机</a></li>
+ 			
+  				<li><a href="http://localhost:8080/min/query!view.do?jcStype=&jcNum=&xcxc=&fristUnit=12"><span class="icon10"></span>走行</a></li>
+ 			
+  				<li><a href="http://localhost:8080/min/query!view.do?jcStype=&jcNum=&xcxc=&fristUnit=18"><span class="icon10"></span>受电弓</a></li>
+ 			
+        </ul>  
+    </li>  
+    -->
+</ul>  
+  </div>
+  <div class="shortcut_bottom"></div>
+  <iframe style="position:absolute; left:0px; top:0px; width:142px; height:300px; border:1px solid #229900; z-index:-1; opacity:0; filter:alpha(opacity=0);"></iframe>
+</div>
+<div class="shortcut_btn" id="shortcut_btn"></div>
+<!–startprint–>
+<div style="width:870px;margin-left:-435px;left:50%;position:absolute;" id="content2">
+<table width="864" border="0" align="center" cellspacing="0" vspace="0" style="padding-top:10px;">
+<tr>
+<td colspan="6" align="center" height="40"><h2 align="center"><font style="font-family:'隶书'">
+<b>整车配件检修记录
+</b></font></h2></td>
+<td  align="right"></td>
+</tr>
+<tr>
+<td width="163" align="right">机车号：</td>
+<td width="240">SS3B  6091B</td>
+<td width="55" align="left">修程：</td><td width="251">Z2</td>
+<td width="140" align="left">检修日期：</td><td width="195" algin="left">2013-07-08 07:00</td>
+</tr>
+<tr><td colspan="6">
+<table width="864" border="0" align="center" cellspacing="0" vspace="0">
+ <tr>
+	<td align="center" colspan="3" class="tbCELL3">
+	<table width="864px" border="0" align="center" cellspacing="0" vspace="0" id="datatabel">
+		<tr style="line-height:40px;height: 40px;background-color: lightblue;font-weight: bolder;">
+			<td class="tbCELL1" align="center" style="white-space:nowrap" width="10%">专业</td>
+			<td class="tbCELL1" align="center" style="white-space:nowrap" width="5%">序号</td>
+			<td class="tbCELL1" align="center" style="white-space:nowrap" width="20%">配件名称</td>
+			<td class="tbCELL1" align="center" style="white-space:nowrap" width="15%">上车数量/总数量</td>
+			<td class="tbCELL1" align="center" style="white-space:nowrap;word-break:break-all;word-wrap: break-word;" width="50%">上车配件编号</td>
+		</tr>
+ 		
+ 		  
+ 		  
+ 		  <tr>
+ 		  	<td rowspan="7" class="tbCELL1" align="center" style="white-space:nowrap" width="10%">制动(6)</td>
+ 		  </tr>
+ 		  
+ 		    
+ 		      <tr><td class="tbCELL1" align="center" style="white-space:nowrap" width="5%">1</td>
+ 		      <td class="tbCELL1" align="center" style="white-space:nowrap" width="20%"><a href="http://localhost:8080/min/query!zxFittingDetailViewNew.do?id=29349&staticId=23" target="_blank">LAD-T-3型空气干燥器</a></td>
+ 		      <td class="tbCELL1" align="center" style="white-space:nowrap" width="15%">
+ 		        
+ 		        <font color="red">1</font>/4
+ 		      </td>
+ 		      <td class="tbCELL1" align="center" style="word-break:normal;word-wrap: break-word;" width="50%">
+ 		        
+ 		          
+ 		            <a href="query!findPjRecordByPjNum.do?rjhmId=29349&pjdid=23" target="_blank">2013071110595274</a>&nbsp;&nbsp;
+ 		          
+ 		        
+ 		      </td>
+ 		      </tr>
+ 		      
+ 		    
+ 		      <tr><td class="tbCELL1" align="center" style="white-space:nowrap" width="5%">2</td>
+ 		      <td class="tbCELL1" align="center" style="white-space:nowrap" width="20%"><a href="http://localhost:8080/min/query!zxFittingDetailViewNew.do?id=29349&staticId=24" target="_blank">TSA-230A螺杆式</a></td>
+ 		      <td class="tbCELL1" align="center" style="white-space:nowrap" width="15%">
+ 		        
+ 		        <font color="red">1</font>/4
+ 		      </td>
+ 		      <td class="tbCELL1" align="center" style="word-break:normal;word-wrap: break-word;" width="50%">
+ 		        
+ 		          
+ 		            <a href="query!findPjRecordByPjNum.do?rjhmId=29349&pjdid=24" target="_blank">011AV521</a>&nbsp;&nbsp;
+ 		          
+ 		        
+ 		      </td>
+ 		      </tr>
+ 		      
+ 		    
+ 		      <tr><td class="tbCELL1" align="center" style="white-space:nowrap" width="5%">3</td>
+ 		      <td class="tbCELL1" align="center" style="white-space:nowrap" width="20%"><a href="http://localhost:8080/min/query!zxFittingDetailViewNew.do?id=29349&staticId=25" target="_blank">紧急阀</a></td>
+ 		      <td class="tbCELL1" align="center" style="white-space:nowrap" width="15%">
+ 		        
+ 		        <font color="red">1</font>/4
+ 		      </td>
+ 		      <td class="tbCELL1" align="center" style="word-break:normal;word-wrap: break-word;" width="50%">
+ 		        
+ 		          
+ 		            <a href="query!findPjRecordByPjNum.do?rjhmId=29349&pjdid=25" target="_blank">55</a>&nbsp;&nbsp;
+ 		          
+ 		        
+ 		      </td>
+ 		      </tr>
+ 		      
+ 		    
+ 		      <tr><td class="tbCELL1" align="center" style="white-space:nowrap" width="5%">4</td>
+ 		      <td class="tbCELL1" align="center" style="white-space:nowrap" width="20%"><a href="http://localhost:8080/min/query!zxFittingDetailViewNew.do?id=29349&staticId=26" target="_blank">空气制动阀</a></td>
+ 		      <td class="tbCELL1" align="center" style="white-space:nowrap" width="15%">
+ 		        
+ 		        <font color="red">1</font>/4
+ 		      </td>
+ 		      <td class="tbCELL1" align="center" style="word-break:normal;word-wrap: break-word;" width="50%">
+ 		        
+ 		          
+ 		            <a href="query!findPjRecordByPjNum.do?rjhmId=29349&pjdid=26" target="_blank">13</a>&nbsp;&nbsp;
+ 		          
+ 		        
+ 		      </td>
+ 		      </tr>
+ 		      
+ 		    
+ 		      <tr><td class="tbCELL1" align="center" style="white-space:nowrap" width="5%">5</td>
+ 		      <td class="tbCELL1" align="center" style="white-space:nowrap" width="20%"><a href="http://localhost:8080/min/query!zxFittingDetailViewNew.do?id=29349&staticId=27" target="_blank">分配阀</a></td>
+ 		      <td class="tbCELL1" align="center" style="white-space:nowrap" width="15%">
+ 		        
+ 		        <font color="red">1</font>/4
+ 		      </td>
+ 		      <td class="tbCELL1" align="center" style="word-break:normal;word-wrap: break-word;" width="50%">
+ 		        
+ 		          
+ 		            <a href="query!findPjRecordByPjNum.do?rjhmId=29349&pjdid=173" target="_blank">2013071218195982</a>&nbsp;&nbsp;
+ 		          
+ 		        
+ 		      </td>
+ 		      </tr>
+ 		      
+ 		    
+ 		      <tr><td class="tbCELL1" align="center" style="white-space:nowrap" width="5%">6</td>
+ 		      <td class="tbCELL1" align="center" style="white-space:nowrap" width="20%"><a href="http://localhost:8080/min/query!zxFittingDetailViewNew.do?id=29349&staticId=28" target="_blank">中继阀、遮断阀</a></td>
+ 		      <td class="tbCELL1" align="center" style="white-space:nowrap" width="15%">
+ 		        
+ 		        <font color="red">1</font>/4
+ 		      </td>
+ 		      <td class="tbCELL1" align="center" style="word-break:normal;word-wrap: break-word;" width="50%">
+ 		        
+ 		          
+ 		            <a href="query!findPjRecordByPjNum.do?rjhmId=29349&pjdid=184" target="_blank">1217</a>&nbsp;&nbsp;
+ 		          
+ 		        
+ 		      </td>
+ 		      </tr>
+ 		      
+ 		    
+ 		  
+ 		
+ 		  
+ 		  
+ 		  <tr>
+ 		  	<td rowspan="4" class="tbCELL1" align="center" style="white-space:nowrap" width="10%">仪表(3)</td>
+ 		  </tr>
+ 		  
+ 		    
+ 		      <tr><td class="tbCELL1" align="center" style="white-space:nowrap" width="5%">1</td>
+ 		      <td class="tbCELL1" align="center" style="white-space:nowrap" width="20%"><a href="http://localhost:8080/min/query!zxFittingDetailViewNew.do?id=29349&staticId=29" target="_blank">机车风压表</a></td>
+ 		      <td class="tbCELL1" align="center" style="white-space:nowrap" width="15%">
+ 		        
+ 		        <font color="red">1</font>/4
+ 		      </td>
+ 		      <td class="tbCELL1" align="center" style="word-break:normal;word-wrap: break-word;" width="50%">
+ 		        
+ 		          
+ 		            <a href="query!findPjRecordByPjNum.do?rjhmId=29349&pjdid=186" target="_blank">2013071412220016</a>&nbsp;&nbsp;
+ 		          
+ 		        
+ 		      </td>
+ 		      </tr>
+ 		      
+ 		    
+ 		      <tr><td class="tbCELL1" align="center" style="white-space:nowrap" width="5%">2</td>
+ 		      <td class="tbCELL1" align="center" style="white-space:nowrap" width="20%"><a href="http://localhost:8080/min/query!zxFittingDetailViewNew.do?id=29349&staticId=30" target="_blank">机车仪表</a></td>
+ 		      <td class="tbCELL1" align="center" style="white-space:nowrap" width="15%">
+ 		        
+ 		        <font color="red">1</font>/4
+ 		      </td>
+ 		      <td class="tbCELL1" align="center" style="word-break:normal;word-wrap: break-word;" width="50%">
+ 		        
+ 		          
+ 		            <a href="query!findPjRecordByPjNum.do?rjhmId=29349&pjdid=188" target="_blank">2013071412255733</a>&nbsp;&nbsp;
+ 		          
+ 		        
+ 		      </td>
+ 		      </tr>
+ 		      
+ 		    
+ 		      <tr><td class="tbCELL1" align="center" style="white-space:nowrap" width="5%">3</td>
+ 		      <td class="tbCELL1" align="center" style="white-space:nowrap" width="20%"><a href="http://localhost:8080/min/query!zxFittingDetailViewNew.do?id=29349&staticId=31" target="_blank">机车电能表</a></td>
+ 		      <td class="tbCELL1" align="center" style="white-space:nowrap" width="15%">
+ 		        
+ 		        <font color="red">1</font>/4
+ 		      </td>
+ 		      <td class="tbCELL1" align="center" style="word-break:normal;word-wrap: break-word;" width="50%">
+ 		        
+ 		          
+ 		            <a href="query!findPjRecordByPjNum.do?rjhmId=29349&pjdid=189" target="_blank">2013071412273131</a>&nbsp;&nbsp;
+ 		          
+ 		        
+ 		      </td>
+ 		      </tr>
+ 		      
+ 		    
+ 		  
+ 		
+ 		  
+ 		  
+ 		  <tr>
+ 		  	<td rowspan="13" class="tbCELL1" align="center" style="white-space:nowrap" width="10%">电器(12)</td>
+ 		  </tr>
+ 		  
+ 		    
+ 		      <tr><td class="tbCELL1" align="center" style="white-space:nowrap" width="5%">1</td>
+ 		      <td class="tbCELL1" align="center" style="white-space:nowrap" width="20%"><a href="http://localhost:8080/min/query!zxFittingDetailViewNew.do?id=29349&staticId=7" target="_blank">真空主断路器</a></td>
+ 		      <td class="tbCELL1" align="center" style="white-space:nowrap" width="15%">
+ 		        
+ 		        <font color="red">1</font>/4
+ 		      </td>
+ 		      <td class="tbCELL1" align="center" style="word-break:normal;word-wrap: break-word;" width="50%">
+ 		        
+ 		          
+ 		            <a href="query!findPjRecordByPjNum.do?rjhmId=29349&pjdid=187" target="_blank">2013071412254851</a>&nbsp;&nbsp;
+ 		          
+ 		        
+ 		      </td>
+ 		      </tr>
+ 		      
+ 		    
+ 		      <tr><td class="tbCELL1" align="center" style="white-space:nowrap" width="5%">2</td>
+ 		      <td class="tbCELL1" align="center" style="white-space:nowrap" width="20%"><a href="http://localhost:8080/min/query!zxFittingDetailViewNew.do?id=29349&staticId=8" target="_blank">高压电器柜</a></td>
+ 		      <td class="tbCELL1" align="center" style="white-space:nowrap" width="15%">
+ 		        2/2
+ 		        
+ 		      </td>
+ 		      <td class="tbCELL1" align="center" style="word-break:normal;word-wrap: break-word;" width="50%">
+ 		        
+ 		          
+ 		            <a href="query!findPjRecordByPjNum.do?rjhmId=29349&pjdid=69" target="_blank">2013071116183354</a>&nbsp;&nbsp;
+ 		          
+ 		            <a href="query!findPjRecordByPjNum.do?rjhmId=29349&pjdid=195" target="_blank">01</a>&nbsp;&nbsp;
+ 		          
+ 		        
+ 		      </td>
+ 		      </tr>
+ 		      
+ 		    
+ 		      <tr><td class="tbCELL1" align="center" style="white-space:nowrap" width="5%">3</td>
+ 		      <td class="tbCELL1" align="center" style="white-space:nowrap" width="20%"><a href="http://localhost:8080/min/query!zxFittingDetailViewNew.do?id=29349&staticId=9" target="_blank">TCK7/7C型电控接触器</a></td>
+ 		      <td class="tbCELL1" align="center" style="white-space:nowrap" width="15%">
+ 		        
+ 		        <font color="red">1</font>/4
+ 		      </td>
+ 		      <td class="tbCELL1" align="center" style="word-break:normal;word-wrap: break-word;" width="50%">
+ 		        
+ 		          
+ 		            <a href="query!findPjRecordByPjNum.do?rjhmId=29349&pjdid=196" target="_blank">2013071412380471</a>&nbsp;&nbsp;
+ 		          
+ 		        
+ 		      </td>
+ 		      </tr>
+ 		      
+ 		    
+ 		      <tr><td class="tbCELL1" align="center" style="white-space:nowrap" width="5%">4</td>
+ 		      <td class="tbCELL1" align="center" style="white-space:nowrap" width="20%"><a href="http://localhost:8080/min/query!zxFittingDetailViewNew.do?id=29349&staticId=10" target="_blank">TKH3型转换开关</a></td>
+ 		      <td class="tbCELL1" align="center" style="white-space:nowrap" width="15%">
+ 		        
+ 		        <font color="red">1</font>/4
+ 		      </td>
+ 		      <td class="tbCELL1" align="center" style="word-break:normal;word-wrap: break-word;" width="50%">
+ 		        
+ 		          
+ 		            <a href="query!findPjRecordByPjNum.do?rjhmId=29349&pjdid=197" target="_blank">S4-2</a>&nbsp;&nbsp;
+ 		          
+ 		        
+ 		      </td>
+ 		      </tr>
+ 		      
+ 		    
+ 		      <tr><td class="tbCELL1" align="center" style="white-space:nowrap" width="5%">5</td>
+ 		      <td class="tbCELL1" align="center" style="white-space:nowrap" width="20%"><a href="http://localhost:8080/min/query!zxFittingDetailViewNew.do?id=29349&staticId=11" target="_blank">机车Ⅰ端低压电器柜</a></td>
+ 		      <td class="tbCELL1" align="center" style="white-space:nowrap" width="15%">
+ 		        
+ 		        <font color="red">1</font>/4
+ 		      </td>
+ 		      <td class="tbCELL1" align="center" style="word-break:normal;word-wrap: break-word;" width="50%">
+ 		        
+ 		          
+ 		            <a href="query!findPjRecordByPjNum.do?rjhmId=29349&pjdid=198" target="_blank">2013071412392556</a>&nbsp;&nbsp;
+ 		          
+ 		        
+ 		      </td>
+ 		      </tr>
+ 		      
+ 		    
+ 		      <tr><td class="tbCELL1" align="center" style="white-space:nowrap" width="5%">6</td>
+ 		      <td class="tbCELL1" align="center" style="white-space:nowrap" width="20%"><a href="http://localhost:8080/min/query!zxFittingDetailViewNew.do?id=29349&staticId=12" target="_blank">TGZ31型整流柜</a></td>
+ 		      <td class="tbCELL1" align="center" style="white-space:nowrap" width="15%">
+ 		        2/2
+ 		        
+ 		      </td>
+ 		      <td class="tbCELL1" align="center" style="word-break:normal;word-wrap: break-word;" width="50%">
+ 		        
+ 		          
+ 		            <a href="query!findPjRecordByPjNum.do?rjhmId=29349&pjdid=199" target="_blank">200405020</a>&nbsp;&nbsp;
+ 		          
+ 		            <a href="query!findPjRecordByPjNum.do?rjhmId=29349&pjdid=200" target="_blank">20040520</a>&nbsp;&nbsp;
+ 		          
+ 		        
+ 		      </td>
+ 		      </tr>
+ 		      
+ 		    
+ 		      <tr><td class="tbCELL1" align="center" style="white-space:nowrap" width="5%">7</td>
+ 		      <td class="tbCELL1" align="center" style="white-space:nowrap" width="20%"><a href="http://localhost:8080/min/query!zxFittingDetailViewNew.do?id=29349&staticId=13" target="_blank">机车继电器</a></td>
+ 		      <td class="tbCELL1" align="center" style="white-space:nowrap" width="15%">
+ 		        2/2
+ 		        
+ 		      </td>
+ 		      <td class="tbCELL1" align="center" style="word-break:normal;word-wrap: break-word;" width="50%">
+ 		        
+ 		          
+ 		            <a href="query!findPjRecordByPjNum.do?rjhmId=29349&pjdid=181" target="_blank">2013071412095087</a>&nbsp;&nbsp;
+ 		          
+ 		            <a href="query!findPjRecordByPjNum.do?rjhmId=29349&pjdid=182" target="_blank">2013071412100580</a>&nbsp;&nbsp;
+ 		          
+ 		        
+ 		      </td>
+ 		      </tr>
+ 		      
+ 		    
+ 		      <tr><td class="tbCELL1" align="center" style="white-space:nowrap" width="5%">8</td>
+ 		      <td class="tbCELL1" align="center" style="white-space:nowrap" width="20%"><a href="http://localhost:8080/min/query!zxFittingDetailViewNew.do?id=29349&staticId=14" target="_blank">主、辅司控器</a></td>
+ 		      <td class="tbCELL1" align="center" style="white-space:nowrap" width="15%">
+ 		        
+ 		        <font color="red">1</font>/4
+ 		      </td>
+ 		      <td class="tbCELL1" align="center" style="word-break:normal;word-wrap: break-word;" width="50%">
+ 		        
+ 		          
+ 		            <a href="query!findPjRecordByPjNum.do?rjhmId=29349&pjdid=201" target="_blank">2013071412414846</a>&nbsp;&nbsp;
+ 		          
+ 		        
+ 		      </td>
+ 		      </tr>
+ 		      
+ 		    
+ 		      <tr><td class="tbCELL1" align="center" style="white-space:nowrap" width="5%">9</td>
+ 		      <td class="tbCELL1" align="center" style="white-space:nowrap" width="20%"><a href="http://localhost:8080/min/query!zxFittingDetailViewNew.do?id=29349&staticId=15" target="_blank">电控制动控制器</a></td>
+ 		      <td class="tbCELL1" align="center" style="white-space:nowrap" width="15%">
+ 		        
+ 		        <font color="red">1</font>/4
+ 		      </td>
+ 		      <td class="tbCELL1" align="center" style="word-break:normal;word-wrap: break-word;" width="50%">
+ 		        
+ 		          
+ 		            <a href="query!findPjRecordByPjNum.do?rjhmId=29349&pjdid=202" target="_blank">2013071412423244</a>&nbsp;&nbsp;
+ 		          
+ 		        
+ 		      </td>
+ 		      </tr>
+ 		      
+ 		    
+ 		      <tr><td class="tbCELL1" align="center" style="white-space:nowrap" width="5%">10</td>
+ 		      <td class="tbCELL1" align="center" style="white-space:nowrap" width="20%"><a href="http://localhost:8080/min/query!zxFittingDetailViewNew.do?id=29349&staticId=16" target="_blank">主辅板键箱</a></td>
+ 		      <td class="tbCELL1" align="center" style="white-space:nowrap" width="15%">
+ 		        
+ 		        <font color="red">1</font>/4
+ 		      </td>
+ 		      <td class="tbCELL1" align="center" style="word-break:normal;word-wrap: break-word;" width="50%">
+ 		        
+ 		          
+ 		            <a href="query!findPjRecordByPjNum.do?rjhmId=29349&pjdid=71" target="_blank">2013071118053769</a>&nbsp;&nbsp;
+ 		          
+ 		        
+ 		      </td>
+ 		      </tr>
+ 		      
+ 		    
+ 		      <tr><td class="tbCELL1" align="center" style="white-space:nowrap" width="5%">11</td>
+ 		      <td class="tbCELL1" align="center" style="white-space:nowrap" width="20%"><a href="http://localhost:8080/min/query!zxFittingDetailViewNew.do?id=29349&staticId=17" target="_blank">制动电阻柜</a></td>
+ 		      <td class="tbCELL1" align="center" style="white-space:nowrap" width="15%">
+ 		        
+ 		        <font color="red">0</font>/2
+ 		      </td>
+ 		      <td class="tbCELL1" align="center" style="word-break:normal;word-wrap: break-word;" width="50%">
+ 		        
+ 		      </td>
+ 		      </tr>
+ 		      
+ 		    
+ 		      <tr><td class="tbCELL1" align="center" style="white-space:nowrap" width="5%">12</td>
+ 		      <td class="tbCELL1" align="center" style="white-space:nowrap" width="20%"><a href="http://localhost:8080/min/query!zxFittingDetailViewNew.do?id=29349&staticId=34" target="_blank">机车Ⅱ端低压电器柜</a></td>
+ 		      <td class="tbCELL1" align="center" style="white-space:nowrap" width="15%">
+ 		        
+ 		        <font color="red">1</font>/4
+ 		      </td>
+ 		      <td class="tbCELL1" align="center" style="word-break:normal;word-wrap: break-word;" width="50%">
+ 		        
+ 		          
+ 		            <a href="query!findPjRecordByPjNum.do?rjhmId=29349&pjdid=205" target="_blank">0541</a>&nbsp;&nbsp;
+ 		          
+ 		        
+ 		      </td>
+ 		      </tr>
+ 		      
+ 		    
+ 		  
+ 		
+ 		  
+ 		  
+ 		  <tr>
+ 		  	<td rowspan="2" class="tbCELL1" align="center" style="white-space:nowrap" width="10%">蓄电池(1)</td>
+ 		  </tr>
+ 		  
+ 		    
+ 		      <tr><td class="tbCELL1" align="center" style="white-space:nowrap" width="5%">1</td>
+ 		      <td class="tbCELL1" align="center" style="white-space:nowrap" width="20%"><a href="http://localhost:8080/min/query!zxFittingDetailViewNew.do?id=29349&staticId=32" target="_blank">机车蓄电池</a></td>
+ 		      <td class="tbCELL1" align="center" style="white-space:nowrap" width="15%">
+ 		        2/2
+ 		        
+ 		      </td>
+ 		      <td class="tbCELL1" align="center" style="word-break:normal;word-wrap: break-word;" width="50%">
+ 		        
+ 		          
+ 		            <a href="query!findPjRecordByPjNum.do?rjhmId=29349&pjdid=224" target="_blank">2013071415335841</a>&nbsp;&nbsp;
+ 		          
+ 		            <a href="query!findPjRecordByPjNum.do?rjhmId=29349&pjdid=191" target="_blank">2013071412291524</a>&nbsp;&nbsp;
+ 		          
+ 		        
+ 		      </td>
+ 		      </tr>
+ 		      
+ 		    
+ 		  
+ 		
+ 		  
+ 		  
+ 		  <tr>
+ 		  	<td rowspan="2" class="tbCELL1" align="center" style="white-space:nowrap" width="10%">受电弓(1)</td>
+ 		  </tr>
+ 		  
+ 		    
+ 		      <tr><td class="tbCELL1" align="center" style="white-space:nowrap" width="5%">1</td>
+ 		      <td class="tbCELL1" align="center" style="white-space:nowrap" width="20%"><a href="http://localhost:8080/min/query!zxFittingDetailViewNew.do?id=29349&staticId=22" target="_blank">DSA200/TSGD300型受电弓</a></td>
+ 		      <td class="tbCELL1" align="center" style="white-space:nowrap" width="15%">
+ 		        
+ 		        <font color="red">1</font>/4
+ 		      </td>
+ 		      <td class="tbCELL1" align="center" style="word-break:normal;word-wrap: break-word;" width="50%">
+ 		        
+ 		          
+ 		            <a href="query!findPjRecordByPjNum.do?rjhmId=29349&pjdid=22" target="_blank">2SA-200</a>&nbsp;&nbsp;
+ 		          
+ 		        
+ 		      </td>
+ 		      </tr>
+ 		      
+ 		    
+ 		  
+ 		
+ 		  
+ 		  
+ 		  <tr>
+ 		  	<td rowspan="4" class="tbCELL1" align="center" style="white-space:nowrap" width="10%">走行(3)</td>
+ 		  </tr>
+ 		  
+ 		    
+ 		      <tr><td class="tbCELL1" align="center" style="white-space:nowrap" width="5%">1</td>
+ 		      <td class="tbCELL1" align="center" style="white-space:nowrap" width="20%"><a href="http://localhost:8080/min/query!zxFittingDetailViewNew.do?id=29349&staticId=1" target="_blank">制动器</a></td>
+ 		      <td class="tbCELL1" align="center" style="white-space:nowrap" width="15%">
+ 		        12/12
+ 		        
+ 		      </td>
+ 		      <td class="tbCELL1" align="center" style="word-break:normal;word-wrap: break-word;" width="50%">
+ 		        
+ 		          
+ 		            <a href="query!findPjRecordByPjNum.do?rjhmId=29349&pjdid=78" target="_blank">0089</a>&nbsp;&nbsp;
+ 		          
+ 		            <a href="query!findPjRecordByPjNum.do?rjhmId=29349&pjdid=103" target="_blank">0113</a>&nbsp;&nbsp;
+ 		          
+ 		            <a href="query!findPjRecordByPjNum.do?rjhmId=29349&pjdid=109" target="_blank">0107</a>&nbsp;&nbsp;
+ 		          
+ 		            <a href="query!findPjRecordByPjNum.do?rjhmId=29349&pjdid=111" target="_blank">0104</a>&nbsp;&nbsp;
+ 		          
+ 		            <a href="query!findPjRecordByPjNum.do?rjhmId=29349&pjdid=104" target="_blank">0119</a>&nbsp;&nbsp;
+ 		          
+ 		            <a href="query!findPjRecordByPjNum.do?rjhmId=29349&pjdid=105" target="_blank">0100</a>&nbsp;&nbsp;
+ 		          
+ 		            <a href="query!findPjRecordByPjNum.do?rjhmId=29349&pjdid=106" target="_blank">0105</a>&nbsp;&nbsp;
+ 		          
+ 		            <a href="query!findPjRecordByPjNum.do?rjhmId=29349&pjdid=107" target="_blank">010</a>&nbsp;&nbsp;
+ 		          
+ 		            <a href="query!findPjRecordByPjNum.do?rjhmId=29349&pjdid=108" target="_blank">0110</a>&nbsp;&nbsp;
+ 		          
+ 		            <a href="query!findPjRecordByPjNum.do?rjhmId=29349&pjdid=110" target="_blank">0102</a>&nbsp;&nbsp;
+ 		          
+ 		            <a href="query!findPjRecordByPjNum.do?rjhmId=29349&pjdid=112" target="_blank">0103</a>&nbsp;&nbsp;
+ 		          
+ 		            <a href="query!findPjRecordByPjNum.do?rjhmId=29349&pjdid=113" target="_blank">0108</a>&nbsp;&nbsp;
+ 		          
+ 		        
+ 		      </td>
+ 		      </tr>
+ 		      
+ 		    
+ 		      <tr><td class="tbCELL1" align="center" style="white-space:nowrap" width="5%">2</td>
+ 		      <td class="tbCELL1" align="center" style="white-space:nowrap" width="20%"><a href="http://localhost:8080/min/query!zxFittingDetailViewNew.do?id=29349&staticId=2" target="_blank">车钩及缓冲器</a></td>
+ 		      <td class="tbCELL1" align="center" style="white-space:nowrap" width="15%">
+ 		        
+ 		        <font color="red">1</font>/4
+ 		      </td>
+ 		      <td class="tbCELL1" align="center" style="word-break:normal;word-wrap: break-word;" width="50%">
+ 		        
+ 		          
+ 		            <a href="query!findPjRecordByPjNum.do?rjhmId=29349&pjdid=59" target="_blank">QSC13</a>&nbsp;&nbsp;
+ 		          
+ 		        
+ 		      </td>
+ 		      </tr>
+ 		      
+ 		    
+ 		      <tr><td class="tbCELL1" align="center" style="white-space:nowrap" width="5%">3</td>
+ 		      <td class="tbCELL1" align="center" style="white-space:nowrap" width="20%"><a href="http://localhost:8080/min/query!zxFittingDetailViewNew.do?id=29349&staticId=33" target="_blank">抱轴瓦</a></td>
+ 		      <td class="tbCELL1" align="center" style="white-space:nowrap" width="15%">
+ 		        6/6
+ 		        
+ 		      </td>
+ 		      <td class="tbCELL1" align="center" style="word-break:normal;word-wrap: break-word;" width="50%">
+ 		        
+ 		          
+ 		            <a href="query!findPjRecordByPjNum.do?rjhmId=29349&pjdid=150" target="_blank">2013071217373950</a>&nbsp;&nbsp;
+ 		          
+ 		            <a href="query!findPjRecordByPjNum.do?rjhmId=29349&pjdid=152" target="_blank">2013071217381413</a>&nbsp;&nbsp;
+ 		          
+ 		            <a href="query!findPjRecordByPjNum.do?rjhmId=29349&pjdid=146" target="_blank">2013071217332821</a>&nbsp;&nbsp;
+ 		          
+ 		            <a href="query!findPjRecordByPjNum.do?rjhmId=29349&pjdid=147" target="_blank">2013071217364666</a>&nbsp;&nbsp;
+ 		          
+ 		            <a href="query!findPjRecordByPjNum.do?rjhmId=29349&pjdid=148" target="_blank">2013071217365347</a>&nbsp;&nbsp;
+ 		          
+ 		            <a href="query!findPjRecordByPjNum.do?rjhmId=29349&pjdid=149" target="_blank">2013071217365896</a>&nbsp;&nbsp;
+ 		          
+ 		        
+ 		      </td>
+ 		      </tr>
+ 		      
+ 		    
+ 		  
+ 		
+ 		  
+ 		  
+ 		  <tr>
+ 		  	<td rowspan="8" class="tbCELL1" align="center" style="white-space:nowrap" width="10%">电机(7)</td>
+ 		  </tr>
+ 		  
+ 		    
+ 		      <tr><td class="tbCELL1" align="center" style="white-space:nowrap" width="5%">1</td>
+ 		      <td class="tbCELL1" align="center" style="white-space:nowrap" width="20%"><a href="http://localhost:8080/min/query!zxFittingDetailViewNew.do?id=29349&staticId=35" target="_blank">制动风机</a></td>
+ 		      <td class="tbCELL1" align="center" style="white-space:nowrap" width="15%">
+ 		        
+ 		        <font color="red">0</font>/2
+ 		      </td>
+ 		      <td class="tbCELL1" align="center" style="word-break:normal;word-wrap: break-word;" width="50%">
+ 		        
+ 		      </td>
+ 		      </tr>
+ 		      
+ 		    
+ 		      <tr><td class="tbCELL1" align="center" style="white-space:nowrap" width="5%">2</td>
+ 		      <td class="tbCELL1" align="center" style="white-space:nowrap" width="20%"><a href="http://localhost:8080/min/query!zxFittingDetailViewNew.do?id=29349&staticId=36" target="_blank">劈相机</a></td>
+ 		      <td class="tbCELL1" align="center" style="white-space:nowrap" width="15%">
+ 		        
+ 		        <font color="red">0</font>/2
+ 		      </td>
+ 		      <td class="tbCELL1" align="center" style="word-break:normal;word-wrap: break-word;" width="50%">
+ 		        
+ 		      </td>
+ 		      </tr>
+ 		      
+ 		    
+ 		      <tr><td class="tbCELL1" align="center" style="white-space:nowrap" width="5%">3</td>
+ 		      <td class="tbCELL1" align="center" style="white-space:nowrap" width="20%"><a href="http://localhost:8080/min/query!zxFittingDetailViewNew.do?id=29349&staticId=37" target="_blank">主变风机</a></td>
+ 		      <td class="tbCELL1" align="center" style="white-space:nowrap" width="15%">
+ 		        
+ 		        <font color="red">0</font>/2
+ 		      </td>
+ 		      <td class="tbCELL1" align="center" style="word-break:normal;word-wrap: break-word;" width="50%">
+ 		        
+ 		      </td>
+ 		      </tr>
+ 		      
+ 		    
+ 		      <tr><td class="tbCELL1" align="center" style="white-space:nowrap" width="5%">4</td>
+ 		      <td class="tbCELL1" align="center" style="white-space:nowrap" width="20%"><a href="http://localhost:8080/min/query!zxFittingDetailViewNew.do?id=29349&staticId=38" target="_blank">通风机</a></td>
+ 		      <td class="tbCELL1" align="center" style="white-space:nowrap" width="15%">
+ 		        
+ 		        <font color="red">0</font>/4
+ 		      </td>
+ 		      <td class="tbCELL1" align="center" style="word-break:normal;word-wrap: break-word;" width="50%">
+ 		        
+ 		      </td>
+ 		      </tr>
+ 		      
+ 		    
+ 		      <tr><td class="tbCELL1" align="center" style="white-space:nowrap" width="5%">5</td>
+ 		      <td class="tbCELL1" align="center" style="white-space:nowrap" width="20%"><a href="http://localhost:8080/min/query!zxFittingDetailViewNew.do?id=29349&staticId=4" target="_blank">平波电抗器</a></td>
+ 		      <td class="tbCELL1" align="center" style="white-space:nowrap" width="15%">
+ 		        2/2
+ 		        
+ 		      </td>
+ 		      <td class="tbCELL1" align="center" style="word-break:normal;word-wrap: break-word;" width="50%">
+ 		        
+ 		          
+ 		            <a href="query!findPjRecordByPjNum.do?rjhmId=29349&pjdid=68" target="_blank">056B-3</a>&nbsp;&nbsp;
+ 		          
+ 		            <a href="query!findPjRecordByPjNum.do?rjhmId=29349&pjdid=115" target="_blank">056B-1</a>&nbsp;&nbsp;
+ 		          
+ 		        
+ 		      </td>
+ 		      </tr>
+ 		      
+ 		    
+ 		      <tr><td class="tbCELL1" align="center" style="white-space:nowrap" width="5%">6</td>
+ 		      <td class="tbCELL1" align="center" style="white-space:nowrap" width="20%"><a href="http://localhost:8080/min/query!zxFittingDetailViewNew.do?id=29349&staticId=5" target="_blank">交流辅助电机</a></td>
+ 		      <td class="tbCELL1" align="center" style="white-space:nowrap" width="15%">
+ 		        
+ 		        <font color="red">0</font>/11
+ 		      </td>
+ 		      <td class="tbCELL1" align="center" style="word-break:normal;word-wrap: break-word;" width="50%">
+ 		        
+ 		      </td>
+ 		      </tr>
+ 		      
+ 		    
+ 		      <tr><td class="tbCELL1" align="center" style="white-space:nowrap" width="5%">7</td>
+ 		      <td class="tbCELL1" align="center" style="white-space:nowrap" width="20%"><a href="http://localhost:8080/min/query!zxFittingDetailViewNew.do?id=29349&staticId=6" target="_blank">ZQ800-1型牵引电机</a></td>
+ 		      <td class="tbCELL1" align="center" style="white-space:nowrap" width="15%">
+ 		        
+ 		        <font color="red">5</font>/6
+ 		      </td>
+ 		      <td class="tbCELL1" align="center" style="word-break:normal;word-wrap: break-word;" width="50%">
+ 		        
+ 		          
+ 		            <a href="query!findPjRecordByPjNum.do?rjhmId=29349&pjdid=131" target="_blank">8027</a>&nbsp;&nbsp;
+ 		          
+ 		            <a href="query!findPjRecordByPjNum.do?rjhmId=29349&pjdid=129" target="_blank">7901</a>&nbsp;&nbsp;
+ 		          
+ 		            <a href="query!findPjRecordByPjNum.do?rjhmId=29349&pjdid=130" target="_blank">18003093</a>&nbsp;&nbsp;
+ 		          
+ 		            <a href="query!findPjRecordByPjNum.do?rjhmId=29349&pjdid=133" target="_blank">8041</a>&nbsp;&nbsp;
+ 		          
+ 		            <a href="query!findPjRecordByPjNum.do?rjhmId=29349&pjdid=134" target="_blank">05-3-139</a>&nbsp;&nbsp;
+ 		          
+ 		        
+ 		      </td>
+ 		      </tr>
+ 		      
+ 		    
+ 		  
+ 		
+ 		  
+ 		  
+ 		  <tr>
+ 		  	<td rowspan="5" class="tbCELL1" align="center" style="white-space:nowrap" width="10%">电子(4)</td>
+ 		  </tr>
+ 		  
+ 		    
+ 		      <tr><td class="tbCELL1" align="center" style="white-space:nowrap" width="5%">1</td>
+ 		      <td class="tbCELL1" align="center" style="white-space:nowrap" width="20%"><a href="http://localhost:8080/min/query!zxFittingDetailViewNew.do?id=29349&staticId=18" target="_blank">电源、微机柜</a></td>
+ 		      <td class="tbCELL1" align="center" style="white-space:nowrap" width="15%">
+ 		        
+ 		        <font color="red">0</font>/4
+ 		      </td>
+ 		      <td class="tbCELL1" align="center" style="word-break:normal;word-wrap: break-word;" width="50%">
+ 		        
+ 		      </td>
+ 		      </tr>
+ 		      
+ 		    
+ 		      <tr><td class="tbCELL1" align="center" style="white-space:nowrap" width="5%">2</td>
+ 		      <td class="tbCELL1" align="center" style="white-space:nowrap" width="20%"><a href="http://localhost:8080/min/query!zxFittingDetailViewNew.do?id=29349&staticId=19" target="_blank">逻辑控制单元（LCU）</a></td>
+ 		      <td class="tbCELL1" align="center" style="white-space:nowrap" width="15%">
+ 		        2/2
+ 		        
+ 		      </td>
+ 		      <td class="tbCELL1" align="center" style="word-break:normal;word-wrap: break-word;" width="50%">
+ 		        
+ 		          
+ 		            <a href="query!findPjRecordByPjNum.do?rjhmId=29349&pjdid=185" target="_blank">0377</a>&nbsp;&nbsp;
+ 		          
+ 		            <a href="query!findPjRecordByPjNum.do?rjhmId=29349&pjdid=183" target="_blank">0376</a>&nbsp;&nbsp;
+ 		          
+ 		        
+ 		      </td>
+ 		      </tr>
+ 		      
+ 		    
+ 		      <tr><td class="tbCELL1" align="center" style="white-space:nowrap" width="5%">3</td>
+ 		      <td class="tbCELL1" align="center" style="white-space:nowrap" width="20%"><a href="http://localhost:8080/min/query!zxFittingDetailViewNew.do?id=29349&staticId=20" target="_blank">逻辑控制单元（DKL）</a></td>
+ 		      <td class="tbCELL1" align="center" style="white-space:nowrap" width="15%">
+ 		        
+ 		        <font color="red">1</font>/4
+ 		      </td>
+ 		      <td class="tbCELL1" align="center" style="word-break:normal;word-wrap: break-word;" width="50%">
+ 		        
+ 		          
+ 		            <a href="query!findPjRecordByPjNum.do?rjhmId=29349&pjdid=190" target="_blank">0564</a>&nbsp;&nbsp;
+ 		          
+ 		        
+ 		      </td>
+ 		      </tr>
+ 		      
+ 		    
+ 		      <tr><td class="tbCELL1" align="center" style="white-space:nowrap" width="5%">4</td>
+ 		      <td class="tbCELL1" align="center" style="white-space:nowrap" width="20%"><a href="http://localhost:8080/min/query!zxFittingDetailViewNew.do?id=29349&staticId=21" target="_blank">重联控制器（CCU）</a></td>
+ 		      <td class="tbCELL1" align="center" style="white-space:nowrap" width="15%">
+ 		        
+ 		        <font color="red">1</font>/4
+ 		      </td>
+ 		      <td class="tbCELL1" align="center" style="word-break:normal;word-wrap: break-word;" width="50%">
+ 		        
+ 		          
+ 		            <a href="query!findPjRecordByPjNum.do?rjhmId=29349&pjdid=193" target="_blank">2007</a>&nbsp;&nbsp;
+ 		          
+ 		        
+ 		      </td>
+ 		      </tr>
+ 		      
+ 		    
+ 		  
+ 		
+	</table>
+  </td>
+  </tr>
+  </table>
+  </td>
+  </tr>
+  </table>
+  </div>
+  <!-- endprint -->
+  <div class="add-collect-to" >
+  <a href="javascript:window.print();" style="font-size:14px;font-weight: bold;">打印</a>
+  </div>
+</form>
+</body>
+</html>

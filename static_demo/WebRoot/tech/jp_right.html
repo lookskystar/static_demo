@@ -1,0 +1,106 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<!--框架必需start-->
+	<script type="text/javascript" src="../js/jquery-1.4.js"></script>
+	<script type="text/javascript" src="../js/framework.js"></script>
+	<link href="../css/import_basic.css" rel="stylesheet" type="text/css"/>
+	<link  rel="stylesheet" type="text/css" id="skin"  prePath="../"/>
+	<!--框架必需end-->
+</head>
+<body>
+ 	<div>
+ 		<form action="" method="post" id="subfrom">
+ 		<table>
+ 			<tr>
+ 				<td>机&nbsp;&nbsp;车&nbsp;&nbsp;号：</td>
+ 				<td><input type="text" watermark="输入机车编号"  name="description" value=""/></td>
+ 			</tr>
+			<tr>
+			    <td>开始时间：</td>
+				<td><input type="text" class="Wdate" onclick="WdatePicker(({dateFmt:'yyyy-MM-dd HH:mm:ss'}))" style="width:  115px;"/></td>
+				<td>结束时间：</td>
+				<td><input type="text" class="Wdate" onclick="WdatePicker(({dateFmt:'yyyy-MM-dd HH:mm:ss'}))" style="width: 115px;"/></td>
+				<td><button onclick="sub();"><span class="icon_find" style="height: 22px;">查询</span></button></td>
+			</tr>
+			<tr>
+
+			    <td><button  onclick=""><span class="icon_add">新增</span></button></td>
+		        <td><button  onclick=""><span class="icon_delete">删除</span></button></td>
+			</tr>
+		</table>
+		</form>
+	</div>
+   	<div id="scrollContent">
+		 <table class="tableStyle"  useMultColor="true"   useCheckBox="true" id="dictTable">
+		 	<tr>
+		 	    <th width="5%" align="center"></th>
+				<th width="8%" align="center"><span>机车类型</span></th>
+		      	<th width="8%" align="center"><span>机车编号</span></th>
+		      	<th width="16%" align="center"><span>机车段属</span></th> 
+		      	<th width="20%" align="center"><span>机破原因</span></th>
+				<th width="12%" align="center"><span>机破日期</span></th>
+				<th width="16%" align="center"><span>机破段属</span></th>
+		      	<th width="15%" align="center">操作</th>
+		    </tr>
+		 </table>
+	</div>
+	<div id="scrollContent" >
+		<table class="tableStyle"  useMultColor="true" type="checkbox">
+            <tr align="center">
+               <td width="5%"><input type="checkbox"/></td>
+			   <td width="8%" >SS3</td>
+			   <td width="8%" >4147</td>
+			   <td width="16%" >怀化机务段</td>
+			   <td width="20%" >漏油</td>
+               <td width="12%" >2012-11-27 21:43:46</td>
+			   <td width="16%" >怀化机务段</td>
+			   <td width="20%" >
+			          <a href="javascript:void(0)" onclick="" style="color:blue;">修改</a>&nbsp;&nbsp;
+                      <a href="javascript:void(0)" onclick="" style="color:blue;">删除</a>
+			   </td>
+			</tr>
+			<tr align="center">
+			   <td width="5%"><input type="checkbox"/></td>
+			   <td width="8%" >SS3</td>
+			   <td width="8%" >4148</td>
+			   <td width="16%" >株洲机务段</td>
+			   <td width="20%" >制动不灵</td>
+               <td width="12%" >2013-03-27 11:53:46</td>
+			   <td width="16%" >怀化机务段</td>
+			   <td width="20%" >
+			          <a href="javascript:void(0)" onclick="" style="color:blue;">修改</a>&nbsp;&nbsp;
+                      <a href="javascript:void(0)" onclick="" style="color:blue;">删除</a>
+			   </td>
+			</tr>
+			<tr align="center">
+			   <td width="5%"><input type="checkbox"/></td>
+			   <td width="8%" >SS3</td>
+			   <td width="8%" >4149</td>
+			   <td width="16%" >长沙机务段</td>
+			   <td width="20%" >缓冲器松动</td>
+               <td width="12%" >2013-11-27 21:43:58</td>
+			   <td width="16%" >怀化机务段</td>
+			   <td width="20%" >
+			          <a href="javascript:void(0)" onclick="" style="color:blue;">修改</a>&nbsp;&nbsp;
+                      <a href="javascript:void(0)" onclick="" style="color:blue;">删除</a>
+			   </td>
+			</tr>
+			<tr align="center">
+			   <td width="5%"><input type="checkbox"/></td>
+			   <td width="8%" >SS3</td>
+			   <td width="8%" >4153</td>
+			   <td width="16%" >龙川机务段</td>
+			   <td width="20%" >动力不足</td>
+               <td width="12%" >2014-11-27 21:13:46</td>
+			   <td width="16%" >怀化机务段</td>
+			   <td width="20%" >
+			          <a href="javascript:void(0)" onclick="" style="color:blue;">修改</a>&nbsp;&nbsp;
+                      <a href="javascript:void(0)" onclick="" style="color:blue;">删除</a>
+			   </td>
+			</tr>
+		</table>
+	</div>
+</body>
+</html>

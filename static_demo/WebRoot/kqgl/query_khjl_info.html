@@ -1,0 +1,110 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<!--框架必需start-->
+	<script type="text/javascript" src="../js/jquery-1.4.js"></script>
+	<script type="text/javascript" src="../js/framework.js"></script>
+	<link href="../css/import_basic.css" rel="stylesheet" type="text/css"/>
+	<link  rel="stylesheet" type="text/css" id="skin"  prePath="../"/>
+	<!--框架必需end-->
+</head>
+<body>
+ 	<div class="box2" panelTitle="考核奖励查询功能面板" roller="false">
+ 	   <form action="" method="post" id="subfrom">
+ 		<table>
+ 			<tr>
+ 			    <td>班组</td>
+ 			    <td>
+ 			        <select>
+			      		<option>制动组</option>
+			      		<option>制动组</option>
+			      		<option>制动组</option>
+			      		<option>制动组</option>
+			   		</select>
+ 			    </td>
+				<td>提报日期：</td>
+				<td><input type="text" class="Wdate" onclick="WdatePicker(({dateFmt:'yyyy-MM-dd HH:mm:ss'}))" id="dateStart"  name="dateStart"/></td>
+ 				<td>提报人：</td>
+ 				<td><input type="text" watermark="输入提报人"  name="description" value=""/></td>
+ 				<td>被奖核人：</td>
+ 				<td><input type="text" watermark="输入被奖核人"  name="description" value=""/></td>
+ 				<td><button onclick="sub();"><span class="icon_find" style="height: 22px;">查询</span></button></td>
+ 				<td><button onclick="sub();"><span class="icon_print" style="height: 22px;">打印</span></button></td>
+ 				<td><button onclick="sub();"><span class="icon_xls" style="height: 22px;">Excel导出</span></button></td>
+ 			</tr>
+		</table>
+		</form>
+	</div>
+	<div id="scrollContent">
+		 <table class="tableStyle"  useMultColor="true">
+		 	<tr>
+		      	<th width="5%" align="center">序号</th>
+		      	<th width="10%" align="center"><span>班组</span></th>
+		      	<th width="10%" align="center"><span>日期</span></th> 
+		      	<th width="10%" align="center"><span>被奖核人</span></th>
+				<th width="10%" align="center"><span>考核内容</span></th>
+				<th width="5%" align="center"><span>加奖</span></th>
+				<th width="5%" align="center"><span>扣奖</span></th>
+		      	<th width="10%" align="center">标化考核</th>
+		      	<th width="10%" align="center">提报人</th>
+		      	<th width="10%" align="center">备注</th>
+		      	<th width="10%" align="center">操作</th>
+		    </tr>
+		    <tr>
+		        <td align="center">1</td>
+		        <td align="center">制动组</td>
+		        <td align="center">2014-07-14 08:23:32</td>
+		        <td align="center">小明</td>
+		        <td align="center">整备系统完成情况</td>
+		        <td align="center">8分</td>
+		        <td align="center">0分</td>
+		        <td align="center"></td>
+		        <td align="center">吴鑫</td>
+		        <td align="center">完成良好</td>
+		        <td align="center"><a href="javascript:void(0);" style="color:blue">信息公告</a></td>
+		    </tr>
+		    <tr>
+		        <td align="center">2</td>
+		        <td align="center">制动组</td>
+		        <td align="center">2014-07-14 08:23:32</td>
+		        <td align="center">小明</td>
+		        <td align="center">整备系统完成情况</td>
+		        <td align="center">8分</td>
+		        <td align="center">0分</td>
+		        <td align="center"></td>
+		        <td align="center">吴鑫</td>
+		        <td align="center">完成良好</td>
+		        <td align="center"><a href="javascript:void(0);" style="color:blue">信息公告</a></td>
+		    </tr>
+		    <tr>
+		        <td align="center">3</td>
+		        <td align="center">制动组</td>
+		        <td align="center">2014-07-14 08:23:32</td>
+		        <td align="center">小明</td>
+		        <td align="center">整备系统完成情况</td>
+		        <td align="center">8分</td>
+		        <td align="center">0分</td>
+		        <td align="center"></td>
+		        <td align="center">吴鑫</td>
+		        <td align="center">完成良好</td>
+		        <td align="center"><a href="javascript:void(0);" style="color:blue">信息公告</a></td>
+		    </tr>
+		    <tr>
+		        <td align="center">4</td>
+		        <td align="center">制动组</td>
+		        <td align="center">2014-07-14 08:23:32</td>
+		        <td align="center">小明</td>
+		        <td align="center">整备系统完成情况</td>
+		        <td align="center">8分</td>
+		        <td align="center">0分</td>
+		        <td align="center"></td>
+		        <td align="center">吴鑫</td>
+		        <td align="center">完成良好</td>
+		        <td align="center"><a href="javascript:void(0);" style="color:blue">信息公告</a></td>
+		    </tr>
+         </table>
+	</div>
+	<script type="text/javascript" src="../My97DatePicker/WdatePicker.js"></script>
+</body>
+</html>

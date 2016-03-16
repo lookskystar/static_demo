@@ -1,0 +1,303 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>UUR 网页界面集成框架</title>
+	<!--框架必需start-->
+	<script type="text/javascript" src="../js/jquery-1.4.js"></script>
+	<script type="text/javascript" src="../js/bsFormat.js"></script>
+	<link href="../css/import_basic.css" rel="stylesheet" type="text/css"/>
+	<link href="../skins/sky/import_skin.css" rel="stylesheet" type="text/css" id="skin" themeColor="blue"/>
+	<!--框架必需end-->
+	
+	<!--引入组件start-->
+	<script type="text/javascript" src="../js/attention/zDialog/zDrag.js"></script>
+	<script type="text/javascript" src="../js/attention/zDialog/zDialog.js"></script>
+	<!--引入弹窗组件end-->
+	
+	<!--修正IE6支持透明png图片start-->
+	<script type="text/javascript" src="../js/method/pngFix/supersleight.js"></script>
+	<!--修正IE6支持透明png图片end-->
+	<script>
+		$(function(){
+			var htabIdx=0;
+			var htabLiIdx=0;
+			var htabIndex=jQuery.jCookie('htabIndex');
+			var htabLiIndex=jQuery.jCookie('htabLiIndex');
+			if(htabIndex!=false){
+				htabIdx=parseInt(htabIndex);
+			}
+			if(htabLiIndex!=false){
+				htabLiIdx=parseInt(htabLiIndex);
+			}
+			$(".tab_bar_content >ul").filter(':eq('+htabIdx+')').show();
+			$(".tab_bar li a").filter(':eq('+htabIdx+')').addClass("current");
+			$(".tab_bar_content li a").filter(':eq('+htabLiIdx+')').addClass("current");
+			$(".tab_bar li a").each(function(i){//点击横向主tab
+				$(this).click(function(){
+					$(".tab_bar li a").removeClass("current");
+					$(this).addClass("current");
+					$(".tab_bar_content >ul").hide();
+					$(".tab_bar_content >ul").eq(i).show();
+					jQuery.jCookie('htabIndex',i.toString());
+				})
+			})
+			$(".tab_bar_content li a").each(function(i){//点击tab下的横向子栏目
+				$(this).click(function(){
+					$(".tab_bar_content li a").removeClass("current");
+					$(this).addClass("current");
+					jQuery.jCookie('htabLiIndex',i.toString());
+				})
+			})
+		})
+		
+	</script>
+	<style>
+	a {
+		behavior:url(js/method/focus.htc)
+	}
+	</style>
+	<!--弹出式提示框start-->
+	<script type="text/javascript" src="js/attention/messager.js"></script>
+	<script>
+		$(function(){
+			setTimeout("openMsg()",4000)
+		})
+		function openMsg(){
+		$.messager.lays(250, 140);
+		$.messager.show(0,'<ul><li><a href="javascript:openWin()"><span class="icon_lightOn">系统消息：3条</span></a></li><div class="clear"></div>'+
+		'<li><a href="javascript:openWin()"><span class="icon_lightOn">公共消息：10条</span></a></li><div class="clear"></div>'+
+		'<li><a href="javascript:openWin()"><span class="icon_lightOn">私人消息：5条</span></a></li><div class="clear"></div>'+
+		'<li><a href="javascript:openWin()"><span class="icon_lightOn">未读消息：15条</span></a></li><div class="clear"></div></ul>','stay');
+		}
+		function openWin(){
+			top.Dialog.open({URL:"templete/msgBox.html",Title:"信件箱"});
+		}
+	</script>
+	<!--弹出式提示框end-->
+	<style type="text/css"> 
+	<!-- 
+	*{margin:0;padding:0;border:0;} 
+	body { 
+	font-family: arial, 宋体, serif; 
+	font-size:12px; 
+	} 
+	#nav { 
+	line-height: 24px; list-style-type: none; background:#3583CB; 
+	} 
+	#nav a { 
+	display: block; width: 100px; text-align:center; 
+	} 
+	#nav a:link { 
+	color:#fff; text-decoration:none; 
+	} 
+	#nav a:visited { 
+	color:#fff;text-decoration:none;
+	} 
+	#nav a:hover { 
+	color:#FFF;text-decoration:none;
+	} 
+	#nav li { 
+	float: left; width: 80px; background:#3583CB; 
+	} 
+	#nav li a:hover{ 
+	background:#3583CB; 
+	} 
+	#nav li ul { 
+	line-height: 27px; list-style-type: none;text-align:left; 
+	left: -999em; width: 130px; position: absolute; 
+	} 
+	#nav li ul li{ 
+	float: left; width: 130px;height:20px;
+	background: #F6F6F6; 
+	} 
+	#nav li ul a{ 
+	display: block; width: 100px;text-align:left;padding-left:24px;
+	} 
+	#nav li ul a:link { 
+	color:#3583CB; text-decoration:none; 
+	} 
+	#nav li ul a:visited { 
+	color:#666;text-decoration:none; 
+	} 
+	#nav li ul a:hover { 
+	color:#F3F3F3;text-decoration:none;font-weight:normal; 
+	background:#3583CB; 
+	} 
+	#nav li:hover ul { 
+	left: auto; 
+	} 
+	#nav li.sfhover ul { 
+	left: auto; 
+	} 
+	#content { 
+	clear: left; 
+	} 
+	--> 
+	</style> 
+	<script type=text/javascript><!--//--><![CDATA[//><!-- 
+	function menuFix() { 
+		var uls = document.getElementsByName("nav");
+		for (var u=0; u<uls.length; u++ ){
+			if (uls[u].children.length > 0){
+				var sfEls = uls[u].getElementsByTagName("li"); 
+				for (var i=0; i<sfEls.length; i++) { 
+					sfEls[i].onmouseover=function() { 
+						this.className+=(this.className.length>0? " ": "") + "sfhover"; 
+					} 
+					sfEls[i].onMouseDown=function() { 
+						this.className+=(this.className.length>0? " ": "") + "sfhover"; 
+					} 
+					sfEls[i].onMouseUp=function() { 
+						this.className+=(this.className.length>0? " ": "") + "sfhover"; 
+					} 
+					sfEls[i].onmouseout=function() { 
+						this.className=this.className.replace(new RegExp("( ?|^)sfhover\\b"), 
+					""); 
+					} 
+				} 
+			}
+		}
+	} 
+	window.onload=menuFix; 
+	//--><!]]></script> 
+</head>
+<body>
+<div id="floatPanel-1"></div>		
+<div id="mainFrame" style="width:100%;margin:0 auto;">
+<!--头部与导航start-->
+<div id="hbox" class="tab_barNav">
+	<div id="bs_bannercenter">
+		<div id="bs_bannerleft">
+			<div id="bs_bannerright2">
+					<div class="bs_banner_title"></div>
+					<div id="bs_bannerright2">
+						<div class="bs_banner_title"></div>
+						<div class="nav_icon_h">
+							<div class="nav_icon_h_item">
+							<a href="#" target="frmright">
+								<div class="nav_icon_h_item_img"><img src="../icons/png/64.gif"/></div>
+								<div class="nav_icon_h_item_text">帮助文档</div>
+							</a>
+							</div>
+							<div class="nav_icon_h_item">
+							<a href="update_pwd.jsp" target="frmright">
+								<div class="nav_icon_h_item_img"><img src="../icons/png/pwd.gif"/></div>
+								<div class="nav_icon_h_item_text">修改密码</div>
+							</a>
+							</div>
+							<div class="nav_icon_h_item">
+							<a onclick='Dialog.confirm("确定要退出系统吗",function(){window.location="<%=basePath%>loginAction!loginOut.do"});'>
+								<div class="nav_icon_h_item_img"><img src="../icons/png/out.gif"/></div>
+								<div class="nav_icon_h_item_text">退出系统</div>
+							</a>
+							</div>
+						</div>
+					</div>
+			  </div>
+			
+			<div class="tab_bar">
+				<ul>
+					<li>
+						<a href="javascript:;">机车检修</a>
+					</li>
+					<li>
+						<a href="javascript:;">配件检修</a>
+					</li>
+					<li style="margin-right: 740px;"><a href="javascript:;">检修记录</a></li>
+				  	欢迎admin用户，今天是
+					<script>
+						var weekDayLabels = new Array("星期日","星期一","星期二","星期三","星期四","星期五","星期六");
+						var now = new Date();
+					    var year=now.getFullYear();
+						var month=now.getMonth()+1;
+						var day=now.getDate()
+					    var currentime = year+"年"+month+"月"+day+"日 "+weekDayLabels[now.getDay()]
+						document.write(currentime)
+					</script>
+					<div class="clear"></div>
+				</ul>
+			</div>
+			<div class="clear"></div>
+			<div class="tab_bar_content">
+				<ul id="nav" name="nav">
+					<li><a><span>在修机车</span></a></li>
+				</ul>
+				<ul id="nav" name="nav">
+					<li><a><span>配件检修</span></a>
+						<ul>
+							<li><a href="lead_count.html" target="frmright">在修机车</a></li>
+							<li><a href="../part/work_parts_recoder_list.html" target="frmright">长沙机务段</a></li>
+							<li><a href="../part/work_parts_recoder_list.html" target="frmright">株洲机务段</a></li>
+							<li><a href="../part/work_parts_recoder_list.html" target="frmright">怀化机务段</a></li>
+							<li><a href="../part/work_parts_recoder_list.html" target="frmright">广州机务段</a></li>
+							<li><a href="../part/work_parts_recoder_list.html" target="frmright">龙川机务段</a></li>
+							<li><a href="../part/work_parts_recoder_list.html" target="frmright">三水机务段</a></li>
+						</ul>
+					</li>
+				</ul>
+				<ul id="nav" name="nav">
+					<li><a><span>机车检修记录</span></a>
+						<ul>
+							<li><a href="lead_main.html" target="frmright">中修</a></li>
+							<li><a href="lead_main.html" target="frmright">小修</a></li>
+							<li><a href="lead_main.html" target="frmright">辅修</a></li>
+							<li><a href="lead_main.html" target="frmright">临修</a></li>
+							<li><a href="lead_main.html" target="frmright">加改</a></li>
+							<li><a href="lead_main.html" target="frmright">整治</a></li>
+							<li><a href="lead_main.html" target="frmright">春鉴</a></li>
+							<li><a href="lead_main.html" target="frmright">其他</a></li>
+						</ul>
+					</li>
+					<li><a href="../page/work_parts_recoder_list.html" target="frmright"><span>配件检修记录</span></a></li>
+					<li><a href="../record_serch.html" target="frmright"><span>综合查询</span></a></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+</div>
+<!--头部与导航end-->
+
+<!--中部区域start-->
+<table width="100%" cellpadding="0" cellspacing="0" class="table_border0">
+	<tr>
+		<td class="ali01 ver01"  width="100%">
+			<div id="rbox">
+				<div id="rbox_topcenter">
+					<div id="rbox_topleft">
+						<div id="rbox_topright">
+							<div class="rbox_title">
+								操作内容
+							</div>
+						</div>
+					</div>
+				</div>
+				<div id="rbox_middlecenter">
+					<div id="rbox_middleleft">
+						<div id="rbox_middleright">
+							<div id="bs_right">
+								<IFRAME scrolling="no" width="100%" frameBorder=0 id=frmright name=frmright  src="lead_count.html"  allowTransparency="true"></IFRAME>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div id="rbox_bottomcenter" >
+					<div id="rbox_bottomleft">
+						<div id="rbox_bottomright"></div>
+					</div>
+				</div>
+			</div>
+		</td>
+	</tr>
+</table>
+<!--中部区域end-->
+
+<!--浏览器resize事件修正start-->
+<div id="resizeFix"></div>
+<!--浏览器resize事件修正end-->
+
+<!--载进度条start-->
+<div class="progressBg" id="progress" style="display:none;"><div class="progressBar"></div></div>
+<!--载进度条end-->
+</body>
+</html>

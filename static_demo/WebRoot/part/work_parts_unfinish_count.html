@@ -1,0 +1,118 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<!--框架必需start-->
+	<script type="text/javascript" src="../js/jquery-1.4.js"></script>
+	<script type="text/javascript" src="../js/framework.js"></script>
+	<link href="../css/import_basic.css" rel="stylesheet" type="text/css"/>
+	<link  rel="stylesheet" type="text/css" id="skin" prePath="../"/>
+	<!--框架必需end-->
+</head>
+<body>
+	<div class="box2" panelTitle="配件检修签认列表" roller="false" showStatus="false">
+		<form id="form" action=" method="post">
+		 查询条件:
+		           车型:<select id="jcsType" onchange="getFirstUnit();" class="default" name="jcsType">
+                    <option value="">请选择机车型号</option>
+                    <option value="1">DF4</option>
+					<option value="2">DF4D</option>
+					<option value="3">SS3B</option>
+					<option value="4">HXD3C</option>
+              	</select>
+	                     专业:<select id="first" class="default" name="firstUnitId">
+                    <option value="">请选择大部件</option>
+                    <option value="1">电器</option>
+                    <option value="2">电机</option>
+                    <option value="3">走行</option>
+                </select>&nbsp;
+		 配件名称:<input type="text" style="width: 200px" name="pjName" value=""/>&nbsp;
+		<input type="submit" value="查询"/>
+		</form>
+	</div>
+	<div id="scrollContent">
+		<table class="tableStyle" headFixMode="true" useMultColor="true">
+			<tr align="center">
+				<th width="20%"><span>配件名称</span></th>
+				<th width="20%"><span>机车类型</span></th>
+				<th width="20%"><span>专业</span></th>
+				<th width="20%"><span>待签数</span></th>
+				<th width="20%"><span>检修中总数</span></th>
+			</tr>
+			<tr align="center">
+				<td width="20%">
+			        <script type="text/javascript">
+			       			document.write('<a style="color:blue;" href="'+encodeURI("work_parts_unfinished.html")+'">TSA-230A螺杆式 </a>');
+			    	</script>
+				</td>
+				<td width="20%">SS3B</td>
+				<td width="20%">制动</td>
+				<td width="20%">
+				    <script type="text/javascript">
+	       				document.write('<a style="color:red;" href="'+encodeURI("work_parts_unfinished.html")+'">有 2 个待签配件 </a>');
+	    			</script>
+				</td>
+				<td width="20%"><a style="color: blue;font-weight: bolder;" onclick="javascript:void(0);">&nbsp;5&nbsp;</a></td>
+			</tr>
+			<tr align="center">
+				<td width="20%">
+			        <script type="text/javascript">
+			       			document.write('<a style="color:blue;" href="'+encodeURI("work_parts_unfinished.html")+'">紧急阀  </a>');
+			    	</script>
+				</td>
+				<td width="20%">SS3B</td>
+				<td width="20%">制动</td>
+				<td width="20%">
+				    0
+				</td>
+				<td width="20%"><a style="color: blue;font-weight: bolder;" onclick="javascript:void(0);">&nbsp;3&nbsp;</a></td>
+			</tr>
+			<tr align="center">
+				<td width="20%">
+			        <script type="text/javascript">
+			       			document.write('<a style="color:blue;" href="'+encodeURI("work_parts_unfinished.html")+'">空气制动阀  </a>');
+			    	</script>
+				</td>
+				<td width="20%">SS3B</td>
+				<td width="20%">制动</td>
+				<td width="20%">
+				    <script type="text/javascript">
+	       				document.write('<a style="color:red;" href="'+encodeURI("work_parts_unfinished.html")+'">有 2 个待签配件 </a>');
+	    			</script>
+				</td>
+				<td width="20%"><a style="color: blue;font-weight: bolder;" onclick="javascript:void(0);">&nbsp;5&nbsp;</a></td>
+			</tr>
+			<tr align="center">
+				<td width="20%">
+			        <script type="text/javascript">
+			       			document.write('<a style="color:blue;" href="'+encodeURI("work_parts_unfinished.html")+'">分配阀  </a>');
+			    	</script>
+				</td>
+				<td width="20%">SS3B</td>
+				<td width="20%">制动</td>
+				<td width="20%">
+				    <script type="text/javascript">
+	       				document.write('<a style="color:red;" href="'+encodeURI("work_parts_unfinished.html")+'">有 2 个待签配件 </a>');
+	    			</script>
+				</td>
+				<td width="20%"><a style="color: blue;font-weight: bolder;" onclick="javascript:void(0);">&nbsp;5&nbsp;</a></td>
+			</tr>
+			<tr align="center">
+				<td width="20%">
+			        <script type="text/javascript">
+			       			document.write('<a style="color:blue;" href="'+encodeURI("work_parts_unfinished.html")+'">中继阀、遮断阀  </a>');
+			    	</script>
+				</td>
+				<td width="20%">SS3B</td>
+				<td width="20%">制动</td>
+				<td width="20%">
+				    <script type="text/javascript">
+	       				document.write('<a style="color:red;" href="'+encodeURI("work_parts_unfinished.html")+'">有 2 个待签配件 </a>');
+	    			</script>
+				</td>
+				<td width="20%"><a style="color: blue;font-weight: bolder;" onclick="javascript:void(0);">&nbsp;5&nbsp;</a></td>
+			</tr>
+		</table>
+	</div>
+</body>
+</html>

@@ -1,0 +1,223 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<title>交车记录</title>
+		<!--框架必需start-->	
+		<script type="text/javascript" src="../js/jquery-1.4.js"></script>
+		<script type="text/javascript" src="../js/framework.js"></script>
+		<script type="text/javascript" src="../js/merge.js"></script>
+		<link href="../css/import_basic.css" rel="stylesheet" type="text/css"/>
+		<link href="../css/linkcss.css" type="text/css" rel="stylesheet" />
+		<!--框架必需end-->
+		<script type="text/javascript">
+	        $(function() {
+	            $('.bluetable').colspan(3);
+	            $('.bluetable').colspan(4);
+	            $('.bluetable').colspan(5);
+	            $('.bluetable').colspan(6);
+	            $('.bluetable').colspan(9);
+	            $('.bluetable').colspan(10);
+	            $('.bluetable').colspan(11);
+	            $('.bluetable').colspan(12);
+	        }); 
+	        
+	        //EXCEL导出
+		    function excelExport(rjhmId){
+		    	$.post("query!excelExport.do",{"rjhmId":rjhmId },function(data){
+		    		var datas = data.split(',');
+		    		if(datas[0] == "success"){
+		    			window.location.href = "http://localhost:8080/min/"+ datas[1];
+		    		}else if(datas[0] == 'nodata') {
+		    			alert("没有数据！");
+		    		}else {
+		    			alert("导出失败！");
+		    		}r
+		    	})
+		    }
+		</script>
+		<style>
+			TABLE.bluetable {
+				FONT: 100% Arial, Helvetica, sans-serif
+			}
+			TD {
+				FONT: 100% Arial, Helvetica, sans-serif
+			}
+			TABLE.bluetable {
+				MARGIN: 0.1em 0px; BORDER-COLLAPSE: collapse
+			}
+			TABLE.bluetable TH {
+				BORDER-BOTTOM: #2b3b58 1px solid; TEXT-ALIGN: center; BORDER-LEFT: #2b3b58 1px solid; PADDING-BOTTOM: 0.5em; PADDING-LEFT: 0.5em; PADDING-RIGHT: 0.5em; BORDER-TOP: #2b3b58 1px solid; BORDER-RIGHT: #2b3b58 1px solid; PADDING-TOP: 0.5em
+			}
+			TABLE.bluetable TD {
+				BORDER-BOTTOM: #2b3b58 1px solid; TEXT-ALIGN: center; BORDER-LEFT: #2b3b58 1px solid; PADDING-BOTTOM: 0.5em; PADDING-LEFT: 0.5em; PADDING-RIGHT: 0.5em; BORDER-TOP: #2b3b58 1px solid; BORDER-RIGHT: #2b3b58 1px solid; PADDING-TOP: 0.5em
+			}
+			TABLE.bluetable TH {
+				BACKGROUND: url(images/tr_back.gif) #328aa4 repeat-x; COLOR: #fff
+			}
+			TABLE.bluetable TD {
+				BACKGROUND: #FFFFFF
+			}
+			TABLE.bluetable TR.even TD {
+				BACKGROUND: #e5f1f4
+			}
+			TABLE.bluetable TR.odd TD {
+				BACKGROUND: #f8fbfc
+			}
+			TABLE.bluetable TH.over {
+				BACKGROUND: #4a98af
+			}
+			TABLE.bluetable TR.even TH.over {
+				BACKGROUND: #4a98af
+			}
+			TABLE.bluetable TR.odd TH.over {
+				BACKGROUND: #4a98af
+			}
+			TABLE.bluetable TH.down {
+				BACKGROUND: #bce774
+			}
+			TABLE.bluetable TR.even TH.down {
+				BACKGROUND: #bce774
+			}
+			TABLE.bluetable TR.odd TH.down {
+				BACKGROUND: #bce774
+			}
+			TABLE.bluetable TH.selected {
+				
+			}
+			TABLE.bluetable TR.even TH.selected {
+				
+			}
+			TABLE.bluetable TR.odd TH.selected {
+				
+			}
+			TABLE.bluetable TD.over {
+				BACKGROUND: #ecfbd4
+			}
+			TABLE.bluetable TR.even TD.over {
+				BACKGROUND: #ecfbd4
+			}
+			TABLE.bluetable TR.odd TD.over {
+				BACKGROUND: #ecfbd4
+			}
+			TABLE.bluetable TD.down {
+				BACKGROUND: #bce774; COLOR: #fff
+			}
+			TABLE.bluetable TR.even TD.down {
+				BACKGROUND: #bce774; COLOR: #fff
+			}
+			TABLE.bluetable TR.odd TD.down {
+				BACKGROUND: #bce774; COLOR: #fff
+			}
+			TABLE.bluetable TD.selected {
+				BACKGROUND: #bce774; COLOR: #555
+			}
+			TABLE.bluetable TR.even TD.selected {
+				BACKGROUND: #bce774; COLOR: #555
+			}
+			TABLE.bluetable TR.odd TD.selected {
+				BACKGROUND: #bce774; COLOR: #555
+			}
+			TABLE.bluetable TD.empty {
+				BACKGROUND: #fff
+			}
+			TABLE.bluetable TR.odd TD.empty {
+				BACKGROUND: #fff
+			}
+			TABLE.bluetable TR.even TD.empty {
+				BACKGROUND: #fff
+			}
+		</style>
+	</head>
+	<body>
+		<div id="scrollContent" style="margin-top: 10px;margin-left:160px;text-align: center;font-size: 14px;">
+			<div style="background-color:#328AA4;width:1000px;height:50px;font-size: 20px;font-weight: bold;">
+				<div style="float:left;padding-top: 20px;padding-left: 400px; color: #fff;">交车检测项目</div>
+				<div style="float:left;padding-top: 20px;padding-left: 350px;"><button class="icon_xls" onclick="excelExport(29392);">EXCEL导出</button></div>
+			</div>
+			
+				
+					
+					
+					
+						<table  id="tbspan_0" class="bluetable" style="width: 1000px;text-align: center;margin-bottom: 10px;">
+							<tr><th colspan="7" align="left" style="font-weight: bold;">电车试验</th></tr>
+							<tr>
+								<th width="20%">项目</th>
+								
+									<th style="font-weight: normal;">低压电器试验</th>
+								
+									<th style="font-weight: normal;">高压试验</th>
+								
+									<th style="font-weight: normal;">打风时间</th>
+								
+									<th style="font-weight: normal;">制动机性能试验</th>
+								
+							</tr>
+							<tr>
+								<th>情况</th>
+								
+									<td>良好</td>
+								
+									<td>良好</td>
+								
+									<td>200s</td>
+								
+									<td>良好</td>
+								
+							</tr>
+							<tr>
+								<th>检修人</th>
+								
+									<td>赵宝瑞</td>
+								
+									<td>赵宝瑞</td>
+								
+									<td>赵宝瑞</td>
+								
+									<td>赵宝瑞</td>
+								
+							</tr>
+							<tr>
+								<th>质检/技术</th>
+								
+									<td>龙明元</td>
+								
+									<td>龙明元</td>
+								
+									<td>龙明元</td>
+								
+									<td>龙明元</td>
+								
+							</tr>
+							<tr>
+								<th>验收</th>
+								
+									<td>黄初开</td>
+								
+									<td>黄初开</td>
+								
+									<td>黄初开</td>
+								
+									<td>黄初开</td>
+								
+							</tr>
+							<tr>
+								<th>交车工长</th>
+								
+									<td>赵宝瑞</td>
+								
+									<td>赵宝瑞</td>
+								
+									<td>赵宝瑞</td>
+								
+									<td>赵宝瑞</td>
+								
+							</tr>
+						</table>
+					
+				
+			
+		</div>
+	</body>
+</html>
+

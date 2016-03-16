@@ -1,0 +1,106 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<!--框架必需start-->
+	<script type="text/javascript" src="../js/jquery-1.4.js"></script>
+	<script type="text/javascript" src="../js/framework.js"></script>
+	<link href="../css/import_basic.css" rel="stylesheet" type="text/css"/>
+	<link  rel="stylesheet" type="text/css" id="skin"  prePath="../"/>
+	<!--框架必需end-->
+	<script type="text/javascript">
+	   function add(){
+	   		top.Dialog.open({
+				URL:"kqgl/add_khjl_info.html",
+				Width:450,
+				Height:360,
+				Title:"奖核提报信息录入"
+			});
+	   }
+	</script>
+</head>
+<body>
+ 	<div class="box2" panelTitle="考核奖励功能面板" roller="false">
+ 		<form action="" method="post" id="subfrom">
+ 		<table>
+ 			<tr>
+				<td><button  onclick="add();"><span class="icon_add">奖核提报</span></button>&nbsp;&nbsp;&nbsp;</td>
+				<td><button  onclick=""><span class="icon_delete">信息删除</span></button>&nbsp;&nbsp;&nbsp;</td>
+ 			</tr>
+		</table>
+		</form>
+	</div>
+	<div id="scrollContent">
+		 <table class="tableStyle"  useMultColor="true">
+		 	<tr>
+		      	<th width="5%" align="center"><input type="checkbox"/></th>
+		      	<th width="10%" align="center"><span>班组</span></th>
+		      	<th width="10%" align="center"><span>日期</span></th> 
+		      	<th width="10%" align="center"><span>被奖核人</span></th>
+				<th width="10%" align="center"><span>考核内容</span></th>
+				<th width="5%" align="center"><span>加奖</span></th>
+				<th width="5%" align="center"><span>扣奖</span></th>
+		      	<th width="10%" align="center">标化考核</th>
+		      	<th width="5%" align="center">提报人</th>
+		      	<th width="10%" align="center">备注</th>
+		      	<th width="15%" align="center">操作</th>
+		    </tr>
+		    <tr>
+		        <td align="center"><input type="checkbox"/></td>
+		        <td align="center">制动组</td>
+		        <td align="center">2014-07-14 08:23:32</td>
+		        <td align="center">小明</td>
+		        <td align="center">整备系统完成情况</td>
+		        <td align="center">8分</td>
+		        <td align="center">0分</td>
+		        <td align="center"></td>
+		        <td align="center">吴鑫</td>
+		        <td align="center">完成良好</td>
+		        <td align="center">
+		        	<a hre="javascript:void(0);" style="color:blue;" onclick="add();">完善确认</a>&nbsp;&nbsp;&nbsp;
+		        	<a hre="javascript:void(0);" style="color:blue;">审核</a>&nbsp;&nbsp;&nbsp;
+		        	<a hre="javascript:void(0);" style="color:blue;">修改</a>&nbsp;&nbsp;&nbsp;
+		        	<a hre="javascript:void(0);" style="color:blue;">删除</a>
+		        </td>
+		    </tr>
+		    <tr>
+		        <td align="center"><input type="checkbox"/></td>
+		        <td align="center">制动组</td>
+		        <td align="center">2014-07-14 08:23:32</td>
+		        <td align="center">小明</td>
+		        <td align="center">整备系统完成情况</td>
+		        <td align="center">8分</td>
+		        <td align="center">0分</td>
+		        <td align="center"></td>
+		        <td align="center">吴鑫</td>
+		        <td align="center">完成良好</td>
+		        <td align="center">
+		        	<a hre="javascript:void(0);" style="color:blue;" onclick="add();">完善确认</a>&nbsp;&nbsp;&nbsp;
+		        	<a hre="javascript:void(0);" style="color:blue;">审核</a>&nbsp;&nbsp;&nbsp;
+		        	<a hre="javascript:void(0);" style="color:blue;">修改</a>&nbsp;&nbsp;&nbsp;
+		        	<a hre="javascript:void(0);" style="color:blue;">删除</a>
+		        </td>
+		    </tr>
+		    <tr>
+		        <td align="center"><input type="checkbox"/></td>
+		        <td align="center">制动组</td>
+		        <td align="center">2014-07-14 08:23:32</td>
+		        <td align="center">小明</td>
+		        <td align="center">整备系统完成情况</td>
+		        <td align="center">8分</td>
+		        <td align="center">0分</td>
+		        <td align="center"></td>
+		        <td align="center">吴鑫</td>
+		        <td align="center">完成良好</td>
+		        <td align="center">
+		        	<a hre="javascript:void(0);" style="color:blue;" onclick="add();">完善确认</a>&nbsp;&nbsp;&nbsp;
+		        	<a hre="javascript:void(0);" style="color:blue;">审核</a>&nbsp;&nbsp;&nbsp;
+		        	<a hre="javascript:void(0);" style="color:blue;">修改</a>&nbsp;&nbsp;&nbsp;
+		        	<a hre="javascript:void(0);" style="color:blue;">删除</a>
+		        </td>
+		    </tr>
+         </table>
+	</div>
+	<script type="text/javascript" src="../My97DatePicker/WdatePicker.js"></script>
+</body>
+</html>

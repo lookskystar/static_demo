@@ -1,0 +1,156 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<!--框架必需start-->
+		<script type="text/javascript" src="../js/jquery-1.4.js"></script>
+		<script type="text/javascript" src="../js/framework.js"></script>
+		<link href="../css/import_basic.css" rel="stylesheet" type="text/css"/>
+		<link  rel="stylesheet" type="text/css" id="skin" prePath="../"/>
+		<!--框架必需end-->
+		<script type="text/javascript" src="../js/nav/ddaccordion.js"></script>
+		<script type="text/javascript" src="../js/text/text-overflow.js"></script>
+	</head>
+<body>
+	<div class="box2" panelTitle="配件大类信息" roller="false">
+		<form id="form" action="" method="post">
+	           查询条件:
+	                     车型:<select id="jcsType" onchange="getFirstUnit();" class="default" name="jcsType">
+	             	<option value="">请选择机车型号</option>
+	             	<option value="1">DF4</option>
+					<option value="2">DF4D</option>
+					<option value="3">SS3B</option>
+					<option value="4">HXD3C</option>
+	             </select>
+	                大部件:<select id="first" class="default" name="firstUnitId">
+	                     <option value="">请选择大部件</option>
+	                     <option value="1">电器</option>
+                         <option value="2">电机</option>
+                         <option value="3">走行</option>
+	               </select>
+	           所属流程:<select id="second" class="default" name="flowTypeId">
+	                <option value="">请选择流程类型</option>
+	             </select>
+	              &nbsp;&nbsp;
+	          配件名称:<input type="text" style="width: 200px" name="pjName" value=""/>&nbsp;&nbsp;&nbsp;<input type="submit" value="查询"/><br/>
+	    <button  onclick=""><span class="icon_add">添加</span></button>&nbsp;&nbsp;&nbsp;
+		<button  onclick=""><span class="icon_delete">删除</span></button><br/>
+		</form>
+	</div>
+		<table width="100%" class="tableStyle" useCheckBox="false">
+			<tr>
+			    <th class="ver01" width="5%" align="center"><input type="checkbox" id="all"/>全选</th>
+				<th class="ver01" width="20%" align="center">配件名称</th>
+				<th class="ver01" width="5%" align="center">最小库存量</th>
+				<th class="ver01" width="5%" align="center">最大库存量</th>
+				<th class="ver01" width="10%" align="center">所属大部件</th>
+				<th class="ver01" width="25%" align="center">机车类型</th>
+				<th class="ver01" width="20%" align="center">操作</th>
+			</tr>
+			<tr>
+			    <td class="ver01" align="center"><input type="checkbox" id="" name="pjIds" value=""/></td>
+			    <td class="ver01" align="center"><a href="" target="frmright" style="color:blue;">平波电抗器</a></td>
+				<td class="ver01" align="center"></td>
+				<td class="ver01" align="center"></td>
+				<td class="ver01" align="center">电机</td>
+				<td class="ver01" align="center">SS3B</td>
+				<td class="ver01" align="center">
+					<a href="javascript:;" style="color:blue;" onclick="">添加待修配件</a>&nbsp;&nbsp;
+				    <a href="javascript:;" style="color:blue;" onclick="">修改</a>&nbsp;&nbsp;
+				    <a href="javascript:;" style="color:blue;" onclick="">删除</a>
+				</td>
+			</tr>
+			<tr>
+			    <td class="ver01" align="center"><input type="checkbox" id="" name="pjIds" value=""/></td>
+			    <td class="ver01" align="center"><a href="" target="frmright" style="color:blue;">交流辅助电机</a></td>
+				<td class="ver01" align="center"></td>
+				<td class="ver01" align="center"></td>
+				<td class="ver01" align="center">电机</td>
+				<td class="ver01" align="center">SS3B</td>
+				<td class="ver01" align="center">
+					<a href="javascript:;" style="color:blue;" onclick="">添加待修配件</a>&nbsp;&nbsp;
+				    <a href="javascript:;" style="color:blue;" onclick="">修改</a>&nbsp;&nbsp;
+				    <a href="javascript:;" style="color:blue;" onclick="">删除</a>
+				</td>
+			</tr>
+			<tr>
+			    <td class="ver01" align="center"><input type="checkbox" id="" name="pjIds" value=""/></td>
+			    <td class="ver01" align="center"><a href="" target="frmright" style="color:blue;">ZQ800-1型牵引电机</a></td>
+				<td class="ver01" align="center"></td>
+				<td class="ver01" align="center"></td>
+				<td class="ver01" align="center">电机</td>
+				<td class="ver01" align="center">SS3B</td>
+				<td class="ver01" align="center">
+					<a href="javascript:;" style="color:blue;" onclick="">添加待修配件</a>&nbsp;&nbsp;
+				    <a href="javascript:;" style="color:blue;" onclick="">修改</a>&nbsp;&nbsp;
+				    <a href="javascript:;" style="color:blue;" onclick="">删除</a>
+				</td>
+			</tr>
+			<tr>
+			    <td class="ver01" align="center"><input type="checkbox" id="" name="pjIds" value=""/></td>
+			    <td class="ver01" align="center"><a href="" target="frmright" style="color:blue;">LAD-T-3型空气干燥器</a></td>
+				<td class="ver01" align="center"></td>
+				<td class="ver01" align="center"></td>
+				<td class="ver01" align="center">电机</td>
+				<td class="ver01" align="center">SS3B</td>
+				<td class="ver01" align="center">
+					<a href="javascript:;" style="color:blue;" onclick="">添加待修配件</a>&nbsp;&nbsp;
+				    <a href="javascript:;" style="color:blue;" onclick="">修改</a>&nbsp;&nbsp;
+				    <a href="javascript:;" style="color:blue;" onclick="">删除</a>
+				</td>
+			</tr>
+			<tr>
+			    <td class="ver01" align="center"><input type="checkbox" id="" name="pjIds" value=""/></td>
+			    <td class="ver01" align="center"><a href="" target="frmright" style="color:blue;">TSA-230A螺杆式</a></td>
+				<td class="ver01" align="center"></td>
+				<td class="ver01" align="center"></td>
+				<td class="ver01" align="center">电机</td>
+				<td class="ver01" align="center">SS3B</td>
+				<td class="ver01" align="center">
+					<a href="javascript:;" style="color:blue;" onclick="">添加待修配件</a>&nbsp;&nbsp;
+				    <a href="javascript:;" style="color:blue;" onclick="">修改</a>&nbsp;&nbsp;
+				    <a href="javascript:;" style="color:blue;" onclick="">删除</a>
+				</td>
+			</tr>
+			<tr>
+			    <td class="ver01" align="center"><input type="checkbox" id="" name="pjIds" value=""/></td>
+			    <td class="ver01" align="center"><a href="" target="frmright" style="color:blue;">紧急阀</a></td>
+				<td class="ver01" align="center"></td>
+				<td class="ver01" align="center"></td>
+				<td class="ver01" align="center">电机</td>
+				<td class="ver01" align="center">SS3B</td>
+				<td class="ver01" align="center">
+					<a href="javascript:;" style="color:blue;" onclick="">添加待修配件</a>&nbsp;&nbsp;
+				    <a href="javascript:;" style="color:blue;" onclick="">修改</a>&nbsp;&nbsp;
+				    <a href="javascript:;" style="color:blue;" onclick="">删除</a>
+				</td>
+			</tr>
+			<tr>
+			    <td class="ver01" align="center"><input type="checkbox" id="" name="pjIds" value=""/></td>
+			    <td class="ver01" align="center"><a href="" target="frmright" style="color:blue;">空气制动阀</a></td>
+				<td class="ver01" align="center"></td>
+				<td class="ver01" align="center"></td>
+				<td class="ver01" align="center">电机</td>
+				<td class="ver01" align="center">SS3B</td>
+				<td class="ver01" align="center">
+					<a href="javascript:;" style="color:blue;" onclick="">添加待修配件</a>&nbsp;&nbsp;
+				    <a href="javascript:;" style="color:blue;" onclick="">修改</a>&nbsp;&nbsp;
+				    <a href="javascript:;" style="color:blue;" onclick="">删除</a>
+				</td>
+			</tr>
+			<tr>
+			    <td class="ver01" align="center"><input type="checkbox" id="" name="pjIds" value=""/></td>
+			    <td class="ver01" align="center"><a href="" target="frmright" style="color:blue;">分配阀</a></td>
+				<td class="ver01" align="center"></td>
+				<td class="ver01" align="center"></td>
+				<td class="ver01" align="center">电机</td>
+				<td class="ver01" align="center">SS3B</td>
+				<td class="ver01" align="center">
+					<a href="javascript:;" style="color:blue;" onclick="">添加待修配件</a>&nbsp;&nbsp;
+				    <a href="javascript:;" style="color:blue;" onclick="">修改</a>&nbsp;&nbsp;
+				    <a href="javascript:;" style="color:blue;" onclick="">删除</a>
+				</td>
+			</tr>
+		</table>
+</body>
+</html>

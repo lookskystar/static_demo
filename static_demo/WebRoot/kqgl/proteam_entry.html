@@ -1,0 +1,139 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<!--框架必需start-->
+	<script type="text/javascript" src="../js/jquery-1.4.js"></script>
+	<script type="text/javascript" src="../js/framework.js"></script>
+	<link href="../css/import_basic.css" rel="stylesheet" type="text/css"/>
+	<link  rel="stylesheet" type="text/css" id="skin"  prePath="../"/>
+	<!--框架必需end-->
+	<script type="text/javascript">
+	$(function(){
+		$("#copyBtn").live("click",function(){
+			//克隆按钮所在的tr并添加到table的末尾
+			$(this).parents("table").find("tr").last().clone(true).appendTo($(this).parents("table"));
+			
+			//改变序号
+			var $ltd = $(this).parents("table").find("tr").last().children('td');
+			var num = parseInt($ltd.eq(2).html())+1;
+			$ltd.eq(2).html(num);
+			
+			//日期和星期为空
+			$ltd.eq(0).html("");
+			$ltd.eq(1).html("");
+			
+			
+			//找到table最后一个tr的最后一个td中的button按钮
+			var $lastBtn=$(this).parents("table").find("tr").last().find("td").last().find("input[type='button']");
+			//更改按钮的显示文字
+			$lastBtn.val("删除");
+			//修正按钮在复制时产生的样式错误
+			$lastBtn.removeClass("button_hover");
+			$lastBtn.addClass("button")
+			//对该按钮重新监听点击事件
+			$lastBtn.click(function(e){
+				//阻止默认行为，即复制行为
+				e.stopPropagation();
+				//将所在的行删除
+				$(this).parents("tr").remove()
+			})
+		})
+	});
+	
+	//开始编制
+	function editInput(){
+		$("#editTable").show();
+	}
+	</script>
+</head>
+<body>
+<div class="box2" panelTitle="工时统计" roller="false">
+		<table>
+			<tr>
+				<td>日期：</td>
+				<td><input type="text" class="date"/></td>
+				<td><input type="checkbox" checked="checked"/>过滤周末</td>
+				<td><button onclick="editInput();"><span class="icon_edit">开始录入</span></button></td>
+				<td><a href="" style="color: red;">excel模板下载</a></td>
+			</tr>
+		</table>
+	</div>
+<div id="editTable" style="display: none;">
+	<div>
+		<table class="tableStyle" headFixMode="true" useMultColor="true">
+			<tr>
+				<td colspan="10">
+					<button><span class="icon_save">保存</span></button>&nbsp;
+					<button><span class="icon_xls">Excel导入</span></button>&nbsp;
+				</td>
+			</tr>
+			<tr>
+				<th width="25" align="center">序号</th>
+				<th width="80" align="center">姓名</th>
+				<th width="80" align="center">工号</th>
+				<th width="80" align="center">日期</th>
+				<th width="80" align="center">工种</th>
+				<th width="300" align="center">工作内容</th>
+				<th width="80" align="center">工时得分</th>
+				<th>备注</th>
+			</tr>
+		</table>
+	</div>
+	<div id="scrollContent">
+		<table class="tableStyle"  useMultColor="true" useCheckBox="true">
+			<tr>
+				<td width="25" align="center">1</td>
+				<td width="80" align="center">张三</td>
+				<td width="80" align="center">630325</td>
+				<td width="80" align="center">2014-04-25</td>
+				<td width="80" align="center">机车钳工</td>
+				<td width="300" align="center"><input type="text" style="width: 270px"/></td>
+				<td width="80" align="center"><input type="text" style="width: 70px"/></td>
+				<td><input type="text"/></td>
+			</tr>
+		</table>
+		<table class="tableStyle"  useMultColor="true" useCheckBox="true">
+			<tr>
+				<td width="25" align="center">2</td>
+				<td width="80" align="center">李四</td>
+				<td width="80" align="center">630325</td>
+				<td width="80" align="center">2014-04-25</td>
+				<td width="80" align="center">机车钳工</td>
+				<td width="300" align="center"><input type="text" style="width: 270px"/></td>
+				<td width="80" align="center"><input type="text" style="width: 70px"/></td>
+				<td><input type="text"/></td>
+			</tr>
+		</table>
+		<table class="tableStyle"  useMultColor="true" useCheckBox="true">
+			<tr>
+				<td width="25" align="center">3</td>
+				<td width="80" align="center">王五</td>
+				<td width="80" align="center">630325</td>
+				<td width="80" align="center">2014-04-25</td>
+				<td width="80" align="center">机车钳工</td>
+				<td width="300" align="center"><input type="text" style="width: 270px"/></td>
+				<td width="80" align="center"><input type="text" style="width: 70px"/></td>
+				<td><input type="text"/></td>
+			</tr>
+		</table>
+		<table class="tableStyle"  useMultColor="true" useCheckBox="true">
+			<tr>
+				<td width="25" align="center">4</td>
+				<td width="80" align="center">赵倩</td>
+				<td width="80" align="center">630325</td>
+				<td width="80" align="center">2014-04-25</td>
+				<td width="80" align="center">机车钳工</td>
+				<td width="300" align="center"><input type="text" style="width: 270px"/></td>
+				<td width="80" align="center"><input type="text" style="width: 70px"/></td>
+				<td><input type="text"/></td>
+			</tr>
+		</table>
+	</div>
+	<div style="height:40px;"></div>
+</div>
+</body>
+
+</div>
+</body>
+</html>

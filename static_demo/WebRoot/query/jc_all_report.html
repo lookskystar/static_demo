@@ -1,0 +1,265 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<title>小辅修流程报活记录</title>
+<link href="../css/test.css" type="text/css" rel="stylesheet" />
+<link href="../css/linkcss.css" type="text/css" rel="stylesheet" />
+<link href="../js/tree/dtree/dtree.css" type="text/css" rel="stylesheet" />
+<script type="text/javascript" src="../js/test.js"></script>
+<script type="text/javascript" src="../js/jquery-1.4.js"></script>
+<script type="text/javascript" src="../js/tree/dtree/dtree.js"></script>
+<script type="text/javascript" charset="UTF-8" src="../js/float.js"></script>
+<script type="text/javascript" charset="UTF-8" src="../js/print.js"></script>
+<script type="text/javascript"> 
+	jQuery.fn.rowspan = function(colIdx) {
+				var beforeColIdx = colIdx-1;
+				var flag = false;
+	            this.each(function() {
+	                var that;
+	                $('tr', this).each(function(row) {
+	                    $('td:eq(' + colIdx + ')', this).filter(':visible').each(function(col) {
+	                        if (that != null && $(this).html() == $(that).html()) {
+	                        	flag = true;
+	                            rowspan = $(that).attr("rowSpan");
+	                            if (rowspan == undefined) {
+	                                $(that).attr("rowSpan", 1);
+	                                rowspan = $(that).attr("rowSpan");
+	                            }
+	                            rowspan = Number(rowspan) + 1;
+	                            $(that).attr("rowSpan", rowspan);
+	                            $(this).hide();
+	                        } else {
+	                            that = this;
+	                        }
+	                    });
+	                });
+	            });
+	         }
+	         
+	$(function(){
+		//cellMege('datatabel','preType');
+		//cellMege('datatabel','proteam');
+		$("#datatabel").rowspan(0); 
+        $("#datatabel").rowspan(1);
+        
+		$('.add-collect-to').float({
+			position:'rm'
+		});
+		//右侧菜单浮动
+		$('.shortcut').float({
+			position:'l'
+		});
+		$('.shortcut_btn').float({
+			position:'l'
+		});
+	});
+</script>
+</head>
+ 
+<body bgcolor="#f8f7f7">
+ 
+<div style="width:870px;margin-left:-435px;left:50%;position:absolute;" id="content2">
+	<table width="864" border="0" align="center" cellspacing="0" style="padding-top:10px;">
+	
+		<tr>
+			<td colspan="6" align="center" height="40">
+				<h2 align="center">
+					<font style="font-family:'隶书'">
+						<b>
+							小辅修流程 报活记录
+						</b>
+					</font>
+				</h2>
+			</td>
+		</tr>
+	
+		<tr>
+			<td width="163" align="right">机车号：</td>
+			<td width="240">SS3  4170</td>
+			<td width="55" align="left">修程：</td>
+			<td width="251">X2</td>
+			<td width="140" align="left">检修日期：</td>
+			<td width="195" align="left">2013-07-26</td>
+		</tr>
+	
+		<tr>
+			<td colspan="6">
+				<table width="884" border="0" align="center" cellspacing="0" style="margin-top: 10px;">
+					<tr>
+					  	<td align="center" colspan="3" class="tbCELL3" style="background-color: lightblue;">
+					  		<span style="margin: 0 20px 0 20px;">JT28报活:&nbsp;&nbsp;1</span>
+					  		<span style="margin: 0 20px 0 20px;">复检报活:&nbsp;&nbsp;2</span>
+					  		<span style="margin: 0 20px 0 20px;">检修过程报活:&nbsp;&nbsp;1</span>
+					  		<span style="margin: 0 20px 0 20px;">零公里检查:&nbsp;&nbsp;0</span>
+						</td>
+					</tr>
+					
+					<tr height="5px">
+						<td></td>
+					</tr>
+					
+			 		<tr>
+			  			<td align="center" class="tbCELL3">
+							<table width="890" border="0" align="center" cellspacing="0" id="datatabel">
+								<tr style="line-height:40px;height: 40px;background-color: lightblue;font-weight: bolder;">
+									<td class="tbCELL1" align="center" style="white-space:nowrap" width="10%">报活类别</td>
+									<td class="tbCELL1" align="center" style="white-space:nowrap" width="8%">检修班组</td>
+									<td class="tbCELL1" align="center" style="white-space:nowrap" width="18%">报活内容</td>
+									<td class="tbCELL1" align="center" style="white-space:nowrap" width="6%">报活人</td>
+									<td class="tbCELL1" align="center" style="white-space:nowrap" width="9%">报活时间</td>
+									<td class="tbCELL1" align="center" style="white-space:nowrap" width="10%">检修完成时间</td>
+									<td class="tbCELL1" align="center" style="white-space:nowrap" width="10%">检修情况</td>
+									<td class="tbCELL1" align="center" style="white-space:nowrap" width="8%">检修人</td>
+									<td class="tbCELL1" align="center" style="white-space:nowrap" width="8%">工长</td>
+									<td class="tbCELL1" align="center" style="white-space:nowrap" width="7%">质检员</td>
+									<td class="tbCELL1" align="center" style="white-space:nowrap" width="7%">技术员</td>
+									<td class="tbCELL1" align="center" style="white-space:nowrap" width="7%">交车工长</td>
+									<td class="tbCELL1" align="center" style="white-space:nowrap" width="7%">验收员</td>
+								</tr>
+								
+									<tr>
+										<td class="tbCELL1" align="center"  name="preType">
+											
+												JT28报活
+											
+											
+											
+											
+										</td>
+										<td class="tbCELL1" align="center" name="proteam">台车上车组&nbsp;</td>
+										<td class="tbCELL1" align="center">变压器室门及门联锁/变压器室门锁坏&nbsp;</td>
+										<td class="tbCELL1" align="center">吴绩远&nbsp;</td>
+										<td class="tbCELL1" align="center">2013-10-09 11:28&nbsp;</td>
+										<td class="tbCELL1" align="center">&nbsp;</td>
+										<td class="tbCELL1" align="center">&nbsp;</td>
+										<td class="tbCELL1" align="center">
+											<font style="color: red;font-weight: bold;">(未派工)</font>
+											
+											
+											
+										</td>
+										<td class="tbCELL1" align="center">
+											
+												<font style="color: red;font-weight: bold;">(未签认)</font>
+											
+											
+										</td>
+										<td class="tbCELL1" align="center"><br/>&nbsp;</td>
+										<td class="tbCELL1" align="center"><br/>&nbsp;</td>
+										<td class="tbCELL1" align="center"><br/>&nbsp;</td>
+										<td class="tbCELL1" align="center"><br/>&nbsp;</td>
+									</tr>
+								
+									<tr>
+										<td class="tbCELL1" align="center"  name="preType">
+											
+											
+												复检报活
+											
+											
+											
+										</td>
+										<td class="tbCELL1" align="center" name="proteam">电器上车组&nbsp;</td>
+										<td class="tbCELL1" align="center">气阀柜/中间继电器卡滞失效&nbsp;</td>
+										<td class="tbCELL1" align="center">李杰&nbsp;</td>
+										<td class="tbCELL1" align="center">2013-10-09 09:07&nbsp;</td>
+										<td class="tbCELL1" align="center">2013-10-09 09:07:44&nbsp;</td>
+										<td class="tbCELL1" align="center">test&nbsp;</td>
+										<td class="tbCELL1" align="center">
+											
+											
+											
+											李杰&nbsp;
+										</td>
+										<td class="tbCELL1" align="center">
+											
+											
+												管文<br/>10-09 09:25&nbsp;
+											
+										</td>
+										<td class="tbCELL1" align="center">谭勇<br/>10-09 09:23&nbsp;</td>
+										<td class="tbCELL1" align="center">龙明元<br/>10-09 09:08&nbsp;</td>
+										<td class="tbCELL1" align="center"><br/>&nbsp;</td>
+										<td class="tbCELL1" align="center"><br/>&nbsp;</td>
+									</tr>
+								
+									<tr>
+										<td class="tbCELL1" align="center"  name="preType">
+											
+											
+												复检报活
+											
+											
+											
+										</td>
+										<td class="tbCELL1" align="center" name="proteam">&nbsp;</td>
+										<td class="tbCELL1" align="center">转子铁芯与轴配合及风叶状态/测试交车组&nbsp;</td>
+										<td class="tbCELL1" align="center">吴绩远&nbsp;</td>
+										<td class="tbCELL1" align="center">2013-10-09 10:09&nbsp;</td>
+										<td class="tbCELL1" align="center">&nbsp;</td>
+										<td class="tbCELL1" align="center">&nbsp;</td>
+										<td class="tbCELL1" align="center">
+											<font style="color: red;font-weight: bold;">(未派工)</font>
+											
+											
+											
+										</td>
+										<td class="tbCELL1" align="center">
+											
+												<font style="color: red;font-weight: bold;">(未签认)</font>
+											
+											
+										</td>
+										<td class="tbCELL1" align="center"><br/>&nbsp;</td>
+										<td class="tbCELL1" align="center"><br/>&nbsp;</td>
+										<td class="tbCELL1" align="center"><br/>&nbsp;</td>
+										<td class="tbCELL1" align="center"><br/>&nbsp;</td>
+									</tr>
+								
+									<tr>
+										<td class="tbCELL1" align="center"  name="preType">
+											
+											
+											
+												检修过程报活
+											
+											
+										</td>
+										<td class="tbCELL1" align="center" name="proteam">制动组&nbsp;</td>
+										<td class="tbCELL1" align="center">总风缸/总风缸排水阀漏风&nbsp;</td>
+										<td class="tbCELL1" align="center">吴绩远&nbsp;</td>
+										<td class="tbCELL1" align="center">2013-11-07 10:05&nbsp;</td>
+										<td class="tbCELL1" align="center">2013-11-07 10:08:50&nbsp;</td>
+										<td class="tbCELL1" align="center">良好&nbsp;</td>
+										<td class="tbCELL1" align="center">
+											
+											
+											
+											吴绩远&nbsp;
+										</td>
+										<td class="tbCELL1" align="center">
+											
+											
+												韩继光<br/>11-07 10:14&nbsp;
+											
+										</td>
+										<td class="tbCELL1" align="center"><br/>&nbsp;</td>
+										<td class="tbCELL1" align="center"><br/>&nbsp;</td>
+										<td class="tbCELL1" align="center"><br/>&nbsp;</td>
+										<td class="tbCELL1" align="center"><br/>&nbsp;</td>
+									</tr>
+								
+							</table>
+						</td>
+					</tr>
+		  		</table>
+		  	</td>
+		</tr>
+	</table>
+</div>
+ 
+<div class="add-collect-to" >
+  <a href="javascript:screenPrint();" style="font-size:14px;font-weight: bold;">打印</a>
+</div>
+</body>
+</html>

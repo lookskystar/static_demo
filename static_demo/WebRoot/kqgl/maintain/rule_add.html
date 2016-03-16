@@ -1,0 +1,85 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<!--框架必需start-->
+	<script type="text/javascript" src="../../js/jquery-1.4.js"></script>
+	<script type="text/javascript" src="../../js/framework.js"></script>
+	<link href="../../css/import_basic.css" rel="stylesheet" type="text/css"/>
+	<link  rel="stylesheet" type="text/css" id="skin" prePath="../../"/>
+	<!--框架必需end-->
+	<script type="text/javascript">
+		function toclose(){
+			top.Dialog.close();
+		}
+
+	</script>
+</head>
+
+<body>
+	<div>
+	<table class="tableStyle" transMode="true">
+			
+	 		<tr>
+				<td>上班时间: </td>
+				<td>
+					<input name="start" type="text" class="inputs" id="start" style="width:85px;text-align:center!important;" value="00:00" onclick="WdatePicker({dateFmt:'HH:mm'});" maxlength="5">
+				</td>
+				<td>下班时间: </td>
+				<td>
+					<input name="start" type="text" class="inputs" id="start" style="width:85px;text-align:center!important;" value="00:00" onclick="WdatePicker({dateFmt:'HH:mm'});" maxlength="5">
+				</td>
+			</tr>
+			<tr>
+				<td>迟到多久签到有效: </td>
+				<td>
+					<input  type="text" name="" style="width:85px"></input>分钟
+				</td>	
+				
+				<td>多久内不算迟到: </td>
+				<td>
+					<input  type="text" style="width:85px"></input>分钟
+				</td>
+			</tr>
+			<tr>	
+				<td>迟到或早退计旷工: </td>
+				<td>
+					<input  type="text" name="" style="width:85px"></input>分钟
+				</td>
+				<td>晚退多久签到有效: </td>
+				<td>
+					<input  type="text" style="width:85px"></input>分钟
+				</td>
+			</tr>
+			<tr>	
+				<td>多久内不算早退: </td>
+				<td>
+					<input  type="text" name="" style="width:85px"></input>分钟
+				</td>
+				<td>加班起算时间: </td>
+				<td>
+					<input name="start" type="text" class="inputs" id="start" style="width:85px;text-align:center!important;" value="00:00" onclick="WdatePicker({dateFmt:'HH:mm'});" maxlength="5">
+				</td>
+			</tr>
+			<tr>	
+				<td>午休开始时间: </td>
+				<td>
+					<input name="start" type="text" class="inputs" id="start" style="width:85px;text-align:center!important;" value="00:00" onclick="WdatePicker({dateFmt:'HH:mm'});" maxlength="5">
+				</td>
+				<td>午休结束时间: </td>
+				<td>
+					<input name="start" type="text" class="inputs" id="start" style="width:85px;text-align:center!important;" value="00:00" onclick="WdatePicker({dateFmt:'HH:mm'});" maxlength="5">
+				</td>
+			</tr>
+			<tr></tr>
+			<tr>
+				<td colspan="4">
+					<button onclick="tosave();"><span class="icon_save">提交</span></button>&nbsp;&nbsp;&nbsp;&nbsp;
+					<button onclick="toclose();"><span class="icon_mark">关闭</span></button>
+				</td>
+			</tr>
+		</table>
+	</div>
+<script type="text/javascript" src="../../My97DatePicker/WdatePicker.js"></script>
+</body>
+</html>

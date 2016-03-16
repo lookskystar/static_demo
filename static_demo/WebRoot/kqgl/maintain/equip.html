@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<!--框架必需start-->
+	<script type="text/javascript" src="../../js/jquery-1.4.js"></script>
+	<script type="text/javascript" src="../../js/framework.js"></script>
+	<link href="../../css/import_basic.css" rel="stylesheet" type="text/css"/>
+	<link  rel="stylesheet" type="text/css" id="skin" prePath="../../"/>
+	<!--框架必需end-->
+	<script type="text/javascript">
+	function toAdd(){
+		top.Dialog.open({
+			URL:"kqgl/maintain/equip_add.html",
+			Width:600,
+			Height:300,
+			Title:"设备入库"
+		});
+	}
+	
+	</script>
+</head>
+
+<body>
+	
+	<div class="box2" panelTitle="查询条件" roller="false" >
+	<form action="" method="post" id="subfrom">
+		<table>
+			<tr>
+			<!-- 	<td>设备型号：<input type="text" style="width:80px;" value="" name=""/></td>
+				<td>设备编码:</td>
+				<td><input type="text"  name="" value="" style="width:80px;"/></td>
+                <td>位置:</td>
+				<td>
+				    <select name="teamId" class="default" style="width:80px;" onchange="" id="teamId">
+					  <option value="">全部</option>
+					  <option value="0" selected="selected">制动组</option>
+					  <option value="1" selected="selected">柴备组</option>
+					  <option value="2" selected="selected">机考室</option>
+				    </select>
+				</td>
+				<td><input type="submit" value="查询"/></td> -->
+				<td>
+					<button onclick="toAdd()"><span class="icon_add">新增</span></button>
+				</td>
+				<td>
+					<button onclick=""><span class="icon_delete">删除</span></button>
+				</td>
+			</tr>
+		</table>	
+	</form>
+	</div> 
+	<div id="scrollContent" >
+		<table class="tableStyle" useMultColor="true">
+		<tr>
+			<th width="3%" align="center"></th>
+			<th width="15%" align="center">型号</th>
+			<th width="15%" align="center">编号</th>
+			<th width="15%" align="center">位置</th>
+			<th width="17%" align="center">IP地址</th>
+		</tr>
+		<tr>
+			<td align="center"><input id="" name="rec" type="checkbox" width="30px" value=""/></td>
+			<td align="center">xr_A</td>
+			<td align="center"><a href="javascript:void(0);" onclick="" style="color:blue;">0014</a></td>
+			<td align="center">机考室</td>
+			<td align="center">10.183.214.111</td>
+		</tr>
+		<tr>
+			<td align="center"><input id="" name="rec" type="checkbox" width="30px" value=""/></td>
+			<td align="center">xr_A</td>
+			<td align="center"><a href="javascript:void(0);" onclick="" style="color:blue;">0011</a></td>
+			<td align="center">制动组</td>
+			<td align="center">10.183.214.111</td>
+		</tr>
+		<tr>
+			<td align="center"><input id="" name="rec" type="checkbox" width="30px" value=""/></td>
+			<td align="center">xr_A</td>
+			<td align="center"><a href="javascript:void(0);" onclick="" style="color:blue;">0010</a></td>
+			<td align="center">电仪组</td>
+			<td align="center">10.183.214.111</td>
+		</tr>
+	</table>
+	</div>
+   		<div style="height:35px;">
+		<div class="float_right padding5 paging">
+			<div class="float_left padding_top4">
+			<span class="paging_disabled"><a href="javascript:;">上一页</a></span>
+			<span class="paging_current"><a href="javascript:;">1</a></span>
+			<span><a href="javascript:;">2</a></span>
+			<span><a href="javascript:;">3</a></span>
+			<span><a href="javascript:;">4</a></span>
+			<span><a href="javascript:;">5</a></span>
+			<span>...</span>
+			<span><a href="javascript:;">20</a></span>
+			<span><a href="javascript:;">下一页</a></span> 每页
+			</div>
+			<div class="float_left"><select autoWidth="true"><option>50</option><option>100</option><option>150</option></select></div>
+			<div class="float_left padding_top4">条记录</div>
+			<div class="clear"></div>
+		</div>
+		<div class="clear"></div>
+	</div>
+</body>
+</html>

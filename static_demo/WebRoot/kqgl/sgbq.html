@@ -1,0 +1,103 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<!--框架必需start-->
+		<script type="text/javascript" src="../js/jquery-1.4.js"></script>
+		<script type="text/javascript" src="../js/framework.js"></script>
+		<link href="../css/import_basic.css" rel="stylesheet" type="text/css"/>
+		<link  rel="stylesheet" type="text/css" id="skin" prePath="../"/>
+		<!--框架必需end-->
+		<script type="text/javascript" src="../js/nav/ddaccordion.js"></script>
+		<script type="text/javascript" src="../js/text/text-overflow.js"></script>
+		<script type="text/javascript">
+		function add(){
+			var diag = new top.Dialog();
+			diag.Title = "手工补出勤";
+			diag.URL = "kqgl/kqgl_sgbq_input_tips.html";
+			diag.Height=480;
+			diag.MessageTitle="表单标题";
+			diag.Message="手工补出勤登记表";
+			diag.CancelEvent = function(){
+				diag.innerFrame.contentWindow.location.reload();
+				diag.close();
+				};
+			diag.show();
+		}
+	</script>	
+	</head>
+<body>
+	<div class="box2" panelTitle="手工补出勤" roller="false">
+	   <table>
+		     <tr>
+	                <td>工号或姓名:<input type="text" style="width: 100px" name="pjName" value=""/></td>
+	                <td>班组:<select id="first" class="default" style="width: 100px">
+					     <option value="0"></option>
+	                     <option value="1">电器组</option>
+                         <option value="2">电机组</option>
+                         <option value="3">制动组</option>
+	               </select></td>
+	           <td>开始时间:<input type="text" class="date"/></td>
+	           <td>结束时间:<input type="text" class="date"/></td>
+               <td><button><span class="icon_find">查询</span></button></td>
+			  </tr >
+			  <tr >
+			     <td colspan="2">
+				     <button  onclick="add();"><span class="icon_add">补签</span></button>&nbsp;
+				     <button  onclick=""><span class="icon_delete">删除</span></button>&nbsp;
+		             <button  onclick=""><span class="icon_xls">导出</span></button>
+				 </td>
+			  </tr>
+	   </table>
+	</div id="scrollContent">
+		<table width="100%" class="tableStyle" useCheckBox="true" useMultColor="true">
+			<tr>
+			    <th class="ver01" width="3%" align="center"></th>
+				<th class="ver01" width="10%" align="center">工号</th>
+				<th class="ver01" width="10%" align="center">姓名</th>
+				<th class="ver01" width="10%" align="center">班组</th>
+				<th class="ver01" width="10%" align="center">补签时间</th>
+				<th class="ver01" width="10%" align="center">操作员</th>
+				<th class="ver01" width="37%" align="center">补签原因</th>
+				<th class="ver01" width="10%" align="center">操作</th>
+			</tr>
+			<tr>
+			    <td class="ver01" align="center"><input type="checkbox" id="" name="pjIds" value=""/></td>
+			    <td class="ver01" align="center">041</td>
+				<td class="ver01" align="center">高器材</td>
+				<td class="ver01" align="center">制动组</td>
+				<td class="ver01" align="center">2014-07-11</td>
+				<td class="ver01" align="center">唐如来</td>
+				<td class="ver01" align="center">这家伙忘记签到了</td>
+				<td class="ver01" align="center">
+				    <a href="javascript:;" style="color:blue;" onclick="">删除</a>
+				</td>
+			</tr>
+			<tr>
+			    <td class="ver01" align="center"><input type="checkbox" id="" name="pjIds" value=""/></td>
+			    <td class="ver01" align="center">041</td>
+				<td class="ver01" align="center">陈荣</td>
+				<td class="ver01" align="center">电器组</td>
+				<td class="ver01" align="center">2014-07-11</td>
+				<td class="ver01" align="center">唐如来</td>
+				<td class="ver01" align="center">这家伙忘记也签到了</td>
+				<td class="ver01" align="center">
+				    <a href="javascript:;" style="color:blue;" onclick="">删除</a>
+				</td>
+			</tr>
+			<tr>
+			    <td class="ver01" align="center"><input type="checkbox" id="" name="pjIds" value=""/></td>
+			    <td class="ver01" align="center">041</td>
+				<td class="ver01" align="center">高艳</td>
+				<td class="ver01" align="center">走行组</td>
+				<td class="ver01" align="center">2014-07-11</td>
+				<td class="ver01" align="center">唐如来</td>
+				<td class="ver01" align="center">他给我钱，要我帮他补签一个</td>
+				<td class="ver01" align="center">
+				    <a href="javascript:;" style="color:blue;" onclick="">删除</a>
+				</td>
+			</tr>
+			
+		</table>
+</body>
+</html>
